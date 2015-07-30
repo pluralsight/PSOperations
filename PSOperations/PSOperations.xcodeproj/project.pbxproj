@@ -9,7 +9,38 @@
 /* Begin PBXBuildFile section */
 		1D9B43141B6A92ED008F7F18 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D9B431A1B6A92ED008F7F18 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
-		1D9B43211B6A92ED008F7F18 /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43201B6A92ED008F7F18 /* PSOperationsTests.swift */; };
+		1D9B43491B6A934A008F7F18 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432A1B6A934A008F7F18 /* OperationQueue.swift */; };
+		1D9B434A1B6A934A008F7F18 /* ExclusivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432B1B6A934A008F7F18 /* ExclusivityController.swift */; };
+		1D9B434B1B6A934A008F7F18 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432C1B6A934A008F7F18 /* Operation.swift */; };
+		1D9B434C1B6A934A008F7F18 /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432D1B6A934A008F7F18 /* BlockOperation.swift */; };
+		1D9B434D1B6A934A008F7F18 /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432E1B6A934A008F7F18 /* GroupOperation.swift */; };
+		1D9B434E1B6A934A008F7F18 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432F1B6A934A008F7F18 /* URLSessionTaskOperation.swift */; };
+		1D9B434F1B6A934A008F7F18 /* LocationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43301B6A934A008F7F18 /* LocationOperation.swift */; };
+		1D9B43501B6A934A008F7F18 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43311B6A934A008F7F18 /* DelayOperation.swift */; };
+		1D9B43511B6A934A008F7F18 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43321B6A934A008F7F18 /* OperationObserver.swift */; };
+		1D9B43521B6A934A008F7F18 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43331B6A934A008F7F18 /* BlockObserver.swift */; };
+		1D9B43531B6A934A008F7F18 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43341B6A934A008F7F18 /* TimeoutObserver.swift */; };
+		1D9B43541B6A934A008F7F18 /* OperationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43351B6A934A008F7F18 /* OperationErrors.swift */; };
+		1D9B43551B6A934A008F7F18 /* OperationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43361B6A934A008F7F18 /* OperationCondition.swift */; };
+		1D9B43561B6A934A008F7F18 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43371B6A934A008F7F18 /* SilentCondition.swift */; };
+		1D9B43571B6A934A008F7F18 /* NegatedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43381B6A934A008F7F18 /* NegatedCondition.swift */; };
+		1D9B43581B6A934A008F7F18 /* NoCancelledDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43391B6A934A008F7F18 /* NoCancelledDependencies.swift */; };
+		1D9B43591B6A934A008F7F18 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */; };
+		1D9B435A1B6A934A008F7F18 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */; };
+		1D9B435B1B6A934A008F7F18 /* CloudCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */; };
+		1D9B435C1B6A934A008F7F18 /* PassbookCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433D1B6A934A008F7F18 /* PassbookCondition.swift */; };
+		1D9B435D1B6A934A008F7F18 /* LocationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */; };
+		1D9B435E1B6A934A008F7F18 /* CalendarCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */; };
+		1D9B435F1B6A934A008F7F18 /* PhotosCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */; };
+		1D9B43601B6A934A008F7F18 /* HealthCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43411B6A934A008F7F18 /* HealthCondition.swift */; };
+		1D9B43611B6A934A008F7F18 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */; };
+		1D9B43621B6A934A008F7F18 /* UserNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */; };
+		1D9B43631B6A934A008F7F18 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */; };
+		1D9B43641B6A934A008F7F18 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */; };
+		1D9B43651B6A934A008F7F18 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */; };
+		1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */; };
+		1D9B43671B6A934A008F7F18 /* Array+FMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43481B6A934A008F7F18 /* Array+FMap.swift */; };
+		1D9B436E1B6A942C008F7F18 /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +59,38 @@
 		1D9B43131B6A92ED008F7F18 /* PSOperations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSOperations.h; sourceTree = "<group>"; };
 		1D9B43191B6A92ED008F7F18 /* PSOperationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PSOperationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D9B431F1B6A92ED008F7F18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D9B43201B6A92ED008F7F18 /* PSOperationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSOperationsTests.swift; sourceTree = "<group>"; };
+		1D9B432A1B6A934A008F7F18 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
+		1D9B432B1B6A934A008F7F18 /* ExclusivityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExclusivityController.swift; sourceTree = "<group>"; };
+		1D9B432C1B6A934A008F7F18 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		1D9B432D1B6A934A008F7F18 /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
+		1D9B432E1B6A934A008F7F18 /* GroupOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
+		1D9B432F1B6A934A008F7F18 /* URLSessionTaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperation.swift; sourceTree = "<group>"; };
+		1D9B43301B6A934A008F7F18 /* LocationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationOperation.swift; sourceTree = "<group>"; };
+		1D9B43311B6A934A008F7F18 /* DelayOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayOperation.swift; sourceTree = "<group>"; };
+		1D9B43321B6A934A008F7F18 /* OperationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationObserver.swift; sourceTree = "<group>"; };
+		1D9B43331B6A934A008F7F18 /* BlockObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockObserver.swift; sourceTree = "<group>"; };
+		1D9B43341B6A934A008F7F18 /* TimeoutObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeoutObserver.swift; sourceTree = "<group>"; };
+		1D9B43351B6A934A008F7F18 /* OperationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationErrors.swift; sourceTree = "<group>"; };
+		1D9B43361B6A934A008F7F18 /* OperationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCondition.swift; sourceTree = "<group>"; };
+		1D9B43371B6A934A008F7F18 /* SilentCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentCondition.swift; sourceTree = "<group>"; };
+		1D9B43381B6A934A008F7F18 /* NegatedCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegatedCondition.swift; sourceTree = "<group>"; };
+		1D9B43391B6A934A008F7F18 /* NoCancelledDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCancelledDependencies.swift; sourceTree = "<group>"; };
+		1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutuallyExclusive.swift; sourceTree = "<group>"; };
+		1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCondition.swift; sourceTree = "<group>"; };
+		1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudCondition.swift; sourceTree = "<group>"; };
+		1D9B433D1B6A934A008F7F18 /* PassbookCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassbookCondition.swift; sourceTree = "<group>"; };
+		1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCondition.swift; sourceTree = "<group>"; };
+		1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCondition.swift; sourceTree = "<group>"; };
+		1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCondition.swift; sourceTree = "<group>"; };
+		1D9B43411B6A934A008F7F18 /* HealthCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCondition.swift; sourceTree = "<group>"; };
+		1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationCondition.swift; sourceTree = "<group>"; };
+		1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCondition.swift; sourceTree = "<group>"; };
+		1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Operations.swift"; sourceTree = "<group>"; };
+		1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
+		1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKContainer+Operations.swift"; sourceTree = "<group>"; };
+		1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
+		1D9B43481B6A934A008F7F18 /* Array+FMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+FMap.swift"; sourceTree = "<group>"; };
+		1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSOperationsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +134,11 @@
 			isa = PBXGroup;
 			children = (
 				1D9B43131B6A92ED008F7F18 /* PSOperations.h */,
+				1D9B43681B6A934F008F7F18 /* Operation Queue */,
+				1D9B43691B6A9375008F7F18 /* Operations */,
+				1D9B436A1B6A938F008F7F18 /* Observers */,
+				1D9B436B1B6A93B0008F7F18 /* Conditions */,
+				1D9B436C1B6A93C9008F7F18 /* Convenience Extensions */,
 				1D9B43111B6A92ED008F7F18 /* Supporting Files */,
 			);
 			path = PSOperations;
@@ -88,7 +155,7 @@
 		1D9B431D1B6A92ED008F7F18 /* PSOperationsTests */ = {
 			isa = PBXGroup;
 			children = (
-				1D9B43201B6A92ED008F7F18 /* PSOperationsTests.swift */,
+				1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */,
 				1D9B431E1B6A92ED008F7F18 /* Supporting Files */,
 			);
 			path = PSOperationsTests;
@@ -100,6 +167,72 @@
 				1D9B431F1B6A92ED008F7F18 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1D9B43681B6A934F008F7F18 /* Operation Queue */ = {
+			isa = PBXGroup;
+			children = (
+				1D9B432A1B6A934A008F7F18 /* OperationQueue.swift */,
+				1D9B432B1B6A934A008F7F18 /* ExclusivityController.swift */,
+			);
+			name = "Operation Queue";
+			sourceTree = "<group>";
+		};
+		1D9B43691B6A9375008F7F18 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				1D9B432C1B6A934A008F7F18 /* Operation.swift */,
+				1D9B432D1B6A934A008F7F18 /* BlockOperation.swift */,
+				1D9B432E1B6A934A008F7F18 /* GroupOperation.swift */,
+				1D9B432F1B6A934A008F7F18 /* URLSessionTaskOperation.swift */,
+				1D9B43301B6A934A008F7F18 /* LocationOperation.swift */,
+				1D9B43311B6A934A008F7F18 /* DelayOperation.swift */,
+			);
+			name = Operations;
+			sourceTree = "<group>";
+		};
+		1D9B436A1B6A938F008F7F18 /* Observers */ = {
+			isa = PBXGroup;
+			children = (
+				1D9B43321B6A934A008F7F18 /* OperationObserver.swift */,
+				1D9B43331B6A934A008F7F18 /* BlockObserver.swift */,
+				1D9B43341B6A934A008F7F18 /* TimeoutObserver.swift */,
+			);
+			name = Observers;
+			sourceTree = "<group>";
+		};
+		1D9B436B1B6A93B0008F7F18 /* Conditions */ = {
+			isa = PBXGroup;
+			children = (
+				1D9B43351B6A934A008F7F18 /* OperationErrors.swift */,
+				1D9B43361B6A934A008F7F18 /* OperationCondition.swift */,
+				1D9B43371B6A934A008F7F18 /* SilentCondition.swift */,
+				1D9B43381B6A934A008F7F18 /* NegatedCondition.swift */,
+				1D9B43391B6A934A008F7F18 /* NoCancelledDependencies.swift */,
+				1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */,
+				1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */,
+				1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */,
+				1D9B433D1B6A934A008F7F18 /* PassbookCondition.swift */,
+				1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */,
+				1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */,
+				1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */,
+				1D9B43411B6A934A008F7F18 /* HealthCondition.swift */,
+				1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */,
+				1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */,
+			);
+			name = Conditions;
+			sourceTree = "<group>";
+		};
+		1D9B436C1B6A93C9008F7F18 /* Convenience Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */,
+				1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */,
+				1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */,
+				1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */,
+				1D9B43481B6A934A008F7F18 /* Array+FMap.swift */,
+			);
+			name = "Convenience Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +342,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D9B43551B6A934A008F7F18 /* OperationCondition.swift in Sources */,
+				1D9B43621B6A934A008F7F18 /* UserNotificationCondition.swift in Sources */,
+				1D9B43651B6A934A008F7F18 /* CKContainer+Operations.swift in Sources */,
+				1D9B43491B6A934A008F7F18 /* OperationQueue.swift in Sources */,
+				1D9B43611B6A934A008F7F18 /* RemoteNotificationCondition.swift in Sources */,
+				1D9B435D1B6A934A008F7F18 /* LocationCondition.swift in Sources */,
+				1D9B435F1B6A934A008F7F18 /* PhotosCondition.swift in Sources */,
+				1D9B434E1B6A934A008F7F18 /* URLSessionTaskOperation.swift in Sources */,
+				1D9B43511B6A934A008F7F18 /* OperationObserver.swift in Sources */,
+				1D9B43641B6A934A008F7F18 /* NSOperation+Operations.swift in Sources */,
+				1D9B434A1B6A934A008F7F18 /* ExclusivityController.swift in Sources */,
+				1D9B434B1B6A934A008F7F18 /* Operation.swift in Sources */,
+				1D9B43531B6A934A008F7F18 /* TimeoutObserver.swift in Sources */,
+				1D9B43581B6A934A008F7F18 /* NoCancelledDependencies.swift in Sources */,
+				1D9B43591B6A934A008F7F18 /* MutuallyExclusive.swift in Sources */,
+				1D9B434F1B6A934A008F7F18 /* LocationOperation.swift in Sources */,
+				1D9B434C1B6A934A008F7F18 /* BlockOperation.swift in Sources */,
+				1D9B43631B6A934A008F7F18 /* Dictionary+Operations.swift in Sources */,
+				1D9B435C1B6A934A008F7F18 /* PassbookCondition.swift in Sources */,
+				1D9B43571B6A934A008F7F18 /* NegatedCondition.swift in Sources */,
+				1D9B434D1B6A934A008F7F18 /* GroupOperation.swift in Sources */,
+				1D9B435E1B6A934A008F7F18 /* CalendarCondition.swift in Sources */,
+				1D9B435B1B6A934A008F7F18 /* CloudCondition.swift in Sources */,
+				1D9B43501B6A934A008F7F18 /* DelayOperation.swift in Sources */,
+				1D9B43541B6A934A008F7F18 /* OperationErrors.swift in Sources */,
+				1D9B43561B6A934A008F7F18 /* SilentCondition.swift in Sources */,
+				1D9B43601B6A934A008F7F18 /* HealthCondition.swift in Sources */,
+				1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */,
+				1D9B435A1B6A934A008F7F18 /* ReachabilityCondition.swift in Sources */,
+				1D9B43521B6A934A008F7F18 /* BlockObserver.swift in Sources */,
+				1D9B43671B6A934A008F7F18 /* Array+FMap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D9B43211B6A92ED008F7F18 /* PSOperationsTests.swift in Sources */,
+				1D9B436E1B6A942C008F7F18 /* PSOperationsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +487,7 @@
 		1D9B43251B6A92ED008F7F18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -332,12 +497,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		1D9B43261B6A92ED008F7F18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -353,6 +520,7 @@
 		1D9B43281B6A92ED008F7F18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -364,12 +532,14 @@
 				INFOPLIST_FILE = PSOperationsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		1D9B43291B6A92ED008F7F18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
