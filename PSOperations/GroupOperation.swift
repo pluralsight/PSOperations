@@ -45,6 +45,7 @@ public class GroupOperation: Operation {
     
     override public func cancel() {
         internalQueue.cancelAllOperations()
+        internalQueue.suspended = false
         super.cancel()
     }
     

@@ -209,6 +209,47 @@ class PSOperationsTests: XCTestCase {
         waitForExpectationsWithTimeout(1.0, handler: nil)
     }
     
+    func testGroupOperation_cancelBeforeExecuting() {
+        let exp1 = expectationWithDescription("block1")
+        let exp2 = expectationWithDescription("block2")
+        
+        let op1 = NSBlockOperation {
+            XCTFail("should not execute -- cancelled")
+        }
+        
+        op1.completionBlock = {
+            exp1.fulfill()
+        }
+        
+        let op2 = NSBlockOperation {
+            XCTFail("should not execute -- cancelled")
+        }
+        
+        op2.completionBlock = {
+            exp2.fulfill()
+        }
+        
+        let groupOp = GroupOperation(operations: op1, op2)
+        
+        keyValueObservingExpectationForObject(groupOp, keyPath: "isFinished") {
+            (op, changes) -> Bool in
+            if let op = op as? NSOperation {
+                return op.finished
+            }
+            
+            return false
+        }
+        
+        let opQ = OperationQueue()
+        
+        opQ.suspended = true
+        opQ.addOperation(groupOp)
+        groupOp.cancel()
+        opQ.suspended = false
+        
+        waitForExpectationsWithTimeout(5.0, handler: nil)
+    }
+    
     func testDelayOperation() {
         let delay: NSTimeInterval = 0.1
         
