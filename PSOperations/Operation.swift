@@ -219,7 +219,7 @@ public class Operation: NSOperation {
         their readiness state.
     */
     public func execute() {
-        print("\(self.dynamicType) must override `execute()`.")
+        print("\(self.dynamicType) must override `execute()`.", appendNewline: false)
 
         finish()
     }
@@ -259,7 +259,7 @@ public class Operation: NSOperation {
     */
     final func finishWithError(error: NSError?) {
         if let error = error {
-            finish(errors: [error])
+            finish([error])
         }
         else {
             finish()

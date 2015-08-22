@@ -51,7 +51,7 @@ public class OperationQueue: NSOperationQueue {
             op.addObserver(delegate)
             
             // Extract any dependencies needed by this operation.
-            let dependencies = op.conditions.fMap {
+            let dependencies = op.conditions.flatMap {
                 $0.dependencyForOperation(op)
             }
                 
@@ -65,9 +65,8 @@ public class OperationQueue: NSOperationQueue {
                 With condition dependencies added, we can now see if this needs
                 dependencies to enforce mutual exclusivity.
             */
-            let concurrencyCategories: [String] = op.conditions.fMap { condition in
-                
-                if !condition.isMutuallyExclusive { return nil }
+            let concurrencyCategories: [String] = op.conditions.flatMap { condition in
+                if !condition.dynamicType.isMutuallyExclusive { return nil }
                 
                 return "\(condition.dynamicType)"
             }
@@ -110,15 +109,13 @@ public class OperationQueue: NSOperationQueue {
         super.addOperation(operation)   
     }
     
-    override public func addOperations(ops: [AnyObject], waitUntilFinished wait: Bool) {
+    override public func addOperations(ops: [NSOperation], waitUntilFinished wait: Bool) {
         /*
             The base implementation of this method does not call `addOperation()`,
             so we'll call it ourselves.
         */
         for operation in operations {
-            if let operation = operation as? NSOperation {
-                addOperation(operation)
-            }
+            addOperation(operation)
         }
         
         if wait {

@@ -13,7 +13,7 @@ public struct CalendarCondition: OperationCondition {
     
     public static let name = "Calendar"
     static let entityTypeKey = "EKEntityType"
-    public let isMutuallyExclusive = false
+    public static let isMutuallyExclusive = false
     
     let entityType: EKEntityType
     
@@ -34,7 +34,7 @@ public struct CalendarCondition: OperationCondition {
                 // We are not authorized to access entities of this type.
                 let error = NSError(code: .ConditionFailed, userInfo: [
                     OperationConditionKey: self.dynamicType.name,
-                    self.dynamicType.entityTypeKey: entityType
+                    self.dynamicType.entityTypeKey: entityType.rawValue
                 ])
                 
                 completion(.Failed(error))

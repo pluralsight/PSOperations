@@ -61,8 +61,8 @@ public class LocationOperation: Operation, CLLocationManagerDelegate {
     
     // MARK: CLLocationManagerDelegate
     
-    public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [AnyObject]) {
-        if let locations = locations as? [CLLocation], location = locations.last where location.horizontalAccuracy <= accuracy {
+    public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last where location.horizontalAccuracy <= accuracy {
             stopLocationUpdates()
             handler(location)
             finish()

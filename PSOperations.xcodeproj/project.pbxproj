@@ -39,7 +39,6 @@
 		1D9B43641B6A934A008F7F18 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */; };
 		1D9B43651B6A934A008F7F18 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */; };
 		1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */; };
-		1D9B43671B6A934A008F7F18 /* Array+FMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43481B6A934A008F7F18 /* Array+FMap.swift */; };
 		1D9B436E1B6A942C008F7F18 /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,7 +88,6 @@
 		1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
 		1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKContainer+Operations.swift"; sourceTree = "<group>"; };
 		1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
-		1D9B43481B6A934A008F7F18 /* Array+FMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+FMap.swift"; sourceTree = "<group>"; };
 		1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSOperationsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -230,7 +228,6 @@
 				1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */,
 				1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */,
 				1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */,
-				1D9B43481B6A934A008F7F18 /* Array+FMap.swift */,
 			);
 			name = "Convenience Extensions";
 			sourceTree = "<group>";
@@ -291,6 +288,8 @@
 		1D9B43051B6A92ED008F7F18 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = Pluralsight;
 				TargetAttributes = {
@@ -372,7 +371,6 @@
 				1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */,
 				1D9B435A1B6A934A008F7F18 /* ReachabilityCondition.swift in Sources */,
 				1D9B43521B6A934A008F7F18 /* BlockObserver.swift in Sources */,
-				1D9B43671B6A934A008F7F18 /* Array+FMap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

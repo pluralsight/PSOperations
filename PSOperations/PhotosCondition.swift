@@ -14,7 +14,7 @@ import Photos
 public struct PhotosCondition: OperationCondition {
     
     public static let name = "Photos"
-    public let isMutuallyExclusive = false
+    public static let isMutuallyExclusive = false
     
     public init() { }
     

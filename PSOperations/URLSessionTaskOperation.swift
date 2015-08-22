@@ -33,12 +33,12 @@ public class URLSessionTaskOperation: Operation {
     override public func execute() {
         assert(task.state == .Suspended, "Task was resumed by something other than \(self).")
 
-        task.addObserver(self, forKeyPath: "state", options: NSKeyValueObservingOptions.allZeros, context: &URLSessionTaksOperationKVOContext)
+        task.addObserver(self, forKeyPath: "state", options: NSKeyValueObservingOptions(), context: &URLSessionTaksOperationKVOContext)
         
         task.resume()
     }
     
-    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [NSObject : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if context != &URLSessionTaksOperationKVOContext {
             return
         }

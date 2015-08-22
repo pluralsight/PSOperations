@@ -27,7 +27,7 @@ public struct UserNotificationCondition: OperationCondition {
     public static let name = "UserNotification"
     static let currentSettings = "CurrentUserNotificationSettings"
     static let desiredSettings = "DesiredUserNotificationSettigns"
-    public let isMutuallyExclusive = false
+    public static let isMutuallyExclusive = false
     
     let settings: UIUserNotificationSettings
     let application: UIApplication
@@ -63,9 +63,11 @@ public struct UserNotificationCondition: OperationCondition {
         
         let current = application.currentUserNotificationSettings()
         
-        if current != nil && current.contains(settings) {
+        switch (current, settings)  {
+        case (let current?, let settings) where current.contains(settings):
             result = .Satisfied
-        } else {
+            
+        default:
             let error = NSError(code: .ConditionFailed, userInfo: [
                 OperationConditionKey: self.dynamicType.name,
                 self.dynamicType.currentSettings: current ?? NSNull(),
