@@ -22,8 +22,8 @@ struct SilentCondition<T: OperationCondition>: OperationCondition {
         return "Silent<\(T.name)>"
     }
     
-    public var isMutuallyExclusive: Bool {
-        return condition.isMutuallyExclusive
+    public static var isMutuallyExclusive: Bool {
+        return T.isMutuallyExclusive
     }
     
     public init(condition: T) {

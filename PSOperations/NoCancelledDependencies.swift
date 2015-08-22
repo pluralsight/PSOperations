@@ -16,7 +16,7 @@ import Foundation
 public struct NoCancelledDependencies: OperationCondition {
     public static let name = "NoCancelledDependencies"
     static let cancelledDependenciesKey = "CancelledDependencies"
-    public let isMutuallyExclusive = false
+    public static let isMutuallyExclusive = false
     
     public init() {
         // No op.

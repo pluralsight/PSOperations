@@ -21,7 +21,7 @@ private enum RemoteRegistrationResult {
 /// A condition for verifying that the app has the ability to receive push notifications.
 public struct RemoteNotificationCondition: OperationCondition {
     public static let name = "RemoteNotification"
-    public let isMutuallyExclusive = false
+    public static let isMutuallyExclusive = false
     
     static func didReceiveNotificationToken(token: NSData) {
         NSNotificationCenter.defaultCenter().postNotificationName(RemoteNotificationName, object: nil, userInfo: [

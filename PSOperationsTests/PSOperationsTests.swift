@@ -13,7 +13,7 @@ import CoreAudio
 struct TestCondition: OperationCondition {
     
     static let name = "TestCondition"
-    var isMutuallyExclusive = false
+    static let isMutuallyExclusive = false
     var dependencyOperation: NSOperation?
 
     var conditionBlock: () -> Bool = { true }
@@ -423,7 +423,7 @@ class PSOperationsTests: XCTestCase {
         let noCancelledCondition = NoCancelledDependencies()
         operation.addCondition(noCancelledCondition)
 
-        keyValueObservingExpectationForObject(dependencyOperation, keyPath: "isCancelled") {
+        keyValueObservingExpectationForObject(dependencyOperation!, keyPath: "isCancelled") {
             (op, changes) -> Bool in
             
             if let op = op as? NSOperation {
@@ -477,7 +477,7 @@ class PSOperationsTests: XCTestCase {
             exp.fulfill()
         }
         
-        keyValueObservingExpectationForObject(dependencyOperation, keyPath: "isCancelled") {
+        keyValueObservingExpectationForObject(dependencyOperation!, keyPath: "isCancelled") {
             (op, changes) -> Bool in
             
             if let op = op as? NSOperation {
@@ -513,7 +513,7 @@ class PSOperationsTests: XCTestCase {
             exp.fulfill()
         }
         
-        keyValueObservingExpectationForObject(operation, keyPath: "isCancelled") {
+        keyValueObservingExpectationForObject(operation!, keyPath: "isCancelled") {
             (op, changes) -> Bool in
             
             if let op = op as? NSOperation {
@@ -657,7 +657,7 @@ class PSOperationsTests: XCTestCase {
         
         let groupOp = GroupOperation(operations: [dependencyOperation!, operation])
         
-        keyValueObservingExpectationForObject(dependencyOperation, keyPath: "isCancelled") {
+        keyValueObservingExpectationForObject(dependencyOperation!, keyPath: "isCancelled") {
             (op, changes) -> Bool in
             
             if let op = op as? NSOperation {

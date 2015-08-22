@@ -19,7 +19,7 @@ public struct HealthCondition: OperationCondition {
     public static let name = "Health"
     static let healthDataAvailable = "HealthDataAvailable"
     static let unauthorizedShareTypesKey = "UnauthorizedShareTypes"
-    public let isMutuallyExclusive = false
+    public static let isMutuallyExclusive = false
     
     let shareTypes: Set<HKSampleType>
     let readTypes: Set<HKSampleType>
@@ -67,7 +67,7 @@ public struct HealthCondition: OperationCondition {
             Thus, we can only check to see if we've been given permission to 
             write data to HealthKit.
         */
-        let unauthorizedShareTypes = filter(shareTypes) { shareType in
+        let unauthorizedShareTypes = shareTypes.filter { shareType in
             return store.authorizationStatusForType(shareType) != .SharingAuthorized
         }
 

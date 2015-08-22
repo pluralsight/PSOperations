@@ -17,7 +17,7 @@ import SystemConfiguration
 public struct ReachabilityCondition: OperationCondition {
     static let hostKey = "Host"
     public static let name = "Reachability"
-    public let isMutuallyExclusive = false
+    public static let isMutuallyExclusive = false
     
     let host: NSURL
     
@@ -58,25 +58,25 @@ private class ReachabilityController {
         if let host = url.host {
             dispatch_async(reachabilityQueue) {
                 var ref = self.reachabilityRefs[host]
-
+                
                 if ref == nil {
                     let hostString = host as NSString
-                    ref = SCNetworkReachabilityCreateWithName(nil, hostString.UTF8String).takeRetainedValue()
+                    ref = SCNetworkReachabilityCreateWithName(nil, hostString.UTF8String)
                 }
                 
                 if let ref = ref {
                     self.reachabilityRefs[host] = ref
                     
                     var reachable = false
-                    var flags: SCNetworkReachabilityFlags = .allZeros
+                    var flags: SCNetworkReachabilityFlags = []
                     if SCNetworkReachabilityGetFlags(ref, &flags) != 0 {
                         /*
-                            Note that this is a very basic "is reachable" check. 
-                            Your app may choose to allow for other considerations,
-                            such as whether or not the connection would require 
-                            VPN, a cellular connection, etc.
+                        Note that this is a very basic "is reachable" check.
+                        Your app may choose to allow for other considerations,
+                        such as whether or not the connection would require
+                        VPN, a cellular connection, etc.
                         */
-                        reachable = Int(flags) & kSCNetworkReachabilityFlagsReachable == kSCNetworkReachabilityFlagsReachable
+                        reachable = flags.contains(.Reachable)
                     }
                     completionHandler(reachable)
                 }

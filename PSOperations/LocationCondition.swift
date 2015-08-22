@@ -22,7 +22,7 @@ public struct LocationCondition: OperationCondition {
     public static let name = "Location"
     static let locationServicesEnabledKey = "CLLocationServicesEnabled"
     static let authorizationStatusKey = "CLAuthorizationStatus"
-    public let isMutuallyExclusive = false
+    public static let isMutuallyExclusive = false
     
     let usage: Usage
     
