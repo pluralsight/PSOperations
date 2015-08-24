@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 pluralsight. All rights reserved.
 //
 
+@testable import PSOperations
 import XCTest
-import PSOperations
-import CoreAudio
+import Photos
 
 struct TestCondition: OperationCondition {
     
