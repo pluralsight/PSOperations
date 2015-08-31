@@ -13,6 +13,6 @@ This also provides fixes to issues found in the original sample code, mostly:
 * Unit tests!
 
 3 differences from the WWDC Sample code worth mentioning:
-* When conditions are evaluated and they fail the associated operation is cancelled. The operation still goes through the same flow otherwise, only now it will be marked as cancelled
+* When conditions are evaluated and they fail the associated operation is cancelled. The operation still goes through the same flow otherwise, only now it will be marked as cancelled.
 * DelayOperation has a semaphore that waits in the execute function. This allows cancelling to work in all cases.
-* BlockOperations that have a mainQueue block to execute while execute with a semaphore that waits in the execution function. This allows canceling of the operation work while in the mainQueue closure.
+* BlockOperations that have a mainQueue block to execute have a semaphore that waits in the execution function. This allows canceling of the operation while executing the mainQueue closure.
