@@ -43,12 +43,18 @@ public struct CalendarCondition: OperationCondition {
 }
 
 /**
-    A private `Operation` that will request access to the user's Calendar/Reminders, 
+    `EKEventStore` takes a while to initialize, so we should create
+    one and then keep it around for future use, instead of creating
+    a new one every time a `CalendarPermissionOperation` runs.
+*/
+private let SharedEventStore = EKEventStore()
+
+/**
+    A private `Operation` that will request access to the user's Calendar/Reminders,
     if it has not already been granted.
 */
 class CalendarPermissionOperation: Operation {
     let entityType: EKEntityType
-    let store = EKEventStore()
     
     init(entityType: EKEntityType) {
         self.entityType = entityType
@@ -62,7 +68,7 @@ class CalendarPermissionOperation: Operation {
         switch status {
             case .NotDetermined:
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.store.requestAccessToEntityType(self.entityType) { granted, error in
+                    SharedEventStore.requestAccessToEntityType(self.entityType) { granted, error in
                         self.finish()
                     }
                 }

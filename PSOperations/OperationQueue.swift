@@ -97,11 +97,8 @@ public class OperationQueue: NSOperationQueue {
                 the pure definition of a memory leak.
             */
             operation.addCompletionBlock { [weak self, weak operation] in
-                if let queue = self, operation = operation {
-                    queue.delegate?.operationQueue?(queue, operationDidFinish: operation, withErrors: [])
-                } else {
-                    return
-                }
+                guard let queue = self, let operation = operation else { return }
+                queue.delegate?.operationQueue?(queue, operationDidFinish: operation, withErrors: [])
             }
         }
         

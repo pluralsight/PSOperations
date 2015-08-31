@@ -63,6 +63,18 @@ public enum OperationConditionResult {
     }
 }
 
+func ==(lhs: OperationConditionResult, rhs: OperationConditionResult) -> Bool {
+    switch (lhs, rhs) {
+    case (.Satisfied, .Satisfied):
+        return true
+    case (.Failed(let lError), .Failed(let rError)) where lError == rError:
+        return true
+    default:
+        return false
+    }
+}
+
+
 // MARK: Evaluate Conditions
 
 struct OperationConditionEvaluator {

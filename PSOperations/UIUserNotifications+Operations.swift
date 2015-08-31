@@ -14,8 +14,7 @@ extension UIUserNotificationSettings {
     /// Check to see if one Settings object is a superset of another Settings object.
     func contains(settings: UIUserNotificationSettings) -> Bool {
         // our types must contain all of the other types
-        
-        if types.intersect(settings.types) == settings.types {
+        if !types.contains(settings.types) {
             return false
         }
         

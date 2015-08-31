@@ -56,7 +56,7 @@ public class DelayOperation: Operation {
                 interval = date.timeIntervalSinceNow
         }
         
-        if interval <= 0 {
+        guard interval > 0 else {
             finish()
             return
         }
