@@ -11,3 +11,5 @@ This also provides fixes to issues found in the original sample code, mostly:
 * Canceling functions are slightly more friendly.
 * Negated Condition would not negate.
 * Unit tests!
+
+**Note:** This project has also been updated for Swift 2.0. Those changes reside in the `swift2` branch. They will be merged into `master` when Swift 2.0 is officially released. The latest updates to the Advanced NSOperations sample code also reside in the `swift2` branch.
