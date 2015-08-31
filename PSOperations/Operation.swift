@@ -28,11 +28,7 @@ public class Operation: NSOperation {
     class func keyPathsForValuesAffectingIsFinished() -> Set<NSObject> {
         return ["state"]
     }
-    
-    class func keyPathsForValuesAffectingIsCancelled() -> Set<NSObject> {
-        return ["cancelledState"]
-    }
-    
+        
     // MARK: State Management
     
     private enum State: Int, Comparable {
@@ -62,10 +58,31 @@ public class Operation: NSOperation {
         
         /// The `Operation` has finished executing.
         case Finished
+        
+        func canTransitionToState(target: State) -> Bool {
+            switch (self, target) {
+            case (.Initialized, .Pending):
+                return true
+            case (.Pending, .EvaluatingConditions):
+                return true
+            case (.EvaluatingConditions, .Ready):
+                return true
+            case (.Ready, .Executing):
+                return true
+            case (.Ready, .Finishing):
+                return true
+            case (.Executing, .Finishing):
+                return true
+            case (.Finishing, .Finished):
+                return true
+            default:
+                return false
+            }
+        }
     }
     
     /**
-        Indicates that the Operation can now begin to evaluate readiness conditions, 
+        Indicates that the Operation can now begin to evaluate readiness conditions,
         if appropriate.
     */
     func willEnqueue() {
@@ -74,59 +91,68 @@ public class Operation: NSOperation {
     
     /// Private storage for the `state` property that will be KVO observed.
     private var _state = State.Initialized
+    
+    /// A lock to guard reads and writes to the `_state` property
+    private let stateLock = NSLock()
 
     private var state: State {
         get {
-            return _state
+            return stateLock.withCriticalScope {
+                _state
+            }
         }
-    
+        
         set(newState) {
-            // Manually fire the KVO notifications for state change, since this is "private".
-
+            /*
+            It's important to note that the KVO notifications are NOT called from inside
+            the lock. If they were, the app would deadlock, because in the middle of
+            calling the `didChangeValueForKey()` method, the observers try to access
+            properties like "isReady" or "isFinished". Since those methods also
+            acquire the lock, then we'd be stuck waiting on our own lock. It's the
+            classic definition of deadlock.
+            */
             willChangeValueForKey("state")
-
-            switch (_state, newState) {
-                case (.Finished, _):
-                    break // cannot leave the finished state
-                default:
-                    assert(_state != newState, "Performing invalid cyclic state transition.")
-                    _state = newState
+            
+            stateLock.withCriticalScope { Void -> Void in
+                guard _state != .Finished else {
+                    return
+                }
+                
+                assert(_state.canTransitionToState(newState), "Performing invalid state transition.")
+                _state = newState
             }
             
             didChangeValueForKey("state")
         }
     }
     
-    var _cancelled = false
-    override public var cancelled: Bool {
-        get {
-            return _cancelled
-        }
-        
-        set (newState) {
-            willChangeValueForKey("cancelledState")
-            
-            _cancelled = newState
-            
-            didChangeValueForKey("cancelledState")
-        }
-    }
-    
     // Here is where we extend our definition of "readiness".
     override public var ready: Bool {
         switch state {
-            case .Pending:
-                if super.ready {
-                    evaluateConditions()
-                }
-                
-                return false
             
-            case .Ready:
-                return super.ready
+        case .Initialized:
+            // If the operation has been cancelled, "isReady" should return true
+            return cancelled
             
-            default:
-                return false
+        case .Pending:
+            // If the operation has been cancelled, "isReady" should return true
+            guard !cancelled else {
+                return true
+            }
+            
+            // If super isReady, conditions can be evaluated
+            if super.ready {
+                evaluateConditions()
+            }
+            
+            // Until conditions have been evaluated, "isReady" returns false
+            return false
+            
+        case .Ready:
+            return super.ready || cancelled
+            
+        default:
+            return false
         }
     }
     
@@ -151,8 +177,8 @@ public class Operation: NSOperation {
     }
     
     private func evaluateConditions() {
-        assert(state == .Pending, "evaluateConditions() was called out-of-order")
-
+        assert(state == .Pending && !cancelled, "evaluateConditions() was called out-of-order")
+        
         state = .EvaluatingConditions
         
         OperationConditionEvaluator.evaluate(conditions, operation: self) { failures in
@@ -164,7 +190,7 @@ public class Operation: NSOperation {
             self.state = .Ready
         }
     }
-    
+     
     // MARK: Observers and Conditions
     
     private(set) var conditions = [OperationCondition]()
@@ -191,42 +217,52 @@ public class Operation: NSOperation {
     
     // MARK: Execution and Cancellation
     
-    override public final func start() {
-        assert(state == .Ready, "This operation must be performed on an operation queue.")
-
+    override final public func start() {
+        // NSOperation.start() contains important logic that shouldn't be bypassed.
+        super.start()
+        
+        // If the operation has been cancelled, we still need to enter the "Finished" state.
         if cancelled {
             finish()
-            return
         }
+    }
+    
+    override final public func main() {
+        assert(state == .Ready, "This operation must be performed on an operation queue.")
         
-        state = .Executing
-        
-        for observer in observers {
-            observer.operationDidStart(self)
+        if _internalErrors.isEmpty && !cancelled {
+            state = .Executing
+            
+            for observer in observers {
+                observer.operationDidStart(self)
+            }
+            
+            execute()
         }
-        
-        execute()
+        else {
+            finish()
+        }
     }
     
     /**
-        `execute()` is the entry point of execution for all `Operation` subclasses.
-        If you subclass `Operation` and wish to customize its execution, you would 
-        do so by overriding the `execute()` method.
-        
-        At some point, your `Operation` subclass must call one of the "finish" 
-        methods defined below; this is how you indicate that your operation has 
-        finished its execution, and that operations dependent on yours can re-evaluate 
-        their readiness state.
+    `execute()` is the entry point of execution for all `Operation` subclasses.
+    If you subclass `Operation` and wish to customize its execution, you would
+    do so by overriding the `execute()` method.
+    
+    At some point, your `Operation` subclass must call one of the "finish"
+    methods defined below; this is how you indicate that your operation has
+    finished its execution, and that operations dependent on yours can re-evaluate
+    their readiness state.
     */
-    public func execute() {
-        print("\(self.dynamicType) must override `execute()`.", appendNewline: false)
-
+    func execute() {
+        print("\(self.dynamicType) must override `execute()`.")
+        
         finish()
     }
     
     private var _internalErrors = [NSError]()
     override public func cancel() {
-        cancelled = true
+        super.cancel()
         if state > .Ready {
             finish()
         }

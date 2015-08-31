@@ -100,21 +100,23 @@ private class UserNotificationPermissionOperation: Operation {
         addCondition(AlertPresentation())
     }
     
-//    override func execute() {
-//        dispatch_async(dispatch_get_main_queue()) {
-//            let current = self.application.currentUserNotificationSettings()
-//            
-//            let settingsToRegister: UIUserNotificationSettings
-//            
-//            if current != nil && self.behavior == .Merge {
-//                settingsToRegister = current.settingsByMerging(self.settings)
-//            } else {
-//                settingsToRegister = self.settings
-//            }
-//            
-//            self.application.registerUserNotificationSettings(settingsToRegister)
-//        }
-//    }
+    override func execute() {
+        dispatch_async(dispatch_get_main_queue()) {
+            let current = self.application.currentUserNotificationSettings()
+            
+            let settingsToRegister: UIUserNotificationSettings
+            
+            switch (current, self.behavior) {
+            case (let currentSettings?, .Merge):
+                settingsToRegister = currentSettings.settingsByMerging(self.settings)
+                
+            default:
+                settingsToRegister = self.settings
+            }
+            
+            self.application.registerUserNotificationSettings(settingsToRegister)
+        }
+    }
 }
     
 #endif

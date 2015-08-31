@@ -44,7 +44,8 @@ private func verifyAccountStatus(container: CKContainer, permission: CKApplicati
             }
         }
         else {
-            completion(accountError)
+            let error = accountError ?? NSError(domain: CKErrorDomain, code: CKErrorCode.NotAuthenticated.rawValue, userInfo: nil)
+            completion(error)
         }
     }
 }
@@ -58,7 +59,8 @@ private func verifyPermission(container: CKContainer, permission: CKApplicationP
             requestPermission(container, permission: permission, completion: completion)
         }
         else {
-            completion(permissionError)
+            let error = permissionError ?? NSError(domain: CKErrorDomain, code: CKErrorCode.PermissionFailure.rawValue, userInfo: nil)
+            completion(error)
         }
     }
 }
@@ -70,7 +72,8 @@ private func requestPermission(container: CKContainer, permission: CKApplication
                 completion(nil)
             }
             else {
-                completion(requestError)
+                let error = requestError ?? NSError(domain: CKErrorDomain, code: CKErrorCode.PermissionFailure.rawValue, userInfo: nil)
+                completion(error)
             }
         }
     }

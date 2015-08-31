@@ -69,7 +69,7 @@ private class ReachabilityController {
                     
                     var reachable = false
                     var flags: SCNetworkReachabilityFlags = []
-                    if SCNetworkReachabilityGetFlags(ref, &flags) != 0 {
+                    if SCNetworkReachabilityGetFlags(ref, &flags) {
                         /*
                         Note that this is a very basic "is reachable" check.
                         Your app may choose to allow for other considerations,
