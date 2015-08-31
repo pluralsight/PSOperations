@@ -2,14 +2,17 @@
 
 ![](https://travis-ci.org/pluralsight/PSOperations.svg)
 
-This is an adaptation of the sample code provided in the Advanced NSOperations session of WWDC 2015. The sample code was originally written in Swift 2.0. This framework has been adapted to work for Swift 1.2. For usage examples, see [WWDC 2015 Advanced NSOperations](https://developer.apple.com/videos/wwdc/2015/?id=226) and/or look at the included unit tests.
+This is an adaptation of the sample code provided in the Advanced NSOperations session of WWDC 2015. This code has been updated to work with the latest Swift changes as of Xcode 7 beta 6. For usage examples, see [WWDC 2015 Advanced NSOperations](https://developer.apple.com/videos/wwdc/2015/?id=226) and/or look at the included unit tests.
 
 Feel free to fork and submit pull requests, as we are always looking for improvements from the community.
 
 This also provides fixes to issues found in the original sample code, mostly: 
-* Canceling operations would not work.
+* Canceling operations would not work (In the first version of the WWDC sample code).
 * Canceling functions are slightly more friendly.
-* Negated Condition would not negate.
+* Negated Condition would not negate (In the first version of the WWDC sample code). 
 * Unit tests!
 
-**Note:** This project has also been updated for Swift 2.0. Those changes reside in the `swift2` branch. They will be merged into `master` when Swift 2.0 is officially released. The latest updates to the Advanced NSOperations sample code also reside in the `swift2` branch.
+3 differences from the WWDC Sample code worth mentioning:
+* When conditions are evaluated and they fail the associated operation is cancelled. The operation still goes through the same flow otherwise, only now it will be marked as cancelled
+* DelayOperation has a semaphore that waits in the execute function. This allows cancelling to work in all cases.
+* BlockOperations that have a mainQueue block to execute while execute with a semaphore that waits in the execution function. This allows canceling of the operation work while in the mainQueue closure.
