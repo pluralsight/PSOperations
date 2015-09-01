@@ -254,7 +254,7 @@ public class Operation: NSOperation {
     finished its execution, and that operations dependent on yours can re-evaluate
     their readiness state.
     */
-    func execute() {
+   public func execute() {
         print("\(self.dynamicType) must override `execute()`.")
         
         finish()
