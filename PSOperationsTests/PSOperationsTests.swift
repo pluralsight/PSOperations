@@ -825,4 +825,29 @@ class PSOperationsTests: XCTestCase {
         
         waitForExpectationsWithTimeout(2.0, handler: nil)
     }
+    
+    func testMoveFromPendingToFinishingByWayOfCancelAfterEnteringQueue() {
+        let op = Operation()
+        let delay = DelayOperation(interval: 0.1)
+        op.addDependency(delay)
+        
+        let q = OperationQueue()
+        
+        q.addOperation(op)
+        q.addOperation(delay)
+        op.cancel()
+        
+        keyValueObservingExpectationForObject(q, keyPath: "operationCount") {
+            (opQ, changes) -> Bool in
+            
+            if let opQ = opQ as? NSOperationQueue where opQ.operationCount == 0 {
+                return true
+            }
+            
+            return false
+        }
+        
+        waitForExpectationsWithTimeout(0.5, handler: nil)
+        
+    }
 }
