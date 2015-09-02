@@ -59,11 +59,13 @@ public class Operation: NSOperation {
         /// The `Operation` has finished executing.
         case Finished
         
-        func canTransitionToState(target: State) -> Bool {
+        func canTransitionToState(target: State, operationIsCancelled cancelled: Bool) -> Bool {
             switch (self, target) {
             case (.Initialized, .Pending):
                 return true
             case (.Pending, .EvaluatingConditions):
+                return true
+            case (.Pending, .Finishing) where cancelled:
                 return true
             case (.EvaluatingConditions, .Ready):
                 return true
@@ -118,7 +120,7 @@ public class Operation: NSOperation {
                     return
                 }
                 
-                assert(_state.canTransitionToState(newState), "Performing invalid state transition.")
+                assert(_state.canTransitionToState(newState, operationIsCancelled: cancelled), "Performing invalid state transition.")
                 _state = newState
             }
             
