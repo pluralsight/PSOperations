@@ -39,17 +39,10 @@ public class BlockOperation: Operation {
     */
     public convenience init(mainQueueBlock: dispatch_block_t) {
         self.init(block: { continuation in
-            
-            let semaphore = dispatch_semaphore_create(0)
-            
             dispatch_async(dispatch_get_main_queue()) {
                 mainQueueBlock()
                 continuation()
-                
-                dispatch_semaphore_signal(semaphore)
             }
-            
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
         })
     }
     
