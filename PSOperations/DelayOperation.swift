@@ -60,20 +60,14 @@ public class DelayOperation: Operation {
             finish()
             return
         }
-
-        let semaphore = dispatch_semaphore_create(0)
         
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(interval * Double(NSEC_PER_SEC)))
         dispatch_after(when, dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) {
-            dispatch_semaphore_signal(semaphore)
-            
             // If we were cancelled, then finish() has already been called.
             if !self.cancelled {
                 self.finish()
             }
         }
-        
-        dispatch_semaphore_wait(semaphore, when)
     }
     
     override public func cancel() {
