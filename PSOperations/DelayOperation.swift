@@ -69,10 +69,4 @@ public class DelayOperation: Operation {
             }
         }
     }
-    
-    override public func cancel() {
-        super.cancel()
-        // Cancelling the operation means we don't want to wait anymore.
-        self.finish()
-    }
 }
