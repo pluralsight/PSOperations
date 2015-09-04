@@ -28,7 +28,11 @@ public class Operation: NSOperation {
     class func keyPathsForValuesAffectingIsFinished() -> Set<NSObject> {
         return ["state"]
     }
-        
+    
+    class func keyPathsForValuesAffectingIsCancelled() -> Set<NSObject> {
+        return ["cancelledState"]
+    }
+    
     // MARK: State Management
     
     private enum State: Int, Comparable {
@@ -66,6 +70,8 @@ public class Operation: NSOperation {
             case (.Pending, .EvaluatingConditions):
                 return true
             case (.Pending, .Finishing) where cancelled:
+                return true
+            case (.Pending, .Ready) where cancelled:
                 return true
             case (.EvaluatingConditions, .Ready):
                 return true
@@ -139,6 +145,7 @@ public class Operation: NSOperation {
         case .Pending:
             // If the operation has been cancelled, "isReady" should return true
             guard !cancelled else {
+                state = .Ready
                 return true
             }
             
@@ -177,6 +184,21 @@ public class Operation: NSOperation {
     override public var finished: Bool {
         return state == .Finished
     }
+    
+    var _cancelled = false {
+        willSet {
+            willChangeValueForKey("cancelledState")
+        }
+        
+        didSet {
+            didChangeValueForKey("cancelledState")
+        }
+    }
+    
+    override public var cancelled: Bool {
+        return _cancelled
+    }
+
     
     private func evaluateConditions() {
         assert(state == .Pending && !cancelled, "evaluateConditions() was called out-of-order")
@@ -264,7 +286,12 @@ public class Operation: NSOperation {
     
     private var _internalErrors = [NSError]()
     override public func cancel() {
-        super.cancel()
+        if finished {
+            return
+        }
+        
+        _cancelled = true
+        
         if state > .Ready {
             finish()
         }
