@@ -23,6 +23,7 @@ import Foundation
 */
 public class GroupOperation: Operation {
     private let internalQueue = OperationQueue()
+    private let startingOperation = NSBlockOperation(block: {})
     private let finishingOperation = NSBlockOperation(block: {})
 
     private var aggregatedErrors = [NSError]()
@@ -35,9 +36,9 @@ public class GroupOperation: Operation {
         super.init()
         
         internalQueue.suspended = true
-        
         internalQueue.delegate = self
-
+        internalQueue.addOperation(startingOperation)
+        
         for operation in operations {
             internalQueue.addOperation(operation)
         }
@@ -84,14 +85,26 @@ extension GroupOperation: OperationQueueDelegate {
         if operation !== finishingOperation {
             finishingOperation.addDependency(operation)
         }
+        
+        /*
+        All operations should be dependent on the "startingOperation".
+        This way, we can guarantee that the conditions for other operations
+        will not evaluate until just before the operation is about to run.
+        Otherwise, the conditions could be evaluated at any time, even
+        before the internal operation queue is unsuspended.
+        */
+        if operation !== startingOperation {
+            operation.addDependency(startingOperation)
+        }
+
     }
     
     final public func operationQueue(operationQueue: OperationQueue, operationDidFinish operation: NSOperation, withErrors errors: [NSError]) {
-        aggregatedErrors.extend(errors)
+        aggregatedErrors.appendContentsOf(errors)
         
         if operation === finishingOperation {
             internalQueue.suspended = true
-            finish(errors: aggregatedErrors)
+            finish(aggregatedErrors)
         }
         else {
             operationDidFinish(operation, withErrors: errors)

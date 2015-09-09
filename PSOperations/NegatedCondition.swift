@@ -22,8 +22,8 @@ public struct NegatedCondition<T: OperationCondition>: OperationCondition {
         return "NegatedCondition"
     }
     
-    public var isMutuallyExclusive: Bool {
-        return condition.isMutuallyExclusive
+    public static var isMutuallyExclusive: Bool {
+        return T.isMutuallyExclusive
     }
     
     let condition: T
@@ -39,7 +39,7 @@ public struct NegatedCondition<T: OperationCondition>: OperationCondition {
     public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
         condition.evaluateForOperation(operation) { result in
             switch result {
-            case .Failed(let error):
+            case .Failed(_):
                 // If the composed condition failed, then this one succeeded.
                 completion(.Satisfied)
             case .Satisfied:

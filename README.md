@@ -2,14 +2,20 @@
 
 ![](https://travis-ci.org/pluralsight/PSOperations.svg)
 
-This is an adaptation of the sample code provided in the Advanced NSOperations session of WWDC 2015. The sample code was originally written in Swift 2.0. This framework has been adapted to work for Swift 1.2. For usage examples, see [WWDC 2015 Advanced NSOperations](https://developer.apple.com/videos/wwdc/2015/?id=226) and/or look at the included unit tests.
+This is an adaptation of the sample code provided in the Advanced NSOperations session of WWDC 2015. This code has been updated to work with the latest Swift changes as of Xcode 7 GM. For usage examples, see [WWDC 2015 Advanced NSOperations](https://developer.apple.com/videos/wwdc/2015/?id=226) and/or look at the included unit tests.
 
 Feel free to fork and submit pull requests, as we are always looking for improvements from the community.
 
-This also provides fixes to issues found in the original sample code, mostly: 
+Differences from the first version of the WWDC sample code:
 * Canceling operations would not work.
 * Canceling functions are slightly more friendly.
 * Negated Condition would not negate.
 * Unit tests!
 
-**Note:** This project has also been updated for Swift 2.0. Those changes reside in the `swift2` branch. They will be merged into `master` when Swift 2.0 is officially released. The latest updates to the Advanced NSOperations sample code also reside in the `swift2` branch.
+Differences from the second version of the WWDC sample code:
+* Sometimes canceling wouldn't work correctly in iOS 8.4. The finished override wasn't being called during cancel. We have fixed this to work in both iOS 8.4 and iOS 9.0.
+* Canceling functions are slightly more friendly.
+* Unit tests!
+
+A difference from the WWDC Sample code worth mentioning:
+* When conditions are evaluated and they fail the associated operation is cancelled. The operation still goes through the same flow otherwise, only now it will be marked as cancelled.

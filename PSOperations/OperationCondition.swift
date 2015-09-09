@@ -25,7 +25,7 @@ public protocol OperationCondition {
         Specifies whether multiple instances of the conditionalized operation may
         be executing simultaneously.
     */
-     var isMutuallyExclusive: Bool { get }
+    static var isMutuallyExclusive: Bool { get }
     
     /**
         Some conditions may have the ability to satisfy the condition if another
@@ -63,6 +63,18 @@ public enum OperationConditionResult {
     }
 }
 
+func ==(lhs: OperationConditionResult, rhs: OperationConditionResult) -> Bool {
+    switch (lhs, rhs) {
+    case (.Satisfied, .Satisfied):
+        return true
+    case (.Failed(let lError), .Failed(let rError)) where lError == rError:
+        return true
+    default:
+        return false
+    }
+}
+
+
 // MARK: Evaluate Conditions
 
 struct OperationConditionEvaluator {
@@ -73,7 +85,7 @@ struct OperationConditionEvaluator {
         var results = [OperationConditionResult?](count: conditions.count, repeatedValue: nil)
         
         // Ask each condition to evaluate and store its result in the "results" array.
-        for (index, condition) in enumerate(conditions) {
+        for (index, condition) in conditions.enumerate() {
             dispatch_group_enter(conditionGroup)
             condition.evaluateForOperation(operation) { result in
                 results[index] = result
@@ -84,7 +96,7 @@ struct OperationConditionEvaluator {
         // After all the conditions have evaluated, this block will execute.
         dispatch_group_notify(conditionGroup, dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) {
             // Aggregate the errors that occurred, in order.
-            var failures = results.fMap { $0?.error }
+            var failures = results.flatMap { $0?.error }
             
             /*
                 If any of the conditions caused this operation to be cancelled, 

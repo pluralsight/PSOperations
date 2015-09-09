@@ -19,7 +19,7 @@ public struct CloudContainerCondition: OperationCondition {
         so we will allow operations that use CloudKit to be concurrent with each
         other.
     */
-    public let isMutuallyExclusive = false
+    public static let isMutuallyExclusive = false
     
     let container: CKContainer // this is the container to which you need access.
 
@@ -31,7 +31,7 @@ public struct CloudContainerCondition: OperationCondition {
             container. This parameter has a default value of `[]`, which would get
             you anonymized read/write access.
     */
-    public init(container: CKContainer, permission: CKApplicationPermissions = .allZeros) {
+    public init(container: CKContainer, permission: CKApplicationPermissions = []) {
         self.container = container
         self.permission = permission
     }
@@ -71,7 +71,7 @@ class CloudKitPermissionOperation: Operation {
         self.permission = permission
         super.init()
         
-        if permission != .allZeros {
+        if permission != [] {
             /*
                 Requesting non-zero permissions means that this potentially presents
                 an alert, so it should not run at the same time as anything else

@@ -16,7 +16,7 @@ import Foundation
 public struct NoCancelledDependencies: OperationCondition {
     public static let name = "NoCancelledDependencies"
     static let cancelledDependenciesKey = "CancelledDependencies"
-    public let isMutuallyExclusive = false
+    public static let isMutuallyExclusive = false
     
     public init() {
         // No op.
@@ -28,13 +28,7 @@ public struct NoCancelledDependencies: OperationCondition {
     
     public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
         // Verify that all of the dependencies executed.
-        let cancelled = operation.dependencies.filter {
-            if let dependency = $0 as? Operation {
-                return dependency.cancelled
-            }
-            
-            return true
-        }
+        let cancelled = operation.dependencies.filter { $0.cancelled }
 
         if !cancelled.isEmpty {
             // At least one dependency was cancelled; the condition was not satisfied.

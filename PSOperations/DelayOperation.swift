@@ -56,11 +56,11 @@ public class DelayOperation: Operation {
                 interval = date.timeIntervalSinceNow
         }
         
-        if interval <= 0 {
+        guard interval > 0 else {
             finish()
             return
         }
-
+        
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(interval * Double(NSEC_PER_SEC)))
         dispatch_after(when, dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) {
             // If we were cancelled, then finish() has already been called.
@@ -68,11 +68,5 @@ public class DelayOperation: Operation {
                 self.finish()
             }
         }
-    }
-    
-    override public func cancel() {
-        super.cancel()
-        // Cancelling the operation means we don't want to wait anymore.
-        self.finish()
     }
 }

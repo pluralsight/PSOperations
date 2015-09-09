@@ -25,7 +25,7 @@ extension CKContainer {
         be `nil`.
     */
     func verifyPermission(permission: CKApplicationPermissions, requestingIfNecessary shouldRequest: Bool = false, completion: NSError? -> Void) {
-        verifyAccountStatus(self, permission, shouldRequest, completion)
+        verifyAccountStatus(self, permission: permission, shouldRequest: shouldRequest, completion: completion)
     }
 }
 
@@ -36,15 +36,16 @@ extension CKContainer {
 private func verifyAccountStatus(container: CKContainer, permission: CKApplicationPermissions, shouldRequest: Bool, completion: NSError? -> Void) {
     container.accountStatusWithCompletionHandler { accountStatus, accountError in
         if accountStatus == .Available {
-            if permission != CKApplicationPermissions.allZeros {
-                verifyPermission(container, permission, shouldRequest, completion)
+            if permission != CKApplicationPermissions() {
+                verifyPermission(container, permission: permission, shouldRequest: shouldRequest, completion: completion)
             }
             else {
                 completion(nil)
             }
         }
         else {
-            completion(accountError)
+            let error = accountError ?? NSError(domain: CKErrorDomain, code: CKErrorCode.NotAuthenticated.rawValue, userInfo: nil)
+            completion(error)
         }
     }
 }
@@ -55,10 +56,11 @@ private func verifyPermission(container: CKContainer, permission: CKApplicationP
             completion(nil)
         }
         else if permissionStatus == .InitialState && shouldRequest {
-            requestPermission(container, permission, completion)
+            requestPermission(container, permission: permission, completion: completion)
         }
         else {
-            completion(permissionError)
+            let error = permissionError ?? NSError(domain: CKErrorDomain, code: CKErrorCode.PermissionFailure.rawValue, userInfo: nil)
+            completion(error)
         }
     }
 }
@@ -70,7 +72,8 @@ private func requestPermission(container: CKContainer, permission: CKApplication
                 completion(nil)
             }
             else {
-                completion(requestError)
+                let error = requestError ?? NSError(domain: CKErrorDomain, code: CKErrorCode.PermissionFailure.rawValue, userInfo: nil)
+                completion(error)
             }
         }
     }

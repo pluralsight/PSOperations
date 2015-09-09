@@ -14,7 +14,7 @@ import PassKit
 public struct PassbookCondition: OperationCondition {
     
     public static let name = "Passbook"
-    public let isMutuallyExclusive = false
+    public static let isMutuallyExclusive = false
     
     public init() { }
     

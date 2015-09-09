@@ -39,8 +39,8 @@
 		1D9B43641B6A934A008F7F18 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */; };
 		1D9B43651B6A934A008F7F18 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */; };
 		1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */; };
-		1D9B43671B6A934A008F7F18 /* Array+FMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43481B6A934A008F7F18 /* Array+FMap.swift */; };
-		1D9B436E1B6A942C008F7F18 /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */; };
+		FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */; };
+		FDB1BBBE1B8D67CB00FB9D7A /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,8 +89,8 @@
 		1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
 		1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKContainer+Operations.swift"; sourceTree = "<group>"; };
 		1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
-		1D9B43481B6A934A008F7F18 /* Array+FMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+FMap.swift"; sourceTree = "<group>"; };
 		1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSOperationsTests.swift; sourceTree = "<group>"; };
+		FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,9 +228,9 @@
 			children = (
 				1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */,
 				1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */,
+				FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */,
 				1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */,
 				1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */,
-				1D9B43481B6A934A008F7F18 /* Array+FMap.swift */,
 			);
 			name = "Convenience Extensions";
 			sourceTree = "<group>";
@@ -291,7 +291,9 @@
 		1D9B43051B6A92ED008F7F18 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Pluralsight;
 				TargetAttributes = {
 					1D9B430D1B6A92ED008F7F18 = {
@@ -354,6 +356,7 @@
 				1D9B43641B6A934A008F7F18 /* NSOperation+Operations.swift in Sources */,
 				1D9B434A1B6A934A008F7F18 /* ExclusivityController.swift in Sources */,
 				1D9B434B1B6A934A008F7F18 /* Operation.swift in Sources */,
+				FDB1BBBE1B8D67CB00FB9D7A /* NSLock+Operations.swift in Sources */,
 				1D9B43531B6A934A008F7F18 /* TimeoutObserver.swift in Sources */,
 				1D9B43581B6A934A008F7F18 /* NoCancelledDependencies.swift in Sources */,
 				1D9B43591B6A934A008F7F18 /* MutuallyExclusive.swift in Sources */,
@@ -372,7 +375,6 @@
 				1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */,
 				1D9B435A1B6A934A008F7F18 /* ReachabilityCondition.swift in Sources */,
 				1D9B43521B6A934A008F7F18 /* BlockObserver.swift in Sources */,
-				1D9B43671B6A934A008F7F18 /* Array+FMap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D9B436E1B6A942C008F7F18 /* PSOperationsTests.swift in Sources */,
+				FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +419,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -496,6 +499,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -514,6 +518,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -523,16 +528,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = PSOperationsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -542,12 +540,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = PSOperationsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

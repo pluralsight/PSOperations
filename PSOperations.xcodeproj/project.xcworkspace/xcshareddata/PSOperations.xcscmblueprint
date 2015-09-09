@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "96537D3FF3D17DC5A7DEC8ED2F25A3DEC93C21A6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "96537D3FF3D17DC5A7DEC8ED2F25A3DEC93C21A6" : 0,
+    "8808685C062DADDD5C9DA3367A0EB677C43B9F19" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "86DEDB87-862C-4B0E-A73D-F09FC43F66AC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "96537D3FF3D17DC5A7DEC8ED2F25A3DEC93C21A6" : "PSOperations",
+    "8808685C062DADDD5C9DA3367A0EB677C43B9F19" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "PSOperations",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "PSOperations.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ps-dev\/ios-learner.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8808685C062DADDD5C9DA3367A0EB677C43B9F19"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:pluralsight\/PSOperations.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "96537D3FF3D17DC5A7DEC8ED2F25A3DEC93C21A6"
+    }
+  ]
+}

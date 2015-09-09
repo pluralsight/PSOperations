@@ -14,7 +14,9 @@ public struct MutuallyExclusive<T>: OperationCondition {
         return "MutuallyExclusive<\(T.self)>"
     }
 
-    public let isMutuallyExclusive = true
+    public static var isMutuallyExclusive: Bool {
+        return true
+    }
     
     public init() { }
     
