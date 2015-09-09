@@ -17,5 +17,5 @@ Differences from the second version of the WWDC sample code:
 * Canceling functions are slightly more friendly.
 * Unit tests!
 
-3 differences from the WWDC Sample code worth mentioning:
+A difference from the WWDC Sample code worth mentioning:
 * When conditions are evaluated and they fail the associated operation is cancelled. The operation still goes through the same flow otherwise, only now it will be marked as cancelled.
