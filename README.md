@@ -2,7 +2,7 @@
 
 ![](https://travis-ci.org/pluralsight/PSOperations.svg)
 
-This is an adaptation of the sample code provided in the Advanced NSOperations session of WWDC 2015. This code has been updated to work with the latest Swift changes as of Xcode 7 GM. For usage examples, see [WWDC 2015 Advanced NSOperations](https://developer.apple.com/videos/wwdc/2015/?id=226) and/or look at the included unit tests.
+This is an adaptation of the sample code provided in the Advanced NSOperations session of WWDC 2015. This code has been updated to work with the latest Swift changes as of Xcode 7. For usage examples, see [WWDC 2015 Advanced NSOperations](https://developer.apple.com/videos/wwdc/2015/?id=226) and/or look at the included unit tests.
 
 Feel free to fork and submit pull requests, as we are always looking for improvements from the community.
 
