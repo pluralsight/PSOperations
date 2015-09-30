@@ -850,4 +850,49 @@ class PSOperationsTests: XCTestCase {
         waitForExpectationsWithTimeout(0.5, handler: nil)
         
     }
+    
+    func testRetryOperation() {
+        class OperationToRetry: Operation {
+            
+            let completion:() -> Void
+            let fail:Bool
+            
+            init(fail:Bool, @autoclosure(escaping) completion: () -> Void) {
+                self.fail = fail
+                self.completion = completion
+                super.init()
+            }
+            
+            private override func execute() {
+                var errors:[NSError] = []
+                if fail {
+                    errors.append(NSError(code: .ExecutionFailed))
+                }
+                completion()
+                finish(errors)
+            }
+        }
+        
+        var count = 0
+        
+        let firstTryExp = expectationWithDescription("")
+        let secondTryExp = expectationWithDescription("")
+        
+        let producer:() -> Operation = {
+            return OperationToRetry(count++ == 0 ? (true, firstTryExp.fulfill()) : (false, secondTryExp.fulfill()))
+        }
+        
+        let retryOperation = RetryOperation(operationProducer: producer) { (errors:[NSError], retryCount:Int) -> Bool in
+            return errors.count > 0
+        }
+        
+        let q = OperationQueue()
+        
+        q.addOperation(retryOperation)
+        
+        waitForExpectationsWithTimeout(0.5, handler: nil)
+    }
+    
+    
+    
 }
