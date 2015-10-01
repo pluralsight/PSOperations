@@ -42,6 +42,7 @@
 		FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */; };
 		FDB1BBBE1B8D67CB00FB9D7A /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */; settings = {ASSET_TAGS = (); }; };
 		FDB1E8F21BBC2B08006BC157 /* OperationConditionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */; settings = {ASSET_TAGS = (); }; };
+		FDC6C5291BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSOperationsTests.swift; sourceTree = "<group>"; };
 		FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
 		FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationConditionResultTests.swift; sourceTree = "<group>"; };
+		FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 		1D9B431D1B6A92ED008F7F18 /* PSOperationsTests */ = {
 			isa = PBXGroup;
 			children = (
+				FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */,
 				FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */,
 				1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */,
 				1D9B431E1B6A92ED008F7F18 /* Supporting Files */,
@@ -387,6 +390,7 @@
 			files = (
 				FDB1E8F21BBC2B08006BC157 /* OperationConditionResultTests.swift in Sources */,
 				FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */,
+				FDC6C5291BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
