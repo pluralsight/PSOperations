@@ -55,7 +55,7 @@ public struct Capability<C: CapabilityType>: OperationCondition {
     private let capability: C
     private let shouldRequest: Bool
     
-    public init(capability: C, requestIfNecessary: Bool = true) {
+    public init(_ capability: C, requestIfNecessary: Bool = true) {
         self.capability = capability
         self.shouldRequest = requestIfNecessary
     }

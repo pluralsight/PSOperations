@@ -11,6 +11,8 @@ This file shows an example of implementing the OperationCondition protocol.
 import CoreLocation
 
 /// A condition for verifying access to the user's location.
+@available(*, deprecated, message="use Capability(Location...) instead")
+
 public struct LocationCondition: OperationCondition {
     /**
      Declare a new enum instead of using `CLAuthorizationStatus`, because that

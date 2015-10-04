@@ -30,7 +30,11 @@ public class LocationOperation: Operation, CLLocationManagerDelegate {
         self.accuracy = accuracy
         self.handler = locationHandler
         super.init()
-        addCondition(LocationCondition(usage: .WhenInUse))
+        #if !os(tvOS)
+            addCondition(Capability(Location.WhenInUse))
+        #else
+            addCondition(Capability(Location()))
+        #endif
         addCondition(MutuallyExclusive<CLLocationManager>())
         addObserver(BlockObserver(cancelHandler: { [weak self] _ in
             dispatch_async(dispatch_get_main_queue()) {
