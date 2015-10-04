@@ -11,6 +11,8 @@ This file shows an example of implementing the OperationCondition protocol.
 import CloudKit
 
 /// A condition describing that the operation requires access to a specific CloudKit container.
+@available(*, deprecated, message="use Capability(iCloudContainer(...)) instead")
+    
 public struct CloudContainerCondition: OperationCondition {
     
     public static let name = "CloudContainer"
