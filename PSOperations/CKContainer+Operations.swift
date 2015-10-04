@@ -6,6 +6,8 @@ Abstract:
 A convenient extension to CloudKit.CKContainer.
 */
 
+#if !os(watchOS)
+
 import CloudKit
 
 extension CKContainer {
@@ -78,3 +80,5 @@ private func requestPermission(container: CKContainer, permission: CKApplication
         }
     }
 }
+
+#endif

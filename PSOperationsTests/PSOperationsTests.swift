@@ -8,7 +8,6 @@
 
 @testable import PSOperations
 import XCTest
-import Photos
 
 struct TestCondition: OperationCondition {
     
