@@ -11,6 +11,8 @@ This file shows an example of implementing the OperationCondition protocol.
 import Photos
 
 /// A condition for verifying access to the user's Photos library.
+@available(*, deprecated, message="use Capability(Photos()) instead")
+    
 public struct PhotosCondition: OperationCondition {
     
     public static let name = "Photos"
