@@ -40,6 +40,7 @@
 		1D9B43651B6A934A008F7F18 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */; };
 		1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */; };
 		55AE64C41BC172ED0097F4A5 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C31BC172ED0097F4A5 /* Capability.swift */; settings = {ASSET_TAGS = (); }; };
+		55AE64C71BC173100097F4A5 /* CalendarCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C61BC173100097F4A5 /* CalendarCapability.swift */; settings = {ASSET_TAGS = (); }; };
 		55AE64CF1BC175190097F4A5 /* iCloudContainerCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */; settings = {ASSET_TAGS = (); }; };
 		FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */; };
 		FDB1BBBE1B8D67CB00FB9D7A /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */; settings = {ASSET_TAGS = (); }; };
@@ -96,6 +97,7 @@
 		1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
 		1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSOperationsTests.swift; sourceTree = "<group>"; };
 		55AE64C31BC172ED0097F4A5 /* Capability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capability.swift; sourceTree = "<group>"; };
+		55AE64C61BC173100097F4A5 /* CalendarCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCapability.swift; sourceTree = "<group>"; };
 		55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iCloudContainerCapability.swift; sourceTree = "<group>"; };
 		FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
 		FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationConditionResultTests.swift; sourceTree = "<group>"; };
@@ -224,15 +226,14 @@
 				1D9B43391B6A934A008F7F18 /* NoCancelledDependencies.swift */,
 				1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */,
 				1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */,
-				1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */,
 				1D9B433D1B6A934A008F7F18 /* PassbookCondition.swift */,
 				1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */,
-				1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */,
 				1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */,
 				1D9B43411B6A934A008F7F18 /* HealthCondition.swift */,
 				1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */,
 				1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */,
 				55AE64C51BC173000097F4A5 /* Capabilities */,
+				55AE64D01BC17CFA0097F4A5 /* Deprecated */,
 			);
 			name = Conditions;
 			sourceTree = "<group>";
@@ -253,9 +254,19 @@
 			isa = PBXGroup;
 			children = (
 				55AE64C31BC172ED0097F4A5 /* Capability.swift */,
+				55AE64C61BC173100097F4A5 /* CalendarCapability.swift */,
 				55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */,
 			);
 			name = Capabilities;
+			sourceTree = "<group>";
+		};
+		55AE64D01BC17CFA0097F4A5 /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */,
+				1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */,
+			);
+			name = Deprecated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +388,7 @@
 				1D9B434E1B6A934A008F7F18 /* URLSessionTaskOperation.swift in Sources */,
 				1D9B43511B6A934A008F7F18 /* OperationObserver.swift in Sources */,
 				1D9B43641B6A934A008F7F18 /* NSOperation+Operations.swift in Sources */,
+				55AE64C71BC173100097F4A5 /* CalendarCapability.swift in Sources */,
 				1D9B434A1B6A934A008F7F18 /* ExclusivityController.swift in Sources */,
 				1D9B434B1B6A934A008F7F18 /* Operation.swift in Sources */,
 				55AE64CF1BC175190097F4A5 /* iCloudContainerCapability.swift in Sources */,
