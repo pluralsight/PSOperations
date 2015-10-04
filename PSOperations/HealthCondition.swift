@@ -15,6 +15,8 @@ import UIKit
     A condition to indicate an `Operation` requires access to the user's health
     data.
 */
+    
+@available(*, deprecated, message="use Capability(Health(...)) instead")
 public struct HealthCondition: OperationCondition {
     public static let name = "Health"
     static let healthDataAvailable = "HealthDataAvailable"
