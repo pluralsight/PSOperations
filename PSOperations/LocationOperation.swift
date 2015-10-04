@@ -6,15 +6,17 @@ Abstract:
 Shows how to retrieve the user's location with an operation.
 */
 
+#if !os(OSX)
+
 import Foundation
 import CoreLocation
 
 /**
-    `LocationOperation` is an `Operation` subclass to do a "one-shot" request to
-    get the user's current location, with a desired accuracy. This operation will
-    prompt for `WhenInUse` location authorization, if the app does not already 
-    have it.
-*/
+ `LocationOperation` is an `Operation` subclass to do a "one-shot" request to
+ get the user's current location, with a desired accuracy. This operation will
+ prompt for `WhenInUse` location authorization, if the app does not already
+ have it.
+ */
 public class LocationOperation: Operation, CLLocationManagerDelegate {
     // MARK: Properties
     
@@ -23,7 +25,7 @@ public class LocationOperation: Operation, CLLocationManagerDelegate {
     private let handler: CLLocation -> Void
     
     // MARK: Initialization
- 
+    
     public init(accuracy: CLLocationAccuracy, locationHandler: CLLocation -> Void) {
         self.accuracy = accuracy
         self.handler = locationHandler
@@ -35,13 +37,20 @@ public class LocationOperation: Operation, CLLocationManagerDelegate {
     override public func execute() {
         dispatch_async(dispatch_get_main_queue()) {
             /*
-                `CLLocationManager` needs to be created on a thread with an active
-                run loop, so for simplicity we do this on the main queue.
+            `CLLocationManager` needs to be created on a thread with an active
+            run loop, so for simplicity we do this on the main queue.
             */
             let manager = CLLocationManager()
             manager.desiredAccuracy = self.accuracy
             manager.delegate = self
-            manager.startUpdatingLocation()
+            
+            if #available(iOS 9.0, *) {
+                manager.requestLocation()
+            } else {
+                #if !os(tvOS) && !os(watchOS)
+                    manager.startUpdatingLocation()
+                #endif
+            }
             
             self.manager = manager
         }
@@ -74,3 +83,5 @@ public class LocationOperation: Operation, CLLocationManagerDelegate {
         finishWithError(error)
     }
 }
+
+#endif

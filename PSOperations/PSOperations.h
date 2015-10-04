@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Pluralsight. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for PSOperations.
 FOUNDATION_EXPORT double PSOperationsVersionNumber;

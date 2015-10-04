@@ -6,6 +6,8 @@ Abstract:
 This file shows an example of implementing the OperationCondition protocol.
 */
 
+#if !os(watchOS)
+
 import CloudKit
 
 /// A condition describing that the operation requires access to a specific CloudKit container.
@@ -88,3 +90,5 @@ class CloudKitPermissionOperation: Operation {
     }
     
 }
+
+#endif

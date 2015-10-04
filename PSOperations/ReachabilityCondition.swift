@@ -6,6 +6,8 @@ Abstract:
 This file shows an example of implementing the OperationCondition protocol.
 */
 
+#if !os(watchOS)
+
 import Foundation
 import SystemConfiguration
 
@@ -90,3 +92,5 @@ private class ReachabilityController {
         }
     }
 }
+
+#endif
