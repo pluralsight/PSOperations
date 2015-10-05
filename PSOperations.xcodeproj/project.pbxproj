@@ -256,7 +256,6 @@
 				1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */,
 				1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */,
 				FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */,
-				1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */,
 				1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */,
 			);
 			name = "Convenience Extensions";
@@ -292,6 +291,7 @@
 				1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */,
 				1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */,
 				1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */,
+				1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */,
 			);
 			name = Deprecated;
 			sourceTree = "<group>";
