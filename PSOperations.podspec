@@ -30,7 +30,8 @@ Pod::Spec.new do |s|
 	s.homepage	= "https://github.com/pluralsight/PSOperations"
 	s.license	= { :type => 'MIT' }
 	s.author	= "Matt McMurry", "Mark Schultz"
-	s.platform     	= :ios, '8.0'
+    s.ios.deployment_target = '8.0'
+    s.tvos.deployment_target = '9.0'
 
 	s.requires_arc = true
 
