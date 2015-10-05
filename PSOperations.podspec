@@ -35,6 +35,6 @@ Pod::Spec.new do |s|
 
 	s.requires_arc = true
 
-	s.source 	= {  git: "https://github.com/pluralsight/PSOperations.git",  tag: s.version.to_s  }
+    s.source 	= {  git: "https://github.com/pluralsight/PSOperations.git" }#,  commit: s.version.to_s  }
 	s.source_files = 'PSOperations/**/*.swift'
 end
