@@ -322,7 +322,7 @@ public class Operation: NSOperation {
         for how an error from an `NSURLSession` is passed along via the 
         `finishWithError()` method.
     */
-    final func finishWithError(error: NSError?) {
+    public final func finishWithError(error: NSError?) {
         if let error = error {
             finish([error])
         }
