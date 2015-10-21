@@ -849,4 +849,25 @@ class PSOperationsTests: XCTestCase {
         waitForExpectationsWithTimeout(0.5, handler: nil)
         
     }
+    
+    
+    func testOperationQueueWaitUntilFinished() {
+        let opQ = OperationQueue()
+        
+        class WaitOp : Operation {
+            
+            var waitCalled = false
+            
+            override func waitUntilFinished() {
+                waitCalled = true
+            }
+        }
+        
+        let op = WaitOp()
+        
+        opQ.addOperations([op], waitUntilFinished: true)
+        
+        XCTAssertEqual(1, opQ.operationCount)
+        XCTAssertTrue(op.waitCalled)
+    }
 }
