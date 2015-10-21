@@ -77,7 +77,7 @@ class URLSessionTaskOperationTests: XCTestCase {
         let op = URLSessionTaskOperation(task: taskThing)
         OperationQueue().addOperation(op)
         
-        waitForExpectationsWithTimeout(1.0) {
+        waitForExpectationsWithTimeout(5.0) {
             error in
             
             XCTAssertTrue(op.finished)
