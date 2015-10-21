@@ -111,7 +111,7 @@ public class OperationQueue: NSOperationQueue {
             The base implementation of this method does not call `addOperation()`,
             so we'll call it ourselves.
         */
-        for operation in operations {
+        for operation in ops {
             addOperation(operation)
         }
         
