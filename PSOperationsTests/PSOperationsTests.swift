@@ -71,6 +71,16 @@ class PSOperationsTests: XCTestCase {
         })
     }
     
+    func testAddingMultipleDeps() {
+        let op = NSOperation()
+        
+        let deps = [NSOperation(),NSOperation(),NSOperation()]
+        
+        op.addDependencies(deps)
+        
+        XCTAssertEqual(deps.count, op.dependencies.count)
+    }
+    
     func testStandardOperation() {
         
         let expectation = self.expectationWithDescription("block")
@@ -296,6 +306,56 @@ class PSOperationsTests: XCTestCase {
         let then = NSDate()
         let op = DelayOperation(interval: delay)
         
+        keyValueObservingExpectationForObject(op, keyPath: "isFinished") {
+            (op, changes) -> Bool in
+            if let op = op as? NSOperation {
+                return op.finished
+            }
+            
+            return false
+        }
+        
+        OperationQueue().addOperation(op)
+        
+        waitForExpectationsWithTimeout(delay + 1) {
+            _ in
+            let now = NSDate()
+            let diff = now.timeIntervalSinceDate(then)
+            XCTAssertTrue(diff >= delay, "Didn't delay long enough")
+        }
+    }
+    
+    func testDelayOperation_With0() {
+        let delay: NSTimeInterval = 0.0
+        
+        let then = NSDate()
+        let op = DelayOperation(interval: delay)
+        
+        keyValueObservingExpectationForObject(op, keyPath: "isFinished") {
+            (op, changes) -> Bool in
+            if let op = op as? NSOperation {
+                return op.finished
+            }
+            
+            return false
+        }
+        
+        OperationQueue().addOperation(op)
+        
+        waitForExpectationsWithTimeout(delay + 1) {
+            _ in
+            let now = NSDate()
+            let diff = now.timeIntervalSinceDate(then)
+            XCTAssertTrue(diff >= delay, "Didn't delay long enough")
+        }
+    }
+    
+    func testDelayOperation_WithDate() {
+        let delay: NSTimeInterval = 1
+        let date = NSDate().dateByAddingTimeInterval(delay)
+        let op = DelayOperation(until: date)
+        
+        let then = NSDate()
         keyValueObservingExpectationForObject(op, keyPath: "isFinished") {
             (op, changes) -> Bool in
             if let op = op as? NSOperation {
