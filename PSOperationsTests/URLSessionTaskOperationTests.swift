@@ -66,22 +66,21 @@ class URLSessionTaskOperationTests: XCTestCase {
     
     func testSuccess() {
         
-        let exp = expectationWithDescription("")
-        
         let taskThing: NSURLSessionTask = NSURLSession.PSSession.dataTaskWithURL(NSURL(string: "http://winning")!) {
             data, response, error in
             XCTAssertNil(error)
-            exp.fulfill()
         }
         
         let op = URLSessionTaskOperation(task: taskThing)
-        OperationQueue().addOperation(op)
+        let q = OperationQueue()
+        q.addOperation(op)
         
-        waitForExpectationsWithTimeout(5.0) {
-            error in
-            
-            XCTAssertTrue(op.finished)
+        keyValueObservingExpectationForObject(op, keyPath: "isFinished") {
+            _ in
+            return op.finished
         }
+        
+        waitForExpectationsWithTimeout(5.0, handler: nil)
     }
     
     func testCancel() {
