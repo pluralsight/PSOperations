@@ -35,6 +35,13 @@ public class OperationQueue: NSOperationQueue {
     public weak var delegate: OperationQueueDelegate?
     
     override public  func addOperation(operation: NSOperation) {
+        
+        let currentSuspendedState = suspended
+        suspended = true
+
+        delegate?.operationQueue?(self, willAddOperation: operation)
+        super.addOperation(operation)
+
         if let op = operation as? Operation {
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
             let delegate = BlockObserver(
@@ -102,8 +109,7 @@ public class OperationQueue: NSOperationQueue {
             }
         }
         
-        delegate?.operationQueue?(self, willAddOperation: operation)
-        super.addOperation(operation)   
+        suspended = currentSuspendedState
     }
     
     override public func addOperations(ops: [NSOperation], waitUntilFinished wait: Bool) {
