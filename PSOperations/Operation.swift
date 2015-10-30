@@ -165,7 +165,7 @@ public class Operation: NSOperation {
         }
     }
     
-    var userInitiated: Bool {
+    public var userInitiated: Bool {
         get {
             return qualityOfService == .UserInitiated
         }
