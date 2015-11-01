@@ -8,7 +8,7 @@ Shows how to lift operation-like objects in to the NSOperation world.
 
 import Foundation
 
-private var URLSessionTaksOperationKVOContext = 0
+private var URLSessionTaskOperationKVOContext = 0
 
 /**
     `URLSessionTaskOperation` is an `Operation` that lifts an `NSURLSessionTask` 
@@ -33,13 +33,13 @@ public class URLSessionTaskOperation: Operation {
     override public func execute() {
         assert(task.state == .Suspended, "Task was resumed by something other than \(self).")
 
-        task.addObserver(self, forKeyPath: "state", options: NSKeyValueObservingOptions(), context: &URLSessionTaksOperationKVOContext)
+        task.addObserver(self, forKeyPath: "state", options: NSKeyValueObservingOptions(), context: &URLSessionTaskOperationKVOContext)
         
         task.resume()
     }
     
     override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        guard context == &URLSessionTaksOperationKVOContext else { return }
+        guard context == &URLSessionTaskOperationKVOContext else { return }
         
         if object === task && keyPath == "state" && task.state == .Completed {
             task.removeObserver(self, forKeyPath: "state")
