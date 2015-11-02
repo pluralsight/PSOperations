@@ -8,7 +8,7 @@ This file defines the error codes and convenience functions for interacting with
 
 import Foundation
 
-let OperationErrorDomain = "OperationErrors"
+public let OperationErrorDomain = "OperationErrors"
 
 public enum OperationErrorCode: Int {
     case ConditionFailed = 1
