@@ -134,35 +134,46 @@ public class Operation: NSOperation {
         }
     }
     
+    private let readyLock = NSRecursiveLock()
+    
     // Here is where we extend our definition of "readiness".
     override public var ready: Bool {
-        switch state {
-            
-        case .Initialized:
-            // If the operation has been cancelled, "isReady" should return true
-            return cancelled
-            
-        case .Pending:
-            // If the operation has been cancelled, "isReady" should return true
-            guard !cancelled else {
-                state = .Ready
-                return true
+        
+        var _ready = false
+        
+        readyLock.withCriticalScope {
+            switch state {
+                
+            case .Initialized:
+                // If the operation has been cancelled, "isReady" should return true
+                _ready = cancelled
+                
+            case .Pending:
+                // If the operation has been cancelled, "isReady" should return true
+                guard !cancelled else {
+                    state = .Ready
+                    _ready = true
+                    return
+                }
+                
+                // If super isReady, conditions can be evaluated
+                if super.ready {
+                    evaluateConditions()
+                }
+                
+                // Until conditions have been evaluated, "isReady" returns false
+                _ready = false
+                
+            case .Ready:
+                _ready = super.ready || cancelled
+                
+            default:
+                _ready = false
             }
             
-            // If super isReady, conditions can be evaluated
-            if super.ready {
-                evaluateConditions()
-            }
-            
-            // Until conditions have been evaluated, "isReady" returns false
-            return false
-            
-        case .Ready:
-            return super.ready || cancelled
-            
-        default:
-            return false
         }
+        
+        return _ready
     }
     
     public var userInitiated: Bool {
