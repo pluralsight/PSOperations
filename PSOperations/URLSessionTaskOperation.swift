@@ -24,6 +24,9 @@ private var URLSessionTaskOperationKVOContext = 0
 public class URLSessionTaskOperation: Operation {
     let task: NSURLSessionTask
     
+    private var observerRemoved = false
+    private let stateLock = NSLock()
+    
     public init(task: NSURLSessionTask) {
         assert(task.state == .Suspended, "Tasks must be suspended.")
         self.task = task
@@ -41,9 +44,19 @@ public class URLSessionTaskOperation: Operation {
     override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         guard context == &URLSessionTaskOperationKVOContext else { return }
         
-        if object === task && keyPath == "state" && task.state == .Completed {
-            task.removeObserver(self, forKeyPath: "state")
-            finish()
+        stateLock.withCriticalScope {
+            if object === task && keyPath == "state" && !observerRemoved {
+                switch task.state {
+                case .Completed:
+                    finish()
+                    fallthrough
+                case .Canceling:
+                    observerRemoved = true
+                    task.removeObserver(self, forKeyPath: "state")
+                default:
+                    return
+                }
+            }
         }
     }
     
