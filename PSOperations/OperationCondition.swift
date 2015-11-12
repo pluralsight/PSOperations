@@ -8,7 +8,7 @@ This file contains the fundamental logic relating to Operation conditions.
 
 import Foundation
 
-let OperationConditionKey = "OperationCondition"
+public let OperationConditionKey = "OperationCondition"
 
 /**
     A protocol for defining conditions that must be satisfied in order for an

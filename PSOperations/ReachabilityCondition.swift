@@ -17,7 +17,7 @@ import SystemConfiguration
     Reachability is evaluated once when the operation to which this is attached is asked about its readiness.
 */
 public struct ReachabilityCondition: OperationCondition {
-    static let hostKey = "Host"
+    public static let hostKey = "Host"
     public static let name = "Reachability"
     public static let isMutuallyExclusive = false
     
