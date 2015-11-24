@@ -31,6 +31,10 @@ public class URLSessionTaskOperation: Operation {
         assert(task.state == .Suspended, "Tasks must be suspended.")
         self.task = task
         super.init()
+        
+        addObserver(BlockObserver(cancelHandler: { _ in
+            task.cancel()
+        }))
     }
     
     override public func execute() {
@@ -58,10 +62,5 @@ public class URLSessionTaskOperation: Operation {
                 }
             }
         }
-    }
-    
-    override public func cancel() {
-        task.cancel()
-        super.cancel()
     }
 }

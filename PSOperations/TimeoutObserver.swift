@@ -45,6 +45,10 @@ public struct TimeoutObserver: OperationObserver {
             }
         }
     }
+    
+    public func operationDidCancel(operation: Operation) {
+        // No op.
+    }
 
     public func operation(operation: Operation, didProduceOperation newOperation: NSOperation) {
         // No op.

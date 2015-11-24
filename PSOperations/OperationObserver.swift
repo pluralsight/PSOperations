@@ -17,6 +17,9 @@ public protocol OperationObserver {
     /// Invoked immediately prior to the `Operation`'s `execute()` method.
     func operationDidStart(operation: Operation)
     
+    /// Invoked immediately after the first time the `Operation`'s `cancel()` method is called
+    func operationDidCancel(operation: Operation)
+    
     /// Invoked when `Operation.produceOperation(_:)` is executed.
     func operation(operation: Operation, didProduceOperation newOperation: NSOperation)
     
