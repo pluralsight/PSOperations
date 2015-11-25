@@ -32,31 +32,34 @@ struct TestCondition: OperationCondition {
 
 class TestObserver: OperationObserver {
     
-    var started = false
-    var finished = false
     var errors: [NSError]?
     
     var didStartBlock: (()->())?
     var didEndBlock: (()->())?
+    var didCancelBlock: (()->())?
+    var didProduceBlock: (()->())?
+    
     
     func operationDidStart(operation: Operation) {
-        started = true
-        
         if let didStartBlock = didStartBlock {
             didStartBlock()
         }
     }
     
     func operation(operation: Operation, didProduceOperation newOperation: NSOperation) {
-        
+        if let didProduceBlock = didProduceBlock {
+            didProduceBlock()
+        }
     }
     
     func operationDidCancel(operation: Operation) {
         
+        if let didCancelBlock = didCancelBlock {
+            didCancelBlock()
+        }
     }
     
     func operationDidFinish(operation: Operation, errors: [NSError]) {
-        finished = true
         self.errors = errors
         
         if let didEndBlock = didEndBlock {
@@ -418,6 +421,42 @@ class PSOperationsTests: XCTestCase {
         opQ.addOperation(op)
         
         waitForExpectationsWithTimeout(0.9, handler: nil)
+    }
+    
+    func testConditionObserversCalled() {
+        
+        let startExp = expectationWithDescription("startExp")
+        let cancelExp = expectationWithDescription("cancelExp")
+        let finishExp = expectationWithDescription("finishExp")
+        let produceExp = expectationWithDescription("produceExp")
+        
+        var op: BlockOperation!
+        op = BlockOperation {
+            op.produceOperation(BlockOperation(mainQueueBlock: {}))
+            op.cancel()
+        }
+        op.addObserver(BlockObserver(
+            startHandler: {
+                _ in
+                startExp.fulfill()
+            },
+            cancelHandler: {
+                _ in
+                cancelExp.fulfill()
+            },
+            produceHandler: {
+                _ in
+                produceExp.fulfill()
+            },
+            finishHandler: {
+                _ in
+                finishExp.fulfill()
+        }))
+        
+        let q = OperationQueue()
+        q.addOperation(op)
+        
+        waitForExpectationsWithTimeout(5.0, handler: nil)
     }
     
     func testSilentCondition_failure() {
