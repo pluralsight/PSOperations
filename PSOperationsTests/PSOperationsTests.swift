@@ -51,6 +51,10 @@ class TestObserver: OperationObserver {
         
     }
     
+    func operationDidCancel(operation: Operation) {
+        
+    }
+    
     func operationDidFinish(operation: Operation, errors: [NSError]) {
         finished = true
         self.errors = errors
