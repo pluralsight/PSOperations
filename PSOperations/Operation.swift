@@ -203,6 +203,13 @@ public class Operation: NSOperation {
         
         didSet {
             didChangeValueForKey("cancelledState")
+            if _cancelled != oldValue && _cancelled == true {
+                
+                for observer in observers {
+                    observer.operationDidCancel(self)
+                }
+                
+            }
         }
     }
     

@@ -32,6 +32,11 @@ public class LocationOperation: Operation, CLLocationManagerDelegate {
         super.init()
         addCondition(LocationCondition(usage: .WhenInUse))
         addCondition(MutuallyExclusive<CLLocationManager>())
+        addObserver(BlockObserver(cancelHandler: { [weak self] _ in
+            dispatch_async(dispatch_get_main_queue()) {
+                self?.stopLocationUpdates()
+            }
+        }))
     }
     
     override public func execute() {
@@ -53,13 +58,6 @@ public class LocationOperation: Operation, CLLocationManagerDelegate {
             }
             
             self.manager = manager
-        }
-    }
-    
-    override public func cancel() {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.stopLocationUpdates()
-            super.cancel()
         }
     }
     
