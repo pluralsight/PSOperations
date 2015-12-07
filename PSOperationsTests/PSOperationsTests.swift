@@ -973,4 +973,40 @@ class PSOperationsTests: XCTestCase {
         XCTAssertEqual(1, opQ.operationCount)
         XCTAssertTrue(op.waitCalled)
     }
+    
+    func testOperationsNotExecuting() {
+        
+        var opCount = 0
+        var requiredToPassCount = 25_000
+        let q = OperationQueue()
+        
+        let exp = expectationWithDescription("requiredToPassCount")
+        
+        func go() {
+            
+            if opCount >= requiredToPassCount {
+                exp.fulfill()
+                return
+            }
+            
+            let blockOp = BlockOperation {
+                (finishBlock: Void -> Void) in
+                finishBlock()
+                go()
+            }
+            
+            let noc = NoCancelledDependencies()
+            blockOp.addCondition(noc)
+            opCount++
+            
+            q.addOperation(blockOp)
+        }
+        
+        go()
+        
+        waitForExpectationsWithTimeout(15) {
+            _ in
+            XCTAssertEqual(opCount, requiredToPassCount)
+        }
+    }
 }

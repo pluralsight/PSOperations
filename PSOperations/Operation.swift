@@ -93,7 +93,7 @@ public class Operation: NSOperation {
         Indicates that the Operation can now begin to evaluate readiness conditions,
         if appropriate.
     */
-    func willEnqueue() {
+    func didEnqueue() {
         state = .Pending
     }
     
@@ -222,6 +222,11 @@ public class Operation: NSOperation {
         assert(state == .Pending && !cancelled, "evaluateConditions() was called out-of-order")
         
         state = .EvaluatingConditions
+        
+        guard conditions.count > 0 else {
+            state = .Ready
+            return
+        }
         
         OperationConditionEvaluator.evaluate(conditions, operation: self) { failures in
             if !failures.isEmpty {
