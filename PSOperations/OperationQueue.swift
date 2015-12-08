@@ -35,10 +35,7 @@ public class OperationQueue: NSOperationQueue {
     public weak var delegate: OperationQueueDelegate?
     
     override public  func addOperation(operation: NSOperation) {
-        var psOperation: Operation?
-        
         if let op = operation as? Operation {
-            psOperation = op
             
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
             let delegate = BlockObserver(
@@ -107,7 +104,9 @@ public class OperationQueue: NSOperationQueue {
             and it's now it a state where it can proceed with evaluating conditions,
             if appropriate.
         */
-        psOperation?.didEnqueue()
+        if let op = operation as? Operation {
+            op.didEnqueue()
+        }
     }
     
     override public func addOperations(ops: [NSOperation], waitUntilFinished wait: Bool) {
