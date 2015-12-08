@@ -1007,7 +1007,15 @@ class PSOperationsTests: XCTestCase {
         XCTAssertTrue(op.waitCalled)
     }
     
-    func testOperationsNotExecuting() {
+    /*
+        In 9.1 (at least) we found that occasionaly OperationQueue would get stuck on an operation
+        The operation would be ready, not finished, not cancelled, and have no dependencies. The queue
+        would have no other operations, but the op still would not execute. We determined a few problems
+        that could cause this issue to occur. This test was used to invoke the problem repeatedly. While we've
+        seen the opCount surpass 100,000 easily we figured 25_000 operations executing one right after the other was
+        a sufficient test and is still probably beyond typical use cases. We wish it could be more concrete, but it is not.
+    */
+    func testOperationQueueNotGettingStuck() {
         
         var opCount = 0
         var requiredToPassCount = 25_000
@@ -1028,8 +1036,12 @@ class PSOperationsTests: XCTestCase {
                 go()
             }
             
+            //because of a change in evaluateConditions, this issue would only happen
+            //if the op had a condition. NoCancelledDependcies is an easy condition to
+            //use for this test.
             let noc = NoCancelledDependencies()
             blockOp.addCondition(noc)
+            
             opCount++
             
             q.addOperation(blockOp)
@@ -1039,6 +1051,8 @@ class PSOperationsTests: XCTestCase {
         
         waitForExpectationsWithTimeout(15) {
             _ in
+            
+            //if opCount != requiredToPassCount, the queue is frozen
             XCTAssertEqual(opCount, requiredToPassCount)
         }
     }
