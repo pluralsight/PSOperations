@@ -18,7 +18,7 @@ public class Operation: NSOperation {
     
     // use the KVO mechanism to indicate that changes to "state" affect other properties as well
     class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
-        return ["state"]
+        return ["state", "cancelledState"]
     }
     
     class func keyPathsForValuesAffectingIsExecuting() -> Set<NSObject> {
