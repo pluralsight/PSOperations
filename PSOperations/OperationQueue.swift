@@ -36,6 +36,7 @@ public class OperationQueue: NSOperationQueue {
     
     override public  func addOperation(operation: NSOperation) {
         if let op = operation as? Operation {
+            
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
             let delegate = BlockObserver(
                 startHandler: nil,
@@ -81,13 +82,6 @@ public class OperationQueue: NSOperationQueue {
                     exclusivityController.removeOperation(operation, categories: concurrencyCategories)
                 })
             }
-            
-            /*
-                Indicate to the operation that we've finished our extra work on it  
-                and it's now it a state where it can proceed with evaluating conditions, 
-                if appropriate.
-            */
-            op.willEnqueue()
         }
         else {
             /*
@@ -103,7 +97,16 @@ public class OperationQueue: NSOperationQueue {
         }
         
         delegate?.operationQueue?(self, willAddOperation: operation)
-        super.addOperation(operation)   
+        super.addOperation(operation)
+        
+        /*
+            Indicate to the operation that we've finished our extra work on it
+            and it's now it a state where it can proceed with evaluating conditions,
+            if appropriate.
+        */
+        if let op = operation as? Operation {
+            op.didEnqueue()
+        }
     }
     
     override public func addOperations(ops: [NSOperation], waitUntilFinished wait: Bool) {
