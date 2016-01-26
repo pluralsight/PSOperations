@@ -17,9 +17,9 @@ This file shows an example of implementing the OperationCondition protocol.
         static let entityTypeKey = "EKEntityType"
         public static let isMutuallyExclusive = false
         
-        let entityType: EKEntityType
+        public let entityType: EKEntityType
         
-        init(entityType: EKEntityType) {
+        public init(entityType: EKEntityType) {
             self.entityType = entityType
         }
         
