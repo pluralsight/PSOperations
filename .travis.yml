@@ -2,4 +2,6 @@ language: objective-c
 osx_image: xcode7.1
 xcode_sdk: iphonesimulator
 xcode_project: PSOperations.xcodeproj
-xcode_scheme: PSOperations
+xcode_scheme:
+	- PSOperations
+	- PSOperationsAppForTests
