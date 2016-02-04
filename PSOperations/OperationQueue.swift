@@ -32,9 +32,11 @@ import Foundation
     - Setting up dependencies to enforce mutual exclusivity
 */
 public class OperationQueue: NSOperationQueue {
+    private var ops: Set<NSOperation> = Set()
     public weak var delegate: OperationQueueDelegate?
     
     override public  func addOperation(operation: NSOperation) {
+        ops.insert(operation)
         if let op = operation as? Operation {
             
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
@@ -47,6 +49,7 @@ public class OperationQueue: NSOperationQueue {
                     if let q = self {
                         q.delegate?.operationQueue?(q, operationDidFinish: $0, withErrors: $1)
                     }
+                    self?.ops.remove(op)
                 }
             )
             op.addObserver(delegate)
