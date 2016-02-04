@@ -14,6 +14,8 @@ import UIKit
     A condition for verifying that we can present alerts to the user via 
     `UILocalNotification` and/or remote notifications.
 */
+@available(*, deprecated, message="use Capability(UserNotification(...)) instead")
+
 public struct UserNotificationCondition: OperationCondition {
     
     public enum Behavior {

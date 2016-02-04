@@ -11,6 +11,8 @@ This file shows an example of implementing the OperationCondition protocol.
 import PassKit
 
 /// A condition for verifying that Passbook exists and is accessible.
+@available(*, deprecated, message="use Capability(Passbook....) instead")
+    
 public struct PassbookCondition: OperationCondition {
     
     public static let name = "Passbook"

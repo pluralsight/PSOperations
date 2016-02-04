@@ -11,6 +11,9 @@ This file shows an example of implementing the OperationCondition protocol.
     import EventKit
     
     /// A condition for verifying access to the user's calendar.
+    
+    @available(*, deprecated, message="use Capability(EKEntityType....) instead")
+    
     public struct CalendarCondition: OperationCondition {
         
         public static let name = "Calendar"

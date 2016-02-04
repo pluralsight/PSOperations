@@ -19,6 +19,8 @@ private enum RemoteRegistrationResult {
 }
 
 /// A condition for verifying that the app has the ability to receive push notifications.
+@available(*, deprecated, message="use Capability(Push(...)) instead")
+    
 public struct RemoteNotificationCondition: OperationCondition {
     public static let name = "RemoteNotification"
     public static let isMutuallyExclusive = false
