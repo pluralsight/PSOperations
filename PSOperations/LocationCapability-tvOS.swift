@@ -56,7 +56,7 @@ private class LocationAuthorizer: NSObject, CLLocationManagerDelegate {
         self.completion = completion
         
         let key = "NSLocationWhenInUseUsageDescription"
-        manager.requestWhenInuseAuthorization()
+        manager.requestWhenInUseAuthorization()
         
         // This is helpful when developing an app.
         assert(NSBundle.mainBundle().objectForInfoDictionaryKey(key) != nil, "Requesting location permission requires the \(key) key in your Info.plist")
