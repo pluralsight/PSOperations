@@ -16,6 +16,16 @@ import Foundation
 */
 public class Operation: NSOperation {
     
+    override public var completionBlock: (() -> Void)? {
+        set {
+            fatalError("The completionBlock property on NSOperation has unexpected behavior and is not supported in PSOperations.Operation 😈")
+        }
+        get {
+            return nil
+        }
+    }
+    
+    
     // use the KVO mechanism to indicate that changes to "state" affect other properties as well
     class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
         return ["state", "cancelledState"]
