@@ -36,6 +36,7 @@ Pod::Spec.new do |s|
 	s.osx.deployment_target = "10.11"
 
 	s.requires_arc = true
+	s.pod_target_xcconfig = { "EMBEDDED_CONTENT_CONTAINS_SWIFT" => "YES" }
 
 	s.source 	= {  git: "https://github.com/pluralsight/PSOperations.git",  tag: s.version.to_s  }
 	
