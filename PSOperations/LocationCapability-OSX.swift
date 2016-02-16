@@ -13,6 +13,8 @@ import CoreLocation
 
 public struct Location: CapabilityType {
     public static let name = "Location"
+
+    public init() { }
     
     public func requestStatus(completion: CapabilityStatus -> Void) {
         guard CLLocationManager.locationServicesEnabled() else {
