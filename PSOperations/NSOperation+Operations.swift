@@ -8,7 +8,7 @@ A convenient extension to Foundation.NSOperation.
 
 import Foundation
 
-extension NSOperation {
+public extension NSOperation {
     /** 
         Add a completion block to be executed after the `NSOperation` enters the
         "finished" state.

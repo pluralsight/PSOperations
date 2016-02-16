@@ -6,7 +6,7 @@ Abstract:
 A convenient extension to Swift.Dictionary.
 */
 
-extension Dictionary {
+public extension Dictionary {
     /**
         It's not uncommon to want to turn a sequence of values into a dictionary,
         where each value is keyed by some unique identifier. This initializer will
