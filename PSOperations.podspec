@@ -38,5 +38,55 @@ Pod::Spec.new do |s|
 	s.requires_arc = true
 
 	s.source 	= {  git: "https://github.com/pluralsight/PSOperations.git",  tag: s.version.to_s  }
-	s.source_files = 'PSOperations/**/*.swift'
+	
+	subspec_sources = { 
+		"CloudKit" => [
+			"PSOperations/iCloudContainerCapability.swift", 
+			"PSOperations/CloudCondition.swift",
+			"PSOperations/CKContainer+Operations.swift",
+			"CloudCondition.swift"
+		],
+		"HealthKit" => ["PSOperations/Health*.swift"],
+		"CoreLocation" => ["PSOperations/Location*.swift"],
+		"PassKit" => ["PSOperations/Passbook*.swift"],
+		"Photos" => ["PSOperations/Photos*.swift"],
+		"SystemConfiguration" => ["PSOperations/ReachabilityCondition.swift"],
+		"EventKit" => ["PSOperations/Calendar*.swift"]
+		}
+	
+	s.source_files = "PSOperations/**/*.swift"
+	s.exclude_files = subspec_sources.values.flatten()
+
+	s.subspec "Core" do |sb|
+		sb.source_files = "PSOperations/**/*.swift"
+		sb.exclude_files = subspec_sources.values.flatten()
+	end
+
+	s.subspec "CloudKit" do |sb|
+		sb.source_files = subspec_sources["CloudKit"]
+	end
+
+	s.subspec "HealthKit" do |sb|
+		sb.source_files = subspec_sources["HealthKit"]
+	end
+
+	s.subspec "CoreLocation" do |sb|
+		sb.source_files = subspec_sources["CoreLocation"]
+	end
+
+	s.subspec "PassKit" do |sb|
+		sb.source_files = subspec_sources["PassKit"]
+	end
+
+	s.subspec "Photos" do |sb|
+		sb.source_files = subspec_sources["Photos"]
+	end
+
+	s.subspec "SystemConfiguration" do |sb|
+		sb.source_files = subspec_sources["SystemConfiguration"]
+	end
+
+	s.subspec "EventKit" do |sb|
+		sb.source_files = subspec_sources["EventKit"]
+	end
 end
