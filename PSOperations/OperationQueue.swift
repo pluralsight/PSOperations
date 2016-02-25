@@ -96,6 +96,7 @@ public class OperationQueue: NSOperationQueue {
             operation.addCompletionBlock { [weak self, weak operation] in
                 guard let queue = self, let operation = operation else { return }
                 queue.delegate?.operationQueue?(queue, operationDidFinish: operation, withErrors: [])
+                queue.ops.remove(operation)
             }
         }
         
