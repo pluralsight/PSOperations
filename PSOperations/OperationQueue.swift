@@ -48,8 +48,8 @@ public class OperationQueue: NSOperationQueue {
                 finishHandler: { [weak self] in
                     if let q = self {
                         q.delegate?.operationQueue?(q, operationDidFinish: $0, withErrors: $1)
+                        q.ops.remove($0)
                     }
-                    self?.ops.remove(op)
                 }
             )
             op.addObserver(delegate)
