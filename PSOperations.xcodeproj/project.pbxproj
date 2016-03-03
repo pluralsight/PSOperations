@@ -39,18 +39,18 @@
 		1D9B43641B6A934A008F7F18 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */; };
 		1D9B43651B6A934A008F7F18 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */; };
 		1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */; };
-		55AE64C41BC172ED0097F4A5 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C31BC172ED0097F4A5 /* Capability.swift */; settings = {ASSET_TAGS = (); }; };
-		55AE64C71BC173100097F4A5 /* CalendarCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C61BC173100097F4A5 /* CalendarCapability.swift */; settings = {ASSET_TAGS = (); }; };
-		55AE64C91BC1732D0097F4A5 /* PhotosCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C81BC1732D0097F4A5 /* PhotosCapability.swift */; settings = {ASSET_TAGS = (); }; };
-		55AE64CB1BC173560097F4A5 /* PassbookCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CA1BC173560097F4A5 /* PassbookCapability.swift */; settings = {ASSET_TAGS = (); }; };
-		55AE64CD1BC1738D0097F4A5 /* LocationCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CC1BC1738D0097F4A5 /* LocationCapability-iOS.swift */; settings = {ASSET_TAGS = (); }; };
-		55AE64CF1BC175190097F4A5 /* iCloudContainerCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */; settings = {ASSET_TAGS = (); }; };
-		55AE64D21BC180570097F4A5 /* LocationCapability-tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D11BC180570097F4A5 /* LocationCapability-tvOS.swift */; settings = {ASSET_TAGS = (); }; };
-		55AE64D41BC180650097F4A5 /* LocationCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D31BC180650097F4A5 /* LocationCapability-OSX.swift */; settings = {ASSET_TAGS = (); }; };
-		55AE64D61BC19E330097F4A5 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D51BC19E330097F4A5 /* HealthCapability.swift */; settings = {ASSET_TAGS = (); }; };
-		55AE64DA1BC1C7430097F4A5 /* PushCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D91BC1C7430097F4A5 /* PushCapability-iOS.swift */; settings = {ASSET_TAGS = (); }; };
-		55AE64DC1BC1C7E50097F4A5 /* PushCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */; settings = {ASSET_TAGS = (); }; };
-		55AE64DE1BC1DCF50097F4A5 /* UserNotificationCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */; settings = {ASSET_TAGS = (); }; };
+		55AE64C41BC172ED0097F4A5 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C31BC172ED0097F4A5 /* Capability.swift */; };
+		55AE64C71BC173100097F4A5 /* CalendarCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C61BC173100097F4A5 /* CalendarCapability.swift */; };
+		55AE64C91BC1732D0097F4A5 /* PhotosCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C81BC1732D0097F4A5 /* PhotosCapability.swift */; };
+		55AE64CB1BC173560097F4A5 /* PassbookCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CA1BC173560097F4A5 /* PassbookCapability.swift */; };
+		55AE64CD1BC1738D0097F4A5 /* LocationCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CC1BC1738D0097F4A5 /* LocationCapability-iOS.swift */; };
+		55AE64CF1BC175190097F4A5 /* iCloudContainerCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */; };
+		55AE64D21BC180570097F4A5 /* LocationCapability-tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D11BC180570097F4A5 /* LocationCapability-tvOS.swift */; };
+		55AE64D41BC180650097F4A5 /* LocationCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D31BC180650097F4A5 /* LocationCapability-OSX.swift */; };
+		55AE64D61BC19E330097F4A5 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D51BC19E330097F4A5 /* HealthCapability.swift */; };
+		55AE64DA1BC1C7430097F4A5 /* PushCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D91BC1C7430097F4A5 /* PushCapability-iOS.swift */; };
+		55AE64DC1BC1C7E50097F4A5 /* PushCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */; };
+		55AE64DE1BC1DCF50097F4A5 /* UserNotificationCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */; };
 		FD19C9D31C440293005D0F07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9D21C440293005D0F07 /* AppDelegate.swift */; };
 		FD19C9D51C440293005D0F07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9D41C440293005D0F07 /* ViewController.swift */; };
 		FD19C9D81C440293005D0F07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD19C9D61C440293005D0F07 /* Main.storyboard */; };
@@ -734,6 +734,7 @@
 		1D9B43251B6A92ED008F7F18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -756,6 +757,7 @@
 		1D9B43261B6A92ED008F7F18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
