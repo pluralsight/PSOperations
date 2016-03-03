@@ -21,6 +21,8 @@ public struct Push: CapabilityType {
     }
 
     public static let name = "Push"
+
+    public init() { }
     
     public func requestStatus(completion: CapabilityStatus -> Void) {
         if let _ = authorizer.token {

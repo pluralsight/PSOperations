@@ -13,6 +13,8 @@ import Photos
 
 public struct Photos: CapabilityType {
     public static let name = "Photos"
+
+    public init() { }
     
     public func requestStatus(completion: CapabilityStatus -> Void) {
         let status = PHPhotoLibrary.authorizationStatus()
