@@ -21,8 +21,6 @@ public struct Push: CapabilityType {
     }
 
     public static let name = "Push"
-
-    public init() { }
     
     public init(application: UIApplication) {
         if authorizer.application == nil {
