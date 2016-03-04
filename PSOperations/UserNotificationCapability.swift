@@ -26,9 +26,13 @@ public struct UserNotification: CapabilityType {
     private let settings: UIUserNotificationSettings
     private let behavior: Behavior
     
-    public init(settings: UIUserNotificationSettings, behavior: Behavior = .Merge) {
+    public init(settings: UIUserNotificationSettings, behavior: Behavior = .Merge, application: UIApplication) {
         self.settings = settings
         self.behavior = behavior
+        
+        if authorizer._application == nil {
+            authorizer.application = application
+        }
     }
     
     public func requestStatus(completion: CapabilityStatus -> Void) {
@@ -43,7 +47,7 @@ public struct UserNotification: CapabilityType {
             case .Replace:
                 settings = self.settings
             case .Merge:
-                let current = UIApplication.sharedApplication().currentUserNotificationSettings()
+                let current = authorizer.application.currentUserNotificationSettings()
                 settings = current?.settingsByMerging(self.settings) ?? self.settings
         }
         
@@ -56,11 +60,24 @@ private let authorizer = UserNotificationAuthorizer()
     
 private class UserNotificationAuthorizer {
     
+    var _application: UIApplication?
+    var application: UIApplication {
+        set {
+            _application = newValue
+        }
+        get {
+            guard let application = _application else {
+                fatalError("Application not yet configured. Results would be undefined.")
+            }
+            
+            return application
+        }
+    }
     var completion: (CapabilityStatus -> Void)?
     var settings: UIUserNotificationSettings?
     
     func areSettingsRegistered(settings: UIUserNotificationSettings) -> Bool {
-        let current = UIApplication.sharedApplication().currentUserNotificationSettings()
+        let current = application.currentUserNotificationSettings()
         
         return current?.contains(settings) ?? false
     }
@@ -76,7 +93,7 @@ private class UserNotificationAuthorizer {
         self.completion = completion
         self.settings = settings
         
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        application.registerUserNotificationSettings(settings)
     }
     
     private func completeAuthorization() {

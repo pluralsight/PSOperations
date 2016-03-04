@@ -21,8 +21,12 @@ public struct Push: CapabilityType {
     }
 
     public static let name = "Push"
-
-    public init() { }
+    
+    public init(application: UIApplication) {
+        if authorizer.application == nil {
+            authorizer.application = application
+        }
+    }
     
     public func requestStatus(completion: CapabilityStatus -> Void) {
         if let _ = authorizer.token {
@@ -42,6 +46,7 @@ private let authorizer = PushAuthorizer()
     
 private class PushAuthorizer {
     
+    var application: UIApplication?
     var token: NSData?
     var completion: (CapabilityStatus -> Void)?
     
@@ -51,7 +56,12 @@ private class PushAuthorizer {
         }
         
         self.completion = completion
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+        
+        guard let application = application else {
+            fatalError("An application has not yet been configured, so this won't work")
+        }
+        
+        application.registerForRemoteNotifications()
     }
     
     private func completeAuthorization(token: NSData?, error: NSError?) {
