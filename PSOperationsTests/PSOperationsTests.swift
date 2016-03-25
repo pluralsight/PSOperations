@@ -1042,7 +1042,7 @@ class PSOperationsTests: XCTestCase {
             let noc = NoCancelledDependencies()
             blockOp.addCondition(noc)
             
-            opCount++
+            opCount += 1
             
             q.addOperation(blockOp)
         }
