@@ -1,6 +1,6 @@
 # PSOperations
 
-![](https://travis-ci.org/pluralsight/PSOperations.svg)
+[![codebeat badge](https://codebeat.co/badges/5a8fa0e4-178b-499b-9947-98bf69013b7f)](https://codebeat.co/projects/github-com-pluralsight-psoperations) ![](https://travis-ci.org/pluralsight/PSOperations.svg)
 
 This is an adaptation of the sample code provided in the Advanced NSOperations session of WWDC 2015. This code has been updated to work with the latest Swift changes as of Xcode 7. For usage examples, see [WWDC 2015 Advanced NSOperations](https://developer.apple.com/videos/wwdc/2015/?id=226) and/or look at the included unit tests.
 
