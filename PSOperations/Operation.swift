@@ -318,6 +318,11 @@ public class Operation: NSOperation {
             return
         }
 
+        // In the getter for `ready`, we check to see whether the operation was `cancelled`
+        // and then move on to evaluate conditions if it was not. However, a race condition is
+        // possible where the `cancelled` state gets set to `true` after the check and before
+        // `evaluateConditions()` was called, so we wrap setting `cancelled` in the same lock
+        // to ensure that this race condition does not happen.
         readyLock.withCriticalScope {
             _cancelled = true
 
