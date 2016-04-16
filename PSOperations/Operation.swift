@@ -317,11 +317,13 @@ public class Operation: NSOperation {
         if finished {
             return
         }
-        
-        _cancelled = true
-        
-        if state > .Ready {
-            finish()
+
+        readyLock.withCriticalScope {
+            _cancelled = true
+
+            if state > .Ready {
+                finish()
+            }
         }
     }
     
