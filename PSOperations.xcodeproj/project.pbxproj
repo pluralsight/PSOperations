@@ -51,6 +51,7 @@
 		55AE64DA1BC1C7430097F4A5 /* PushCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D91BC1C7430097F4A5 /* PushCapability-iOS.swift */; };
 		55AE64DC1BC1C7E50097F4A5 /* PushCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */; };
 		55AE64DE1BC1DCF50097F4A5 /* UserNotificationCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */; };
+		CEA6AEF31CC2B93D008D0946 /* NoFailedDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6AEF21CC2B93D008D0946 /* NoFailedDependencies.swift */; };
 		FD19C9D31C440293005D0F07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9D21C440293005D0F07 /* AppDelegate.swift */; };
 		FD19C9D51C440293005D0F07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9D41C440293005D0F07 /* ViewController.swift */; };
 		FD19C9D81C440293005D0F07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD19C9D61C440293005D0F07 /* Main.storyboard */; };
@@ -131,6 +132,7 @@
 		55AE64D91BC1C7430097F4A5 /* PushCapability-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PushCapability-iOS.swift"; sourceTree = "<group>"; };
 		55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PushCapability-OSX.swift"; sourceTree = "<group>"; };
 		55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCapability.swift; sourceTree = "<group>"; };
+		CEA6AEF21CC2B93D008D0946 /* NoFailedDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoFailedDependencies.swift; sourceTree = "<group>"; };
 		FD19C9D01C440293005D0F07 /* PSOperationsAppForTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSOperationsAppForTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD19C9D21C440293005D0F07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD19C9D41C440293005D0F07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				1D9B43371B6A934A008F7F18 /* SilentCondition.swift */,
 				1D9B43381B6A934A008F7F18 /* NegatedCondition.swift */,
 				1D9B43391B6A934A008F7F18 /* NoCancelledDependencies.swift */,
+				CEA6AEF21CC2B93D008D0946 /* NoFailedDependencies.swift */,
 				1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */,
 				1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */,
 				55AE64C51BC173000097F4A5 /* Capabilities */,
@@ -558,6 +561,7 @@
 				1D9B434C1B6A934A008F7F18 /* BlockOperation.swift in Sources */,
 				1D9B43631B6A934A008F7F18 /* Dictionary+Operations.swift in Sources */,
 				55AE64CD1BC1738D0097F4A5 /* LocationCapability-iOS.swift in Sources */,
+				CEA6AEF31CC2B93D008D0946 /* NoFailedDependencies.swift in Sources */,
 				1D9B435C1B6A934A008F7F18 /* PassbookCondition.swift in Sources */,
 				55AE64DA1BC1C7430097F4A5 /* PushCapability-iOS.swift in Sources */,
 				1D9B43571B6A934A008F7F18 /* NegatedCondition.swift in Sources */,

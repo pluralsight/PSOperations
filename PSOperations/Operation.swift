@@ -195,6 +195,11 @@ public class Operation: NSOperation {
     override public var finished: Bool {
         return state == .Finished
     }
+
+    /// Boolean flag to indicate that the Operation failed due to errors.
+    var failed: Bool {
+        return _internalErrors.count > 0
+    }
     
     var _cancelled = false {
         willSet {
