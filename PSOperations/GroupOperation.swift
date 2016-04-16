@@ -71,6 +71,23 @@ public class GroupOperation: Operation {
     public func operationDidFinish(operation: NSOperation, withErrors errors: [NSError]) {
         // For use by subclassers.
     }
+
+    /**
+     This method is used for debugging the current state of a `GroupOperation`.
+
+     - returns: An `OperationDebugData` object containing debug data for the current `GroupOperation`.
+     */
+    override public func debugData() -> OperationDebugData {
+        let operationData = super.debugData()
+        let queueData = internalQueue.debugData()
+        return OperationDebugData(
+            description: "GroupOperation: \(self)",
+            properties: operationData.properties,
+            conditions: operationData.conditions,
+            dependencies:  operationData.dependencies,
+            subOperations: queueData.subOperations)
+    }
+
 }
 
 extension GroupOperation: OperationQueueDelegate {
