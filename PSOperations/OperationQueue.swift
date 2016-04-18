@@ -31,7 +31,7 @@ import Foundation
     - Extracting generated dependencies from operation conditions
     - Setting up dependencies to enforce mutual exclusivity
 */
-public class OperationQueue: NSOperationQueue {
+public class OperationQueue: NSOperationQueue, OperationDebuggable {
     private let opsQueue = dispatch_queue_create("com.psoperations", DISPATCH_QUEUE_SERIAL)
     private var ops: Set<NSOperation> = Set()
     
@@ -142,4 +142,22 @@ public class OperationQueue: NSOperationQueue {
             self.ops.remove(op)
         }
     }
+
+    /**
+     This method is used for debugging the current state of an `OperationQueue`.
+
+     - returns: An `OperationDebugData` object containing debug data for the current `OperationQueue`.
+     */
+    public func debugData() -> OperationDebugData {
+        let queueDebugData = self.operations.map { ($0 as? OperationDebuggable)?.debugData() ?? $0.debugDataNSOperation() }
+        return OperationDebugData(
+            description: "Queue",
+            properties: [
+                "numOperations": String(self.operations.count)
+            ],
+            conditions: [],
+            dependencies: [],
+            subOperations: queueDebugData)
+    }
+
 }

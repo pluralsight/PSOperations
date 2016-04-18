@@ -14,7 +14,7 @@ import Foundation
     extended readiness requirements, as well as notify many interested parties 
     about interesting operation state changes
 */
-public class Operation: NSOperation {
+public class Operation: NSOperation, OperationDebuggable {
     
     // use the KVO mechanism to indicate that changes to "state" affect other properties as well
     class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
@@ -195,6 +195,11 @@ public class Operation: NSOperation {
     override public var finished: Bool {
         return state == .Finished
     }
+
+    /// Boolean flag to indicate that the Operation failed due to errors.
+    var failed: Bool {
+        return _internalErrors.count > 0
+    }
     
     var _cancelled = false {
         willSet {
@@ -312,11 +317,18 @@ public class Operation: NSOperation {
         if finished {
             return
         }
-        
-        _cancelled = true
-        
-        if state > .Ready {
-            finish()
+
+        // In the getter for `ready`, we check to see whether the operation was `cancelled`
+        // and then move on to evaluate conditions if it was not. However, a race condition is
+        // possible where the `cancelled` state gets set to `true` after the check and before
+        // `evaluateConditions()` was called, so we wrap setting `cancelled` in the same lock
+        // to ensure that this race condition does not happen.
+        readyLock.withCriticalScope {
+            _cancelled = true
+
+            if state > .Ready {
+                finish()
+            }
         }
     }
     
@@ -398,6 +410,24 @@ public class Operation: NSOperation {
             the behavior you're wishing to create.
         */
         fatalError("Waiting on operations is an anti-pattern. Remove this ONLY if you're absolutely sure there is No Other Way™.")
+    }
+
+    /**
+     This method is used for debugging the current state of an `Operation`.
+
+     - returns: An `OperationDebugData` object containing debug data for the current `Operation`.
+     */
+    public func debugData() -> OperationDebugData {
+        return OperationDebugData(
+            description: "Operation: \(String(self))",
+            properties: [
+                "cancelled": String(self.cancelled),
+                "state": String(self.state),
+                "errorCount": String(self._internalErrors.count),
+                "QOS": self.qualityOfService.stringRepresentation()
+            ],
+            conditions: self.conditions.map { String($0) },
+            dependencies: self.dependencies.map { ($0 as? OperationDebuggable)?.debugData() ?? $0.debugDataNSOperation() })
     }
     
 }

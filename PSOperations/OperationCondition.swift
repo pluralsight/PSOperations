@@ -19,7 +19,7 @@ public protocol OperationCondition {
         The name of the condition. This is used in userInfo dictionaries of `.ConditionFailed` 
         errors as the value of the `OperationConditionKey` key.
     */
-     static var name: String { get }
+    static var name: String { get }
     
     /**
         Specifies whether multiple instances of the conditionalized operation may
