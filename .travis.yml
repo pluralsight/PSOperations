@@ -7,3 +7,7 @@ xcode_sdk:
 xcode_scheme:
 - PSOperations
 - PSOperationsAppForTests
+
+before_install:
+  - brew update
+  - brew outdated xctool || brew upgrade xctool
