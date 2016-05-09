@@ -16,6 +16,10 @@ import Foundation
 */
 public class Operation: NSOperation {
     
+    /* The completionBlock property has unexpected behaviors such as executing twice and executing on unexpected threads. BlockObserver
+     * executes in an expected manner.
+     */
+    @available(*, deprecated, message="use BlockObserver completions instead")
     override public var completionBlock: (() -> Void)? {
         set {
             fatalError("The completionBlock property on NSOperation has unexpected behavior and is not supported in PSOperations.Operation 😈")
