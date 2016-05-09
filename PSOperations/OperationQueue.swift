@@ -32,13 +32,9 @@ import Foundation
     - Setting up dependencies to enforce mutual exclusivity
 */
 public class OperationQueue: NSOperationQueue {
-    private let opsQueue = dispatch_queue_create("com.psoperations", DISPATCH_QUEUE_SERIAL)
-    private var ops: Set<NSOperation> = Set()
-    
     public weak var delegate: OperationQueueDelegate?
     
     override public  func addOperation(operation: NSOperation) {
-        addOpToSet(operation)
         if let op = operation as? Operation {
             
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
@@ -47,10 +43,11 @@ public class OperationQueue: NSOperationQueue {
                 produceHandler: { [weak self] in
                     self?.addOperation($1)
                 },
-                finishHandler: { [weak self] in
+                finishHandler: { [weak self] finishedOperation, errors in
                     if let q = self {
-                        q.delegate?.operationQueue?(q, operationDidFinish: $0, withErrors: $1)
-                        q.removeOpFromSet($0)
+                        
+                        q.delegate?.operationQueue?(q, operationDidFinish: finishedOperation, withErrors: errors)
+                        finishedOperation.dependencies.forEach { finishedOperation.removeDependency($0) }
                     }
                 }
             )
@@ -98,7 +95,7 @@ public class OperationQueue: NSOperationQueue {
             operation.addCompletionBlock { [weak self, weak operation] in
                 guard let queue = self, let operation = operation else { return }
                 queue.delegate?.operationQueue?(queue, operationDidFinish: operation, withErrors: [])
-                queue.removeOpFromSet(operation)
+                operation.dependencies.forEach { operation.removeDependency($0) }
             }
         }
         
@@ -128,18 +125,6 @@ public class OperationQueue: NSOperationQueue {
             for operation in ops {
               operation.waitUntilFinished()
             }
-        }
-    }
-    
-    func addOpToSet(op: NSOperation) {
-        dispatch_async(opsQueue) {
-            self.ops.insert(op)
-        }
-    }
-    
-    func removeOpFromSet(op: NSOperation) {
-        dispatch_async(opsQueue) {
-            self.ops.remove(op)
         }
     }
 }
