@@ -16,6 +16,20 @@ import Foundation
 */
 public class Operation: NSOperation {
     
+    /* The completionBlock property has unexpected behaviors such as executing twice and executing on unexpected threads. BlockObserver
+     * executes in an expected manner.
+     */
+    @available(*, deprecated, message="use BlockObserver completions instead")
+    override public var completionBlock: (() -> Void)? {
+        set {
+            fatalError("The completionBlock property on NSOperation has unexpected behavior and is not supported in PSOperations.Operation 😈")
+        }
+        get {
+            return nil
+        }
+    }
+    
+    
     // use the KVO mechanism to indicate that changes to "state" affect other properties as well
     class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
         return ["state", "cancelledState"]
