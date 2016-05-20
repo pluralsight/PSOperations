@@ -47,6 +47,8 @@ public class OperationQueue: NSOperationQueue {
                     if let q = self {
                         
                         q.delegate?.operationQueue?(q, operationDidFinish: finishedOperation, withErrors: errors)
+                        //Remove deps to avoid cascading deallocation error
+                        //http://stackoverflow.com/questions/19693079/nsoperationqueue-bug-with-dependencies
                         finishedOperation.dependencies.forEach { finishedOperation.removeDependency($0) }
                     }
                 }
@@ -95,6 +97,8 @@ public class OperationQueue: NSOperationQueue {
             operation.addCompletionBlock { [weak self, weak operation] in
                 guard let queue = self, let operation = operation else { return }
                 queue.delegate?.operationQueue?(queue, operationDidFinish: operation, withErrors: [])
+                //Remove deps to avoid cascading deallocation error
+                //http://stackoverflow.com/questions/19693079/nsoperationqueue-bug-with-dependencies
                 operation.dependencies.forEach { operation.removeDependency($0) }
             }
         }
