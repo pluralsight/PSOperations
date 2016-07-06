@@ -6,7 +6,7 @@ This is an adaptation of the sample code provided in the Advanced NSOperations s
 
 **HealthKit and PassKit:**
 
-Importing HealthKit and Passkit implies that you are using those frameworks in the app review process and in the App store. We have removed the following files from the framework: HealthCondition.swift, HealthCapability.swift, PassbookCondition.swift, and PassbookCapability.swift. They can be found in the repo under the PSOperationsSupplementary directory. In order to use them, first setup PSOperations to work in your project, then you'll need to add the files from the PSOperationsSupplementary directory. You do not need to check the "Copy items if needed" checkbox when adding the files.
+Importing HealthKit and Passkit implies that you are using those frameworks in the app review process and in the App store. We have removed the following files from the framework: `HealthCondition.swift`, `HealthCapability.swift`, `PassbookCondition.swift`, and `PassbookCapability.swift`. They can be found in the repo under the PSOperationsSupplementary directory. In order to use them, first setup PSOperations to work in your project, then you'll need to add the files from the PSOperationsSupplementary directory. You do not need to check the "Copy items if needed" checkbox when adding the files.
 
 
 Feel free to fork and submit pull requests, as we are always looking for improvements from the community.
