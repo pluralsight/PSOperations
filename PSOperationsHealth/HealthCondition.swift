@@ -10,6 +10,7 @@ This file shows an example of implementing the OperationCondition protocol.
     
 import HealthKit
 import UIKit
+import PSOperations
 
 /**
     A condition to indicate an `Operation` requires access to the user's health

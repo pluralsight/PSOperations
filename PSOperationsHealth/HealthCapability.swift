@@ -10,6 +10,7 @@
 
 import Foundation
 import HealthKit
+import PSOperations
 
 public struct Health: CapabilityType {
     public static let name = "Health"
