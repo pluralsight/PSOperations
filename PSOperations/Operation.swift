@@ -170,14 +170,8 @@ public class Operation: NSOperation {
                     return
                 }
                 
-                // If super isReady, conditions can be evaluated
-                if super.ready {
-                    evaluateConditions()
-                }
-                
-                // Until conditions have been evaluated, "isReady" returns false
-                _ready = false
-                
+				_ready = super.ready && !evaluateConditions()
+				
             case .Ready:
                 _ready = super.ready || cancelled
                 
@@ -232,26 +226,26 @@ public class Operation: NSOperation {
     }
 
     
-    private func evaluateConditions() {
-        assert(state == .Pending && !cancelled, "evaluateConditions() was called out-of-order")
-        
-        state = .EvaluatingConditions
-        
-        guard conditions.count > 0 else {
-            state = .Ready
-            return
-        }
-        
-        OperationConditionEvaluator.evaluate(conditions, operation: self) { failures in
-            if !failures.isEmpty {
-                self.cancelWithErrors(failures)
-            }
-            
-            //We must preceed to have the operation exit the queue
-            self.state = .Ready
-        }
-    }
-     
+	private func evaluateConditions() -> Bool {
+		assert(state == .Pending && !cancelled, "evaluateConditions() was called out-of-order")
+		state = .EvaluatingConditions
+		
+		guard conditions.count > 0 else {
+			state = .Ready
+			return false
+		}
+		
+		OperationConditionEvaluator.evaluate(conditions, operation: self) { failures in
+			if !failures.isEmpty {
+				self.cancelWithErrors(failures)
+			}
+			
+			//We must preceed to have the operation exit the queue
+			self.state = .Ready
+		}
+		return true
+	}
+	
     // MARK: Observers and Conditions
     
     private(set) var conditions = [OperationCondition]()
