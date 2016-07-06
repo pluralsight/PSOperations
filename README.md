@@ -186,16 +186,15 @@ This operation requires access to Photos and will request access to them if need
 
 Feel free to submit pull requests, as we are always looking for improvements from the community.
 
+----------
+##WWDC Differences
+
 Differences from the first version of the WWDC sample code:
 
  - Canceling operations would not work.
  - Canceling functions are slightly more friendly.
  - Negated Condition would not negate.
  - Unit tests!
-
-
-----------
-##WWDC Differences
 
 Differences from the second version of the WWDC sample code:
 
