@@ -4,10 +4,10 @@
 
 This is an adaptation of the sample code provided in the Advanced NSOperations session of WWDC 2015. This code has been updated to work with the latest Swift changes as of Xcode 7. For usage examples, see [WWDC 2015 Advanced NSOperations](https://developer.apple.com/videos/wwdc/2015/?id=226) and/or look at the included unit tests.
 
-**HealthKit and PassKit:**
+**Subframeworks:**
 
-Importing HealthKit and Passkit implies that you are using those frameworks in the app review process and in the App store. We have removed the following files from the framework: `HealthCondition.swift`, `HealthCapability.swift`, `PassbookCondition.swift`, and `PassbookCapability.swift`. They can be found in the repo under the PSOperationsSupplementary directory. In order to use them, first setup PSOperations to work in your project, then you'll need to add the files from the PSOperationsSupplementary directory. You do not need to check the "Copy items if needed" checkbox when adding the files.
-
+- If you need the HealthCapability you will need to link and import `PSOperationsHealth` into your project.
+- If you need the PassbookCapability you will need to link and import `PSOperationsPassbook` into your project.
 
 Feel free to fork and submit pull requests, as we are always looking for improvements from the community.
 
