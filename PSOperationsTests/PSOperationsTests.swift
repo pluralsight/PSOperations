@@ -990,12 +990,13 @@ class PSOperationsTests: XCTestCase {
     func testOperationQueueWaitUntilFinished() {
         let opQ = OperationQueue()
         
-        class WaitOp : Operation {
+        class WaitOp : NSOperation {
             
             var waitCalled = false
             
             override func waitUntilFinished() {
                 waitCalled = true
+                super.waitUntilFinished()
             }
         }
         
@@ -1003,7 +1004,7 @@ class PSOperationsTests: XCTestCase {
         
         opQ.addOperations([op], waitUntilFinished: true)
         
-        XCTAssertEqual(1, opQ.operationCount)
+        XCTAssertEqual(0, opQ.operationCount)
         XCTAssertTrue(op.waitCalled)
     }
     
