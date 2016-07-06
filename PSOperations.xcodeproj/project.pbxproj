@@ -7,6 +7,95 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B8E160C1CECA7D60062D459 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432C1B6A934A008F7F18 /* Operation.swift */; };
+		0B8E160D1CECA7D60062D459 /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432D1B6A934A008F7F18 /* BlockOperation.swift */; };
+		0B8E160E1CECA7D60062D459 /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432E1B6A934A008F7F18 /* GroupOperation.swift */; };
+		0B8E160F1CECA7D60062D459 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432F1B6A934A008F7F18 /* URLSessionTaskOperation.swift */; };
+		0B8E16101CECA7D60062D459 /* LocationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43301B6A934A008F7F18 /* LocationOperation.swift */; };
+		0B8E16111CECA7D60062D459 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43311B6A934A008F7F18 /* DelayOperation.swift */; };
+		0B8E16121CECA7DE0062D459 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43321B6A934A008F7F18 /* OperationObserver.swift */; };
+		0B8E16131CECA7DE0062D459 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43331B6A934A008F7F18 /* BlockObserver.swift */; };
+		0B8E16141CECA7DE0062D459 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43341B6A934A008F7F18 /* TimeoutObserver.swift */; };
+		0B8E16151CECA8090062D459 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C31BC172ED0097F4A5 /* Capability.swift */; };
+		0B8E16161CECA8090062D459 /* CalendarCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C61BC173100097F4A5 /* CalendarCapability.swift */; };
+		0B8E16171CECA8090062D459 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D51BC19E330097F4A5 /* HealthCapability.swift */; };
+		0B8E16181CECA8090062D459 /* iCloudContainerCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */; };
+		0B8E16191CECA80D0062D459 /* LocationCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D31BC180650097F4A5 /* LocationCapability-OSX.swift */; };
+		0B8E161B1CECA8150062D459 /* PushCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */; };
+		0B8E161C1CECA84B0062D459 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432A1B6A934A008F7F18 /* OperationQueue.swift */; };
+		0B8E161D1CECA84B0062D459 /* ExclusivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432B1B6A934A008F7F18 /* ExclusivityController.swift */; };
+		0B8E161F1CECA8770062D459 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B8E16201CECA8940062D459 /* OperationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43351B6A934A008F7F18 /* OperationErrors.swift */; };
+		0B8E16211CECA8940062D459 /* OperationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43361B6A934A008F7F18 /* OperationCondition.swift */; };
+		0B8E16221CECA8940062D459 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43371B6A934A008F7F18 /* SilentCondition.swift */; };
+		0B8E16231CECA8940062D459 /* NegatedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43381B6A934A008F7F18 /* NegatedCondition.swift */; };
+		0B8E16241CECA8940062D459 /* NoCancelledDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43391B6A934A008F7F18 /* NoCancelledDependencies.swift */; };
+		0B8E16251CECA8940062D459 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */; };
+		0B8E16261CECA8940062D459 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */; };
+		0B8E16271CECA8CE0062D459 /* CalendarCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */; };
+		0B8E16281CECA8D10062D459 /* CloudCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */; };
+		0B8E16291CECA8E40062D459 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */; };
+		0B8E162A1CECA9360062D459 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */; };
+		0B8E162B1CECA9390062D459 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */; };
+		0B8E162C1CECA93B0062D459 /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */; };
+		0B8E163A1CECA9B90062D459 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B8E163B1CECA9E30062D459 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */; };
+		0B8E163C1CECA9E30062D459 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */; };
+		0B8E163D1CECA9E30062D459 /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */; };
+		0B8E163E1CECA9EA0062D459 /* OperationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43351B6A934A008F7F18 /* OperationErrors.swift */; };
+		0B8E163F1CECA9EA0062D459 /* OperationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43361B6A934A008F7F18 /* OperationCondition.swift */; };
+		0B8E16401CECA9EA0062D459 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43371B6A934A008F7F18 /* SilentCondition.swift */; };
+		0B8E16411CECA9EA0062D459 /* NegatedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43381B6A934A008F7F18 /* NegatedCondition.swift */; };
+		0B8E16421CECA9EA0062D459 /* NoCancelledDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43391B6A934A008F7F18 /* NoCancelledDependencies.swift */; };
+		0B8E16431CECA9EA0062D459 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */; };
+		0B8E16441CECA9EA0062D459 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */; };
+		0B8E16451CECA9F10062D459 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C31BC172ED0097F4A5 /* Capability.swift */; };
+		0B8E16471CECA9F60062D459 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D51BC19E330097F4A5 /* HealthCapability.swift */; };
+		0B8E16481CECA9FB0062D459 /* LocationCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CC1BC1738D0097F4A5 /* LocationCapability-iOS.swift */; };
+		0B8E16491CECA9FE0062D459 /* LocationCapability-tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D11BC180570097F4A5 /* LocationCapability-tvOS.swift */; };
+		0B8E164A1CECAA0E0062D459 /* CloudCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */; };
+		0B8E164B1CECAA1E0062D459 /* LocationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */; };
+		0B8E164C1CECAA290062D459 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */; };
+		0B8E164D1CECAA2F0062D459 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43321B6A934A008F7F18 /* OperationObserver.swift */; };
+		0B8E164E1CECAA2F0062D459 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43331B6A934A008F7F18 /* BlockObserver.swift */; };
+		0B8E164F1CECAA2F0062D459 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43341B6A934A008F7F18 /* TimeoutObserver.swift */; };
+		0B8E16501CECAA330062D459 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432C1B6A934A008F7F18 /* Operation.swift */; };
+		0B8E16511CECAA330062D459 /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432D1B6A934A008F7F18 /* BlockOperation.swift */; };
+		0B8E16521CECAA330062D459 /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432E1B6A934A008F7F18 /* GroupOperation.swift */; };
+		0B8E16531CECAA330062D459 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432F1B6A934A008F7F18 /* URLSessionTaskOperation.swift */; };
+		0B8E16541CECAA330062D459 /* LocationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43301B6A934A008F7F18 /* LocationOperation.swift */; };
+		0B8E16551CECAA330062D459 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43311B6A934A008F7F18 /* DelayOperation.swift */; };
+		0B8E16561CECAA380062D459 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432A1B6A934A008F7F18 /* OperationQueue.swift */; };
+		0B8E16571CECAA380062D459 /* ExclusivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432B1B6A934A008F7F18 /* ExclusivityController.swift */; };
+		0B8E16651CECAA8A0062D459 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B8E16661CECAAB00062D459 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */; };
+		0B8E16671CECAAB00062D459 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */; };
+		0B8E16681CECAAB00062D459 /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */; };
+		0B8E16691CECAABF0062D459 /* OperationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43351B6A934A008F7F18 /* OperationErrors.swift */; };
+		0B8E166A1CECAABF0062D459 /* OperationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43361B6A934A008F7F18 /* OperationCondition.swift */; };
+		0B8E166B1CECAABF0062D459 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43371B6A934A008F7F18 /* SilentCondition.swift */; };
+		0B8E166C1CECAABF0062D459 /* NegatedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43381B6A934A008F7F18 /* NegatedCondition.swift */; };
+		0B8E166D1CECAABF0062D459 /* NoCancelledDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43391B6A934A008F7F18 /* NoCancelledDependencies.swift */; };
+		0B8E166E1CECAABF0062D459 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */; };
+		0B8E166F1CECAABF0062D459 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */; };
+		0B8E16701CECAAC60062D459 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C31BC172ED0097F4A5 /* Capability.swift */; };
+		0B8E16711CECAACC0062D459 /* CalendarCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C61BC173100097F4A5 /* CalendarCapability.swift */; };
+		0B8E16721CECAAD50062D459 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D51BC19E330097F4A5 /* HealthCapability.swift */; };
+		0B8E16731CECAADA0062D459 /* iCloudContainerCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */; };
+		0B8E16741CECAADF0062D459 /* LocationCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CC1BC1738D0097F4A5 /* LocationCapability-iOS.swift */; };
+		0B8E16751CECAB070062D459 /* CalendarCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */; };
+		0B8E16761CECAB110062D459 /* LocationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */; };
+		0B8E16771CECAB290062D459 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432C1B6A934A008F7F18 /* Operation.swift */; };
+		0B8E16781CECAB2C0062D459 /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432D1B6A934A008F7F18 /* BlockOperation.swift */; };
+		0B8E16791CECAB2C0062D459 /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432E1B6A934A008F7F18 /* GroupOperation.swift */; };
+		0B8E167A1CECAB2C0062D459 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432F1B6A934A008F7F18 /* URLSessionTaskOperation.swift */; };
+		0B8E167B1CECAB2C0062D459 /* LocationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43301B6A934A008F7F18 /* LocationOperation.swift */; };
+		0B8E167C1CECAB2C0062D459 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43311B6A934A008F7F18 /* DelayOperation.swift */; };
+		0B8E167D1CECAB320062D459 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432A1B6A934A008F7F18 /* OperationQueue.swift */; };
+		0B8E167E1CECAB320062D459 /* ExclusivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432B1B6A934A008F7F18 /* ExclusivityController.swift */; };
+		0B8E167F1CECAB3A0062D459 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43321B6A934A008F7F18 /* OperationObserver.swift */; };
+		0B8E16801CECAB540062D459 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43331B6A934A008F7F18 /* BlockObserver.swift */; };
+		0B8E16811CECAB560062D459 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43341B6A934A008F7F18 /* TimeoutObserver.swift */; };
 		1D9B43141B6A92ED008F7F18 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D9B431A1B6A92ED008F7F18 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
 		1D9B43491B6A934A008F7F18 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B432A1B6A934A008F7F18 /* OperationQueue.swift */; };
@@ -83,9 +172,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B8E15EF1CECA5B10062D459 /* PSOperations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B8E15F31CECA5B10062D459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B8E16321CECA9AC0062D459 /* PSOperations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B8E16361CECA9AC0062D459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B8E165D1CECAA740062D459 /* PSOperations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B8E16611CECAA740062D459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D9B43121B6A92ED008F7F18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D9B43131B6A92ED008F7F18 /* PSOperations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSOperations.h; sourceTree = "<group>"; };
+		1D9B43131B6A92ED008F7F18 /* PSOperations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PSOperations.h; path = PSOperations/PSOperations.h; sourceTree = "<group>"; };
 		1D9B43191B6A92ED008F7F18 /* PSOperationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PSOperationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D9B431F1B6A92ED008F7F18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D9B432A1B6A934A008F7F18 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
@@ -114,10 +209,10 @@
 		1D9B43411B6A934A008F7F18 /* HealthCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCondition.swift; sourceTree = "<group>"; };
 		1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationCondition.swift; sourceTree = "<group>"; };
 		1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCondition.swift; sourceTree = "<group>"; };
-		1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Operations.swift"; sourceTree = "<group>"; };
-		1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
+		1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+Operations.swift"; path = "PSOperations/Dictionary+Operations.swift"; sourceTree = "<group>"; };
+		1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSOperation+Operations.swift"; path = "PSOperations/NSOperation+Operations.swift"; sourceTree = "<group>"; };
 		1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKContainer+Operations.swift"; sourceTree = "<group>"; };
-		1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
+		1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIUserNotifications+Operations.swift"; path = "PSOperations/UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
 		1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSOperationsTests.swift; sourceTree = "<group>"; };
 		55AE64C31BC172ED0097F4A5 /* Capability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capability.swift; sourceTree = "<group>"; };
 		55AE64C61BC173100097F4A5 /* CalendarCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCapability.swift; sourceTree = "<group>"; };
@@ -141,13 +236,34 @@
 		FD19C9E31C440293005D0F07 /* PSOperationsAppForTestsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PSOperationsAppForTestsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD19C9E71C440293005D0F07 /* PSOperationsAppForTestsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSOperationsAppForTestsTests.swift; sourceTree = "<group>"; };
 		FD19C9E91C440293005D0F07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
+		FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSLock+Operations.swift"; path = "PSOperations/NSLock+Operations.swift"; sourceTree = "<group>"; };
 		FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationConditionResultTests.swift; sourceTree = "<group>"; };
 		FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperationTests.swift; sourceTree = "<group>"; };
 		FDC6C52B1BBD6447008FB96E /* OperationErrorCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationErrorCodeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0B8E15EB1CECA5B10062D459 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B8E162E1CECA9AC0062D459 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B8E16591CECAA740062D459 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D9B430A1B6A92ED008F7F18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,13 +297,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B8E15E81CECA49E0062D459 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				1D9B43131B6A92ED008F7F18 /* PSOperations.h */,
+				0B8E15E91CECA4ED0062D459 /* Convenience Extensions */,
+				1D9B436B1B6A93B0008F7F18 /* Conditions */,
+				1D9B436A1B6A938F008F7F18 /* Observers */,
+				1D9B43691B6A9375008F7F18 /* Operations */,
+				1D9B43681B6A934F008F7F18 /* Operation Queue */,
+			);
+			name = Commons;
+			sourceTree = "<group>";
+		};
+		0B8E15E91CECA4ED0062D459 /* Convenience Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */,
+				1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */,
+				FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */,
+				1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */,
+			);
+			name = "Convenience Extensions";
+			sourceTree = "<group>";
+		};
+		0B8E15F01CECA5B10062D459 /* PSOperations-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				0B8E15F31CECA5B10062D459 /* Info.plist */,
+			);
+			path = "PSOperations-OSX";
+			sourceTree = "<group>";
+		};
+		0B8E16331CECA9AC0062D459 /* PSOperations-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				0B8E16361CECA9AC0062D459 /* Info.plist */,
+			);
+			path = "PSOperations-tvOS";
+			sourceTree = "<group>";
+		};
+		0B8E165E1CECAA740062D459 /* PSOperations-watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				0B8E16611CECAA740062D459 /* Info.plist */,
+			);
+			path = "PSOperations-watchOS";
+			sourceTree = "<group>";
+		};
 		1D9B43041B6A92ED008F7F18 = {
 			isa = PBXGroup;
 			children = (
-				1D9B43101B6A92ED008F7F18 /* PSOperations */,
+				0B8E15E81CECA49E0062D459 /* Commons */,
+				1D9B43101B6A92ED008F7F18 /* PSOperations-iOS */,
 				1D9B431D1B6A92ED008F7F18 /* PSOperationsTests */,
 				FD19C9D11C440293005D0F07 /* PSOperationsAppForTests */,
 				FD19C9E61C440293005D0F07 /* PSOperationsAppForTestsTests */,
+				0B8E15F01CECA5B10062D459 /* PSOperations-OSX */,
+				0B8E16331CECA9AC0062D459 /* PSOperations-tvOS */,
+				0B8E165E1CECAA740062D459 /* PSOperations-watchOS */,
 				1D9B430F1B6A92ED008F7F18 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -199,21 +367,19 @@
 				1D9B43191B6A92ED008F7F18 /* PSOperationsTests.xctest */,
 				FD19C9D01C440293005D0F07 /* PSOperationsAppForTests.app */,
 				FD19C9E31C440293005D0F07 /* PSOperationsAppForTestsTests.xctest */,
+				0B8E15EF1CECA5B10062D459 /* PSOperations.framework */,
+				0B8E16321CECA9AC0062D459 /* PSOperations.framework */,
+				0B8E165D1CECAA740062D459 /* PSOperations.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1D9B43101B6A92ED008F7F18 /* PSOperations */ = {
+		1D9B43101B6A92ED008F7F18 /* PSOperations-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				1D9B43131B6A92ED008F7F18 /* PSOperations.h */,
-				1D9B43681B6A934F008F7F18 /* Operation Queue */,
-				1D9B43691B6A9375008F7F18 /* Operations */,
-				1D9B436A1B6A938F008F7F18 /* Observers */,
-				1D9B436B1B6A93B0008F7F18 /* Conditions */,
-				1D9B436C1B6A93C9008F7F18 /* Convenience Extensions */,
 				1D9B43111B6A92ED008F7F18 /* Supporting Files */,
 			);
+			name = "PSOperations-iOS";
 			path = PSOperations;
 			sourceTree = "<group>";
 		};
@@ -252,6 +418,7 @@
 				1D9B432B1B6A934A008F7F18 /* ExclusivityController.swift */,
 			);
 			name = "Operation Queue";
+			path = PSOperations;
 			sourceTree = "<group>";
 		};
 		1D9B43691B6A9375008F7F18 /* Operations */ = {
@@ -265,6 +432,7 @@
 				1D9B43311B6A934A008F7F18 /* DelayOperation.swift */,
 			);
 			name = Operations;
+			path = PSOperations;
 			sourceTree = "<group>";
 		};
 		1D9B436A1B6A938F008F7F18 /* Observers */ = {
@@ -275,6 +443,7 @@
 				1D9B43341B6A934A008F7F18 /* TimeoutObserver.swift */,
 			);
 			name = Observers;
+			path = PSOperations;
 			sourceTree = "<group>";
 		};
 		1D9B436B1B6A93B0008F7F18 /* Conditions */ = {
@@ -291,17 +460,7 @@
 				55AE64D01BC17CFA0097F4A5 /* Deprecated */,
 			);
 			name = Conditions;
-			sourceTree = "<group>";
-		};
-		1D9B436C1B6A93C9008F7F18 /* Convenience Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */,
-				1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */,
-				FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */,
-				1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */,
-			);
-			name = "Convenience Extensions";
+			path = PSOperations;
 			sourceTree = "<group>";
 		};
 		55AE64C51BC173000097F4A5 /* Capabilities */ = {
@@ -364,6 +523,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		0B8E15EC1CECA5B10062D459 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B8E161F1CECA8770062D459 /* PSOperations.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B8E162F1CECA9AC0062D459 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B8E163A1CECA9B90062D459 /* PSOperations.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B8E165A1CECAA740062D459 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B8E16651CECAA8A0062D459 /* PSOperations.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D9B430B1B6A92ED008F7F18 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -375,9 +558,63 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1D9B430D1B6A92ED008F7F18 /* PSOperations */ = {
+		0B8E15EE1CECA5B10062D459 /* PSOperations-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D9B43241B6A92ED008F7F18 /* Build configuration list for PBXNativeTarget "PSOperations" */;
+			buildConfigurationList = 0B8E16001CECA5B10062D459 /* Build configuration list for PBXNativeTarget "PSOperations-OSX" */;
+			buildPhases = (
+				0B8E15EA1CECA5B10062D459 /* Sources */,
+				0B8E15EB1CECA5B10062D459 /* Frameworks */,
+				0B8E15EC1CECA5B10062D459 /* Headers */,
+				0B8E15ED1CECA5B10062D459 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PSOperations-OSX";
+			productName = "PSOperations-OSX";
+			productReference = 0B8E15EF1CECA5B10062D459 /* PSOperations.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0B8E16311CECA9AC0062D459 /* PSOperations-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B8E16371CECA9AC0062D459 /* Build configuration list for PBXNativeTarget "PSOperations-tvOS" */;
+			buildPhases = (
+				0B8E162D1CECA9AC0062D459 /* Sources */,
+				0B8E162E1CECA9AC0062D459 /* Frameworks */,
+				0B8E162F1CECA9AC0062D459 /* Headers */,
+				0B8E16301CECA9AC0062D459 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PSOperations-tvOS";
+			productName = "PSOperations-tvOS";
+			productReference = 0B8E16321CECA9AC0062D459 /* PSOperations.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0B8E165C1CECAA740062D459 /* PSOperations-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B8E16621CECAA740062D459 /* Build configuration list for PBXNativeTarget "PSOperations-watchOS" */;
+			buildPhases = (
+				0B8E16581CECAA740062D459 /* Sources */,
+				0B8E16591CECAA740062D459 /* Frameworks */,
+				0B8E165A1CECAA740062D459 /* Headers */,
+				0B8E165B1CECAA740062D459 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PSOperations-watchOS";
+			productName = "PSOperations-watchOS";
+			productReference = 0B8E165D1CECAA740062D459 /* PSOperations.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		1D9B430D1B6A92ED008F7F18 /* PSOperations-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D9B43241B6A92ED008F7F18 /* Build configuration list for PBXNativeTarget "PSOperations-iOS" */;
 			buildPhases = (
 				1D9B43091B6A92ED008F7F18 /* Sources */,
 				1D9B430A1B6A92ED008F7F18 /* Frameworks */,
@@ -388,7 +625,7 @@
 			);
 			dependencies = (
 			);
-			name = PSOperations;
+			name = "PSOperations-iOS";
 			productName = PSOperations;
 			productReference = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */;
 			productType = "com.apple.product-type.framework";
@@ -453,10 +690,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Pluralsight;
 				TargetAttributes = {
+					0B8E15EE1CECA5B10062D459 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					0B8E16311CECA9AC0062D459 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					0B8E165C1CECAA740062D459 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					1D9B430D1B6A92ED008F7F18 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -485,15 +731,39 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D9B430D1B6A92ED008F7F18 /* PSOperations */,
+				1D9B430D1B6A92ED008F7F18 /* PSOperations-iOS */,
 				1D9B43181B6A92ED008F7F18 /* PSOperationsTests */,
 				FD19C9CF1C440293005D0F07 /* PSOperationsAppForTests */,
 				FD19C9E21C440293005D0F07 /* PSOperationsAppForTestsTests */,
+				0B8E15EE1CECA5B10062D459 /* PSOperations-OSX */,
+				0B8E16311CECA9AC0062D459 /* PSOperations-tvOS */,
+				0B8E165C1CECAA740062D459 /* PSOperations-watchOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0B8E15ED1CECA5B10062D459 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B8E16301CECA9AC0062D459 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B8E165B1CECAA740062D459 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D9B430C1B6A92ED008F7F18 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -528,6 +798,113 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0B8E15EA1CECA5B10062D459 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B8E16281CECA8D10062D459 /* CloudCondition.swift in Sources */,
+				0B8E161C1CECA84B0062D459 /* OperationQueue.swift in Sources */,
+				0B8E161D1CECA84B0062D459 /* ExclusivityController.swift in Sources */,
+				0B8E160C1CECA7D60062D459 /* Operation.swift in Sources */,
+				0B8E160D1CECA7D60062D459 /* BlockOperation.swift in Sources */,
+				0B8E16241CECA8940062D459 /* NoCancelledDependencies.swift in Sources */,
+				0B8E160E1CECA7D60062D459 /* GroupOperation.swift in Sources */,
+				0B8E16221CECA8940062D459 /* SilentCondition.swift in Sources */,
+				0B8E16251CECA8940062D459 /* MutuallyExclusive.swift in Sources */,
+				0B8E16231CECA8940062D459 /* NegatedCondition.swift in Sources */,
+				0B8E160F1CECA7D60062D459 /* URLSessionTaskOperation.swift in Sources */,
+				0B8E16101CECA7D60062D459 /* LocationOperation.swift in Sources */,
+				0B8E162C1CECA93B0062D459 /* NSLock+Operations.swift in Sources */,
+				0B8E162B1CECA9390062D459 /* NSOperation+Operations.swift in Sources */,
+				0B8E16111CECA7D60062D459 /* DelayOperation.swift in Sources */,
+				0B8E16151CECA8090062D459 /* Capability.swift in Sources */,
+				0B8E16271CECA8CE0062D459 /* CalendarCondition.swift in Sources */,
+				0B8E16161CECA8090062D459 /* CalendarCapability.swift in Sources */,
+				0B8E16171CECA8090062D459 /* HealthCapability.swift in Sources */,
+				0B8E162A1CECA9360062D459 /* Dictionary+Operations.swift in Sources */,
+				0B8E16201CECA8940062D459 /* OperationErrors.swift in Sources */,
+				0B8E16181CECA8090062D459 /* iCloudContainerCapability.swift in Sources */,
+				0B8E16291CECA8E40062D459 /* CKContainer+Operations.swift in Sources */,
+				0B8E16191CECA80D0062D459 /* LocationCapability-OSX.swift in Sources */,
+				0B8E161B1CECA8150062D459 /* PushCapability-OSX.swift in Sources */,
+				0B8E16121CECA7DE0062D459 /* OperationObserver.swift in Sources */,
+				0B8E16131CECA7DE0062D459 /* BlockObserver.swift in Sources */,
+				0B8E16141CECA7DE0062D459 /* TimeoutObserver.swift in Sources */,
+				0B8E16211CECA8940062D459 /* OperationCondition.swift in Sources */,
+				0B8E16261CECA8940062D459 /* ReachabilityCondition.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B8E162D1CECA9AC0062D459 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B8E16571CECAA380062D459 /* ExclusivityController.swift in Sources */,
+				0B8E163D1CECA9E30062D459 /* NSLock+Operations.swift in Sources */,
+				0B8E164B1CECAA1E0062D459 /* LocationCondition.swift in Sources */,
+				0B8E16551CECAA330062D459 /* DelayOperation.swift in Sources */,
+				0B8E163C1CECA9E30062D459 /* NSOperation+Operations.swift in Sources */,
+				0B8E16401CECA9EA0062D459 /* SilentCondition.swift in Sources */,
+				0B8E163E1CECA9EA0062D459 /* OperationErrors.swift in Sources */,
+				0B8E16511CECAA330062D459 /* BlockOperation.swift in Sources */,
+				0B8E164F1CECAA2F0062D459 /* TimeoutObserver.swift in Sources */,
+				0B8E16441CECA9EA0062D459 /* ReachabilityCondition.swift in Sources */,
+				0B8E16431CECA9EA0062D459 /* MutuallyExclusive.swift in Sources */,
+				0B8E16471CECA9F60062D459 /* HealthCapability.swift in Sources */,
+				0B8E16451CECA9F10062D459 /* Capability.swift in Sources */,
+				0B8E164E1CECAA2F0062D459 /* BlockObserver.swift in Sources */,
+				0B8E16501CECAA330062D459 /* Operation.swift in Sources */,
+				0B8E16731CECAADA0062D459 /* iCloudContainerCapability.swift in Sources */,
+				0B8E16521CECAA330062D459 /* GroupOperation.swift in Sources */,
+				0B8E16481CECA9FB0062D459 /* LocationCapability-iOS.swift in Sources */,
+				0B8E16491CECA9FE0062D459 /* LocationCapability-tvOS.swift in Sources */,
+				0B8E16411CECA9EA0062D459 /* NegatedCondition.swift in Sources */,
+				0B8E163B1CECA9E30062D459 /* Dictionary+Operations.swift in Sources */,
+				0B8E164D1CECAA2F0062D459 /* OperationObserver.swift in Sources */,
+				0B8E16561CECAA380062D459 /* OperationQueue.swift in Sources */,
+				0B8E164A1CECAA0E0062D459 /* CloudCondition.swift in Sources */,
+				0B8E163F1CECA9EA0062D459 /* OperationCondition.swift in Sources */,
+				0B8E16541CECAA330062D459 /* LocationOperation.swift in Sources */,
+				0B8E16531CECAA330062D459 /* URLSessionTaskOperation.swift in Sources */,
+				0B8E16421CECA9EA0062D459 /* NoCancelledDependencies.swift in Sources */,
+				0B8E164C1CECAA290062D459 /* CKContainer+Operations.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B8E16581CECAA740062D459 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B8E16681CECAAB00062D459 /* NSLock+Operations.swift in Sources */,
+				0B8E16671CECAAB00062D459 /* NSOperation+Operations.swift in Sources */,
+				0B8E16761CECAB110062D459 /* LocationCondition.swift in Sources */,
+				0B8E166B1CECAABF0062D459 /* SilentCondition.swift in Sources */,
+				0B8E167B1CECAB2C0062D459 /* LocationOperation.swift in Sources */,
+				0B8E16691CECAABF0062D459 /* OperationErrors.swift in Sources */,
+				0B8E166F1CECAABF0062D459 /* ReachabilityCondition.swift in Sources */,
+				0B8E166E1CECAABF0062D459 /* MutuallyExclusive.swift in Sources */,
+				0B8E167A1CECAB2C0062D459 /* URLSessionTaskOperation.swift in Sources */,
+				0B8E167F1CECAB3A0062D459 /* OperationObserver.swift in Sources */,
+				0B8E16721CECAAD50062D459 /* HealthCapability.swift in Sources */,
+				0B8E16751CECAB070062D459 /* CalendarCondition.swift in Sources */,
+				0B8E16781CECAB2C0062D459 /* BlockOperation.swift in Sources */,
+				0B8E16791CECAB2C0062D459 /* GroupOperation.swift in Sources */,
+				0B8E16701CECAAC60062D459 /* Capability.swift in Sources */,
+				0B8E16741CECAADF0062D459 /* LocationCapability-iOS.swift in Sources */,
+				0B8E16711CECAACC0062D459 /* CalendarCapability.swift in Sources */,
+				0B8E166C1CECAABF0062D459 /* NegatedCondition.swift in Sources */,
+				0B8E16771CECAB290062D459 /* Operation.swift in Sources */,
+				0B8E16661CECAAB00062D459 /* Dictionary+Operations.swift in Sources */,
+				0B8E167E1CECAB320062D459 /* ExclusivityController.swift in Sources */,
+				0B8E16801CECAB540062D459 /* BlockObserver.swift in Sources */,
+				0B8E167C1CECAB2C0062D459 /* DelayOperation.swift in Sources */,
+				0B8E166A1CECAABF0062D459 /* OperationCondition.swift in Sources */,
+				0B8E167D1CECAB320062D459 /* OperationQueue.swift in Sources */,
+				0B8E166D1CECAABF0062D459 /* NoCancelledDependencies.swift in Sources */,
+				0B8E16811CECAB560062D459 /* TimeoutObserver.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D9B43091B6A92ED008F7F18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -611,7 +988,7 @@
 /* Begin PBXTargetDependency section */
 		1D9B431C1B6A92ED008F7F18 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1D9B430D1B6A92ED008F7F18 /* PSOperations */;
+			target = 1D9B430D1B6A92ED008F7F18 /* PSOperations-iOS */;
 			targetProxy = 1D9B431B1B6A92ED008F7F18 /* PBXContainerItemProxy */;
 		};
 		FD19C9E51C440293005D0F07 /* PBXTargetDependency */ = {
@@ -641,6 +1018,139 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0B8E16011CECA5B10062D459 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "PSOperations-OSX/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperations;
+				PRODUCT_NAME = PSOperations;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		0B8E16021CECA5B10062D459 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "PSOperations-OSX/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperations;
+				PRODUCT_NAME = PSOperations;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		0B8E16381CECA9AC0062D459 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "PSOperations-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperations.PSOperations;
+				PRODUCT_MODULE_NAME = PSOperations;
+				PRODUCT_NAME = PSOperations;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		0B8E16391CECA9AC0062D459 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "PSOperations-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperations.PSOperations;
+				PRODUCT_MODULE_NAME = PSOperations;
+				PRODUCT_NAME = PSOperations;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		0B8E16631CECAA740062D459 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "PSOperations-watchOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperations.PSOperations;
+				PRODUCT_MODULE_NAME = PSOperations;
+				PRODUCT_NAME = PSOperations;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		0B8E16641CECAA740062D459 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "PSOperations-watchOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperations.PSOperations;
+				PRODUCT_MODULE_NAME = PSOperations;
+				PRODUCT_NAME = PSOperations;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 		1D9B43221B6A92ED008F7F18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -744,10 +1254,11 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperations;
+				PRODUCT_MODULE_NAME = PSOperations;
+				PRODUCT_NAME = PSOperations;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -767,10 +1278,11 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperations;
+				PRODUCT_MODULE_NAME = PSOperations;
+				PRODUCT_NAME = PSOperations;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -858,6 +1370,30 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0B8E16001CECA5B10062D459 /* Build configuration list for PBXNativeTarget "PSOperations-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B8E16011CECA5B10062D459 /* Debug */,
+				0B8E16021CECA5B10062D459 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0B8E16371CECA9AC0062D459 /* Build configuration list for PBXNativeTarget "PSOperations-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B8E16381CECA9AC0062D459 /* Debug */,
+				0B8E16391CECA9AC0062D459 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0B8E16621CECAA740062D459 /* Build configuration list for PBXNativeTarget "PSOperations-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B8E16631CECAA740062D459 /* Debug */,
+				0B8E16641CECAA740062D459 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		1D9B43081B6A92ED008F7F18 /* Build configuration list for PBXProject "PSOperations" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -867,7 +1403,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1D9B43241B6A92ED008F7F18 /* Build configuration list for PBXNativeTarget "PSOperations" */ = {
+		1D9B43241B6A92ED008F7F18 /* Build configuration list for PBXNativeTarget "PSOperations-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D9B43251B6A92ED008F7F18 /* Debug */,
