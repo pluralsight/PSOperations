@@ -28,11 +28,9 @@
 		1D9B43591B6A934A008F7F18 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */; };
 		1D9B435A1B6A934A008F7F18 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */; };
 		1D9B435B1B6A934A008F7F18 /* CloudCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */; };
-		1D9B435C1B6A934A008F7F18 /* PassbookCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433D1B6A934A008F7F18 /* PassbookCondition.swift */; };
 		1D9B435D1B6A934A008F7F18 /* LocationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */; };
 		1D9B435E1B6A934A008F7F18 /* CalendarCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */; };
 		1D9B435F1B6A934A008F7F18 /* PhotosCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */; };
-		1D9B43601B6A934A008F7F18 /* HealthCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43411B6A934A008F7F18 /* HealthCondition.swift */; };
 		1D9B43611B6A934A008F7F18 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */; };
 		1D9B43621B6A934A008F7F18 /* UserNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */; };
 		1D9B43631B6A934A008F7F18 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */; };
@@ -42,12 +40,10 @@
 		55AE64C41BC172ED0097F4A5 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C31BC172ED0097F4A5 /* Capability.swift */; };
 		55AE64C71BC173100097F4A5 /* CalendarCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C61BC173100097F4A5 /* CalendarCapability.swift */; };
 		55AE64C91BC1732D0097F4A5 /* PhotosCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C81BC1732D0097F4A5 /* PhotosCapability.swift */; };
-		55AE64CB1BC173560097F4A5 /* PassbookCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CA1BC173560097F4A5 /* PassbookCapability.swift */; };
 		55AE64CD1BC1738D0097F4A5 /* LocationCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CC1BC1738D0097F4A5 /* LocationCapability-iOS.swift */; };
 		55AE64CF1BC175190097F4A5 /* iCloudContainerCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */; };
 		55AE64D21BC180570097F4A5 /* LocationCapability-tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D11BC180570097F4A5 /* LocationCapability-tvOS.swift */; };
 		55AE64D41BC180650097F4A5 /* LocationCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D31BC180650097F4A5 /* LocationCapability-OSX.swift */; };
-		55AE64D61BC19E330097F4A5 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D51BC19E330097F4A5 /* HealthCapability.swift */; };
 		55AE64DA1BC1C7430097F4A5 /* PushCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D91BC1C7430097F4A5 /* PushCapability-iOS.swift */; };
 		55AE64DC1BC1C7E50097F4A5 /* PushCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */; };
 		55AE64DE1BC1DCF50097F4A5 /* UserNotificationCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */; };
@@ -107,11 +103,9 @@
 		1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutuallyExclusive.swift; sourceTree = "<group>"; };
 		1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCondition.swift; sourceTree = "<group>"; };
 		1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudCondition.swift; sourceTree = "<group>"; };
-		1D9B433D1B6A934A008F7F18 /* PassbookCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassbookCondition.swift; sourceTree = "<group>"; };
 		1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCondition.swift; sourceTree = "<group>"; };
 		1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCondition.swift; sourceTree = "<group>"; };
 		1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCondition.swift; sourceTree = "<group>"; };
-		1D9B43411B6A934A008F7F18 /* HealthCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCondition.swift; sourceTree = "<group>"; };
 		1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationCondition.swift; sourceTree = "<group>"; };
 		1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCondition.swift; sourceTree = "<group>"; };
 		1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Operations.swift"; sourceTree = "<group>"; };
@@ -122,12 +116,10 @@
 		55AE64C31BC172ED0097F4A5 /* Capability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capability.swift; sourceTree = "<group>"; };
 		55AE64C61BC173100097F4A5 /* CalendarCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCapability.swift; sourceTree = "<group>"; };
 		55AE64C81BC1732D0097F4A5 /* PhotosCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCapability.swift; sourceTree = "<group>"; };
-		55AE64CA1BC173560097F4A5 /* PassbookCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassbookCapability.swift; sourceTree = "<group>"; };
 		55AE64CC1BC1738D0097F4A5 /* LocationCapability-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocationCapability-iOS.swift"; sourceTree = "<group>"; };
 		55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iCloudContainerCapability.swift; sourceTree = "<group>"; };
 		55AE64D11BC180570097F4A5 /* LocationCapability-tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocationCapability-tvOS.swift"; sourceTree = "<group>"; };
 		55AE64D31BC180650097F4A5 /* LocationCapability-OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocationCapability-OSX.swift"; sourceTree = "<group>"; };
-		55AE64D51BC19E330097F4A5 /* HealthCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCapability.swift; sourceTree = "<group>"; };
 		55AE64D91BC1C7430097F4A5 /* PushCapability-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PushCapability-iOS.swift"; sourceTree = "<group>"; };
 		55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PushCapability-OSX.swift"; sourceTree = "<group>"; };
 		55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCapability.swift; sourceTree = "<group>"; };
@@ -309,12 +301,10 @@
 			children = (
 				55AE64C31BC172ED0097F4A5 /* Capability.swift */,
 				55AE64C61BC173100097F4A5 /* CalendarCapability.swift */,
-				55AE64D51BC19E330097F4A5 /* HealthCapability.swift */,
 				55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */,
 				55AE64CC1BC1738D0097F4A5 /* LocationCapability-iOS.swift */,
 				55AE64D11BC180570097F4A5 /* LocationCapability-tvOS.swift */,
 				55AE64D31BC180650097F4A5 /* LocationCapability-OSX.swift */,
-				55AE64CA1BC173560097F4A5 /* PassbookCapability.swift */,
 				55AE64C81BC1732D0097F4A5 /* PhotosCapability.swift */,
 				55AE64D91BC1C7430097F4A5 /* PushCapability-iOS.swift */,
 				55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */,
@@ -328,9 +318,7 @@
 			children = (
 				1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */,
 				1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */,
-				1D9B43411B6A934A008F7F18 /* HealthCondition.swift */,
 				1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */,
-				1D9B433D1B6A934A008F7F18 /* PassbookCondition.swift */,
 				1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */,
 				1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */,
 				1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */,
@@ -558,7 +546,6 @@
 				1D9B434C1B6A934A008F7F18 /* BlockOperation.swift in Sources */,
 				1D9B43631B6A934A008F7F18 /* Dictionary+Operations.swift in Sources */,
 				55AE64CD1BC1738D0097F4A5 /* LocationCapability-iOS.swift in Sources */,
-				1D9B435C1B6A934A008F7F18 /* PassbookCondition.swift in Sources */,
 				55AE64DA1BC1C7430097F4A5 /* PushCapability-iOS.swift in Sources */,
 				1D9B43571B6A934A008F7F18 /* NegatedCondition.swift in Sources */,
 				1D9B434D1B6A934A008F7F18 /* GroupOperation.swift in Sources */,
@@ -567,10 +554,7 @@
 				1D9B43501B6A934A008F7F18 /* DelayOperation.swift in Sources */,
 				55AE64D21BC180570097F4A5 /* LocationCapability-tvOS.swift in Sources */,
 				1D9B43541B6A934A008F7F18 /* OperationErrors.swift in Sources */,
-				55AE64CB1BC173560097F4A5 /* PassbookCapability.swift in Sources */,
-				55AE64D61BC19E330097F4A5 /* HealthCapability.swift in Sources */,
 				1D9B43561B6A934A008F7F18 /* SilentCondition.swift in Sources */,
-				1D9B43601B6A934A008F7F18 /* HealthCondition.swift in Sources */,
 				1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */,
 				1D9B435A1B6A934A008F7F18 /* ReachabilityCondition.swift in Sources */,
 				55AE64D41BC180650097F4A5 /* LocationCapability-OSX.swift in Sources */,
