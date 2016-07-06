@@ -4,7 +4,7 @@
 
 This is an adaptation of the sample code provided in the [Advanced NSOperations](https://developer.apple.com/videos/wwdc/2015/?id=226) session of WWDC 2015.
 
-##Support##
+##Support
 
  - Swift 2.x
  - iOS 8.0
@@ -14,9 +14,7 @@ This is an adaptation of the sample code provided in the [Advanced NSOperations]
  - Extension friendly
  - Tests only run against iOS 9 (latest) and tvOS 9 (latest)
 
-----------
-
-##Installation##
+##Installation
 PSOperations supports multiple methods for installing the library in a project.
 
 ###CocoaPods
@@ -63,7 +61,6 @@ github "pluralsight/PSOperations"
 
 Run `carthage` to build the framework and drag the built `PSOperations.framework` into your Xcode project.
 
-----------
 ##Getting started
 
 Don't forget to import!
@@ -179,14 +176,11 @@ operationQueue.addOperation(blockOperation)
 
 This operation requires access to Photos and will request access to them if needed.
 
-----------
-
 ##Contribute
 
 
 Feel free to submit pull requests, as we are always looking for improvements from the community.
 
-----------
 ##WWDC Differences
 
 Differences from the first version of the WWDC sample code:
