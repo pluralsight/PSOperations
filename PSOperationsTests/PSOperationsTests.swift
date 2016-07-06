@@ -1056,4 +1056,59 @@ class PSOperationsTests: XCTestCase {
             XCTAssertEqual(opCount, requiredToPassCount)
         }
     }
+    
+    func testOperationFinishedWithErrors() {
+        let opQ = OperationQueue()
+        
+        class ErrorOp : Operation {
+            
+            let sema = dispatch_semaphore_create(0)
+            
+            override func execute() {
+                finishWithError(NSError(code: .ExecutionFailed))
+            }
+            
+            override func finished(errors: [NSError]) {
+                dispatch_semaphore_signal(sema)
+            }
+            
+            override func waitUntilFinished() {
+                dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER)
+            }
+        }
+        
+        let op = ErrorOp()
+        
+        opQ.addOperations([op], waitUntilFinished: true)
+        
+        XCTAssertEqual(op.errors, [NSError(code: .ExecutionFailed)])
+    }
+    
+    func testOperationCancelledWithErrors() {
+        let opQ = OperationQueue()
+        
+        class ErrorOp : Operation {
+            
+            let sema = dispatch_semaphore_create(0)
+            
+            override func execute() {
+                cancelWithError(NSError(code: .ExecutionFailed))
+            }
+            
+            override func finished(errors: [NSError]) {
+                dispatch_semaphore_signal(sema)
+            }
+            
+            override func waitUntilFinished() {
+                dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER)
+            }
+        }
+        
+        let op = ErrorOp()
+        
+        opQ.addOperations([op], waitUntilFinished: true)
+        
+        XCTAssertEqual(op.errors, [NSError(code: .ExecutionFailed)])
+    }
+    
 }

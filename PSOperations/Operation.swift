@@ -322,6 +322,12 @@ public class Operation: NSOperation {
     }
     
     private var _internalErrors = [NSError]()
+  
+  
+    public var errors : [NSError] {
+        return _internalErrors
+    }
+  
     override public func cancel() {
         if finished {
             return
@@ -378,11 +384,12 @@ public class Operation: NSOperation {
             hasFinishedAlready = true
             state = .Finishing
             
-            let combinedErrors = _internalErrors + errors
-            finished(combinedErrors)
+            _internalErrors += errors
+          
+            finished(_internalErrors)
             
             for observer in observers {
-                observer.operationDidFinish(self, errors: combinedErrors)
+                observer.operationDidFinish(self, errors: _internalErrors)
             }
             
             state = .Finished
