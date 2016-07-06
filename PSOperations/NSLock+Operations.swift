@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSLock {
+public extension NSLock {
     func withCriticalScope<T>(@noescape block: Void -> T) -> T {
         lock()
         let value = block()
@@ -17,7 +17,7 @@ extension NSLock {
     }
 }
 
-extension NSRecursiveLock {
+public extension NSRecursiveLock {
     func withCriticalScope<T>(@noescape block: Void -> T) -> T {
         lock()
         let value = block()
