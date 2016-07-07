@@ -22,7 +22,7 @@ This is an adaptation of the sample code provided in the [Advanced NSOperations]
 PSOperations supports multiple methods for installing the library in a project.
 
 ###CocoaPods
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like PSOperations in your projects.
+[CocoaPods](http://cocoapods.org) is a dependency manager for Swift and Objective-C, which automates and simplifies the process of using 3rd-party libraries like PSOperations in your projects.
 
  You can install it with the following command:
 
