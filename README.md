@@ -160,7 +160,7 @@ operationQueue.addOperation(blockOperation)
 operationQueue.addOperation(dependentOperation)
 ```
 
-if `blockOperation` is cancelled, `dependentOperation` will not execute.
+if `blockOperation` is cancelled, `dependentOperation` will not execute, it will finish and be marked as cancelled.
 
 ####Set Capabilities on an Operation
 A `CapabilityType` is used by the `Capability` condition and allows you to easily view the authorization state and request the authorization of certain capabilities within Apple's ecosystem. i.e. Calendar, Photos, iCloud, Location, and Push Notification.
