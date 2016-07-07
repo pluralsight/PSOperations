@@ -2,7 +2,11 @@
 
 [![codebeat badge](https://codebeat.co/badges/5a8fa0e4-178b-499b-9947-98bf69013b7f)](https://codebeat.co/projects/github-com-pluralsight-psoperations) ![](https://travis-ci.org/pluralsight/PSOperations.svg)
 
+PSOperations is a framework that leverages the power of NSOperation and NSOperationQueue. It enables you to use operations more easily in all parts of your project.
+
 This is an adaptation of the sample code provided in the [Advanced NSOperations](https://developer.apple.com/videos/wwdc/2015/?id=226) session of WWDC 2015.
+
+
 
 ##Support
 
@@ -64,13 +68,13 @@ Run `carthage` to build the framework and drag the built `PSOperations.framework
 ##Getting started
 
 Don't forget to import!
-```
+```swift
 import PSOperations
 ```
 
 If you are using the HealthCapability or PassbookCapability you'll need to import them separately:
 
-```
+```swift
 import PSOperationsHealth
 import PSOperationsPassbook
 ```
@@ -79,13 +83,13 @@ These features need to be in a separate framework otherwise they may cause App S
 
 #### Create a Queue
 The OperationQueue is the heartbeat and is a subclass of NSOperationQueue:
-```
+```swift
 let operationQueue = OperationQueue()
 ```
 
 ####Create an Operation
 `Operation` is a subclass of `NSOperation`. Like `NSOperation` it doesn't do much. But PSOperations provides a few helpful subclasses such as:
-```
+```swift
 BlockOperation
 GroupOperation
 URLSessionTaskOperation
@@ -94,7 +98,7 @@ DelayOperation
 ```
 
 Here is a quick example:
-```
+```swift
 let blockOperation = BlockOperation {
 	print("perform operation")
 }
@@ -106,13 +110,13 @@ operationQueue.addOperation(blockOperation)
 `Operation` instances can be observed for starting, cancelling, finishing and producing new operations with the `OperationObserver` protocol.
 
 PSOperations provide a couple of types that implement the protocol:
-```
+```swift
 BlockObserver
 TimeoutObserver
 ```
 
 Here is a quick example:
-```
+```swift
 let blockOperation = BlockOperation {
 	print("perform operation")
 }
@@ -130,7 +134,7 @@ operationQueue.addOperation(blockOperation)
 `Operation` instances can have conditions required to be met in order to execute using the `OperationCondition` protocol.
 
 PSOperations provide a several types that implement the protocol:
-```
+```swift
 SilentCondition
 NegatedCondition
 NoCancelledDependencies
@@ -140,7 +144,7 @@ Capability
 ```
 
 Here is a quick example:
-```
+```swift
 let blockOperation = BlockOperation {
 	print("perform operation")
 }
@@ -148,7 +152,8 @@ let blockOperation = BlockOperation {
 let dependentOperation = BlockOperation {
 	print("working away")
 }
-                dependentOperation.addCondition(NoCancelledDependencies())
+
+dependentOperation.addCondition(NoCancelledDependencies())
 dependentOperation.addDependency(blockOperation)
 
 operationQueue.addOperation(blockOperation)
@@ -161,7 +166,7 @@ if `blockOperation` is cancelled, `dependentOperation` will not execute.
 A `CapabilityType` is used by the `Capability` condition and allows you to easily view the authorization state and request the authorization of certain capabilities within Apple's ecosystem. i.e. Calendar, Photos, iCloud, Location, and Push Notification.
 
 Here is a quick example:
-```
+```swift
 let blockOperation = BlockOperation {
 	print("perform operation")
 }
@@ -175,6 +180,54 @@ operationQueue.addOperation(blockOperation)
 ```
 
 This operation requires access to Photos and will request access to them if needed.
+
+####Going custom
+The examples above provide simple jobs but PSOperations can be involved in many parts of your application. Here is a custom `UIStoryboardSegue` that leverages the power of PSOperations. The segue is retained until an operation is completed. This is a generic `OperationSegue` that will run any given operation. One use case for this might be an authentication operation that ensures a user is authenticated before preceding with the segue. The authentication operation could even present authentication UI if needed.
+
+```swift
+class OperationSegue: UIStoryboardSegue {
+    
+    var operation: Operation?
+    var segueCompletion: ((success: Bool) -> Void)?
+    
+    override func perform() {        
+        if let operation = operation {
+            let opQ = OperationQueue()
+            var retainedSelf: OperationSegue? = self
+            
+            let completionObserver = BlockObserver {
+                op, errors in
+                
+                dispatch_async_on_main {
+                    defer {
+                        retainedSelf = nil
+                    }
+                    
+                    let success = errors.count == 0 && !op.cancelled
+                    
+                    if let completion = retainedSelf?.segueCompletion {
+                        completion(success: success)
+                    }
+                    
+                    if success {
+                        retainedSelf?.finish()
+                    }
+                }
+            }
+            
+            operation.addObserver(completionObserver)
+            opQ.addOperation(operation)
+        } else {
+            finish()
+        }
+    }
+    
+    func finish() {
+        super.perform()
+    }
+}
+
+```
 
 ##Contribute
 
