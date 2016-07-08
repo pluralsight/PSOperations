@@ -1059,6 +1059,34 @@ class PSOperationsTests: XCTestCase {
         }
     }
     
+    
+    
+    func testOperationDidStartWhenSetMaxConcurrencyCountOnTheQueue() {
+        
+        let opQueue = OperationQueue()
+        opQueue.maxConcurrentOperationCount = 1;
+        
+        let exp1 = expectationWithDescription("1")
+        let exp2 = expectationWithDescription("2")
+        let exp3 = expectationWithDescription("3")
+        
+        let op1 = BlockOperation {
+            exp1.fulfill()
+        }
+        let op2 = BlockOperation {
+            exp2.fulfill()
+        }
+        let op3 = BlockOperation {
+            exp3.fulfill()
+        }
+        
+        
+        opQueue.addOperation(op1)
+        opQueue.addOperation(op2)
+        opQueue.addOperation(op3)
+        
+        waitForExpectationsWithTimeout(1.0, handler: nil)
+    }
     func testOperationFinishedWithErrors() {
         let opQ = OperationQueue()
         

@@ -173,10 +173,8 @@ public class Operation: NSOperation {
                 // If super isReady, conditions can be evaluated
                 if super.ready {
                     evaluateConditions()
+                    _ready = state == .Ready
                 }
-                
-                // Until conditions have been evaluated, "isReady" returns false
-                _ready = false
                 
             case .Ready:
                 _ready = super.ready || cancelled
