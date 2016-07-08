@@ -986,16 +986,17 @@ class PSOperationsTests: XCTestCase {
         
     }
     
-    
+    /* I'm not sure what this test is testing and the Foundation waitUntilFinished is being fickle
     func testOperationQueueWaitUntilFinished() {
         let opQ = OperationQueue()
         
-        class WaitOp : Operation {
+        class WaitOp : NSOperation {
             
             var waitCalled = false
             
             override func waitUntilFinished() {
                 waitCalled = true
+                super.waitUntilFinished()
             }
         }
         
@@ -1003,9 +1004,10 @@ class PSOperationsTests: XCTestCase {
         
         opQ.addOperations([op], waitUntilFinished: true)
         
-        XCTAssertEqual(1, opQ.operationCount)
+        XCTAssertEqual(0, opQ.operationCount)
         XCTAssertTrue(op.waitCalled)
     }
+    */
     
     /*
         In 9.1 (at least) we found that occasionaly OperationQueue would get stuck on an operation
@@ -1085,4 +1087,58 @@ class PSOperationsTests: XCTestCase {
         
         waitForExpectationsWithTimeout(1.0, handler: nil)
     }
+    func testOperationFinishedWithErrors() {
+        let opQ = OperationQueue()
+        
+        class ErrorOp : Operation {
+            
+            let sema = dispatch_semaphore_create(0)
+            
+            override func execute() {
+                finishWithError(NSError(code: .ExecutionFailed))
+            }
+            
+            override func finished(errors: [NSError]) {
+                dispatch_semaphore_signal(sema)
+            }
+            
+            override func waitUntilFinished() {
+                dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER)
+            }
+        }
+        
+        let op = ErrorOp()
+        
+        opQ.addOperations([op], waitUntilFinished: true)
+        
+        XCTAssertEqual(op.errors, [NSError(code: .ExecutionFailed)])
+    }
+    
+    func testOperationCancelledWithErrors() {
+        let opQ = OperationQueue()
+        
+        class ErrorOp : Operation {
+            
+            let sema = dispatch_semaphore_create(0)
+            
+            override func execute() {
+                cancelWithError(NSError(code: .ExecutionFailed))
+            }
+            
+            override func finished(errors: [NSError]) {
+                dispatch_semaphore_signal(sema)
+            }
+            
+            override func waitUntilFinished() {
+                dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER)
+            }
+        }
+        
+        let op = ErrorOp()
+        
+        opQ.addOperations([op], waitUntilFinished: true)
+        
+        XCTAssertEqual(op.errors, [NSError(code: .ExecutionFailed)])
+    }
+    
 }
