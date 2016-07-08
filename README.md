@@ -73,7 +73,7 @@ To integrate PSOperations into your Xcode project using Carthage, specify it in 
 github "pluralsight/PSOperations"
 ```
 
-Run `carthage` to build the framework and drag the built `PSOperations.framework` into your Xcode project.
+Run `carthage` to build the framework and drag the built `PSOperations.framework` into your Xcode project. Optionally you can add `PSOperationsHealth.framework` and `PSOperationsPassbook.framework`
 
 ##Getting started
 
