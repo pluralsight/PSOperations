@@ -23,11 +23,11 @@ Pod::Spec.new do |s|
 	s.source 	= {  git: "https://github.com/pluralsight/PSOperations.git",  tag: s.version.to_s  }
 	s.source_files = 'PSOperations/**/*.swift'
 
-	subspec 'PSOperationsHealth' do |health|
+	subspec 'Health' do |health|
   		health.source_files = 'PSOperationsHealth/**/*.swift'
 	end
 
-	subspec 'PSOperationsPassbook do |passbook|
+	subspec 'Passbook do |passbook|
 		passbook.source_files = 'PSOperationsPassbook/**/*.swift'
 	end
 end
