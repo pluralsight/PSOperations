@@ -20,14 +20,22 @@ Pod::Spec.new do |s|
 
 	s.requires_arc = true
 
-	s.source 	= {  git: "https://github.com/pluralsight/PSOperations.git",  tag: s.version.to_s  }
-	s.source_files = 'PSOperations/**/*.swift'
+	s.source = {  git: "https://github.com/pluralsight/PSOperations.git",  tag: s.version.to_s  }
+	
+	s.source_files = "PSOperations/*.swift"
 
-	subspec 'Health' do |health|
-  		health.source_files = 'PSOperationsHealth/**/*.swift'
-	end
-
-	subspec 'Passbook do |passbook|
-		passbook.source_files = 'PSOperationsPassbook/**/*.swift'
-	end
+  	s.subspec "Core" do |sb|
+  		sb.source_files = "PSOperations/*.swift"
+  	end
+  
+  	s.subspec "Health" do |sb|
+	  	sb.dependency 'PSOperations/Core'
+  		sb.source_files = "PSOperationsHealth/*.swift"
+  	end
+  
+  	s.subspec "Passbook" do |sb|
+	  	sb.dependency 'PSOperations/Core'
+  		sb.source_files = "PSOperationsPassbook/*.swift"
+  	end
+  
 end
