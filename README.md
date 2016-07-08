@@ -22,7 +22,7 @@ This is an adaptation of the sample code provided in the [Advanced NSOperations]
 PSOperations supports multiple methods for installing the library in a project.
 
 ###CocoaPods
-[CocoaPods](http://cocoapods.org) is a dependency manager for Swift and Objective-C, which automates and simplifies the process of using 3rd-party libraries like PSOperations in your projects.
+[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like PSOperations in your projects.
 
  You can install it with the following command:
 
@@ -37,8 +37,18 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'PSOperations', '~> 2.2'
+pod 'PSOperations', '~> 2.3'
 end
+```
+
+If you want to use Health Capabilities:
+```ruby
+pod 'PSOperations/Health', '~> 2.3'
+```
+
+if you want to use Pass Capabilities:
+```ruby
+pod 'PSOperations/Passbook', '~> 2.3'
 ```
 
 Then, run the following command:
@@ -68,13 +78,13 @@ Run `carthage` to build the framework and drag the built `PSOperations.framework
 ##Getting started
 
 Don't forget to import!
-```swift
+```
 import PSOperations
 ```
 
 If you are using the HealthCapability or PassbookCapability you'll need to import them separately:
 
-```swift
+```
 import PSOperationsHealth
 import PSOperationsPassbook
 ```
@@ -83,13 +93,13 @@ These features need to be in a separate framework otherwise they may cause App S
 
 #### Create a Queue
 The OperationQueue is the heartbeat and is a subclass of NSOperationQueue:
-```swift
+```
 let operationQueue = OperationQueue()
 ```
 
 ####Create an Operation
 `Operation` is a subclass of `NSOperation`. Like `NSOperation` it doesn't do much. But PSOperations provides a few helpful subclasses such as:
-```swift
+```
 BlockOperation
 GroupOperation
 URLSessionTaskOperation
@@ -98,7 +108,7 @@ DelayOperation
 ```
 
 Here is a quick example:
-```swift
+```
 let blockOperation = BlockOperation {
 	print("perform operation")
 }
@@ -110,13 +120,13 @@ operationQueue.addOperation(blockOperation)
 `Operation` instances can be observed for starting, cancelling, finishing and producing new operations with the `OperationObserver` protocol.
 
 PSOperations provide a couple of types that implement the protocol:
-```swift
+```
 BlockObserver
 TimeoutObserver
 ```
 
 Here is a quick example:
-```swift
+```
 let blockOperation = BlockOperation {
 	print("perform operation")
 }
@@ -134,7 +144,7 @@ operationQueue.addOperation(blockOperation)
 `Operation` instances can have conditions required to be met in order to execute using the `OperationCondition` protocol.
 
 PSOperations provide a several types that implement the protocol:
-```swift
+```
 SilentCondition
 NegatedCondition
 NoCancelledDependencies
@@ -144,7 +154,7 @@ Capability
 ```
 
 Here is a quick example:
-```swift
+```
 let blockOperation = BlockOperation {
 	print("perform operation")
 }
@@ -152,21 +162,20 @@ let blockOperation = BlockOperation {
 let dependentOperation = BlockOperation {
 	print("working away")
 }
-
-dependentOperation.addCondition(NoCancelledDependencies())
+                dependentOperation.addCondition(NoCancelledDependencies())
 dependentOperation.addDependency(blockOperation)
 
 operationQueue.addOperation(blockOperation)
 operationQueue.addOperation(dependentOperation)
 ```
 
-if `blockOperation` is cancelled, `dependentOperation` will not execute, it will finish and be marked as cancelled.
+if `blockOperation` is cancelled, `dependentOperation` will not execute.
 
 ####Set Capabilities on an Operation
 A `CapabilityType` is used by the `Capability` condition and allows you to easily view the authorization state and request the authorization of certain capabilities within Apple's ecosystem. i.e. Calendar, Photos, iCloud, Location, and Push Notification.
 
 Here is a quick example:
-```swift
+```
 let blockOperation = BlockOperation {
 	print("perform operation")
 }
@@ -184,7 +193,7 @@ This operation requires access to Photos and will request access to them if need
 ####Going custom
 The examples above provide simple jobs but PSOperations can be involved in many parts of your application. Here is a custom `UIStoryboardSegue` that leverages the power of PSOperations. The segue is retained until an operation is completed. This is a generic `OperationSegue` that will run any given operation. One use case for this might be an authentication operation that ensures a user is authenticated before preceding with the segue. The authentication operation could even present authentication UI if needed.
 
-```swift
+```
 class OperationSegue: UIStoryboardSegue {
     
     var operation: Operation?
