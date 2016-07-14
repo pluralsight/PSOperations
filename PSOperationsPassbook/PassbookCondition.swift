@@ -9,6 +9,7 @@ This file shows an example of implementing the OperationCondition protocol.
 #if os(iOS)
     
 import PassKit
+import PSOperations
 
 /// A condition for verifying that Passbook exists and is accessible.
 @available(*, deprecated, message="use Capability(Passbook....) instead")
