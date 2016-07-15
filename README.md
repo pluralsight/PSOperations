@@ -30,7 +30,8 @@ PSOperations supports multiple methods for installing the library in a project.
 $ gem install cocoapods
 ```
 
-To integrate PSOperations into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate PSOperations into your Xcode project using CocoaPods, specify it in your `Podfile`.  
+If you want all the children ‘sub-specifications’, including Health and Pass Capabilities:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
@@ -41,14 +42,9 @@ pod 'PSOperations', '~> 2.3'
 end
 ```
 
-If you want to use Health Capabilities:
+If you only want core functionality, _omitting_ the capabilities mentioned above:
 ```ruby
-pod 'PSOperations/Health', '~> 2.3'
-```
-
-if you want to use Pass Capabilities:
-```ruby
-pod 'PSOperations/Passbook', '~> 2.3'
+pod 'PSOperations/Core', '~> 2.3'
 ```
 
 Then, run the following command:
