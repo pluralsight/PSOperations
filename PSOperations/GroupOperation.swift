@@ -44,10 +44,14 @@ open class GroupOperation: Operation {
         }
     }
     
+    private let cancelLock = NSLock()
+    
     override open func cancel() {
-        internalQueue.cancelAllOperations()
-        internalQueue.isSuspended = false
-        super.cancel()
+        cancelLock.withCriticalScope {
+            internalQueue.cancelAllOperations()
+            internalQueue.isSuspended = false
+            super.cancel()
+        }
     }
     
     override open func execute() {
@@ -104,7 +108,9 @@ extension GroupOperation: OperationQueueDelegate {
         
         if operation === finishingOperation {
             internalQueue.isSuspended = true
-            finish(aggregatedErrors)
+            cancelLock.withCriticalScope {
+                finish(aggregatedErrors)
+            }
         }
         else if operation !== startingOperation {
             operationDidFinish(operation, withErrors: errors)
