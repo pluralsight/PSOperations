@@ -12,11 +12,11 @@ import UIKit
     
 public struct Push: CapabilityType {
     
-    public static func didReceiveToken(token: NSData) {
+    public static func didReceiveToken(_ token: Data) {
         authorizer.completeAuthorization(token, error: nil)
     }
     
-    public static func didFailRegistration(error: NSError) {
+    public static func didFailRegistration(_ error: NSError) {
         authorizer.completeAuthorization(nil, error: error)
     }
 
@@ -28,15 +28,15 @@ public struct Push: CapabilityType {
         }
     }
     
-    public func requestStatus(completion: CapabilityStatus -> Void) {
+    public func requestStatus(_ completion: (CapabilityStatus) -> Void) {
         if let _ = authorizer.token {
-            completion(.Authorized)
+            completion(.authorized)
         } else {
-            completion(.NotDetermined)
+            completion(.notDetermined)
         }
     }
     
-    public func authorize(completion: CapabilityStatus -> Void) {
+    public func authorize(_ completion: (CapabilityStatus) -> Void) {
         authorizer.authorize(completion)
     }
     
@@ -47,10 +47,10 @@ private let authorizer = PushAuthorizer()
 private class PushAuthorizer {
     
     var application: UIApplication?
-    var token: NSData?
-    var completion: (CapabilityStatus -> Void)?
+    var token: Data?
+    var completion: ((CapabilityStatus) -> Void)?
     
-    func authorize(completion: CapabilityStatus -> Void) {
+    func authorize(_ completion: (CapabilityStatus) -> Void) {
         guard self.completion == nil else {
             fatalError("Cannot request push authorization while a request is already in progress")
         }
@@ -64,18 +64,18 @@ private class PushAuthorizer {
         application.registerForRemoteNotifications()
     }
     
-    private func completeAuthorization(token: NSData?, error: NSError?) {
+    private func completeAuthorization(_ token: Data?, error: NSError?) {
         self.token = token
         
         guard let completion = self.completion else { return }
         self.completion = nil
         
         if let _ = self.token {
-            completion(.Authorized)
+            completion(.authorized)
         } else if let error = error {
             completion(.Error(error))
         } else {
-            completion(.NotDetermined)
+            completion(.notDetermined)
         }
     }
     

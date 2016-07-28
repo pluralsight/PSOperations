@@ -22,25 +22,25 @@ public struct NoCancelledDependencies: OperationCondition {
         // No op.
     }
     
-    public func dependencyForOperation(operation: Operation) -> NSOperation? {
+    public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
         return nil
     }
     
-    public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
+    public func evaluateForOperation(_ operation: Operation, completion: (OperationConditionResult) -> Void) {
         // Verify that all of the dependencies executed.
-        let cancelled = operation.dependencies.filter { $0.cancelled }
+        let cancelled = operation.dependencies.filter { $0.isCancelled }
 
         if !cancelled.isEmpty {
             // At least one dependency was cancelled; the condition was not satisfied.
-            let error = NSError(code: .ConditionFailed, userInfo: [
+            let error = NSError(code: .conditionFailed, userInfo: [
                 OperationConditionKey: self.dynamicType.name,
                 self.dynamicType.cancelledDependenciesKey: cancelled
             ])
             
-            completion(.Failed(error))
+            completion(.failed(error))
         }
         else {
-            completion(.Satisfied)
+            completion(.satisfied)
         }
     }
 }

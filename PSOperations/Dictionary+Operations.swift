@@ -19,7 +19,7 @@ extension Dictionary {
             be used as the key for the value in the `Dictionary`. If the closure 
             returns `nil`, then the value will be omitted from the `Dictionary`.
     */
-    init<Sequence: SequenceType where Sequence.Generator.Element == Value>(sequence: Sequence, keyMapper: Value -> Key?) {
+    init<Sequence: Swift.Sequence where Sequence.Iterator.Element == Value>(sequence: Sequence, keyMapper: (Value) -> Key?) {
         self.init()
 
         for item in sequence {

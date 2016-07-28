@@ -11,7 +11,7 @@ This file shows an example of implementing the OperationCondition protocol.
 import Photos
 
 /// A condition for verifying access to the user's Photos library.
-@available(*, deprecated, message="use Capability(Photos()) instead")
+@available(*, deprecated, message: "use Capability(Photos()) instead")
     
 public struct PhotosCondition: OperationCondition {
     
@@ -20,21 +20,21 @@ public struct PhotosCondition: OperationCondition {
     
     public init() { }
     
-    public func dependencyForOperation(operation: Operation) -> NSOperation? {
+    public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
         return PhotosPermissionOperation()
     }
     
-    public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
+    public func evaluateForOperation(_ operation: Operation, completion: (OperationConditionResult) -> Void) {
         switch PHPhotoLibrary.authorizationStatus() {
-            case .Authorized:
-                completion(.Satisfied)
+            case .authorized:
+                completion(.satisfied)
 
             default:
-                let error = NSError(code: .ConditionFailed, userInfo: [
+                let error = NSError(code: .conditionFailed, userInfo: [
                     OperationConditionKey: self.dynamicType.name
                 ])
 
-                completion(.Failed(error))
+                completion(.failed(error))
         }
     }
 }
@@ -52,8 +52,8 @@ class PhotosPermissionOperation: Operation {
     
     override func execute() {
         switch PHPhotoLibrary.authorizationStatus() {
-            case .NotDetermined:
-                dispatch_async(dispatch_get_main_queue()) {
+            case .notDetermined:
+                DispatchQueue.main.async {
                     PHPhotoLibrary.requestAuthorization { status in
                         self.finish()
                     }

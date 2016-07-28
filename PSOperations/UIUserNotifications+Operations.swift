@@ -12,7 +12,7 @@ import UIKit
 
 extension UIUserNotificationSettings {
     /// Check to see if one Settings object is a superset of another Settings object.
-    func contains(settings: UIUserNotificationSettings) -> Bool {
+    func contains(_ settings: UIUserNotificationSettings) -> Bool {
         // our types must contain all of the other types
         if !types.contains(settings.types) {
             return false
@@ -21,14 +21,14 @@ extension UIUserNotificationSettings {
         let otherCategories = settings.categories ?? []
         let myCategories = categories ?? []
         
-        return myCategories.isSupersetOf(otherCategories)
+        return myCategories.isSuperset(of: otherCategories)
     }
     
     /**
         Merge two Settings objects together. `UIUserNotificationCategories` with 
         the same identifier are considered equal.
     */
-    func settingsByMerging(settings: UIUserNotificationSettings) -> UIUserNotificationSettings {
+    func settingsByMerging(_ settings: UIUserNotificationSettings) -> UIUserNotificationSettings {
         let mergedTypes = types.union(settings.types)
         
         let myCategories = categories ?? []
@@ -42,7 +42,7 @@ extension UIUserNotificationSettings {
         }
         
         let mergedCategories = Set(existingCategoriesByIdentifier.values)
-        return UIUserNotificationSettings(forTypes: mergedTypes, categories: mergedCategories)
+        return UIUserNotificationSettings(types: mergedTypes, categories: mergedCategories)
     }
 }
 
