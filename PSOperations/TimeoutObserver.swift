@@ -17,27 +17,27 @@ public struct TimeoutObserver: OperationObserver {
 
     static let timeoutKey = "Timeout"
     
-    private let timeout: NSTimeInterval
+    private let timeout: TimeInterval
     
     // MARK: Initialization
     
-    public init(timeout: NSTimeInterval) {
+    public init(timeout: TimeInterval) {
         self.timeout = timeout
     }
     
     // MARK: OperationObserver
     
-    public func operationDidStart(operation: Operation) {
+    public func operationDidStart(_ operation: Operation) {
         // When the operation starts, queue up a block to cause it to time out.
-        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(timeout * Double(NSEC_PER_SEC)))
+        let when = DispatchTime.now() + Double(Int64(timeout * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
 
-        dispatch_after(when, dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) {
+        DispatchQueue.global().after(when: when) {
             /*
                 Cancel the operation if it hasn't finished and hasn't already 
                 been cancelled.
             */
-            if !operation.finished && !operation.cancelled {
-                let error = NSError(code: .ExecutionFailed, userInfo: [
+            if !operation.isFinished && !operation.isCancelled {
+                let error = NSError(code: .executionFailed, userInfo: [
                     self.dynamicType.timeoutKey: self.timeout
                 ])
 
@@ -46,15 +46,15 @@ public struct TimeoutObserver: OperationObserver {
         }
     }
     
-    public func operationDidCancel(operation: Operation) {
+    public func operationDidCancel(_ operation: Operation) {
         // No op.
     }
 
-    public func operation(operation: Operation, didProduceOperation newOperation: NSOperation) {
+    public func operation(_ operation: Operation, didProduceOperation newOperation: Foundation.Operation) {
         // No op.
     }
 
-    public func operationDidFinish(operation: Operation, errors: [NSError]) {
+    public func operationDidFinish(_ operation: Operation, errors: [NSError]) {
         // No op.
     }
 }

@@ -19,14 +19,14 @@ public struct UserNotification: CapabilityType {
     }
     
     public enum Behavior {
-        case Replace
-        case Merge
+        case replace
+        case merge
     }
     
     private let settings: UIUserNotificationSettings
     private let behavior: Behavior
     
-    public init(settings: UIUserNotificationSettings, behavior: Behavior = .Merge, application: UIApplication) {
+    public init(settings: UIUserNotificationSettings, behavior: Behavior = .merge, application: UIApplication) {
         self.settings = settings
         self.behavior = behavior
         
@@ -35,18 +35,18 @@ public struct UserNotification: CapabilityType {
         }
     }
     
-    public func requestStatus(completion: CapabilityStatus -> Void) {
+    public func requestStatus(_ completion: (CapabilityStatus) -> Void) {
         let registered = authorizer.areSettingsRegistered(settings)
-        completion(registered ? .Authorized : .NotDetermined)
+        completion(registered ? .authorized : .notDetermined)
     }
     
-    public func authorize(completion: CapabilityStatus -> Void) {
+    public func authorize(_ completion: (CapabilityStatus) -> Void) {
         let settings: UIUserNotificationSettings
         
         switch behavior {
-            case .Replace:
+            case .replace:
                 settings = self.settings
-            case .Merge:
+            case .merge:
                 let current = authorizer.application.currentUserNotificationSettings()
                 settings = current?.settingsByMerging(self.settings) ?? self.settings
         }
@@ -73,16 +73,16 @@ private class UserNotificationAuthorizer {
             return application
         }
     }
-    var completion: (CapabilityStatus -> Void)?
+    var completion: ((CapabilityStatus) -> Void)?
     var settings: UIUserNotificationSettings?
     
-    func areSettingsRegistered(settings: UIUserNotificationSettings) -> Bool {
+    func areSettingsRegistered(_ settings: UIUserNotificationSettings) -> Bool {
         let current = application.currentUserNotificationSettings()
         
         return current?.contains(settings) ?? false
     }
     
-    func authorize(settings: UIUserNotificationSettings, completion: CapabilityStatus -> Void) {
+    func authorize(_ settings: UIUserNotificationSettings, completion: (CapabilityStatus) -> Void) {
         guard self.completion == nil else {
             fatalError("Cannot request push authorization while a request is already in progress")
         }
@@ -105,7 +105,7 @@ private class UserNotificationAuthorizer {
         self.settings = nil
         
         let registered = areSettingsRegistered(settings)
-        completion(registered ? .Authorized : .Denied)
+        completion(registered ? .authorized : .denied)
     }
     
 }

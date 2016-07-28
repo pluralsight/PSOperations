@@ -22,13 +22,13 @@ private var URLSessionTaskOperationKVOContext = 0
     An example usage of `URLSessionTaskOperation` can be seen in the `DownloadEarthquakesOperation`.
 */
 public class URLSessionTaskOperation: Operation {
-    let task: NSURLSessionTask
+    let task: URLSessionTask
     
     private var observerRemoved = false
-    private let stateLock = NSLock()
+    private let stateLock = Lock()
     
-    public init(task: NSURLSessionTask) {
-        assert(task.state == .Suspended, "Tasks must be suspended.")
+    public init(task: URLSessionTask) {
+        assert(task.state == .suspended, "Tasks must be suspended.")
         self.task = task
         super.init()
         
@@ -38,23 +38,23 @@ public class URLSessionTaskOperation: Operation {
     }
     
     override public func execute() {
-        assert(task.state == .Suspended, "Task was resumed by something other than \(self).")
+        assert(task.state == .suspended, "Task was resumed by something other than \(self).")
 
         task.addObserver(self, forKeyPath: "state", options: NSKeyValueObservingOptions(), context: &URLSessionTaskOperationKVOContext)
         
         task.resume()
     }
     
-    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         guard context == &URLSessionTaskOperationKVOContext else { return }
         
         stateLock.withCriticalScope {
             if object === task && keyPath == "state" && !observerRemoved {
                 switch task.state {
-                case .Completed:
+                case .completed:
                     finish()
                     fallthrough
-                case .Canceling:
+                case .canceling:
                     observerRemoved = true
                     task.removeObserver(self, forKeyPath: "state")
                 default:

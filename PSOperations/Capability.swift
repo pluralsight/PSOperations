@@ -11,23 +11,23 @@ import Foundation
 public enum CapabilityErrorCode: Int {
     public static var domain = "CapabilityErrors"
     
-    case NotDetermined
-    case NotAvailable
-    case Denied
+    case notDetermined
+    case notAvailable
+    case denied
 }
 
 public enum CapabilityStatus {
     /// The capability has not been requested yet
-    case NotDetermined
+    case notDetermined
     
     /// The capability has been requested and approved
-    case Authorized
+    case authorized
     
     /// The capability has been requested but was denied by the user
-    case Denied
+    case denied
     
     /// The capability is not available (perhaps due to restrictions, or lack of support)
-    case NotAvailable
+    case notAvailable
     
     /// There was an error requesting the status of the capability
     case Error(NSError)
@@ -38,12 +38,12 @@ public protocol CapabilityType {
     
     /// Retrieve the status of the capability.
     /// This method is called from the main queue.
-    func requestStatus(completion: CapabilityStatus -> Void)
+    func requestStatus(_ completion: (CapabilityStatus) -> Void)
     
     /// Request authorization for the capability.
     /// This method is called from the main queue, and only if the
     /// capability's status is "NotDetermined"
-    func authorize(completion: CapabilityStatus -> Void)
+    func authorize(_ completion: (CapabilityStatus) -> Void)
 }
 
 /// A condition for verifying and/or requesting a certain capability
@@ -60,22 +60,22 @@ public struct Capability<C: CapabilityType>: OperationCondition {
         self.shouldRequest = requestIfNecessary
     }
     
-    public func dependencyForOperation(operation: Operation) -> NSOperation? {
+    public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
         guard shouldRequest == true else { return nil }
         return AuthorizeCapability(capability: capability)
     }
     
-    public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
-        dispatch_async(dispatch_get_main_queue()) {
+    public func evaluateForOperation(_ operation: Operation, completion: (OperationConditionResult) -> Void) {
+        DispatchQueue.main.async {
             self.capability.requestStatus { status in
                 if let error = status.error {
-                    let conditionError = NSError(code: .ConditionFailed, userInfo: [
+                    let conditionError = NSError(code: .conditionFailed, userInfo: [
                         OperationConditionKey: self.dynamicType.name,
                         NSUnderlyingErrorKey: error
                     ])
-                    completion(.Failed(conditionError))
+                    completion(.failed(conditionError))
                 } else {
-                    completion(.Satisfied)
+                    completion(.satisfied)
                 }
             }
         }
@@ -93,10 +93,10 @@ private class AuthorizeCapability<C: CapabilityType>: Operation {
     }
     
     private override func execute() {
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.capability.requestStatus { status in
                 switch status {
-                    case .NotDetermined: self.requestAuthorization()
+                    case .notDetermined: self.requestAuthorization()
                     default: self.finishWithError(status.error)
                 }
             }
@@ -104,7 +104,7 @@ private class AuthorizeCapability<C: CapabilityType>: Operation {
     }
     
     private func requestAuthorization() {
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.capability.authorize { status in
                 self.finishWithError(status.error)
             }
@@ -121,10 +121,10 @@ private extension NSError {
 private extension CapabilityStatus {
     private var error: NSError? {
         switch self {
-            case .NotDetermined: return NSError(capabilityErrorCode: .NotDetermined)
-            case .Authorized: return nil
-            case .Denied: return NSError(capabilityErrorCode: .Denied)
-            case .NotAvailable: return NSError(capabilityErrorCode: .NotAvailable)
+            case .notDetermined: return NSError(capabilityErrorCode: .notDetermined)
+            case .authorized: return nil
+            case .denied: return NSError(capabilityErrorCode: .denied)
+            case .notAvailable: return NSError(capabilityErrorCode: .notAvailable)
             case .Error(let e): return e
         }
     }

@@ -28,11 +28,9 @@
 		1D9B43591B6A934A008F7F18 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */; };
 		1D9B435A1B6A934A008F7F18 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */; };
 		1D9B435B1B6A934A008F7F18 /* CloudCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */; };
-		1D9B435C1B6A934A008F7F18 /* PassbookCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433D1B6A934A008F7F18 /* PassbookCondition.swift */; };
 		1D9B435D1B6A934A008F7F18 /* LocationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */; };
 		1D9B435E1B6A934A008F7F18 /* CalendarCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */; };
 		1D9B435F1B6A934A008F7F18 /* PhotosCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */; };
-		1D9B43601B6A934A008F7F18 /* HealthCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43411B6A934A008F7F18 /* HealthCondition.swift */; };
 		1D9B43611B6A934A008F7F18 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */; };
 		1D9B43621B6A934A008F7F18 /* UserNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */; };
 		1D9B43631B6A934A008F7F18 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */; };
@@ -42,27 +40,26 @@
 		55AE64C41BC172ED0097F4A5 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C31BC172ED0097F4A5 /* Capability.swift */; };
 		55AE64C71BC173100097F4A5 /* CalendarCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C61BC173100097F4A5 /* CalendarCapability.swift */; };
 		55AE64C91BC1732D0097F4A5 /* PhotosCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C81BC1732D0097F4A5 /* PhotosCapability.swift */; };
-		55AE64CB1BC173560097F4A5 /* PassbookCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CA1BC173560097F4A5 /* PassbookCapability.swift */; };
 		55AE64CD1BC1738D0097F4A5 /* LocationCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CC1BC1738D0097F4A5 /* LocationCapability-iOS.swift */; };
 		55AE64CF1BC175190097F4A5 /* iCloudContainerCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */; };
 		55AE64D21BC180570097F4A5 /* LocationCapability-tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D11BC180570097F4A5 /* LocationCapability-tvOS.swift */; };
 		55AE64D41BC180650097F4A5 /* LocationCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D31BC180650097F4A5 /* LocationCapability-OSX.swift */; };
-		55AE64D61BC19E330097F4A5 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D51BC19E330097F4A5 /* HealthCapability.swift */; };
 		55AE64DA1BC1C7430097F4A5 /* PushCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D91BC1C7430097F4A5 /* PushCapability-iOS.swift */; };
 		55AE64DC1BC1C7E50097F4A5 /* PushCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */; };
 		55AE64DE1BC1DCF50097F4A5 /* UserNotificationCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */; };
-		FD19C9D31C440293005D0F07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9D21C440293005D0F07 /* AppDelegate.swift */; };
-		FD19C9D51C440293005D0F07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9D41C440293005D0F07 /* ViewController.swift */; };
-		FD19C9D81C440293005D0F07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD19C9D61C440293005D0F07 /* Main.storyboard */; };
-		FD19C9DA1C440293005D0F07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD19C9D91C440293005D0F07 /* Assets.xcassets */; };
-		FD19C9DD1C440293005D0F07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD19C9DB1C440293005D0F07 /* LaunchScreen.storyboard */; };
-		FD19C9E81C440293005D0F07 /* PSOperationsAppForTestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9E71C440293005D0F07 /* PSOperationsAppForTestsTests.swift */; };
 		FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */; };
+		FD854FDA1D2D8CAB00162079 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FD85500C1D2D8CC100162079 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FD85501D1D2D8D9800162079 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
+		FD85501F1D2D8E0E00162079 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8550191D2D8D3400162079 /* HealthCapability.swift */; };
+		FD8550201D2D8E0E00162079 /* HealthCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85501A1D2D8D3400162079 /* HealthCondition.swift */; };
+		FD8550211D2D8E2200162079 /* PassbookCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8550151D2D8D1D00162079 /* PassbookCapability.swift */; };
+		FD8550221D2D8E2200162079 /* PassbookCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8550161D2D8D1D00162079 /* PassbookCondition.swift */; };
+		FD8550561D2D90A700162079 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
 		FDB1BBBE1B8D67CB00FB9D7A /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */; };
 		FDB1E8F21BBC2B08006BC157 /* OperationConditionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */; };
 		FDC6C5291BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */; };
 		FDC6C52C1BBD6447008FB96E /* OperationErrorCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C52B1BBD6447008FB96E /* OperationErrorCodeTests.swift */; };
-		FDDB93431C6003A4009E0ABC /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,13 +69,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D9B430D1B6A92ED008F7F18;
 			remoteInfo = PSOperations;
-		};
-		FD19C9E41C440293005D0F07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1D9B43051B6A92ED008F7F18 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FD19C9CF1C440293005D0F07;
-			remoteInfo = PSOperationsAppForTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -107,11 +97,9 @@
 		1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutuallyExclusive.swift; sourceTree = "<group>"; };
 		1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCondition.swift; sourceTree = "<group>"; };
 		1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudCondition.swift; sourceTree = "<group>"; };
-		1D9B433D1B6A934A008F7F18 /* PassbookCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassbookCondition.swift; sourceTree = "<group>"; };
 		1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCondition.swift; sourceTree = "<group>"; };
 		1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCondition.swift; sourceTree = "<group>"; };
 		1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCondition.swift; sourceTree = "<group>"; };
-		1D9B43411B6A934A008F7F18 /* HealthCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCondition.swift; sourceTree = "<group>"; };
 		1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationCondition.swift; sourceTree = "<group>"; };
 		1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCondition.swift; sourceTree = "<group>"; };
 		1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Operations.swift"; sourceTree = "<group>"; };
@@ -122,25 +110,27 @@
 		55AE64C31BC172ED0097F4A5 /* Capability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capability.swift; sourceTree = "<group>"; };
 		55AE64C61BC173100097F4A5 /* CalendarCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCapability.swift; sourceTree = "<group>"; };
 		55AE64C81BC1732D0097F4A5 /* PhotosCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCapability.swift; sourceTree = "<group>"; };
-		55AE64CA1BC173560097F4A5 /* PassbookCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassbookCapability.swift; sourceTree = "<group>"; };
 		55AE64CC1BC1738D0097F4A5 /* LocationCapability-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocationCapability-iOS.swift"; sourceTree = "<group>"; };
 		55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iCloudContainerCapability.swift; sourceTree = "<group>"; };
 		55AE64D11BC180570097F4A5 /* LocationCapability-tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocationCapability-tvOS.swift"; sourceTree = "<group>"; };
 		55AE64D31BC180650097F4A5 /* LocationCapability-OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocationCapability-OSX.swift"; sourceTree = "<group>"; };
-		55AE64D51BC19E330097F4A5 /* HealthCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCapability.swift; sourceTree = "<group>"; };
 		55AE64D91BC1C7430097F4A5 /* PushCapability-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PushCapability-iOS.swift"; sourceTree = "<group>"; };
 		55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PushCapability-OSX.swift"; sourceTree = "<group>"; };
 		55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCapability.swift; sourceTree = "<group>"; };
-		FD19C9D01C440293005D0F07 /* PSOperationsAppForTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSOperationsAppForTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD19C9D21C440293005D0F07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD19C9D41C440293005D0F07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FD19C9D71C440293005D0F07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FD19C9D91C440293005D0F07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD19C9DC1C440293005D0F07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD19C9DE1C440293005D0F07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FD19C9E31C440293005D0F07 /* PSOperationsAppForTestsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PSOperationsAppForTestsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD19C9E71C440293005D0F07 /* PSOperationsAppForTestsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSOperationsAppForTestsTests.swift; sourceTree = "<group>"; };
 		FD19C9E91C440293005D0F07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD854FDF1D2D8CAB00162079 /* PSOperationsHealth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsHealth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD8550111D2D8CC100162079 /* PSOperationsPassbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsPassbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD8550151D2D8D1D00162079 /* PassbookCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassbookCapability.swift; path = PSOperationsPassbook/PassbookCapability.swift; sourceTree = "<group>"; };
+		FD8550161D2D8D1D00162079 /* PassbookCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassbookCondition.swift; path = PSOperationsPassbook/PassbookCondition.swift; sourceTree = "<group>"; };
+		FD8550191D2D8D3400162079 /* HealthCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthCapability.swift; path = PSOperationsHealth/HealthCapability.swift; sourceTree = SOURCE_ROOT; };
+		FD85501A1D2D8D3400162079 /* HealthCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthCondition.swift; path = PSOperationsHealth/HealthCondition.swift; sourceTree = SOURCE_ROOT; };
 		FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
 		FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationConditionResultTests.swift; sourceTree = "<group>"; };
 		FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperationTests.swift; sourceTree = "<group>"; };
@@ -163,18 +153,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD19C9CD1C440293005D0F07 /* Frameworks */ = {
+		FD854FD81D2D8CAB00162079 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDDB93431C6003A4009E0ABC /* PSOperations.framework in Frameworks */,
+				FD85501D1D2D8D9800162079 /* PSOperations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD19C9E01C440293005D0F07 /* Frameworks */ = {
+		FD85500A1D2D8CC100162079 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD8550561D2D90A700162079 /* PSOperations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				1D9B43101B6A92ED008F7F18 /* PSOperations */,
+				FD8550141D2D8CDF00162079 /* PSOperationsPassbook */,
+				FD8550131D2D8CCE00162079 /* PSOperationsHealth */,
 				1D9B431D1B6A92ED008F7F18 /* PSOperationsTests */,
 				FD19C9D11C440293005D0F07 /* PSOperationsAppForTests */,
 				FD19C9E61C440293005D0F07 /* PSOperationsAppForTestsTests */,
@@ -197,8 +190,8 @@
 			children = (
 				1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */,
 				1D9B43191B6A92ED008F7F18 /* PSOperationsTests.xctest */,
-				FD19C9D01C440293005D0F07 /* PSOperationsAppForTests.app */,
-				FD19C9E31C440293005D0F07 /* PSOperationsAppForTestsTests.xctest */,
+				FD854FDF1D2D8CAB00162079 /* PSOperationsHealth.framework */,
+				FD8550111D2D8CC100162079 /* PSOperationsPassbook.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -309,12 +302,10 @@
 			children = (
 				55AE64C31BC172ED0097F4A5 /* Capability.swift */,
 				55AE64C61BC173100097F4A5 /* CalendarCapability.swift */,
-				55AE64D51BC19E330097F4A5 /* HealthCapability.swift */,
 				55AE64CE1BC175190097F4A5 /* iCloudContainerCapability.swift */,
 				55AE64CC1BC1738D0097F4A5 /* LocationCapability-iOS.swift */,
 				55AE64D11BC180570097F4A5 /* LocationCapability-tvOS.swift */,
 				55AE64D31BC180650097F4A5 /* LocationCapability-OSX.swift */,
-				55AE64CA1BC173560097F4A5 /* PassbookCapability.swift */,
 				55AE64C81BC1732D0097F4A5 /* PhotosCapability.swift */,
 				55AE64D91BC1C7430097F4A5 /* PushCapability-iOS.swift */,
 				55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */,
@@ -328,9 +319,7 @@
 			children = (
 				1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */,
 				1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */,
-				1D9B43411B6A934A008F7F18 /* HealthCondition.swift */,
 				1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */,
-				1D9B433D1B6A934A008F7F18 /* PassbookCondition.swift */,
 				1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */,
 				1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */,
 				1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */,
@@ -361,6 +350,25 @@
 			path = PSOperationsAppForTestsTests;
 			sourceTree = "<group>";
 		};
+		FD8550131D2D8CCE00162079 /* PSOperationsHealth */ = {
+			isa = PBXGroup;
+			children = (
+				FD8550191D2D8D3400162079 /* HealthCapability.swift */,
+				FD85501A1D2D8D3400162079 /* HealthCondition.swift */,
+			);
+			name = PSOperationsHealth;
+			path = PSOperations;
+			sourceTree = "<group>";
+		};
+		FD8550141D2D8CDF00162079 /* PSOperationsPassbook */ = {
+			isa = PBXGroup;
+			children = (
+				FD8550151D2D8D1D00162079 /* PassbookCapability.swift */,
+				FD8550161D2D8D1D00162079 /* PassbookCondition.swift */,
+			);
+			name = PSOperationsPassbook;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -369,6 +377,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D9B43141B6A92ED008F7F18 /* PSOperations.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD854FD91D2D8CAB00162079 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD854FDA1D2D8CAB00162079 /* PSOperations.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD85500B1D2D8CC100162079 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD85500C1D2D8CC100162079 /* PSOperations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,40 +435,41 @@
 			productReference = 1D9B43191B6A92ED008F7F18 /* PSOperationsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		FD19C9CF1C440293005D0F07 /* PSOperationsAppForTests */ = {
+		FD854FAF1D2D8CAB00162079 /* PSOperationsHealth */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FD19C9EA1C440293005D0F07 /* Build configuration list for PBXNativeTarget "PSOperationsAppForTests" */;
+			buildConfigurationList = FD854FDC1D2D8CAB00162079 /* Build configuration list for PBXNativeTarget "PSOperationsHealth" */;
 			buildPhases = (
-				FD19C9CC1C440293005D0F07 /* Sources */,
-				FD19C9CD1C440293005D0F07 /* Frameworks */,
-				FD19C9CE1C440293005D0F07 /* Resources */,
+				FD854FB01D2D8CAB00162079 /* Sources */,
+				FD854FD81D2D8CAB00162079 /* Frameworks */,
+				FD854FD91D2D8CAB00162079 /* Headers */,
+				FD854FDB1D2D8CAB00162079 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = PSOperationsAppForTests;
-			productName = PSOperationsAppForTests;
-			productReference = FD19C9D01C440293005D0F07 /* PSOperationsAppForTests.app */;
-			productType = "com.apple.product-type.application";
+			name = PSOperationsHealth;
+			productName = PSOperations;
+			productReference = FD854FDF1D2D8CAB00162079 /* PSOperationsHealth.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		FD19C9E21C440293005D0F07 /* PSOperationsAppForTestsTests */ = {
+		FD854FE11D2D8CC100162079 /* PSOperationsPassbook */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FD19C9ED1C440293005D0F07 /* Build configuration list for PBXNativeTarget "PSOperationsAppForTestsTests" */;
+			buildConfigurationList = FD85500E1D2D8CC100162079 /* Build configuration list for PBXNativeTarget "PSOperationsPassbook" */;
 			buildPhases = (
-				FD19C9DF1C440293005D0F07 /* Sources */,
-				FD19C9E01C440293005D0F07 /* Frameworks */,
-				FD19C9E11C440293005D0F07 /* Resources */,
+				FD854FE21D2D8CC100162079 /* Sources */,
+				FD85500A1D2D8CC100162079 /* Frameworks */,
+				FD85500B1D2D8CC100162079 /* Headers */,
+				FD85500D1D2D8CC100162079 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FD19C9E51C440293005D0F07 /* PBXTargetDependency */,
 			);
-			name = PSOperationsAppForTestsTests;
-			productName = PSOperationsAppForTestsTests;
-			productReference = FD19C9E31C440293005D0F07 /* PSOperationsAppForTestsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = PSOperationsPassbook;
+			productName = PSOperations;
+			productReference = FD8550111D2D8CC100162079 /* PSOperationsPassbook.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -454,21 +479,16 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Pluralsight;
 				TargetAttributes = {
 					1D9B430D1B6A92ED008F7F18 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 					};
 					1D9B43181B6A92ED008F7F18 = {
 						CreatedOnToolsVersion = 6.4;
-					};
-					FD19C9CF1C440293005D0F07 = {
-						CreatedOnToolsVersion = 7.2;
-					};
-					FD19C9E21C440293005D0F07 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = FD19C9CF1C440293005D0F07;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -486,9 +506,9 @@
 			projectRoot = "";
 			targets = (
 				1D9B430D1B6A92ED008F7F18 /* PSOperations */,
+				FD854FAF1D2D8CAB00162079 /* PSOperationsHealth */,
+				FD854FE11D2D8CC100162079 /* PSOperationsPassbook */,
 				1D9B43181B6A92ED008F7F18 /* PSOperationsTests */,
-				FD19C9CF1C440293005D0F07 /* PSOperationsAppForTests */,
-				FD19C9E21C440293005D0F07 /* PSOperationsAppForTestsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -508,17 +528,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD19C9CE1C440293005D0F07 /* Resources */ = {
+		FD854FDB1D2D8CAB00162079 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD19C9DD1C440293005D0F07 /* LaunchScreen.storyboard in Resources */,
-				FD19C9DA1C440293005D0F07 /* Assets.xcassets in Resources */,
-				FD19C9D81C440293005D0F07 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD19C9E11C440293005D0F07 /* Resources */ = {
+		FD85500D1D2D8CC100162079 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -558,7 +575,6 @@
 				1D9B434C1B6A934A008F7F18 /* BlockOperation.swift in Sources */,
 				1D9B43631B6A934A008F7F18 /* Dictionary+Operations.swift in Sources */,
 				55AE64CD1BC1738D0097F4A5 /* LocationCapability-iOS.swift in Sources */,
-				1D9B435C1B6A934A008F7F18 /* PassbookCondition.swift in Sources */,
 				55AE64DA1BC1C7430097F4A5 /* PushCapability-iOS.swift in Sources */,
 				1D9B43571B6A934A008F7F18 /* NegatedCondition.swift in Sources */,
 				1D9B434D1B6A934A008F7F18 /* GroupOperation.swift in Sources */,
@@ -567,10 +583,7 @@
 				1D9B43501B6A934A008F7F18 /* DelayOperation.swift in Sources */,
 				55AE64D21BC180570097F4A5 /* LocationCapability-tvOS.swift in Sources */,
 				1D9B43541B6A934A008F7F18 /* OperationErrors.swift in Sources */,
-				55AE64CB1BC173560097F4A5 /* PassbookCapability.swift in Sources */,
-				55AE64D61BC19E330097F4A5 /* HealthCapability.swift in Sources */,
 				1D9B43561B6A934A008F7F18 /* SilentCondition.swift in Sources */,
-				1D9B43601B6A934A008F7F18 /* HealthCondition.swift in Sources */,
 				1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */,
 				1D9B435A1B6A934A008F7F18 /* ReachabilityCondition.swift in Sources */,
 				55AE64D41BC180650097F4A5 /* LocationCapability-OSX.swift in Sources */,
@@ -589,20 +602,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD19C9CC1C440293005D0F07 /* Sources */ = {
+		FD854FB01D2D8CAB00162079 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD19C9D51C440293005D0F07 /* ViewController.swift in Sources */,
-				FD19C9D31C440293005D0F07 /* AppDelegate.swift in Sources */,
+				FD85501F1D2D8E0E00162079 /* HealthCapability.swift in Sources */,
+				FD8550201D2D8E0E00162079 /* HealthCondition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD19C9DF1C440293005D0F07 /* Sources */ = {
+		FD854FE21D2D8CC100162079 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD19C9E81C440293005D0F07 /* PSOperationsAppForTestsTests.swift in Sources */,
+				FD8550211D2D8E2200162079 /* PassbookCapability.swift in Sources */,
+				FD8550221D2D8E2200162079 /* PassbookCondition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,11 +627,6 @@
 			isa = PBXTargetDependency;
 			target = 1D9B430D1B6A92ED008F7F18 /* PSOperations */;
 			targetProxy = 1D9B431B1B6A92ED008F7F18 /* PBXContainerItemProxy */;
-		};
-		FD19C9E51C440293005D0F07 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FD19C9CF1C440293005D0F07 /* PSOperationsAppForTests */;
-			targetProxy = FD19C9E41C440293005D0F07 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -749,6 +758,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -771,6 +781,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -786,6 +798,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos macosx watchsimulator watchos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -798,60 +811,100 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos macosx watchsimulator watchos";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
-		FD19C9EB1C440293005D0F07 /* Debug */ = {
+		FD854FDD1D2D8CAB00162079 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = PSOperationsAppForTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTests;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/PSOperations/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
-		FD19C9EC1C440293005D0F07 /* Release */ = {
+		FD854FDE1D2D8CAB00162079 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = PSOperationsAppForTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTests;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/PSOperations/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
-		FD19C9EE1C440293005D0F07 /* Debug */ = {
+		FD85500F1D2D8CC100162079 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = PSOperationsAppForTestsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/PSOperations/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTestsTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PSOperationsAppForTests.app/PSOperationsAppForTests";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
-		FD19C9EF1C440293005D0F07 /* Release */ = {
+		FD8550101D2D8CC100162079 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PSOperationsAppForTestsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/PSOperations/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTestsTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PSOperationsAppForTests.app/PSOperationsAppForTests";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -885,20 +938,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FD19C9EA1C440293005D0F07 /* Build configuration list for PBXNativeTarget "PSOperationsAppForTests" */ = {
+		FD854FDC1D2D8CAB00162079 /* Build configuration list for PBXNativeTarget "PSOperationsHealth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FD19C9EB1C440293005D0F07 /* Debug */,
-				FD19C9EC1C440293005D0F07 /* Release */,
+				FD854FDD1D2D8CAB00162079 /* Debug */,
+				FD854FDE1D2D8CAB00162079 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FD19C9ED1C440293005D0F07 /* Build configuration list for PBXNativeTarget "PSOperationsAppForTestsTests" */ = {
+		FD85500E1D2D8CC100162079 /* Build configuration list for PBXNativeTarget "PSOperationsPassbook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FD19C9EE1C440293005D0F07 /* Debug */,
-				FD19C9EF1C440293005D0F07 /* Release */,
+				FD85500F1D2D8CC100162079 /* Debug */,
+				FD8550101D2D8CC100162079 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

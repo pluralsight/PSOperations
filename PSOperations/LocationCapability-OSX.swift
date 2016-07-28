@@ -63,7 +63,7 @@ private class LocationAuthorizer: NSObject, CLLocationManagerDelegate {
     }
     
     @objc func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if let completion = self.completion where manager == self.manager {
+        if let completion = self.completion, manager == self.manager {
             self.completion = nil
             
             switch status {

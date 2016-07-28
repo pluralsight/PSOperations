@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D9B430D1B6A92ED008F7F18"
-               BuildableName = "PSOperations.framework"
-               BlueprintName = "PSOperations"
-               ReferencedContainer = "container:PSOperations.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D9B43181B6A92ED008F7F18"
-               BuildableName = "PSOperationsTests.xctest"
-               BlueprintName = "PSOperationsTests"
+               BlueprintIdentifier = "FD854FE11D2D8CC100162079"
+               BuildableName = "PSOperationsPassbook.framework"
+               BlueprintName = "PSOperationsPassbook"
                ReferencedContainer = "container:PSOperations.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,29 +26,9 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D9B43181B6A92ED008F7F18"
-               BuildableName = "PSOperationsTests.xctest"
-               BlueprintName = "PSOperationsTests"
-               ReferencedContainer = "container:PSOperations.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D9B430D1B6A92ED008F7F18"
-            BuildableName = "PSOperations.framework"
-            BlueprintName = "PSOperations"
-            ReferencedContainer = "container:PSOperations.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -79,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D9B430D1B6A92ED008F7F18"
-            BuildableName = "PSOperations.framework"
-            BlueprintName = "PSOperations"
+            BlueprintIdentifier = "FD854FE11D2D8CC100162079"
+            BuildableName = "PSOperationsPassbook.framework"
+            BlueprintName = "PSOperationsPassbook"
             ReferencedContainer = "container:PSOperations.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -97,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D9B430D1B6A92ED008F7F18"
-            BuildableName = "PSOperations.framework"
-            BlueprintName = "PSOperations"
+            BlueprintIdentifier = "FD854FE11D2D8CC100162079"
+            BuildableName = "PSOperationsPassbook.framework"
+            BlueprintName = "PSOperationsPassbook"
             ReferencedContainer = "container:PSOperations.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

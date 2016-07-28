@@ -11,7 +11,7 @@ This file shows an example of implementing the OperationCondition protocol.
 import CoreLocation
 
 /// A condition for verifying access to the user's location.
-@available(*, deprecated, message="use Capability(Location...) instead")
+@available(*, deprecated, message: "use Capability(Location...) instead")
 
 public struct LocationCondition: OperationCondition {
     /**
@@ -19,9 +19,9 @@ public struct LocationCondition: OperationCondition {
      enum has more case values than are necessary for our purposes.
      */
     public enum Usage {
-        case WhenInUse
+        case whenInUse
         #if !os(tvOS)
-        case Always
+        case always
         #endif
     }
     
@@ -36,11 +36,11 @@ public struct LocationCondition: OperationCondition {
         self.usage = usage
     }
     
-    public func dependencyForOperation(operation: Operation) -> NSOperation? {
+    public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
         return LocationPermissionOperation(usage: usage)
     }
     
-    public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
+    public func evaluateForOperation(_ operation: Operation, completion: (OperationConditionResult) -> Void) {
         let enabled = CLLocationManager.locationServicesEnabled()
         let actual = CLLocationManager.authorizationStatus()
         
@@ -48,11 +48,11 @@ public struct LocationCondition: OperationCondition {
         
         // There are several factors to consider when evaluating this condition
         switch (enabled, usage, actual) {
-        case (true, _, .AuthorizedAlways):
+        case (true, _, .authorizedAlways):
             // The service is enabled, and we have "Always" permission -> condition satisfied.
             break
             
-        case (true, .WhenInUse, .AuthorizedWhenInUse):
+        case (true, .whenInUse, .authorizedWhenInUse):
             /*
             The service is enabled, and we have and need "WhenInUse"
             permission -> condition satisfied.
@@ -68,7 +68,7 @@ public struct LocationCondition: OperationCondition {
             
             The last case would happen if this condition were wrapped in a `SilentCondition`.
             */
-            error = NSError(code: .ConditionFailed, userInfo: [
+            error = NSError(code: .conditionFailed, userInfo: [
                 OperationConditionKey: self.dynamicType.name,
                 self.dynamicType.locationServicesEnabledKey: enabled,
                 self.dynamicType.authorizationStatusKey: Int(actual.rawValue)
@@ -76,10 +76,10 @@ public struct LocationCondition: OperationCondition {
         }
         
         if let error = error {
-            completion(.Failed(error))
+            completion(.failed(error))
         }
         else {
-            completion(.Satisfied)
+            completion(.satisfied)
         }
     }
 }
@@ -120,8 +120,8 @@ class LocationPermissionOperation: Operation {
             }
         #else
             switch (CLLocationManager.authorizationStatus(), usage) {
-            case (.NotDetermined, _), (.AuthorizedWhenInUse, .Always):
-                dispatch_async(dispatch_get_main_queue()) {
+            case (.notDetermined, _), (.authorizedWhenInUse, .always):
+                DispatchQueue.main.async {
                     self.requestPermission()
                 }
                 
@@ -145,25 +145,25 @@ class LocationPermissionOperation: Operation {
             }
         #else
             switch usage {
-            case .WhenInUse:
+            case .whenInUse:
                 key = "NSLocationWhenInUseUsageDescription"
                 manager?.requestWhenInUseAuthorization()
                 
-            case .Always:
+            case .always:
                 key = "NSLocationAlwaysUsageDescription"
                 manager?.requestAlwaysAuthorization()
             }
         #endif
         
         // This is helpful when developing the app.
-        assert(NSBundle.mainBundle().objectForInfoDictionaryKey(key) != nil, "Requesting location permission requires the \(key) key in your Info.plist")
+        assert(Bundle.main.objectForInfoDictionaryKey(key) != nil, "Requesting location permission requires the \(key) key in your Info.plist")
     }
     
 }
 
 extension LocationPermissionOperation: CLLocationManagerDelegate {
-    @objc func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if manager == self.manager && executing && status != .NotDetermined {
+    @objc func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if manager == self.manager && isExecuting && status != .notDetermined {
             finish()
         }
     }

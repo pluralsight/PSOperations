@@ -10,6 +10,7 @@
 
 import Foundation
 import PassKit
+import PSOperations
 
 public enum Passbook: CapabilityType {
     public static let name = "Passbook"
