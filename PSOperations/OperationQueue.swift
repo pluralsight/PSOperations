@@ -34,7 +34,7 @@ import Foundation
 public class OperationQueue: Foundation.OperationQueue {
     public weak var delegate: OperationQueueDelegate?
     
-    override public  func addOperation(_ operation: Operation) {
+    override public func addOperation(_ operation: Foundation.Operation) {
         if let op = operation as? Operation {
             
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
@@ -116,7 +116,7 @@ public class OperationQueue: Foundation.OperationQueue {
         }
     }
     
-    override public func addOperations(_ ops: [Operation], waitUntilFinished wait: Bool) {
+    override public func addOperations(_ ops: [Foundation.Operation], waitUntilFinished wait: Bool) {
         /*
             The base implementation of this method does not call `addOperation()`,
             so we'll call it ourselves.

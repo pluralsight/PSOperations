@@ -94,7 +94,7 @@ struct OperationConditionEvaluator {
         }
         
         // After all the conditions have evaluated, this block will execute.
-        conditionGroup.notify(queue: DispatchQueue.global(Int(UInt64(DispatchQueueAttributes.qosDefault.rawValue)), 0)) {
+        conditionGroup.notify(queue: DispatchQueue.global()) {
             // Aggregate the errors that occurred, in order.
             var failures = results.flatMap { $0?.error }
             

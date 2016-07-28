@@ -31,7 +31,7 @@ public struct TimeoutObserver: OperationObserver {
         // When the operation starts, queue up a block to cause it to time out.
         let when = DispatchTime.now() + Double(Int64(timeout * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
 
-        DispatchQueue.global(Int(UInt64(DispatchQueueAttributes.qosDefault.rawValue)), 0).after(when: when) {
+        DispatchQueue.global().after(when: when) {
             /*
                 Cancel the operation if it hasn't finished and hasn't already 
                 been cancelled.

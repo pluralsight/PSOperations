@@ -62,7 +62,7 @@ public class DelayOperation: Operation {
         }
         
         let when = DispatchTime.now() + Double(Int64(interval * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-        DispatchQueue.global(Int(UInt64(DispatchQueueAttributes.qosDefault.rawValue)), 0).after(when: when) {
+        DispatchQueue.global().after(when: when) {
             // If we were cancelled, then finish() has already been called.
             if !self.isCancelled {
                 self.finish()

@@ -268,7 +268,7 @@ public class Operation: Foundation.Operation {
         observers.append(observer)
     }
     
-    override public func addDependency(_ operation: Operation) {
+    override public func addDependency(_ operation: Foundation.Operation) {
         assert(state <= .executing, "Dependencies cannot be modified after execution has begun.")
 
         super.addDependency(operation)
