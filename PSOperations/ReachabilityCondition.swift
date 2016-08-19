@@ -21,29 +21,29 @@ public struct ReachabilityCondition: OperationCondition {
     public static let name = "Reachability"
     public static let isMutuallyExclusive = false
     
-    let host: NSURL
+    let host: URL
     
     
-    public init(host: NSURL) {
+    public init(host: URL) {
         self.host = host
     }
     
-    public func dependencyForOperation(operation: Operation) -> NSOperation? {
+    public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
         return nil
     }
     
-    public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
+    public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
         ReachabilityController.requestReachability(host) { reachable in
             if reachable {
-                completion(.Satisfied)
+                completion(.satisfied)
             }
             else {
-                let error = NSError(code: .ConditionFailed, userInfo: [
-                    OperationConditionKey: self.dynamicType.name,
-                    self.dynamicType.hostKey: self.host
+                let error = NSError(code: .conditionFailed, userInfo: [
+                    OperationConditionKey: type(of: self).name,
+                    type(of: self).hostKey: self.host
                 ])
                 
-                completion(.Failed(error))
+                completion(.failed(error))
             }
         }
     }
@@ -54,16 +54,16 @@ public struct ReachabilityCondition: OperationCondition {
 private class ReachabilityController {
     static var reachabilityRefs = [String: SCNetworkReachability]()
 
-    static let reachabilityQueue = dispatch_queue_create("Operations.Reachability", DISPATCH_QUEUE_SERIAL)
+    static let reachabilityQueue = DispatchQueue(label: "Operations.Reachability", attributes: [])
     
-    static func requestReachability(url: NSURL, completionHandler: (Bool) -> Void) {
+    static func requestReachability(_ url: URL, completionHandler: @escaping (Bool) -> Void) {
         if let host = url.host {
-            dispatch_async(reachabilityQueue) {
+            reachabilityQueue.async {
                 var ref = self.reachabilityRefs[host]
                 
                 if ref == nil {
                     let hostString = host as NSString
-                    ref = SCNetworkReachabilityCreateWithName(nil, hostString.UTF8String)
+                    ref = SCNetworkReachabilityCreateWithName(nil, hostString.utf8String!)
                 }
                 
                 if let ref = ref {
@@ -78,7 +78,7 @@ private class ReachabilityController {
                         such as whether or not the connection would require
                         VPN, a cellular connection, etc.
                         */
-                        reachable = flags.contains(.Reachable)
+                        reachable = flags.contains(.reachable)
                     }
                     completionHandler(reachable)
                 }

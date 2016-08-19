@@ -9,11 +9,11 @@ This code shows how to create a simple subclass of Operation.
 import Foundation
 
 /// A closure type that takes a closure as its parameter.
-public typealias OperationBlock = (Void -> Void) -> Void
+public typealias OperationBlock = (@escaping (Void) -> Void) -> Void
 
 /// A sublcass of `Operation` to execute a closure.
-public class BlockOperation: Operation {
-    private let block: OperationBlock?
+open class BlockOperation: Operation {
+    fileprivate let block: OperationBlock?
     
     /**
         The designated initializer.
@@ -37,16 +37,16 @@ public class BlockOperation: Operation {
             the designated initializer). The operation will be automatically ended 
             after the `mainQueueBlock` is executed.
     */
-    public convenience init(mainQueueBlock: dispatch_block_t) {
+    public convenience init(mainQueueBlock: @escaping ()->()) {
         self.init(block: { continuation in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 mainQueueBlock()
                 continuation()
             }
         })
     }
     
-    override public func execute() {
+    override open func execute() {
         if let block = block {
             block {
                 self.finish()

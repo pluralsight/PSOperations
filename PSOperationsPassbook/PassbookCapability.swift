@@ -15,27 +15,27 @@ import PSOperations
 public enum Passbook: CapabilityType {
     public static let name = "Passbook"
     
-    case ViewPasses
-    case AddPasses
+    case viewPasses
+    case addPasses
     
-    public func requestStatus(completion: CapabilityStatus -> Void) {
+    public func requestStatus(_ completion: @escaping (CapabilityStatus) -> Void) {
         switch self {
-            case .ViewPasses:
+            case .viewPasses:
                 if PKPassLibrary.isPassLibraryAvailable() {
-                    completion(.Authorized)
+                    completion(.authorized)
                 } else {
-                    completion(.NotAvailable)
+                    completion(.notAvailable)
                 }
-            case .AddPasses:
+            case .addPasses:
                 if PKAddPassesViewController.canAddPasses() {
-                    completion(.Authorized)
+                    completion(.authorized)
                 } else {
-                    completion(.NotAvailable)
+                    completion(.notAvailable)
                 }
         }
     }
     
-    public func authorize(completion: CapabilityStatus -> Void) {
+    public func authorize(_ completion: @escaping (CapabilityStatus) -> Void) {
         // Since requestStatus() never returns .NotDetermined, this method should never be called
         fatalError("This should never be invoked")
     }
