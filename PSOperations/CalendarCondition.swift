@@ -12,7 +12,7 @@ This file shows an example of implementing the OperationCondition protocol.
     
     /// A condition for verifying access to the user's calendar.
     
-    @available(*, deprecated, message="use Capability(EKEntityType....) instead")
+    @available(*, deprecated, message: "use Capability(EKEntityType....) instead")
     
     public struct CalendarCondition: OperationCondition {
         
@@ -26,23 +26,23 @@ This file shows an example of implementing the OperationCondition protocol.
             self.entityType = entityType
         }
         
-        public func dependencyForOperation(operation: Operation) -> NSOperation? {
+        public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
             return CalendarPermissionOperation(entityType: entityType)
         }
         
-        public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
-            switch EKEventStore.authorizationStatusForEntityType(entityType) {
-            case .Authorized:
-                completion(.Satisfied)
+        public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
+            switch EKEventStore.authorizationStatus(for: entityType) {
+            case .authorized:
+                completion(.satisfied)
                 
             default:
                 // We are not authorized to access entities of this type.
-                let error = NSError(code: .ConditionFailed, userInfo: [
-                    OperationConditionKey: self.dynamicType.name,
-                    self.dynamicType.entityTypeKey: entityType.rawValue
+                let error = NSError(code: .conditionFailed, userInfo: [
+                    OperationConditionKey: type(of: self).name,
+                    type(of: self).entityTypeKey: entityType.rawValue
                     ])
                 
-                completion(.Failed(error))
+                completion(.failed(error))
             }
         }
     }
@@ -68,12 +68,12 @@ This file shows an example of implementing the OperationCondition protocol.
         }
         
         override func execute() {
-            let status = EKEventStore.authorizationStatusForEntityType(entityType)
+            let status = EKEventStore.authorizationStatus(for: entityType)
             
             switch status {
-            case .NotDetermined:
-                dispatch_async(dispatch_get_main_queue()) {
-                    SharedEventStore.requestAccessToEntityType(self.entityType) { granted, error in
+            case .notDetermined:
+                DispatchQueue.main.async {
+                    SharedEventStore.requestAccess(to: self.entityType) { granted, error in
                         self.finish()
                     }
                 }

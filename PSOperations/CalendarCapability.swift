@@ -16,24 +16,24 @@ private let SharedEventStore = EKEventStore()
 extension EKEntityType: CapabilityType {
     public static var name: String { return "EKEntityType" }
     
-    public func requestStatus(completion: CapabilityStatus -> Void) {
-        let status = EKEventStore.authorizationStatusForEntityType(self)
+    public func requestStatus(_ completion: @escaping (CapabilityStatus) -> Void) {
+        let status = EKEventStore.authorizationStatus(for: self)
         switch status {
-            case .Authorized: completion(.Authorized)
-            case .Denied: completion(.Denied)
-            case .Restricted: completion(.NotAvailable)
-            case .NotDetermined: completion(.NotDetermined)
+            case .authorized: completion(.authorized)
+            case .denied: completion(.denied)
+            case .restricted: completion(.notAvailable)
+            case .notDetermined: completion(.notDetermined)
         }
     }
     
-    public func authorize(completion: CapabilityStatus -> Void) {
-        SharedEventStore.requestAccessToEntityType(self) { granted, error in
+    public func authorize(_ completion: @escaping (CapabilityStatus) -> Void) {
+        SharedEventStore.requestAccess(to: self) { granted, error in
             if granted {
-                completion(.Authorized)
+                completion(.authorized)
             } else if let error = error {
-                completion(.Error(error))
+                completion(.error(error as NSError))
             } else {
-                completion(.NotAvailable)
+                completion(.notAvailable)
             }
         }
     }

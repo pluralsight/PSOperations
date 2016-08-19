@@ -19,8 +19,8 @@ import Foundation
     `OperationQueue` and uses it to manage dependencies.
 */
 @objc public protocol OperationQueueDelegate: NSObjectProtocol {
-    optional func operationQueue(operationQueue: OperationQueue, willAddOperation operation: NSOperation)
-    optional func operationQueue(operationQueue: OperationQueue, operationDidFinish operation: NSOperation, withErrors errors: [NSError])
+    @objc optional func operationQueue(_ operationQueue: OperationQueue, willAddOperation operation: Foundation.Operation)
+    @objc optional func operationQueue(_ operationQueue: OperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [NSError])
 }
 
 /**
@@ -31,10 +31,10 @@ import Foundation
     - Extracting generated dependencies from operation conditions
     - Setting up dependencies to enforce mutual exclusivity
 */
-public class OperationQueue: NSOperationQueue {
-    public weak var delegate: OperationQueueDelegate?
+open class OperationQueue: Foundation.OperationQueue {
+    open weak var delegate: OperationQueueDelegate?
     
-    override public  func addOperation(operation: NSOperation) {
+    override open  func addOperation(_ operation: Foundation.Operation) {
         if let op = operation as? Operation {
             
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
@@ -71,9 +71,9 @@ public class OperationQueue: NSOperationQueue {
                 dependencies to enforce mutual exclusivity.
             */
             let concurrencyCategories: [String] = op.conditions.flatMap { condition in
-                if !condition.dynamicType.isMutuallyExclusive { return nil }
+                if !type(of: condition).isMutuallyExclusive { return nil }
                 
-                return "\(condition.dynamicType)"
+                return "\(type(of: condition))"
             }
 
             if !concurrencyCategories.isEmpty {
@@ -116,7 +116,7 @@ public class OperationQueue: NSOperationQueue {
         }
     }
     
-    override public func addOperations(ops: [NSOperation], waitUntilFinished wait: Bool) {
+    override open func addOperations(_ ops: [Foundation.Operation], waitUntilFinished wait: Bool) {
         /*
             The base implementation of this method does not call `addOperation()`,
             so we'll call it ourselves.

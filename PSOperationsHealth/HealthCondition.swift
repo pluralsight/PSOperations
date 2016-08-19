@@ -17,7 +17,7 @@ import PSOperations
     data.
 */
     
-@available(*, deprecated, message="use Capability(Health(...)) instead")
+@available(*, deprecated, message: "use Capability(Health(...)) instead")
 public struct HealthCondition: OperationCondition {
     public static let name = "Health"
     static let healthDataAvailable = "HealthDataAvailable"
@@ -41,7 +41,7 @@ public struct HealthCondition: OperationCondition {
         readTypes = typesToRead
     }
     
-    public func dependencyForOperation(operation: Operation) -> NSOperation? {
+    public func dependencyForOperation(_ operation: PSOperations.Operation) -> Foundation.Operation? {
         if !HKHealthStore.isHealthDataAvailable() {
             return nil
         }
@@ -53,7 +53,7 @@ public struct HealthCondition: OperationCondition {
         return HealthPermissionOperation(shareTypes: shareTypes, readTypes: readTypes)
     }
     
-    public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
+    public func evaluateForOperation(_ operation: PSOperations.Operation, completion: @escaping (OperationConditionResult) -> Void) {
         if !HKHealthStore.isHealthDataAvailable() {
             failed(shareTypes, completion: completion)
             return
@@ -71,26 +71,26 @@ public struct HealthCondition: OperationCondition {
             write data to HealthKit.
         */
         let unauthorizedShareTypes = shareTypes.filter { shareType in
-            return store.authorizationStatusForType(shareType) != .SharingAuthorized
+            return store.authorizationStatus(for: shareType) != .sharingAuthorized
         }
 
         if !unauthorizedShareTypes.isEmpty {
             failed(Set(unauthorizedShareTypes), completion: completion)
         }
         else {
-            completion(.Satisfied)
+            completion(.satisfied)
         }
     }
     
     // Break this out in to its own method so we don't clutter up the evaluate... method.
-    private func failed(unauthorizedShareTypes: Set<HKSampleType>, completion: OperationConditionResult -> Void) {
-        let error = NSError(code: .ConditionFailed, userInfo: [
-            OperationConditionKey: self.dynamicType.name,
-            self.dynamicType.healthDataAvailable: HKHealthStore.isHealthDataAvailable(),
-            self.dynamicType.unauthorizedShareTypesKey: unauthorizedShareTypes
+    fileprivate func failed(_ unauthorizedShareTypes: Set<HKSampleType>, completion: (OperationConditionResult) -> Void) {
+        let error = NSError(code: .conditionFailed, userInfo: [
+            OperationConditionKey: type(of: self).name,
+            type(of: self).healthDataAvailable: HKHealthStore.isHealthDataAvailable(),
+            type(of: self).unauthorizedShareTypesKey: unauthorizedShareTypes
         ])
 
-        completion(.Failed(error))
+        completion(.failed(error))
     }
 }
 
@@ -98,7 +98,7 @@ public struct HealthCondition: OperationCondition {
     A private `Operation` that will request access to the user's health data, if 
     it has not already been granted.
 */
-class HealthPermissionOperation: Operation {
+class HealthPermissionOperation: PSOperations.Operation {
     let shareTypes: Set<HKSampleType>
     let readTypes: Set<HKSampleType>
     
@@ -114,14 +114,14 @@ class HealthPermissionOperation: Operation {
     }
     
     override func execute() {
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             let store = HKHealthStore()
             /*
                 This method is smart enough to not re-prompt for access if access
                 has already been granted.
             */
 
-            store.requestAuthorizationToShareTypes(self.shareTypes, readTypes: self.readTypes) { completed, error in
+            store.requestAuthorization(toShare: self.shareTypes, read: self.readTypes) { completed, error in
                 self.finish()
             }
         }

@@ -15,12 +15,12 @@ import Foundation
 public struct BlockObserver: OperationObserver {
     // MARK: Properties
     
-    private let startHandler: (Operation -> Void)?
-    private let cancelHandler: (Operation -> Void)?
-    private let produceHandler: ((Operation, NSOperation) -> Void)?
-    private let finishHandler: ((Operation, [NSError]) -> Void)?
+    fileprivate let startHandler: ((Operation) -> Void)?
+    fileprivate let cancelHandler: ((Operation) -> Void)?
+    fileprivate let produceHandler: ((Operation, Foundation.Operation) -> Void)?
+    fileprivate let finishHandler: ((Operation, [NSError]) -> Void)?
     
-    public init(startHandler: (Operation -> Void)? = nil, cancelHandler: (Operation -> Void)? = nil, produceHandler: ((Operation, NSOperation) -> Void)? = nil, finishHandler: ((Operation, [NSError]) -> Void)? = nil) {
+    public init(startHandler: ((Operation) -> Void)? = nil, cancelHandler: ((Operation) -> Void)? = nil, produceHandler: ((Operation, Foundation.Operation) -> Void)? = nil, finishHandler: ((Operation, [NSError]) -> Void)? = nil) {
         self.startHandler = startHandler
         self.cancelHandler = cancelHandler
         self.produceHandler = produceHandler
@@ -29,19 +29,19 @@ public struct BlockObserver: OperationObserver {
     
     // MARK: OperationObserver
     
-    public func operationDidStart(operation: Operation) {
+    public func operationDidStart(_ operation: Operation) {
         startHandler?(operation)
     }
     
-    public func operationDidCancel(operation: Operation) {
+    public func operationDidCancel(_ operation: Operation) {
         cancelHandler?(operation)
     }
     
-    public func operation(operation: Operation, didProduceOperation newOperation: NSOperation) {
+    public func operation(_ operation: Operation, didProduceOperation newOperation: Foundation.Operation) {
         produceHandler?(operation, newOperation)
     }
     
-    public func operationDidFinish(operation: Operation, errors: [NSError]) {
+    public func operationDidFinish(_ operation: Operation, errors: [NSError]) {
         finishHandler?(operation, errors)
     }
 }

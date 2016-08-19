@@ -15,29 +15,29 @@ import PSOperations
 public struct Health: CapabilityType {
     public static let name = "Health"
     
-    private let readTypes: Set<HKSampleType>
-    private let writeTypes: Set<HKSampleType>
+    fileprivate let readTypes: Set<HKSampleType>
+    fileprivate let writeTypes: Set<HKSampleType>
     
     public init(typesToRead: Set<HKSampleType>, typesToWrite: Set<HKSampleType>) {
         self.readTypes = typesToRead
         self.writeTypes = typesToWrite
     }
     
-    public func requestStatus(completion: CapabilityStatus -> Void) {
+    public func requestStatus(_ completion: @escaping (CapabilityStatus) -> Void) {
         guard HKHealthStore.isHealthDataAvailable() else {
-            completion(.NotAvailable)
+            completion(.notAvailable)
             return
         }
         
-        let notDeterminedTypes = writeTypes.filter { SharedHealthStore.authorizationStatusForType($0) == .NotDetermined }
+        let notDeterminedTypes = writeTypes.filter { SharedHealthStore.authorizationStatus(for: $0) == .notDetermined }
         if notDeterminedTypes.isEmpty == false {
-            completion(.NotDetermined)
+            completion(.notDetermined)
             return
         }
         
-        let deniedTypes = writeTypes.filter { SharedHealthStore.authorizationStatusForType($0) == .SharingDenied }
+        let deniedTypes = writeTypes.filter { SharedHealthStore.authorizationStatus(for: $0) == .sharingDenied }
         if deniedTypes.isEmpty == false {
-            completion(.Denied)
+            completion(.denied)
             return
         }
         
@@ -45,31 +45,31 @@ public struct Health: CapabilityType {
         // there's no way to know if we have read permissions,
         // so the best we can do is see if we've ever asked for authorization
         
-        let unrequestedReadTypes = readTypes.subtract(requestedReadTypes)
+        let unrequestedReadTypes = readTypes.subtracting(requestedReadTypes)
         
         if unrequestedReadTypes.isEmpty == false {
-            completion(.NotDetermined)
+            completion(.notDetermined)
             return
         }
         
         // if we get here, then there was nothing to request for reading or writing
         // thus, everything is authorized
-        completion(.Authorized)
+        completion(.authorized)
     }
     
-    public func authorize(completion: CapabilityStatus -> Void) {
+    public func authorize(_ completion: @escaping (CapabilityStatus) -> Void) {
         guard HKHealthStore.isHealthDataAvailable() else {
-            completion(.NotAvailable)
+            completion(.notAvailable)
             return
         }
         
         // make a note that we've requested these types before
-        requestedReadTypes.unionInPlace(readTypes)
+        requestedReadTypes.formUnion(readTypes)
         
         // This method is smart enough to not re-prompt for access if it has already been granted.
-        SharedHealthStore.requestAuthorizationToShareTypes(writeTypes, readTypes: readTypes) { _, error in
+        SharedHealthStore.requestAuthorization(toShare: writeTypes, read: readTypes) { _, error in
             if let error = error {
-                completion(.Error(error))
+                completion(.error(error as NSError))
             } else {
                 self.requestStatus(completion)
             }

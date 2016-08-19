@@ -11,7 +11,7 @@ This file shows an example of implementing the OperationCondition protocol.
 import CloudKit
 
 /// A condition describing that the operation requires access to a specific CloudKit container.
-@available(*, deprecated, message="use Capability(iCloudContainer(...)) instead")
+@available(*, deprecated, message: "use Capability(iCloudContainer(...)) instead")
     
 public struct CloudContainerCondition: OperationCondition {
     
@@ -40,23 +40,23 @@ public struct CloudContainerCondition: OperationCondition {
         self.permission = permission
     }
     
-    public func dependencyForOperation(operation: Operation) -> NSOperation? {
+    public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
         return CloudKitPermissionOperation(container: container, permission: permission)
     }
     
-    public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
+    public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
         container.verifyPermission(permission, requestingIfNecessary: false) { error in
             if let error = error {
-                let conditionError = NSError(code: .ConditionFailed, userInfo: [
-                    OperationConditionKey: self.dynamicType.name,
-                    self.dynamicType.containerKey: self.container,
+                let conditionError = NSError(code: .conditionFailed, userInfo: [
+                    OperationConditionKey: type(of: self).name,
+                    type(of: self).containerKey: self.container,
                     NSUnderlyingErrorKey: error
                 ])
 
-                completion(.Failed(conditionError))
+                completion(.failed(conditionError))
             }
             else {
-                completion(.Satisfied)
+                completion(.satisfied)
             }
         }
     }
