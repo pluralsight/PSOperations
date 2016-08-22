@@ -13,11 +13,11 @@ import Cocoa
 public struct Push: CapabilityType {
     
     public static func didReceiveToken(token: NSData) {
-        authorizer.completeAuthorization(token, error: nil)
+        authorizer.completeAuthorization(token: token, error: nil)
     }
     
     public static func didFailRegistration(error: NSError) {
-        authorizer.completeAuthorization(nil, error: error)
+        authorizer.completeAuthorization(token: nil, error: error)
     }
     
     public static let name = "Push"
@@ -28,48 +28,48 @@ public struct Push: CapabilityType {
         self.types = types
     }
     
-    public func requestStatus(completion: CapabilityStatus -> Void) {
+    public func requestStatus(_ completion: @escaping (CapabilityStatus) -> Void) {
         if let _ = authorizer.token {
-            completion(.Authorized)
+            completion(.authorized)
         } else {
-            completion(.NotDetermined)
+            completion(.notDetermined)
         }
     }
     
-    public func authorize(completion: CapabilityStatus -> Void) {
-        authorizer.authorize(types, completion: completion)
+    public func authorize(_ completion: @escaping (CapabilityStatus) -> Void) {
+        authorizer.authorize(types: types, completion: completion)
     }
     
 }
 
 private let authorizer = PushAuthorizer()
 
-private class PushAuthorizer {
+fileprivate class PushAuthorizer {
     
     var token: NSData?
-    var completion: (CapabilityStatus -> Void)?
+    var completion: ((CapabilityStatus) -> Void)?
     
-    func authorize(types: NSRemoteNotificationType, completion: CapabilityStatus -> Void) {
+    func authorize(types: NSRemoteNotificationType, completion: @escaping (CapabilityStatus) -> Void) {
         guard self.completion == nil else {
             fatalError("Cannot request push authorization while a request is already in progress")
         }
         
         self.completion = completion
-        NSApplication.sharedApplication().registerForRemoteNotificationTypes(types)
+        NSApplication.shared().registerForRemoteNotifications(matching: types)
     }
     
-    private func completeAuthorization(token: NSData?, error: NSError?) {
+    fileprivate func completeAuthorization(token: NSData?, error: NSError?) {
         self.token = token
         
         guard let completion = self.completion else { return }
         self.completion = nil
         
         if let _ = self.token {
-            completion(.Authorized)
+            completion(.authorized)
         } else if let error = error {
-            completion(.Error(error))
+            completion(.error(error))
         } else {
-            completion(.NotDetermined)
+            completion(.notDetermined)
         }
     }
     
