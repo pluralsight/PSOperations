@@ -48,6 +48,7 @@ open class URLSessionTaskOperation: Operation {
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &URLSessionTaskOperationKVOContext else { return }
+        guard let object = object else { return }
         
         stateLock.withCriticalScope {
             if object as AnyObject === task && keyPath == "state" && !observerRemoved {
