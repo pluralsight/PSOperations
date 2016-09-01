@@ -42,15 +42,26 @@ pod 'PSOperations', '~> 2.3'
 end
 ```
 
-If you only want core functionality, _omitting_ the capabilities mentioned above:
-```ruby
-pod 'PSOperations/Core', '~> 2.3'
-```
-
 Then, run the following command:
 
 ```bash
 $ pod install
+```
+
+**Alternative configurations:**
+Core functionality, _excluding_ capabilities:
+```ruby
+pod 'PSOperations/Core', '~> 2.3'
+```
+
+Core functionality, including only the Passbook capability:
+```ruby
+pod 'PSOperations/Passbook', '~> 2.3'
+```
+
+Core functionality, including only the Health capability:
+```ruby
+pod 'PSOperations/Health', '~> 2.3'
 ```
 
 ###Carthage
