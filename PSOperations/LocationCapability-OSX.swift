@@ -29,6 +29,7 @@ public struct Location: CapabilityType {
             case .Restricted: completion(.NotAvailable)
             case .Denied: completion(.Denied)
             case .Authorized: completion(.Authorized)
+            default: completion(.Authorized)
         }
     }
     
@@ -77,6 +78,8 @@ private class LocationAuthorizer: NSObject, CLLocationManagerDelegate {
                     self.completion = completion
                     manager.startUpdatingLocation()
                     manager.stopUpdatingLocation()
+                default:
+                    completion(.Authorized)
             }
         }
     }
