@@ -2,7 +2,7 @@
 
 [![codebeat badge](https://codebeat.co/badges/5a8fa0e4-178b-499b-9947-98bf69013b7f)](https://codebeat.co/projects/github-com-pluralsight-psoperations) ![](https://travis-ci.org/pluralsight/PSOperations.svg)
 
-PSOperations is a framework that leverages the power of NSOperation and NSOperationQueue. It enables you to use operations more easily in all parts of your project.
+PSOperations is a framework that leverages the power of Operation (formerly NSOperation) and OperationQueue (formerly NSOperationQueue). It enables you to use operations more easily in all parts of your project.
 
 This is an adaptation of the sample code provided in the [Advanced NSOperations](https://developer.apple.com/videos/wwdc/2015/?id=226) session of WWDC 2015.
 
@@ -92,7 +92,7 @@ import PSOperationsPassbook
 These features need to be in a separate framework otherwise they may cause App Store review rejection for importing `HealthKit` or `PassKit` but not actually using them.
 
 #### Create a Queue
-The OperationQueue is the heartbeat and is a subclass of NSOperationQueue:
+The PSOperationQueue is the heartbeat and is a subclass of OperationQueue (formerly NSOperationQueue):
 ```
 let operationQueue = PSOperationQueue()
 ```
