@@ -21,7 +21,7 @@ import Foundation
     subsequent operations (still within the outer `GroupOperation`) that will all
     be executed before the rest of the operations in the initial chain of operations.
 */
-open class GroupOperation: Operation {
+open class GroupOperation: PSOperation {
     fileprivate let internalQueue = OperationQueue()
     fileprivate let startingOperation = Foundation.BlockOperation(block: {})
     fileprivate let finishingOperation = Foundation.BlockOperation(block: {})

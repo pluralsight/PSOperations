@@ -18,7 +18,7 @@ class ExclusivityController {
     static let sharedExclusivityController = ExclusivityController()
     
     fileprivate let serialQueue = DispatchQueue(label: "Operations.ExclusivityController", attributes: [])
-    fileprivate var operations: [String: [Operation]] = [:]
+    fileprivate var operations: [String: [PSOperation]] = [:]
     
     fileprivate init() {
         /*
@@ -28,7 +28,7 @@ class ExclusivityController {
     }
     
     /// Registers an operation as being mutually exclusive
-    func addOperation(_ operation: Operation, categories: [String]) {
+    func addOperation(_ operation: PSOperation, categories: [String]) {
         /*
             This needs to be a synchronous operation.
             If this were async, then we might not get around to adding dependencies 
@@ -42,7 +42,7 @@ class ExclusivityController {
     }
     
     /// Unregisters an operation from being mutually exclusive.
-    func removeOperation(_ operation: Operation, categories: [String]) {
+    func removeOperation(_ operation: PSOperation, categories: [String]) {
         serialQueue.async {
             for category in categories {
                 self.noqueue_removeOperation(operation, category: category)
@@ -53,7 +53,7 @@ class ExclusivityController {
     
     // MARK: Operation Management
     
-    fileprivate func noqueue_addOperation(_ operation: Operation, category: String) {
+    fileprivate func noqueue_addOperation(_ operation: PSOperation, category: String) {
         var operationsWithThisCategory = operations[category] ?? []
         
         if let last = operationsWithThisCategory.last {
@@ -65,7 +65,7 @@ class ExclusivityController {
         operations[category] = operationsWithThisCategory
     }
     
-    fileprivate func noqueue_removeOperation(_ operation: Operation, category: String) {
+    fileprivate func noqueue_removeOperation(_ operation: PSOperation, category: String) {
         let matchingOperations = operations[category]
 
         if var operationsWithThisCategory = matchingOperations,

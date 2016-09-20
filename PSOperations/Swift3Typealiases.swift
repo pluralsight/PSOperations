@@ -8,3 +8,4 @@
 
 public typealias PSOperation = Operation
 public typealias PSOperationQueue = OperationQueue
+public typealias PSBlockOperation = BlockOperation

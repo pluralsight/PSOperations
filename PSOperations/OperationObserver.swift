@@ -15,18 +15,18 @@ import Foundation
 public protocol OperationObserver {
     
     /// Invoked immediately prior to the `Operation`'s `execute()` method.
-    func operationDidStart(_ operation: Operation)
+    func operationDidStart(_ operation: PSOperation)
     
     /// Invoked immediately after the first time the `Operation`'s `cancel()` method is called
-    func operationDidCancel(_ operation: Operation)
+    func operationDidCancel(_ operation: PSOperation)
     
     /// Invoked when `Operation.produceOperation(_:)` is executed.
-    func operation(_ operation: Operation, didProduceOperation newOperation: Foundation.Operation)
+    func operation(_ operation: PSOperation, didProduceOperation newOperation: Foundation.Operation)
     
     /**
         Invoked as an `Operation` finishes, along with any errors produced during
         execution (or readiness evaluation).
     */
-    func operationDidFinish(_ operation: Operation, errors: [NSError])
+    func operationDidFinish(_ operation: PSOperation, errors: [NSError])
     
 }

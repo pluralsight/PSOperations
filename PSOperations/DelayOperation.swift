@@ -20,7 +20,7 @@ import Foundation
     If the interval is negative, or the `NSDate` is in the past, then this operation
     immediately finishes.
 */
-open class DelayOperation: Operation {
+open class DelayOperation: PSOperation {
     // MARK: Types
 
     fileprivate enum Delay {

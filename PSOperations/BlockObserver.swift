@@ -15,12 +15,12 @@ import Foundation
 public struct BlockObserver: OperationObserver {
     // MARK: Properties
     
-    fileprivate let startHandler: ((Operation) -> Void)?
-    fileprivate let cancelHandler: ((Operation) -> Void)?
-    fileprivate let produceHandler: ((Operation, Foundation.Operation) -> Void)?
-    fileprivate let finishHandler: ((Operation, [NSError]) -> Void)?
+    fileprivate let startHandler: ((PSOperation) -> Void)?
+    fileprivate let cancelHandler: ((PSOperation) -> Void)?
+    fileprivate let produceHandler: ((PSOperation, Foundation.Operation) -> Void)?
+    fileprivate let finishHandler: ((PSOperation, [NSError]) -> Void)?
     
-    public init(startHandler: ((Operation) -> Void)? = nil, cancelHandler: ((Operation) -> Void)? = nil, produceHandler: ((Operation, Foundation.Operation) -> Void)? = nil, finishHandler: ((Operation, [NSError]) -> Void)? = nil) {
+    public init(startHandler: ((PSOperation) -> Void)? = nil, cancelHandler: ((PSOperation) -> Void)? = nil, produceHandler: ((PSOperation, Foundation.Operation) -> Void)? = nil, finishHandler: ((PSOperation, [NSError]) -> Void)? = nil) {
         self.startHandler = startHandler
         self.cancelHandler = cancelHandler
         self.produceHandler = produceHandler
@@ -29,19 +29,19 @@ public struct BlockObserver: OperationObserver {
     
     // MARK: OperationObserver
     
-    public func operationDidStart(_ operation: Operation) {
+    public func operationDidStart(_ operation: PSOperation) {
         startHandler?(operation)
     }
     
-    public func operationDidCancel(_ operation: Operation) {
+    public func operationDidCancel(_ operation: PSOperation) {
         cancelHandler?(operation)
     }
     
-    public func operation(_ operation: Operation, didProduceOperation newOperation: Foundation.Operation) {
+    public func operation(_ operation: PSOperation, didProduceOperation newOperation: Foundation.Operation) {
         produceHandler?(operation, newOperation)
     }
     
-    public func operationDidFinish(_ operation: Operation, errors: [NSError]) {
+    public func operationDidFinish(_ operation: PSOperation, errors: [NSError]) {
         finishHandler?(operation, errors)
     }
 }

@@ -35,7 +35,7 @@ open class OperationQueue: Foundation.OperationQueue {
     open weak var delegate: OperationQueueDelegate?
     
     override open  func addOperation(_ operation: Foundation.Operation) {
-        if let op = operation as? Operation {
+        if let op = operation as? PSOperation {
             
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
             let delegate = BlockObserver(
@@ -111,7 +111,7 @@ open class OperationQueue: Foundation.OperationQueue {
             and it's now it a state where it can proceed with evaluating conditions,
             if appropriate.
         */
-        if let op = operation as? Operation {
+        if let op = operation as? PSOperation {
             op.didEnqueue()
         }
     }

@@ -27,7 +27,7 @@ public struct TimeoutObserver: OperationObserver {
     
     // MARK: OperationObserver
     
-    public func operationDidStart(_ operation: Operation) {
+    public func operationDidStart(_ operation: PSOperation) {
         // When the operation starts, queue up a block to cause it to time out.
         let when = DispatchTime.now() + timeout
 
@@ -46,15 +46,15 @@ public struct TimeoutObserver: OperationObserver {
         }
     }
     
-    public func operationDidCancel(_ operation: Operation) {
+    public func operationDidCancel(_ operation: PSOperation) {
         // No op.
     }
 
-    public func operation(_ operation: Operation, didProduceOperation newOperation: Foundation.Operation) {
+    public func operation(_ operation: PSOperation, didProduceOperation newOperation: Foundation.Operation) {
         // No op.
     }
 
-    public func operationDidFinish(_ operation: Operation, errors: [NSError]) {
+    public func operationDidFinish(_ operation: PSOperation, errors: [NSError]) {
         // No op.
     }
 }

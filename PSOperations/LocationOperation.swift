@@ -17,7 +17,7 @@ import CoreLocation
  prompt for `WhenInUse` location authorization, if the app does not already
  have it.
  */
-open class LocationOperation: Operation, CLLocationManagerDelegate {
+open class LocationOperation: PSOperation, CLLocationManagerDelegate {
     // MARK: Properties
     
     fileprivate let accuracy: CLLocationAccuracy
