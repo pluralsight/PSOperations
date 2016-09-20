@@ -22,12 +22,12 @@ class PSOperationsAppForTestsTests: XCTestCase {
     func testDependantOpsCrash() {
         let queue = PSOperations.OperationQueue()
         let opcount = 10_000
-        var ops: [PSOperations.Operation] = []
+        var ops: [PSOperations.PSOperation] = []
         for _ in 0..<opcount {
             
             let exp = expectation(description: "block should finish")
             
-            let block = PSOperations.BlockOperation {
+            let block = PSOperations.PSBlockOperation {
                 (finish: () -> Void) in
 //                NSLog("op: \(i): opcount: queue: \(queue.operationCount)")
                 exp.fulfill()

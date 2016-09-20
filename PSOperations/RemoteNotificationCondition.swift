@@ -10,7 +10,7 @@ This file shows an example of implementing the OperationCondition protocol.
 
 import UIKit
     
-private let RemoteNotificationQueue = OperationQueue()
+private let RemoteNotificationQueue = PSOperationQueue()
 private let RemoteNotificationName = "RemoteNotificationPermissionNotification"
 
 private enum RemoteRegistrationResult {
@@ -43,11 +43,11 @@ public struct RemoteNotificationCondition: OperationCondition {
         self.application = application
     }
     
-    public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
+    public func dependencyForOperation(_ operation: PSOperation) -> Foundation.Operation? {
         return RemoteNotificationPermissionOperation(application: application, handler: { _ in })
     }
     
-    public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
+    public func evaluateForOperation(_ operation: PSOperation, completion: @escaping (OperationConditionResult) -> Void) {
         /*
             Since evaluation requires executing an operation, use a private operation
             queue.
@@ -80,7 +80,7 @@ public struct RemoteNotificationCondition: OperationCondition {
         `RemoteNotificationCondition.didFailToRegister(_:)` in the appropriate 
         `UIApplicationDelegate` method, as shown in the `AppDelegate.swift` file.
 */
-class RemoteNotificationPermissionOperation: Operation {
+class RemoteNotificationPermissionOperation: PSOperation {
     let application: UIApplication
     fileprivate let handler: (RemoteRegistrationResult) -> Void
     

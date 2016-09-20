@@ -22,7 +22,7 @@ import Foundation
     be executed before the rest of the operations in the initial chain of operations.
 */
 open class GroupOperation: PSOperation {
-    fileprivate let internalQueue = OperationQueue()
+    fileprivate let internalQueue = PSOperationQueue()
     fileprivate let startingOperation = Foundation.BlockOperation(block: {})
     fileprivate let finishingOperation = Foundation.BlockOperation(block: {})
 
@@ -74,7 +74,7 @@ open class GroupOperation: PSOperation {
 }
 
 extension GroupOperation: OperationQueueDelegate {
-    final public func operationQueue(_ operationQueue: OperationQueue, willAddOperation operation: Foundation.Operation) {
+    final public func operationQueue(_ operationQueue: PSOperationQueue, willAddOperation operation: Foundation.Operation) {
         assert(!finishingOperation.isFinished && !finishingOperation.isExecuting, "cannot add new operations to a group after the group has completed")
         
         /*
@@ -99,7 +99,7 @@ extension GroupOperation: OperationQueueDelegate {
 
     }
     
-    final public func operationQueue(_ operationQueue: OperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [NSError]) {
+    final public func operationQueue(_ operationQueue: PSOperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [NSError]) {
         aggregatedErrors.append(contentsOf: errors)
         
         if operation === finishingOperation {

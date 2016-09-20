@@ -26,11 +26,11 @@ This file shows an example of implementing the OperationCondition protocol.
             self.entityType = entityType
         }
         
-        public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
+        public func dependencyForOperation(_ operation: PSOperation) -> Foundation.Operation? {
             return CalendarPermissionOperation(entityType: entityType)
         }
         
-        public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
+        public func evaluateForOperation(_ operation: PSOperation, completion: @escaping (OperationConditionResult) -> Void) {
             switch EKEventStore.authorizationStatus(for: entityType) {
             case .authorized:
                 completion(.satisfied)
@@ -58,7 +58,7 @@ This file shows an example of implementing the OperationCondition protocol.
      A private `Operation` that will request access to the user's Calendar/Reminders,
      if it has not already been granted.
      */
-    class CalendarPermissionOperation: Operation {
+    class CalendarPermissionOperation: PSOperation {
         let entityType: EKEntityType
         
         init(entityType: EKEntityType) {

@@ -9,22 +9,22 @@ This code shows how to create a simple subclass of Operation.
 import Foundation
 
 /// A closure type that takes a closure as its parameter.
-public typealias OperationBlock = (@escaping (Void) -> Void) -> Void
+public typealias PSOperationBlock = (@escaping (Void) -> Void) -> Void
 
 /// A sublcass of `Operation` to execute a closure.
-open class BlockOperation: Operation {
-    fileprivate let block: OperationBlock?
+open class PSBlockOperation: PSOperation {
+    fileprivate let block: PSOperationBlock?
     
     /**
         The designated initializer.
         
         - parameter block: The closure to run when the operation executes. This 
             closure will be run on an arbitrary queue. The parameter passed to the
-            block **MUST** be invoked by your code, or else the `BlockOperation`
+            block **MUST** be invoked by your code, or else the `PSBlockOperation`
             will never finish executing. If this parameter is `nil`, the operation
             will immediately finish.
     */
-    public init(block: OperationBlock? = nil) {
+    public init(block: PSOperationBlock? = nil) {
         self.block = block
         super.init()
     }

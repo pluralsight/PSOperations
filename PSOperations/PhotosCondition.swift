@@ -20,11 +20,11 @@ public struct PhotosCondition: OperationCondition {
     
     public init() { }
     
-    public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
+    public func dependencyForOperation(_ operation: PSOperation) -> Foundation.Operation? {
         return PhotosPermissionOperation()
     }
     
-    public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
+    public func evaluateForOperation(_ operation: PSOperation, completion: @escaping (OperationConditionResult) -> Void) {
         switch PHPhotoLibrary.authorizationStatus() {
             case .authorized:
                 completion(.satisfied)
@@ -43,7 +43,7 @@ public struct PhotosCondition: OperationCondition {
     A private `Operation` that will request access to the user's Photos, if it
     has not already been granted.
 */
-class PhotosPermissionOperation: Operation {
+class PhotosPermissionOperation: PSOperation {
     override init() {
         super.init()
 

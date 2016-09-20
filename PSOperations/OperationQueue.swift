@@ -19,8 +19,8 @@ import Foundation
     `OperationQueue` and uses it to manage dependencies.
 */
 @objc public protocol OperationQueueDelegate: NSObjectProtocol {
-    @objc optional func operationQueue(_ operationQueue: OperationQueue, willAddOperation operation: Foundation.Operation)
-    @objc optional func operationQueue(_ operationQueue: OperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [NSError])
+    @objc optional func operationQueue(_ operationQueue: PSOperationQueue, willAddOperation operation: Foundation.Operation)
+    @objc optional func operationQueue(_ operationQueue: PSOperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [NSError])
 }
 
 /**
@@ -31,7 +31,7 @@ import Foundation
     - Extracting generated dependencies from operation conditions
     - Setting up dependencies to enforce mutual exclusivity
 */
-open class OperationQueue: Foundation.OperationQueue {
+open class PSOperationQueue: Foundation.OperationQueue {
     open weak var delegate: OperationQueueDelegate?
     
     override open  func addOperation(_ operation: Foundation.Operation) {

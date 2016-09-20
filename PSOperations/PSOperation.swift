@@ -14,7 +14,7 @@ import Foundation
     extended readiness requirements, as well as notify many interested parties 
     about interesting operation state changes
 */
-open class Operation: Foundation.Operation {
+open class PSOperation: Foundation.Operation {
     
     /* The completionBlock property has unexpected behaviors such as executing twice and executing on unexpected threads. BlockObserver
      * executes in an expected manner.
@@ -422,10 +422,10 @@ open class Operation: Foundation.Operation {
 }
 
 // Simple operator functions to simplify the assertions used above.
-private func <(lhs: Operation.State, rhs: Operation.State) -> Bool {
+private func <(lhs: PSOperation.State, rhs: PSOperation.State) -> Bool {
     return lhs.rawValue < rhs.rawValue
 }
 
-private func ==(lhs: Operation.State, rhs: Operation.State) -> Bool {
+private func ==(lhs: PSOperation.State, rhs: PSOperation.State) -> Bool {
     return lhs.rawValue == rhs.rawValue
 }

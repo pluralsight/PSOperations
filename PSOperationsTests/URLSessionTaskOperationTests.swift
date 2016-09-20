@@ -72,7 +72,7 @@ class URLSessionTaskOperationTests: XCTestCase {
         }
         
         let op = URLSessionTaskOperation(task: taskThing)
-        let q = PSOperations.OperationQueue()
+        let q = PSOperations.PSOperationQueue()
         q.addOperation(op)
         
         keyValueObservingExpectation(for: op, keyPath: "isFinished") {
@@ -94,7 +94,7 @@ class URLSessionTaskOperationTests: XCTestCase {
         }
         
         let op = URLSessionTaskOperation(task: taskThing)
-        let q = PSOperations.OperationQueue()
+        let q = PSOperations.PSOperationQueue()
         q.isSuspended = true
         q.addOperation(op)
         op.cancel()
