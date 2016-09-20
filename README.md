@@ -10,7 +10,7 @@ This is an adaptation of the sample code provided in the [Advanced NSOperations]
 
 ##Support
 
- - Swift 2.x
+ - Swift 3.0
  - iOS 8.0
  - tvOS 9.0
  - watchOS (undefined deployment target)
@@ -94,13 +94,13 @@ These features need to be in a separate framework otherwise they may cause App S
 #### Create a Queue
 The OperationQueue is the heartbeat and is a subclass of NSOperationQueue:
 ```
-let operationQueue = OperationQueue()
+let operationQueue = PSOperationQueue()
 ```
 
 ####Create an Operation
-`Operation` is a subclass of `NSOperation`. Like `NSOperation` it doesn't do much. But PSOperations provides a few helpful subclasses such as:
+`PSOperation` is a subclass of `Operation` (formerly `NSOperation`). Like `Operation` it doesn't do much. But PSOperations provides a few helpful subclasses such as:
 ```
-BlockOperation
+PSBlockOperation
 GroupOperation
 URLSessionTaskOperation
 LocationOperation
@@ -109,7 +109,7 @@ DelayOperation
 
 Here is a quick example:
 ```
-let blockOperation = BlockOperation {
+let blockOperation = PSBlockOperation {
 	print("perform operation")
 }
 
@@ -117,7 +117,7 @@ operationQueue.addOperation(blockOperation)
 ```
 
 ####Observe an Operation
-`Operation` instances can be observed for starting, cancelling, finishing and producing new operations with the `OperationObserver` protocol.
+`PSOperation` instances can be observed for starting, cancelling, finishing and producing new operations with the `OperationObserver` protocol.
 
 PSOperations provide a couple of types that implement the protocol:
 ```
@@ -127,7 +127,7 @@ TimeoutObserver
 
 Here is a quick example:
 ```
-let blockOperation = BlockOperation {
+let blockOperation = PSBlockOperation {
 	print("perform operation")
 }
 
@@ -141,7 +141,7 @@ operationQueue.addOperation(blockOperation)
 ```
 
 ####Set Conditions on an Operation
-`Operation` instances can have conditions required to be met in order to execute using the `OperationCondition` protocol.
+`PSOperation` instances can have conditions required to be met in order to execute using the `OperationCondition` protocol.
 
 PSOperations provide a several types that implement the protocol:
 ```
@@ -155,11 +155,11 @@ Capability
 
 Here is a quick example:
 ```
-let blockOperation = BlockOperation {
+let blockOperation = PSBlockOperation {
 	print("perform operation")
 }
 
-let dependentOperation = BlockOperation {
+let dependentOperation = PSBlockOperation {
 	print("working away")
 }
                 dependentOperation.addCondition(NoCancelledDependencies())
@@ -176,7 +176,7 @@ A `CapabilityType` is used by the `Capability` condition and allows you to easil
 
 Here is a quick example:
 ```
-let blockOperation = BlockOperation {
+let blockOperation = PSBlockOperation {
 	print("perform operation")
 }
 
@@ -196,12 +196,12 @@ The examples above provide simple jobs but PSOperations can be involved in many 
 ```
 class OperationSegue: UIStoryboardSegue {
     
-    var operation: Operation?
+    var operation: PSOperation?
     var segueCompletion: ((success: Bool) -> Void)?
     
     override func perform() {        
         if let operation = operation {
-            let opQ = OperationQueue()
+            let opQ = PSOperationQueue()
             var retainedSelf: OperationSegue? = self
             
             let completionObserver = BlockObserver {
