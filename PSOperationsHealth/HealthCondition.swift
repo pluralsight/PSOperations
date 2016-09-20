@@ -41,7 +41,7 @@ public struct HealthCondition: OperationCondition {
         readTypes = typesToRead
     }
     
-    public func dependencyForOperation(_ operation: PSOperations.Operation) -> Foundation.Operation? {
+    public func dependencyForOperation(_ operation: PSOperations.PSOperation) -> Foundation.Operation? {
         if !HKHealthStore.isHealthDataAvailable() {
             return nil
         }
@@ -53,7 +53,7 @@ public struct HealthCondition: OperationCondition {
         return HealthPermissionOperation(shareTypes: shareTypes, readTypes: readTypes)
     }
     
-    public func evaluateForOperation(_ operation: PSOperations.Operation, completion: @escaping (OperationConditionResult) -> Void) {
+    public func evaluateForOperation(_ operation: PSOperations.PSOperation, completion: @escaping (OperationConditionResult) -> Void) {
         if !HKHealthStore.isHealthDataAvailable() {
             failed(shareTypes, completion: completion)
             return
@@ -98,7 +98,7 @@ public struct HealthCondition: OperationCondition {
     A private `Operation` that will request access to the user's health data, if 
     it has not already been granted.
 */
-class HealthPermissionOperation: PSOperations.Operation {
+class HealthPermissionOperation: PSOperations.PSOperation {
     let shareTypes: Set<HKSampleType>
     let readTypes: Set<HKSampleType>
     

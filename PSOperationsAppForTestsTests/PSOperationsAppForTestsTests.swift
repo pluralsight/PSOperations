@@ -20,7 +20,7 @@ class PSOperationsAppForTestsTests: XCTestCase {
      the real test is whether or not it crashes when the last operation finishes
     */
     func testDependantOpsCrash() {
-        let queue = PSOperations.OperationQueue()
+        let queue = PSOperations.PSOperationQueue()
         let opcount = 10_000
         var ops: [PSOperations.PSOperation] = []
         for _ in 0..<opcount {
