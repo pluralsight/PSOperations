@@ -21,7 +21,7 @@ class PSOperationsAppForTestsTests: XCTestCase {
     */
     func testDependantOpsCrash() {
         let queue = PSOperations.OperationQueue()
-        let opcount = 10_000
+        let opcount = 5_000
         var ops: [PSOperations.Operation] = []
         for _ in 0..<opcount {
             
