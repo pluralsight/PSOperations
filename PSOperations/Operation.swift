@@ -115,7 +115,7 @@ open class Operation: Foundation.Operation {
     fileprivate var _state = State.initialized
     
     /// A lock to guard reads and writes to the `_state` property
-    fileprivate let stateLock = NSLock()
+    fileprivate let stateLock = NSRecursiveLock()
 
     fileprivate var state: State {
         get {
@@ -148,14 +148,12 @@ open class Operation: Foundation.Operation {
         }
     }
     
-    fileprivate let readyLock = NSRecursiveLock()
-    
     // Here is where we extend our definition of "readiness".
     override open var isReady: Bool {
         
         var _ready = false
         
-        readyLock.withCriticalScope {
+        stateLock.withCriticalScope {
             switch state {
                 
             case .initialized:
@@ -281,25 +279,29 @@ open class Operation: Foundation.Operation {
         super.start()
         
         // If the operation has been cancelled, we still need to enter the "Finished" state.
-        if isCancelled {
-            finish()
+        stateLock.withCriticalScope {
+            if isCancelled {
+                finish()
+            }
         }
     }
     
     override final public func main() {
-        assert(state == .ready, "This operation must be performed on an operation queue.")
-        
-        if _internalErrors.isEmpty && !isCancelled {
-            state = .executing
+        stateLock.withCriticalScope {
+            assert(state == .ready, "This operation must be performed on an operation queue.")
             
-            for observer in observers {
-                observer.operationDidStart(self)
+            if _internalErrors.isEmpty && !isCancelled {
+                state = .executing
+                
+                for observer in observers {
+                    observer.operationDidStart(self)
+                }
+                
+                execute()
             }
-            
-            execute()
-        }
-        else {
-            finish()
+            else {
+                finish()
+            }
         }
     }
     
@@ -327,14 +329,16 @@ open class Operation: Foundation.Operation {
     }
   
     override open func cancel() {
-        if isFinished {
-            return
-        }
-        
-        _cancelled = true
-        
-        if state > .ready {
-            finish()
+        stateLock.withCriticalScope {
+            if isFinished {
+                return
+            }
+            
+            _cancelled = true
+            
+            if state > .ready {
+                finish()
+            }
         }
     }
     
