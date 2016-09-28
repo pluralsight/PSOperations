@@ -332,9 +332,12 @@ class PSOperationsTests: XCTestCase {
         let then = Date()
         let op = DelayOperation(interval: delay)
         
+        var done = false
+        
         keyValueObservingExpectation(for: op, keyPath: "isFinished") {
             (op, changes) -> Bool in
-            if let op = op as? Foundation.Operation {
+            if let op = op as? Foundation.Operation, !done {
+                done = op.isFinished
                 return op.isFinished
             }
             
