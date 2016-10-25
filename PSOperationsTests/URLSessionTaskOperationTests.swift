@@ -9,42 +9,42 @@
 @testable import PSOperations
 import XCTest
 
-public extension NSURLSession {
+public extension URLSession {
     
     struct SharedInstance {
-        static var instance = NSURLSession.sharedSession()
+        static var instance = URLSession.shared
     }
     
     public func setProtocolClasses(classes: [AnyClass]) {
-        let sessionconfig = NSURLSession.PSSession.configuration
+        let sessionconfig = URLSession.PSSession.configuration
         sessionconfig.protocolClasses = classes
-        SharedInstance.instance = NSURLSession(configuration: sessionconfig)
+        SharedInstance.instance = URLSession(configuration: sessionconfig)
     }
     
-    public static var PSSession: NSURLSession {
+    public static var PSSession: URLSession {
         return SharedInstance.instance
     }
 }
 
-class TestURLProtocol: NSURLProtocol {
-    override class func canInitWithRequest(request: NSURLRequest) -> Bool {
+class TestURLProtocol: URLProtocol {
+    override class func canInit(with request: URLRequest) -> Bool {
         return true
     }
     
-    override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
     
     func GETjson() -> [String: AnyObject] {
-        return ["cool": "beans"]
+        return ["cool": "beans" as AnyObject]
     }
     
     override func startLoading() {
-        let resp = NSHTTPURLResponse(URL: request.URL!, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: ["Content-Type" : "application/json"])
+        let resp = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: ["Content-Type" : "application/json"])
         
-        client?.URLProtocol(self, didReceiveResponse: resp!, cacheStoragePolicy: .NotAllowed)
-        client?.URLProtocol(self, didLoadData: try! NSJSONSerialization.dataWithJSONObject(GETjson(), options: []))
-        client?.URLProtocolDidFinishLoading(self)
+        client?.urlProtocol(self, didReceive: resp!, cacheStoragePolicy: .notAllowed)
+        client?.urlProtocol(self, didLoad: try! JSONSerialization.data(withJSONObject: GETjson(), options: []))
+        client?.urlProtocolDidFinishLoading(self)
     }
     
     override func stopLoading() {
@@ -56,52 +56,52 @@ class URLSessionTaskOperationTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        NSURLSession.PSSession.setProtocolClasses([TestURLProtocol.self])
+        URLSession.PSSession.setProtocolClasses(classes: [TestURLProtocol.self])
     }
     
     override func tearDown() {
         super.tearDown()
-        NSURLSession.PSSession.setProtocolClasses([])
+        URLSession.PSSession.setProtocolClasses(classes: [])
     }
     
     func testSuccess() {
         
-        let taskThing: NSURLSessionTask = NSURLSession.PSSession.dataTaskWithURL(NSURL(string: "http://winning")!) {
+        let taskThing: URLSessionTask = URLSession.PSSession.dataTask(with: URL(string: "http://winning")!) {
             data, response, error in
             XCTAssertNil(error)
         }
         
         let op = URLSessionTaskOperation(task: taskThing)
-        let q = OperationQueue()
+        let q = PSOperations.OperationQueue()
         q.addOperation(op)
         
-        keyValueObservingExpectationForObject(op, keyPath: "isFinished") {
+        keyValueObservingExpectation(for: op, keyPath: "isFinished") {
             _ in
-            return op.finished
+            return op.isFinished
         }
         
-        waitForExpectationsWithTimeout(5.0, handler: nil)
+        waitForExpectations(timeout: 5.0, handler: nil)
     }
     
     func testCancel() {
         
-        let exp = expectationWithDescription("")
+        let exp = expectation(description: "")
         
-        let taskThing: NSURLSessionTask = NSURLSession.PSSession.dataTaskWithURL(NSURL(string: "http://winning")!) {
+        let taskThing: URLSessionTask = URLSession.PSSession.dataTask(with: URL(string: "http://winning")!) {
             data, response, error in
             XCTAssertNotNil(error)
             exp.fulfill()
         }
         
         let op = URLSessionTaskOperation(task: taskThing)
-        let q = OperationQueue()
-        q.suspended = true
+        let q = PSOperations.OperationQueue()
+        q.isSuspended = true
         q.addOperation(op)
         op.cancel()
-        q.suspended = false
+        q.isSuspended = false
         
-        XCTAssertTrue(op.cancelled)
+        XCTAssertTrue(op.isCancelled)
         
-        waitForExpectationsWithTimeout(1.0, handler: nil)
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
 }

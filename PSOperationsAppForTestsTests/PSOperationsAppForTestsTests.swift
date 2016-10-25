@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import PSOperationsAppForTests
 import PSOperations
 
 class PSOperationsAppForTestsTests: XCTestCase {
@@ -21,14 +20,14 @@ class PSOperationsAppForTestsTests: XCTestCase {
      the real test is whether or not it crashes when the last operation finishes
     */
     func testDependantOpsCrash() {
-        let queue = OperationQueue()
-        let opcount = 10_000
-        var ops: [NSOperation] = []
+        let queue = PSOperations.OperationQueue()
+        let opcount = 5_000
+        var ops: [PSOperations.Operation] = []
         for _ in 0..<opcount {
             
-            let exp = expectationWithDescription("block should finish")
+            let exp = expectation(description: "block should finish")
             
-            let block = BlockOperation {
+            let block = PSOperations.BlockOperation {
                 (finish: () -> Void) in
 //                NSLog("op: \(i): opcount: queue: \(queue.operationCount)")
                 exp.fulfill()
@@ -45,6 +44,6 @@ class PSOperationsAppForTestsTests: XCTestCase {
         
         queue.addOperations(ops, waitUntilFinished: false)
         
-        waitForExpectationsWithTimeout(60*3, handler: nil)
+        waitForExpectations(timeout: 60*3, handler: nil)
     }
 }

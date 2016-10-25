@@ -21,21 +21,21 @@ import Foundation
     subsequent operations (still within the outer `GroupOperation`) that will all
     be executed before the rest of the operations in the initial chain of operations.
 */
-public class GroupOperation: Operation {
-    private let internalQueue = OperationQueue()
-    private let startingOperation = NSBlockOperation(block: {})
-    private let finishingOperation = NSBlockOperation(block: {})
+open class GroupOperation: Operation {
+    fileprivate let internalQueue = OperationQueue()
+    fileprivate let startingOperation = Foundation.BlockOperation(block: {})
+    fileprivate let finishingOperation = Foundation.BlockOperation(block: {})
 
-    private var aggregatedErrors = [NSError]()
+    fileprivate var aggregatedErrors = [NSError]()
     
-    public convenience init(operations: NSOperation...) {
+    public convenience init(operations: Foundation.Operation...) {
         self.init(operations: operations)
     }
     
-    public init(operations: [NSOperation]) {
+    public init(operations: [Foundation.Operation]) {
         super.init()
         
-        internalQueue.suspended = true
+        internalQueue.isSuspended = true
         internalQueue.delegate = self
         internalQueue.addOperation(startingOperation)
         
@@ -44,18 +44,18 @@ public class GroupOperation: Operation {
         }
     }
     
-    override public func cancel() {
+    override open func cancel() {
         internalQueue.cancelAllOperations()
-        internalQueue.suspended = false
+        internalQueue.isSuspended = false
         super.cancel()
     }
     
-    override public func execute() {
-        internalQueue.suspended = false
+    override open func execute() {
+        internalQueue.isSuspended = false
         internalQueue.addOperation(finishingOperation)
     }
     
-    public func addOperation(operation: NSOperation) {
+    open func addOperation(_ operation: Foundation.Operation) {
         internalQueue.addOperation(operation)
     }
     
@@ -64,18 +64,18 @@ public class GroupOperation: Operation {
         Errors aggregated through this method will be included in the final array 
         of errors reported to observers and to the `finished(_:)` method.
     */
-    public final func aggregateError(error: NSError) {
+    public final func aggregateError(_ error: NSError) {
         aggregatedErrors.append(error)
     }
     
-    public func operationDidFinish(operation: NSOperation, withErrors errors: [NSError]) {
+    open func operationDidFinish(_ operation: Foundation.Operation, withErrors errors: [NSError]) {
         // For use by subclassers.
     }
 }
 
 extension GroupOperation: OperationQueueDelegate {
-    final public func operationQueue(operationQueue: OperationQueue, willAddOperation operation: NSOperation) {
-        assert(!finishingOperation.finished && !finishingOperation.executing, "cannot add new operations to a group after the group has completed")
+    final public func operationQueue(_ operationQueue: OperationQueue, willAddOperation operation: Foundation.Operation) {
+        assert(!finishingOperation.isFinished && !finishingOperation.isExecuting, "cannot add new operations to a group after the group has completed")
         
         /*
             Some operation in this group has produced a new operation to execute.
@@ -99,11 +99,11 @@ extension GroupOperation: OperationQueueDelegate {
 
     }
     
-    final public func operationQueue(operationQueue: OperationQueue, operationDidFinish operation: NSOperation, withErrors errors: [NSError]) {
-        aggregatedErrors.appendContentsOf(errors)
+    final public func operationQueue(_ operationQueue: OperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [NSError]) {
+        aggregatedErrors.append(contentsOf: errors)
         
         if operation === finishingOperation {
-            internalQueue.suspended = true
+            internalQueue.isSuspended = true
             finish(aggregatedErrors)
         }
         else if operation !== startingOperation {

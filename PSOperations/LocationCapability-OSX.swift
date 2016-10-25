@@ -16,40 +16,46 @@ public struct Location: CapabilityType {
 
     public init() { }
     
-    public func requestStatus(completion: CapabilityStatus -> Void) {
+    public func requestStatus(_ completion: @escaping (CapabilityStatus) -> Void) {
         guard CLLocationManager.locationServicesEnabled() else {
-            completion(.NotAvailable)
+            completion(.notAvailable)
             return
         }
         
         let actual = CLLocationManager.authorizationStatus()
         
         switch actual {
-            case .NotDetermined: completion(.NotDetermined)
-            case .Restricted: completion(.NotAvailable)
-            case .Denied: completion(.Denied)
-            case .Authorized: completion(.Authorized)
+        case .notDetermined:
+            completion(.notDetermined)
+        case .restricted:
+            completion(.notAvailable)
+        case .denied:
+            completion(.denied)
+        case .authorized:
+            completion(.authorized)
+        default:
+            completion(.authorized)
         }
     }
     
-    public func authorize(completion: CapabilityStatus -> Void) {
-        Authorizer.authorize(completion)
+    public func authorize(_ completion: @escaping (CapabilityStatus) -> Void) {
+        Authorizer.authorize(completion: completion)
     }
 }
 
 private let Authorizer = LocationAuthorizer()
 
-private class LocationAuthorizer: NSObject, CLLocationManagerDelegate {
+fileprivate class LocationAuthorizer: NSObject, CLLocationManagerDelegate {
     
     private let manager = CLLocationManager()
-    private var completion: (CapabilityStatus -> Void)?
+    private var completion: ((CapabilityStatus) -> Void)?
     
     override init() {
         super.init()
         manager.delegate = self
     }
     
-    func authorize(completion: CapabilityStatus -> Void) {
+    func authorize(completion: @escaping (CapabilityStatus) -> Void) {
         guard self.completion == nil else {
             fatalError("Attempting to authorize location when a request is already in-flight")
         }
@@ -59,24 +65,27 @@ private class LocationAuthorizer: NSObject, CLLocationManagerDelegate {
         manager.startUpdatingLocation()
         
         // This is helpful when developing an app.
-        assert(NSBundle.mainBundle().objectForInfoDictionaryKey(key) != nil, "Requesting location permission requires the \(key) key in your Info.plist")
+        assert(Bundle.main.object(forInfoDictionaryKey: key) != nil, "Requesting location permission requires the \(key) key in your Info.plist")
     }
     
-    @objc func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if let completion = self.completion where manager == self.manager {
+    
+    @objc func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if let completion = self.completion, manager == self.manager {
             self.completion = nil
             
             switch status {
-                case .Authorized:
-                    completion(.Authorized)
-                case .Denied:
-                    completion(.Denied)
-                case .Restricted:
-                    completion(.NotAvailable)
-                case .NotDetermined:
-                    self.completion = completion
-                    manager.startUpdatingLocation()
-                    manager.stopUpdatingLocation()
+            case .authorized:
+                completion(.authorized)
+            case .denied:
+                completion(.denied)
+            case .restricted:
+                completion(.notAvailable)
+            case .notDetermined:
+                self.completion = completion
+                manager.startUpdatingLocation()
+                manager.stopUpdatingLocation()
+            default:
+                completion(.authorized)
             }
         }
     }

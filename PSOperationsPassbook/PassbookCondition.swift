@@ -12,7 +12,7 @@ import PassKit
 import PSOperations
 
 /// A condition for verifying that Passbook exists and is accessible.
-@available(*, deprecated, message="use Capability(Passbook....) instead")
+@available(*, deprecated, message: "use Capability(Passbook....) instead")
     
 public struct PassbookCondition: OperationCondition {
     
@@ -21,7 +21,7 @@ public struct PassbookCondition: OperationCondition {
     
     public init() { }
     
-    public func dependencyForOperation(operation: Operation) -> NSOperation? {
+    public func dependencyForOperation(_ operation: PSOperations.Operation) -> Foundation.Operation? {
         /*
             There's nothing you can do to make Passbook available if it's not 
             on your device.
@@ -29,16 +29,16 @@ public struct PassbookCondition: OperationCondition {
         return nil
     }
     
-    public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
+    public func evaluateForOperation(_ operation: PSOperations.Operation, completion: @escaping (OperationConditionResult) -> Void) {
         if PKPassLibrary.isPassLibraryAvailable() {
-            completion(.Satisfied)
+            completion(.satisfied)
         }
         else {
-            let error = NSError(code: .ConditionFailed, userInfo: [
-                OperationConditionKey: self.dynamicType.name
+            let error = NSError(code: .conditionFailed, userInfo: [
+                OperationConditionKey: type(of: self).name
             ])
 
-            completion(.Failed(error))
+            completion(.failed(error))
         }
     }
 }

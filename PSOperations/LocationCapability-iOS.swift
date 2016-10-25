@@ -14,34 +14,34 @@ import CoreLocation
 public enum Location: CapabilityType {
     public static let name = "Location"
     
-    case WhenInUse
-    case Always
+    case whenInUse
+    case always
     
-    public func requestStatus(completion: CapabilityStatus -> Void) {
+    public func requestStatus(_ completion: @escaping (CapabilityStatus) -> Void) {
         guard CLLocationManager.locationServicesEnabled() else {
-            completion(.NotAvailable)
+            completion(.notAvailable)
             return
         }
         
         let actual = CLLocationManager.authorizationStatus()
         
         switch actual {
-            case .NotDetermined: completion(.NotDetermined)
-            case .Restricted: completion(.NotAvailable)
-            case .Denied: completion(.Denied)
-            case .AuthorizedAlways: completion(.Authorized)
-            case .AuthorizedWhenInUse:
-                if self == .WhenInUse {
-                    completion(.Authorized)
+            case .notDetermined: completion(.notDetermined)
+            case .restricted: completion(.notAvailable)
+            case .denied: completion(.denied)
+            case .authorizedAlways: completion(.authorized)
+            case .authorizedWhenInUse:
+                if self == .whenInUse {
+                    completion(.authorized)
                 } else {
                     // the user wants .Always, but has .WhenInUse
                     // return .NotDetermined so that we can prompt to upgrade the permission
-                    completion(.NotDetermined)
+                    completion(.notDetermined)
                 }
         }
     }
     
-    public func authorize(completion: CapabilityStatus -> Void) {
+    public func authorize(_ completion: @escaping (CapabilityStatus) -> Void) {
         Authorizer.authorize(self, completion: completion)
     }
 }
@@ -50,16 +50,16 @@ private let Authorizer = LocationAuthorizer()
     
 private class LocationAuthorizer: NSObject, CLLocationManagerDelegate {
     
-    private let manager = CLLocationManager()
-    private var completion: (CapabilityStatus -> Void)?
-    private var kind = Location.WhenInUse
+    fileprivate let manager = CLLocationManager()
+    fileprivate var completion: ((CapabilityStatus) -> Void)?
+    fileprivate var kind = Location.whenInUse
     
     override init() {
         super.init()
         manager.delegate = self
     }
     
-    func authorize(kind: Location, completion: CapabilityStatus -> Void) {
+    func authorize(_ kind: Location, completion: @escaping (CapabilityStatus) -> Void) {
         guard self.completion == nil else {
             fatalError("Attempting to authorize location when a request is already in-flight")
         }
@@ -68,33 +68,33 @@ private class LocationAuthorizer: NSObject, CLLocationManagerDelegate {
         
         let key: String
         switch kind {
-            case .WhenInUse:
+            case .whenInUse:
                 key = "NSLocationWhenInUseUsageDescription"
                 manager.requestWhenInUseAuthorization()
                 
-            case .Always:
+            case .always:
                 key = "NSLocationAlwaysUsageDescription"
                 manager.requestAlwaysAuthorization()
         }
         
         // This is helpful when developing an app.
-        assert(NSBundle.mainBundle().objectForInfoDictionaryKey(key) != nil, "Requesting location permission requires the \(key) key in your Info.plist")
+        assert(Bundle.main.object(forInfoDictionaryKey: key) != nil, "Requesting location permission requires the \(key) key in your Info.plist")
     }
     
-    @objc func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if let completion = self.completion where manager == self.manager && status != .NotDetermined {
+    @objc func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if let completion = self.completion, manager == self.manager && status != .notDetermined {
             self.completion = nil
             
             switch status {
-                case .AuthorizedAlways:
-                    completion(.Authorized)
-                case .AuthorizedWhenInUse:
-                    completion(kind == .WhenInUse ? .Authorized : .Denied)
-                case .Denied:
-                    completion(.Denied)
-                case .Restricted:
-                    completion(.NotAvailable)
-                case .NotDetermined:
+                case .authorizedAlways:
+                    completion(.authorized)
+                case .authorizedWhenInUse:
+                    completion(kind == .whenInUse ? .authorized : .denied)
+                case .denied:
+                    completion(.denied)
+                case .restricted:
+                    completion(.notAvailable)
+                case .notDetermined:
                     fatalError("Unreachable due to the if statement, but included to keep clang happy")
             }
         }
