@@ -1,5 +1,5 @@
 //
-//  Swift3Typealiases.swift
+//  Typealiases.swift
 //  PSOperations
 //
 //  Created by Dev Team on 9/20/16.
