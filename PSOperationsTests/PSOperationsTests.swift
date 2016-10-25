@@ -333,13 +333,18 @@ class PSOperationsTests: XCTestCase {
         let op = DelayOperation(interval: delay)
         
         var done = false
+        let lock = NSLock()
         
         keyValueObservingExpectation(for: op, keyPath: "isFinished") {
             (op, changes) -> Bool in
+            lock.lock()
             if let op = op as? Foundation.Operation, !done {
                 done = op.isFinished
+                lock.unlock()
                 return op.isFinished
             }
+            
+            lock.unlock()
             
             return false
         }
