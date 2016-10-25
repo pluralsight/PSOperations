@@ -10,13 +10,23 @@ This is an adaptation of the sample code provided in the [Advanced NSOperations]
 
 ##Support
 
- - Swift 2.x
+ - Swift 3.x
  - iOS 8.0
  - tvOS 9.0
  - watchOS (undefined deployment target)
  - macOS (undefined deployment target)
  - Extension friendly
  - Tests only run against iOS 9 (latest) and tvOS 9 (latest)
+ 
+Because Swift 3 removes the `NS` prefix on several Foundation types we've added a few typealiases for convenience. We investigated renaming the few classes that conflict but ran into radar://28917706 where frameworks will fallback to Foundation types if the framework doesn't contain the given type i.e. `UIKit.Data` is valid and really is `Foundation.Data`. If we were to rename `Operation` to `PSOperation` usuages of `PSOperations.Operation` would end up using `Foundation.Operation` and potentially break your code. 
+
+Here are the typealiases:
+```
+public typealias PSOperation = Operation
+public typealias PSOperationQueue = OperationQueue
+public typealias PSOperationQueueDelegate = OperationQueueDelegate
+public typealias PSBlockOperation = BlockOperation
+```
 
 ##Installation
 PSOperations supports multiple methods for installing the library in a project.
