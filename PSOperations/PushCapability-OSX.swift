@@ -12,20 +12,23 @@ import Cocoa
 
 public struct Push: CapabilityType {
     
-    public static func didReceiveToken(token: NSData) {
-        authorizer.completeAuthorization(token: token, error: nil)
+    public static func didReceiveToken(_ token: Data) {
+        authorizer.completeAuthorization(token, error: nil)
     }
     
-    public static func didFailRegistration(error: NSError) {
-        authorizer.completeAuthorization(token: nil, error: error)
+    public static func didFailRegistration(_ error: NSError) {
+        authorizer.completeAuthorization(nil, error: error)
     }
     
     public static let name = "Push"
     
     private let types: NSRemoteNotificationType
     
-    public init(types: NSRemoteNotificationType) {
+    public init(application: NSApplication, types: NSRemoteNotificationType) {
         self.types = types
+        if authorizer.application == nil {
+            authorizer.application = application
+        }
     }
     
     public func requestStatus(_ completion: @escaping (CapabilityStatus) -> Void) {
@@ -46,7 +49,8 @@ private let authorizer = PushAuthorizer()
 
 fileprivate class PushAuthorizer {
     
-    var token: NSData?
+    var application: NSApplication?
+    var token: Data?
     var completion: ((CapabilityStatus) -> Void)?
     
     func authorize(types: NSRemoteNotificationType, completion: @escaping (CapabilityStatus) -> Void) {
@@ -55,10 +59,15 @@ fileprivate class PushAuthorizer {
         }
         
         self.completion = completion
-        NSApplication.shared().registerForRemoteNotifications(matching: types)
+        
+        guard let application = application else {
+            fatalError("An application has not yet been configured, so this won't work")
+        }
+        
+        application.registerForRemoteNotifications(matching: types)
     }
     
-    fileprivate func completeAuthorization(token: NSData?, error: NSError?) {
+    fileprivate func completeAuthorization(_ token: Data?, error: NSError?) {
         self.token = token
         
         guard let completion = self.completion else { return }
