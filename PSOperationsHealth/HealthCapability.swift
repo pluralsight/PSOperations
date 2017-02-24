@@ -61,7 +61,7 @@ public struct Health: CapabilityType {
         // This method is smart enough to not re-prompt for access if it has already been granted.
         SharedHealthStore.requestAuthorization(toShare: writeTypes, read: readTypes) { _, error in
             if let error = error {
-                completion(.error(error as NSError))
+                completion(.error(error))
             } else {
                 self.requestStatus(completion)
             }

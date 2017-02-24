@@ -20,7 +20,7 @@ import Foundation
 */
 @objc public protocol OperationQueueDelegate: NSObjectProtocol {
     @objc optional func operationQueue(_ operationQueue: OperationQueue, willAddOperation operation: Foundation.Operation)
-    @objc optional func operationQueue(_ operationQueue: OperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [NSError])
+    @objc optional func operationQueue(_ operationQueue: OperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [Error])
 }
 
 /**

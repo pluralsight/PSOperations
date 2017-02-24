@@ -1,11 +1,24 @@
 import Foundation
 
-public enum CapabilityErrorCode: Int {
-    public static var domain = "CapabilityErrors"
+public enum CapabilityError<FailedCapability: CapabilityType>: ConditionError {
+    public typealias Condition = Capability<FailedCapability>
 
     case notDetermined
     case notAvailable
     case denied
+    case failed(Error)
+}
+
+extension CapabilityError {
+    init?(status: CapabilityStatus) {
+        switch status {
+        case .notDetermined: self = .notDetermined
+        case .authorized: return nil
+        case .denied: self = .denied
+        case .notAvailable: self = .notAvailable
+        case .error(let error): self = .failed(error)
+        }
+    }
 }
 
 public enum CapabilityStatus {
@@ -22,7 +35,7 @@ public enum CapabilityStatus {
     case notAvailable
 
     /// There was an error requesting the status of the capability
-    case error(NSError)
+    case error(Error)
 }
 
 public protocol CapabilityType {
@@ -60,12 +73,8 @@ public struct Capability<C: CapabilityType>: OperationCondition {
     public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
         DispatchQueue.main.async {
             self.capability.requestStatus { status in
-                if let error = status.error {
-                    let conditionError = NSError(code: .conditionFailed, userInfo: [
-                        OperationConditionKey: type(of: self).name,
-                        NSUnderlyingErrorKey: error
-                    ])
-                    completion(.failed(conditionError))
+                if let error = CapabilityError<C>(status: status) {
+                    completion(.failed(error))
                 } else {
                     completion(.satisfied)
                 }
@@ -74,7 +83,7 @@ public struct Capability<C: CapabilityType>: OperationCondition {
     }
 }
 
-private class AuthorizeCapability<C: CapabilityType>: Operation {
+fileprivate class AuthorizeCapability<C: CapabilityType>: Operation {
     fileprivate let capability: C
 
     init(capability: C) {
@@ -89,7 +98,7 @@ private class AuthorizeCapability<C: CapabilityType>: Operation {
             self.capability.requestStatus { status in
                 switch status {
                 case .notDetermined: self.requestAuthorization()
-                default: self.finishWithError(status.error)
+                default: self.finishWithError(CapabilityError<C>(status: status))
                 }
             }
         }
@@ -98,26 +107,8 @@ private class AuthorizeCapability<C: CapabilityType>: Operation {
     fileprivate func requestAuthorization() {
         DispatchQueue.main.async {
             self.capability.authorize { status in
-                self.finishWithError(status.error)
+                self.finishWithError(CapabilityError<C>(status: status))
             }
-        }
-    }
-}
-
-private extension NSError {
-    convenience init(capabilityErrorCode: CapabilityErrorCode) {
-        self.init(domain: CapabilityErrorCode.domain, code: capabilityErrorCode.rawValue, userInfo: [:])
-    }
-}
-
-private extension CapabilityStatus {
-    var error: NSError? {
-        switch self {
-        case .notDetermined: return NSError(capabilityErrorCode: .notDetermined)
-        case .authorized: return nil
-        case .denied: return NSError(capabilityErrorCode: .denied)
-        case .notAvailable: return NSError(capabilityErrorCode: .notAvailable)
-        case .error(let e): return e
         }
     }
 }

@@ -14,8 +14,7 @@ import Foundation
     the user's location, but you do not want to prompt them for permission if you 
     do not already have it.
 */
-public
-struct SilentCondition<T: OperationCondition>: OperationCondition {
+public struct SilentCondition<T: OperationCondition>: OperationCondition {
     let condition: T
 
     public static var name: String {

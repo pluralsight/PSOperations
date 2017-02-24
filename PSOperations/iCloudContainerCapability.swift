@@ -8,8 +8,8 @@
 
 #if !os(watchOS)
 
-import CloudKit
 import Foundation
+import CloudKit
 
 public struct iCloudContainer: CapabilityType {
 
@@ -37,21 +37,20 @@ private func verifyAccountStatus(_ container: CKContainer, permission: CKContain
     container.accountStatus { accountStatus, accountError in
 
         func completeWithError() {
-            let error = accountError ?? NSError(domain: CKErrorDomain, code: CKError.notAuthenticated.rawValue, userInfo: nil)
-            completion(.error(error as NSError))
+            completion(.error(accountError ?? CKError(.notAuthenticated)))
         }
 
         switch accountStatus {
         case .noAccount: completion(.notAvailable)
         case .restricted: completion(.notAvailable)
-        case .couldNotDetermine:
-            completeWithError()
         case .available:
             if permission != [] {
                 verifyPermission(container, permission: permission, shouldRequest: shouldRequest, completion: completion)
             } else {
                 completion(.authorized)
             }
+        case .couldNotDetermine:
+            completeWithError()
         @unknown default:
             completeWithError()
         }
@@ -62,8 +61,7 @@ private func verifyPermission(_ container: CKContainer, permission: CKContainer.
     container.status(forApplicationPermission: permission) { permissionStatus, permissionError in
 
         func completeWithError() {
-            let error = permissionError ?? NSError(domain: CKErrorDomain, code: CKError.permissionFailure.rawValue, userInfo: nil)
-            completion(.error(error as NSError))
+            completion(.error(permissionError ?? CKError(.permissionFailure)))
         }
 
         switch permissionStatus {
@@ -91,8 +89,7 @@ private func requestPermission(_ container: CKContainer, permission: CKContainer
             case .denied: completion(.denied)
             case .granted: completion(.authorized)
             case .couldNotComplete:
-                let error = requestError ?? NSError(domain: CKErrorDomain, code: CKError.permissionFailure.rawValue, userInfo: nil)
-                completion(.error(error as NSError))
+                completion(.error(requestError ?? CKError(.permissionFailure)))
             @unknown default:
                 completion(.notDetermined)
             }

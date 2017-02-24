@@ -17,7 +17,12 @@ import SystemConfiguration
     Reachability is evaluated once when the operation to which this is attached is asked about its readiness.
 */
 public struct ReachabilityCondition: OperationCondition {
-    public static let hostKey = "Host"
+    public struct Error: ConditionError {
+        public typealias Condition = ReachabilityCondition
+
+        public let reachabilityHost: URL
+    }
+
     public static let name = "Reachability"
     public static let isMutuallyExclusive = false
 
@@ -36,12 +41,7 @@ public struct ReachabilityCondition: OperationCondition {
             if reachable {
                 completion(.satisfied)
             } else {
-                let error = NSError(code: .conditionFailed, userInfo: [
-                    OperationConditionKey: type(of: self).name,
-                    type(of: self).hostKey: self.host
-                ])
-
-                completion(.failed(error))
+                completion(.failed(Error(reachabilityHost: self.host)))
             }
         }
     }

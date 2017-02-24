@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D2DE5F51F55D1EE0080FF4F /* QualityOfService+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2DE5F41F55D1EE0080FF4F /* QualityOfService+.swift */; };
 		1D2DE6231F5600540080FF4F /* DispatchQueue+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2DE6221F5600540080FF4F /* DispatchQueue+.swift */; };
-		1D4FCFAF21FFB3350038D6BC /* OperationErrorCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C52B1BBD6447008FB96E /* OperationErrorCodeTests.swift */; };
+		1D4FCFAF21FFB3350038D6BC /* ConditionErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C52B1BBD6447008FB96E /* ConditionErrorTests.swift */; };
 		1D4FCFB021FFB3350038D6BC /* URLSessionTaskOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */; };
 		1D4FCFB121FFB3350038D6BC /* OperationConditionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */; };
 		1D4FCFB221FFB3350038D6BC /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */; };
@@ -29,7 +29,6 @@
 		1D9B43511B6A934A008F7F18 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43321B6A934A008F7F18 /* OperationObserver.swift */; };
 		1D9B43521B6A934A008F7F18 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43331B6A934A008F7F18 /* BlockObserver.swift */; };
 		1D9B43531B6A934A008F7F18 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43341B6A934A008F7F18 /* TimeoutObserver.swift */; };
-		1D9B43541B6A934A008F7F18 /* OperationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43351B6A934A008F7F18 /* OperationErrors.swift */; };
 		1D9B43551B6A934A008F7F18 /* OperationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43361B6A934A008F7F18 /* OperationCondition.swift */; };
 		1D9B43561B6A934A008F7F18 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43371B6A934A008F7F18 /* SilentCondition.swift */; };
 		1D9B43571B6A934A008F7F18 /* NegatedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43381B6A934A008F7F18 /* NegatedCondition.swift */; };
@@ -71,7 +70,7 @@
 		FDB1BBBE1B8D67CB00FB9D7A /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */; };
 		FDB1E8F21BBC2B08006BC157 /* OperationConditionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */; };
 		FDC6C5291BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */; };
-		FDC6C52C1BBD6447008FB96E /* OperationErrorCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C52B1BBD6447008FB96E /* OperationErrorCodeTests.swift */; };
+		FDC6C52C1BBD6447008FB96E /* ConditionErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C52B1BBD6447008FB96E /* ConditionErrorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,7 +140,6 @@
 		1D9B43321B6A934A008F7F18 /* OperationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationObserver.swift; sourceTree = "<group>"; };
 		1D9B43331B6A934A008F7F18 /* BlockObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockObserver.swift; sourceTree = "<group>"; };
 		1D9B43341B6A934A008F7F18 /* TimeoutObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeoutObserver.swift; sourceTree = "<group>"; };
-		1D9B43351B6A934A008F7F18 /* OperationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationErrors.swift; sourceTree = "<group>"; };
 		1D9B43361B6A934A008F7F18 /* OperationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCondition.swift; sourceTree = "<group>"; };
 		1D9B43371B6A934A008F7F18 /* SilentCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentCondition.swift; sourceTree = "<group>"; };
 		1D9B43381B6A934A008F7F18 /* NegatedCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegatedCondition.swift; sourceTree = "<group>"; };
@@ -182,7 +180,7 @@
 		FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
 		FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationConditionResultTests.swift; sourceTree = "<group>"; };
 		FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperationTests.swift; sourceTree = "<group>"; };
-		FDC6C52B1BBD6447008FB96E /* OperationErrorCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationErrorCodeTests.swift; sourceTree = "<group>"; };
+		FDC6C52B1BBD6447008FB96E /* ConditionErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionErrorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,7 +331,7 @@
 		1D9B431D1B6A92ED008F7F18 /* PSOperationsTests */ = {
 			isa = PBXGroup;
 			children = (
-				FDC6C52B1BBD6447008FB96E /* OperationErrorCodeTests.swift */,
+				FDC6C52B1BBD6447008FB96E /* ConditionErrorTests.swift */,
 				FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */,
 				FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */,
 				1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */,
@@ -385,7 +383,6 @@
 		1D9B436B1B6A93B0008F7F18 /* Conditions */ = {
 			isa = PBXGroup;
 			children = (
-				1D9B43351B6A934A008F7F18 /* OperationErrors.swift */,
 				1D9B43361B6A934A008F7F18 /* OperationCondition.swift */,
 				1D9B43371B6A934A008F7F18 /* SilentCondition.swift */,
 				1D9B43381B6A934A008F7F18 /* NegatedCondition.swift */,
@@ -839,7 +836,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D4FCFAF21FFB3350038D6BC /* OperationErrorCodeTests.swift in Sources */,
+				1D4FCFAF21FFB3350038D6BC /* ConditionErrorTests.swift in Sources */,
 				1D4FCFB021FFB3350038D6BC /* URLSessionTaskOperationTests.swift in Sources */,
 				1D4FCFB121FFB3350038D6BC /* OperationConditionResultTests.swift in Sources */,
 				1D4FCFB221FFB3350038D6BC /* PSOperationsTests.swift in Sources */,
@@ -876,7 +873,6 @@
 				1D9B43571B6A934A008F7F18 /* NegatedCondition.swift in Sources */,
 				1D9B434D1B6A934A008F7F18 /* GroupOperation.swift in Sources */,
 				1D9B43501B6A934A008F7F18 /* DelayOperation.swift in Sources */,
-				1D9B43541B6A934A008F7F18 /* OperationErrors.swift in Sources */,
 				1D9B43561B6A934A008F7F18 /* SilentCondition.swift in Sources */,
 				1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */,
 				1D9B435A1B6A934A008F7F18 /* ReachabilityCondition.swift in Sources */,
@@ -889,7 +885,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDB1E8F21BBC2B08006BC157 /* OperationConditionResultTests.swift in Sources */,
-				FDC6C52C1BBD6447008FB96E /* OperationErrorCodeTests.swift in Sources */,
+				FDC6C52C1BBD6447008FB96E /* ConditionErrorTests.swift in Sources */,
 				FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */,
 				FDC6C5291BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift in Sources */,
 			);
@@ -1016,7 +1012,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1041,7 +1036,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1099,6 +1093,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1151,6 +1146,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1177,8 +1173,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1203,7 +1197,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1219,8 +1212,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos macosx watchsimulator watchos";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1234,7 +1225,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos macosx watchsimulator watchos";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1256,8 +1246,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1281,7 +1269,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1305,8 +1292,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1330,7 +1315,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1347,7 +1331,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1362,7 +1345,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1377,7 +1359,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTestsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PSOperationsAppForTests.app/PSOperationsAppForTests";
 			};
 			name = Debug;
@@ -1391,7 +1372,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTestsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PSOperationsAppForTests.app/PSOperationsAppForTests";
 			};
 			name = Release;
@@ -1414,8 +1394,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1439,7 +1417,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1463,8 +1440,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1488,7 +1463,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};

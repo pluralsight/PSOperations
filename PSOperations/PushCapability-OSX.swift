@@ -12,11 +12,11 @@ import Cocoa
 
 public struct Push: CapabilityType {
 
-    public static func didReceiveToken(token: NSData) {
+    public static func didReceiveToken(token: Data) {
         authorizer.completeAuthorization(token: token, error: nil)
     }
 
-    public static func didFailRegistration(error: NSError) {
+    public static func didFailRegistration(error: Error) {
         authorizer.completeAuthorization(token: nil, error: error)
     }
 
@@ -45,7 +45,7 @@ private let authorizer = PushAuthorizer()
 
 private class PushAuthorizer {
 
-    var token: NSData?
+    var token: Data?
     var completion: ((CapabilityStatus) -> Void)?
 
     func authorize(types: NSApplication.RemoteNotificationType, completion: @escaping (CapabilityStatus) -> Void) {
@@ -57,7 +57,7 @@ private class PushAuthorizer {
         NSApplication.shared.registerForRemoteNotifications(matching: types)
     }
 
-    fileprivate func completeAuthorization(token: NSData?, error: NSError?) {
+    fileprivate func completeAuthorization(token: Data?, error: Error?) {
         self.token = token
 
         guard let completion = self.completion else { return }
