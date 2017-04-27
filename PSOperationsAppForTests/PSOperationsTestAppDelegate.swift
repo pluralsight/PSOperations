@@ -10,7 +10,7 @@ import UIKit
 import PSOperations
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class PSOperationsTestAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 

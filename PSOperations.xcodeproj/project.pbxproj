@@ -48,7 +48,7 @@
 		55AE64DA1BC1C7430097F4A5 /* PushCapability-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64D91BC1C7430097F4A5 /* PushCapability-iOS.swift */; };
 		55AE64DC1BC1C7E50097F4A5 /* PushCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */; };
 		55AE64DE1BC1DCF50097F4A5 /* UserNotificationCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */; };
-		FD19C9D31C440293005D0F07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9D21C440293005D0F07 /* AppDelegate.swift */; };
+		FD19C9D31C440293005D0F07 /* PSOperationsTestAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9D21C440293005D0F07 /* PSOperationsTestAppDelegate.swift */; };
 		FD19C9D51C440293005D0F07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9D41C440293005D0F07 /* ViewController.swift */; };
 		FD19C9D81C440293005D0F07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD19C9D61C440293005D0F07 /* Main.storyboard */; };
 		FD19C9DA1C440293005D0F07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD19C9D91C440293005D0F07 /* Assets.xcassets */; };
@@ -134,7 +134,7 @@
 		55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PushCapability-OSX.swift"; sourceTree = "<group>"; };
 		55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCapability.swift; sourceTree = "<group>"; };
 		FD19C9D01C440293005D0F07 /* PSOperationsAppForTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSOperationsAppForTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD19C9D21C440293005D0F07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FD19C9D21C440293005D0F07 /* PSOperationsTestAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSOperationsTestAppDelegate.swift; sourceTree = "<group>"; };
 		FD19C9D41C440293005D0F07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FD19C9D71C440293005D0F07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FD19C9D91C440293005D0F07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -367,7 +367,7 @@
 		FD19C9D11C440293005D0F07 /* PSOperationsAppForTests */ = {
 			isa = PBXGroup;
 			children = (
-				FD19C9D21C440293005D0F07 /* AppDelegate.swift */,
+				FD19C9D21C440293005D0F07 /* PSOperationsTestAppDelegate.swift */,
 				FD19C9D41C440293005D0F07 /* ViewController.swift */,
 				FD19C9D61C440293005D0F07 /* Main.storyboard */,
 				FD19C9D91C440293005D0F07 /* Assets.xcassets */,
@@ -713,7 +713,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD19C9D51C440293005D0F07 /* ViewController.swift in Sources */,
-				FD19C9D31C440293005D0F07 /* AppDelegate.swift in Sources */,
+				FD19C9D31C440293005D0F07 /* PSOperationsTestAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
