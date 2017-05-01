@@ -1022,7 +1022,7 @@ class PSOperationsTests: XCTestCase {
     func testOperationQueueNotGettingStuck() {
         
         var opCount = 0
-        var requiredToPassCount = 25_000
+        var requiredToPassCount = 5_000
         let q = PSOperations.OperationQueue()
         
         let exp = expectation(description: "requiredToPassCount")
