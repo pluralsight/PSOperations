@@ -62,11 +62,8 @@ open class DelayOperation: Operation {
         }
         
         let when = DispatchTime.now() + interval
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).asyncAfter(deadline: when) {
-            // If we were cancelled, then finish() has already been called.
-            if !self.isCancelled {
-                self.finish()
-            }
+        DispatchQueue.global(qos: .default).asyncAfter(deadline: when) { [weak self] in
+            self?.finish()
         }
     }
 }
