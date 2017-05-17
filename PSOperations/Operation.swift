@@ -380,10 +380,9 @@ open class Operation: Foundation.Operation {
         A private property to ensure we only notify the observers once that the 
         operation has finished.
     */
-    fileprivate var hasFinishedAlready = false
+    fileprivate var hasFinishedAlready: UInt8 = 0
     public final func finish(_ errors: [NSError] = []) {
-        if !hasFinishedAlready {
-            hasFinishedAlready = true
+        if !OSAtomicTestAndSet(0, &hasFinishedAlready) {
             state = .finishing
             
             _internalErrors += errors
