@@ -1035,7 +1035,7 @@ class PSOperationsTests: XCTestCase {
             }
             
             let blockOp = PSOperations.BlockOperation {
-                (finishBlock: (Void) -> Void) in
+                (finishBlock: () -> Void) in
                 finishBlock()
                 go()
             }
