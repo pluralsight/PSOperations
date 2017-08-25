@@ -121,3 +121,13 @@ extension GroupOperation: OperationQueueDelegate {
         }
     }
 }
+
+/* Internal extensions for UnitTesting */
+
+extension GroupOperation {
+    func stubGroupOperation(withError error: NSError) {
+        internalQueue.cancelAllOperations()
+        cancelWithError(error)
+    }
+}
+
