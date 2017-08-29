@@ -45,11 +45,7 @@ open class OperationQueue: Foundation.OperationQueue {
                 },
                 finishHandler: { [weak self] finishedOperation, errors in
                     if let q = self {
-                        
                         q.delegate?.operationQueue?(q, operationDidFinish: finishedOperation, withErrors: errors)
-                        //Remove deps to avoid cascading deallocation error
-                        //http://stackoverflow.com/questions/19693079/nsoperationqueue-bug-with-dependencies
-                        finishedOperation.dependencies.forEach { finishedOperation.removeDependency($0) }
                     }
                 }
             )
@@ -71,7 +67,7 @@ open class OperationQueue: Foundation.OperationQueue {
                 dependencies to enforce mutual exclusivity.
             */
             let concurrencyCategories: [String] = op.conditions.flatMap { condition in
-                if !type(of: condition).isMutuallyExclusive { return nil }
+                guard type(of: condition).isMutuallyExclusive else { return nil }
                 
                 return "\(type(of: condition))"
             }
@@ -97,9 +93,6 @@ open class OperationQueue: Foundation.OperationQueue {
             operation.addCompletionBlock { [weak self, weak operation] in
                 guard let queue = self, let operation = operation else { return }
                 queue.delegate?.operationQueue?(queue, operationDidFinish: operation, withErrors: [])
-                //Remove deps to avoid cascading deallocation error
-                //http://stackoverflow.com/questions/19693079/nsoperationqueue-bug-with-dependencies
-                operation.dependencies.forEach { operation.removeDependency($0) }
             }
         }
         
