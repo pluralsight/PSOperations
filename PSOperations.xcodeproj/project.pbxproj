@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D2DE5F51F55D1EE0080FF4F /* QualityOfService+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2DE5F41F55D1EE0080FF4F /* QualityOfService+.swift */; };
+		1D2DE6231F5600540080FF4F /* DispatchQueue+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2DE6221F5600540080FF4F /* DispatchQueue+.swift */; };
 		1D57B1E51D919D38008333C7 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D57B1E41D919D38008333C7 /* Typealiases.swift */; };
 		1D9B43141B6A92ED008F7F18 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D9B431A1B6A92ED008F7F18 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		1D2DE5F41F55D1EE0080FF4F /* QualityOfService+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QualityOfService+.swift"; sourceTree = "<group>"; };
+		1D2DE6221F5600540080FF4F /* DispatchQueue+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+.swift"; sourceTree = "<group>"; };
 		1D57B1E41D919D38008333C7 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D9B43121B6A92ED008F7F18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */,
 				1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */,
 				1D2DE5F41F55D1EE0080FF4F /* QualityOfService+.swift */,
+				1D2DE6221F5600540080FF4F /* DispatchQueue+.swift */,
 			);
 			name = "Convenience Extensions";
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				1D9B43591B6A934A008F7F18 /* MutuallyExclusive.swift in Sources */,
 				55AE64DE1BC1DCF50097F4A5 /* UserNotificationCapability.swift in Sources */,
 				1D9B434F1B6A934A008F7F18 /* LocationOperation.swift in Sources */,
+				1D2DE6231F5600540080FF4F /* DispatchQueue+.swift in Sources */,
 				1D9B434C1B6A934A008F7F18 /* BlockOperation.swift in Sources */,
 				1D9B43631B6A934A008F7F18 /* Dictionary+Operations.swift in Sources */,
 				55AE64CD1BC1738D0097F4A5 /* LocationCapability-iOS.swift in Sources */,

@@ -62,7 +62,7 @@ open class DelayOperation: Operation {
         }
         
         let when = DispatchTime.now() + interval
-        DispatchQueue.global(qos: .init(qos: qualityOfService)).asyncAfter(deadline: when) { [weak self] in
+        DispatchQueue.global(qos: qualityOfService).asyncAfter(deadline: when) { [weak self] in
             self?.finish()
         }
     }
