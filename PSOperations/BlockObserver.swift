@@ -12,7 +12,7 @@ import Foundation
     The `BlockObserver` is a way to attach arbitrary blocks to significant events 
     in an `Operation`'s lifecycle.
 */
-public struct BlockObserver: OperationObserver {
+public class BlockObserver: OperationObserver {
     // MARK: Properties
     
     fileprivate let startHandler: ((Operation) -> Void)?
