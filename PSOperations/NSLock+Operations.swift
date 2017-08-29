@@ -16,12 +16,3 @@ extension NSLock {
         return value
     }
 }
-
-extension NSRecursiveLock {
-    func withCriticalScope<T>(_ block: () -> T) -> T {
-        lock()
-        let value = block()
-        unlock()
-        return value
-    }
-}
