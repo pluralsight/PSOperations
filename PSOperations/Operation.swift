@@ -62,7 +62,7 @@ open class Operation: Foundation.Operation {
             return
         }
         
-        guard super.isReady && !isReady && !isCancelled && state == .pending else { return }
+        guard super.isReady && !isCancelled && state == .pending else { return }
         evaluateConditions()
     }
 
