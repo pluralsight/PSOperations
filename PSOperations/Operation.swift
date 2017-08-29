@@ -372,12 +372,3 @@ open class Operation: Foundation.Operation {
     }
     
 }
-
-// Simple operator functions to simplify the assertions used above.
-private func <(lhs: Operation.State, rhs: Operation.State) -> Bool {
-    return lhs.rawValue < rhs.rawValue
-}
-
-private func ==(lhs: Operation.State, rhs: Operation.State) -> Bool {
-    return lhs.rawValue == rhs.rawValue
-}
