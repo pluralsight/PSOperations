@@ -1,6 +1,6 @@
 # PSOperations
 
-[![codebeat badge](https://codebeat.co/badges/5a8fa0e4-178b-499b-9947-98bf69013b7f)](https://codebeat.co/projects/github-com-pluralsight-psoperations) ![](https://travis-ci.org/pluralsight/PSOperations.svg)
+[![codebeat badge](https://codebeat.co/badges/5a8fa0e4-178b-499b-9947-98bf69013b7f)](https://codebeat.co/projects/github-com-pluralsight-psoperations) [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=5907e956138a4e0001f3fbaf&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/5907e956138a4e0001f3fbaf/build/latest?branch=master)
 
 PSOperations is a framework that leverages the power of NSOperation and NSOperationQueue. It enables you to use operations more easily in all parts of your project.
 
