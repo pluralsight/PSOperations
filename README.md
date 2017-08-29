@@ -1,6 +1,6 @@
 # PSOperations
 
-[![codebeat badge](https://codebeat.co/badges/5a8fa0e4-178b-499b-9947-98bf69013b7f)](https://codebeat.co/projects/github-com-pluralsight-psoperations) ![](https://travis-ci.org/pluralsight/PSOperations.svg)
+[![codebeat badge](https://codebeat.co/badges/5a8fa0e4-178b-499b-9947-98bf69013b7f)](https://codebeat.co/projects/github-com-pluralsight-psoperations) [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=5907e956138a4e0001f3fbaf&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/5907e956138a4e0001f3fbaf/build/latest?branch=master)
 
 PSOperations is a framework that leverages the power of NSOperation and NSOperationQueue. It enables you to use operations more easily in all parts of your project.
 
@@ -8,7 +8,7 @@ This is an adaptation of the sample code provided in the [Advanced NSOperations]
 
 
 
-##Support
+## Support
 
  - Swift 3.x
  - iOS 8.0
@@ -18,7 +18,7 @@ This is an adaptation of the sample code provided in the [Advanced NSOperations]
  - Extension friendly
  - Tests only run against iOS 9 (latest) and tvOS 9 (latest)
 
-###Swift 3
+### Swift 3
 Because Swift 3 removes the `NS` prefix on several Foundation types we've added a few typealiases for convenience. We investigated renaming the few classes that conflict but ran into radar://28917706 where frameworks will fallback to Foundation types if the framework doesn't contain the given type i.e. `UIKit.Data` is valid and really is `Foundation.Data`. If we were to rename `Operation` to `PSOperation` usuages of `PSOperations.Operation` would end up using `Foundation.Operation` and potentially break your code. 
 
 Here are the typealiases:
@@ -29,10 +29,10 @@ public typealias PSOperationQueueDelegate = OperationQueueDelegate
 public typealias PSBlockOperation = BlockOperation
 ```
 
-##Installation
+## Installation
 PSOperations supports multiple methods for installing the library in a project.
 
-###CocoaPods
+### CocoaPods
 [CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like PSOperations in your projects.
 
  You can install it with the following command:
@@ -75,7 +75,7 @@ Core functionality, including only the Health capability:
 pod 'PSOperations/Health', '~> 3.0'
 ```
 
-###Carthage
+### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 
 You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
@@ -93,7 +93,7 @@ github "pluralsight/PSOperations"
 
 Run `carthage` to build the framework and drag the built `PSOperations.framework` into your Xcode project. Optionally you can add `PSOperationsHealth.framework` and `PSOperationsPassbook.framework`
 
-##Getting started
+## Getting started
 
 Don't forget to import!
 ```
@@ -115,7 +115,7 @@ The OperationQueue is the heartbeat and is a subclass of NSOperationQueue:
 let operationQueue = OperationQueue()
 ```
 
-####Create an Operation
+#### Create an Operation
 `Operation` is a subclass of `NSOperation`. Like `NSOperation` it doesn't do much. But PSOperations provides a few helpful subclasses such as:
 ```
 BlockOperation
@@ -134,7 +134,7 @@ let blockOperation = BlockOperation {
 operationQueue.addOperation(blockOperation)
 ```
 
-####Observe an Operation
+#### Observe an Operation
 `Operation` instances can be observed for starting, cancelling, finishing and producing new operations with the `OperationObserver` protocol.
 
 PSOperations provide a couple of types that implement the protocol:
@@ -158,7 +158,7 @@ blockOperation.addObserver(finishObserver)
 operationQueue.addOperation(blockOperation)
 ```
 
-####Set Conditions on an Operation
+#### Set Conditions on an Operation
 `Operation` instances can have conditions required to be met in order to execute using the `OperationCondition` protocol.
 
 PSOperations provide a several types that implement the protocol:
@@ -189,7 +189,7 @@ operationQueue.addOperation(dependentOperation)
 
 if `blockOperation` is cancelled, `dependentOperation` will not execute.
 
-####Set Capabilities on an Operation
+#### Set Capabilities on an Operation
 A `CapabilityType` is used by the `Capability` condition and allows you to easily view the authorization state and request the authorization of certain capabilities within Apple's ecosystem. i.e. Calendar, Photos, iCloud, Location, and Push Notification.
 
 Here is a quick example:
@@ -208,7 +208,7 @@ operationQueue.addOperation(blockOperation)
 
 This operation requires access to Photos and will request access to them if needed.
 
-####Going custom
+#### Going custom
 The examples above provide simple jobs but PSOperations can be involved in many parts of your application. Here is a custom `UIStoryboardSegue` that leverages the power of PSOperations. The segue is retained until an operation is completed. This is a generic `OperationSegue` that will run any given operation. One use case for this might be an authentication operation that ensures a user is authenticated before preceding with the segue. The authentication operation could even present authentication UI if needed.
 
 ```
@@ -256,12 +256,12 @@ class OperationSegue: UIStoryboardSegue {
 
 ```
 
-##Contribute
+## Contribute
 
 
 Feel free to submit pull requests, as we are always looking for improvements from the community.
 
-##WWDC Differences
+## WWDC Differences
 
 Differences from the first version of the WWDC sample code:
 
