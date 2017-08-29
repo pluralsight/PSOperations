@@ -16,6 +16,8 @@ import Foundation
 */
 open class Operation: Foundation.Operation {
     
+    private var observerContext = 4321
+    
     /* The completionBlock property has unexpected behaviors such as executing twice and executing on unexpected threads. BlockObserver
      * executes in an expected manner.
      */
@@ -29,12 +31,7 @@ open class Operation: Foundation.Operation {
         }
     }
     
-    
     // use the KVO mechanism to indicate that changes to "state" affect other properties as well
-    class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
-        return ["state" as NSObject, "cancelledState" as NSObject]
-    }
-    
     class func keyPathsForValuesAffectingIsExecuting() -> Set<NSObject> {
         return ["state" as NSObject]
     }
@@ -45,6 +42,15 @@ open class Operation: Foundation.Operation {
     
     class func keyPathsForValuesAffectingIsCancelled() -> Set<NSObject> {
         return ["cancelledState" as NSObject]
+    }
+    
+    public override init() {
+        super.init()
+        self.addObserver(self, forKeyPath: "isReady", context: &observerContext)
+    }
+    
+    deinit {
+        self.removeObserver(self, forKeyPath: "isReady", context: &observerContext)
     }
     
     // MARK: State Management
@@ -142,48 +148,49 @@ open class Operation: Foundation.Operation {
                 
                 assert(_state.canTransitionToState(newState, operationIsCancelled: isCancelled), "Performing invalid state transition.")
                 _state = newState
+                updateReadiness()
             }
             
             didChangeValue(forKey: "state")
         }
     }
     
-    // Here is where we extend our definition of "readiness".
-    override open var isReady: Bool {
-        
-        var _ready = false
-        
-        stateLock.withCriticalScope {
-            switch state {
-                
-            case .initialized:
-                // If the operation has been cancelled, "isReady" should return true
-                _ready = isCancelled
-                
-            case .pending:
-                // If the operation has been cancelled, "isReady" should return true
-                guard !isCancelled else {
-                    state = .ready
-                    _ready = true
-                    return
-                }
-                
-                // If super isReady, conditions can be evaluated
-                if super.isReady {
-                    evaluateConditions()
-                    _ready = state == .ready
-                }
-                
-            case .ready:
-                _ready = super.isReady || isCancelled
-                
-            default:
-                _ready = false
-            }
-            
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if context == &observerContext {
+            updateReadiness()
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
-        
-        return _ready
+    }
+
+    private func updateReadiness() {
+        stateLock.withCriticalScope {
+            let cancelled = isCancelled
+            
+            if state == .pending {
+                if cancelled {
+                    state = .ready
+                } else if super.isReady {
+                    evaluateConditions()
+                }
+            }
+
+            // Generate KVO notitification only once when operation is really ready
+            let newReady = state >= .ready || (state == .initialized && cancelled)
+            if !_ready && newReady {
+                willChangeValue(forKey: "isReady")
+                _ready = true
+                didChangeValue(forKey: "isReady")
+            }
+        }
+    }
+    
+    private var _ready: Bool = false
+    
+    override open var isReady: Bool {
+        return stateLock.withCriticalScope {
+            return _ready && super.isReady
+        }
     }
     
     open var userInitiated: Bool {
@@ -214,6 +221,7 @@ open class Operation: Foundation.Operation {
         didSet {
             didChangeValue(forKey: "cancelledState")
             if _cancelled != oldValue && _cancelled == true {
+                updateReadiness()
                 
                 for observer in observers {
                     observer.operationDidCancel(self)
@@ -380,10 +388,9 @@ open class Operation: Foundation.Operation {
         A private property to ensure we only notify the observers once that the 
         operation has finished.
     */
-    fileprivate var hasFinishedAlready = false
+    fileprivate var hasFinishedAlready: UInt8 = 0
     public final func finish(_ errors: [NSError] = []) {
-        if !hasFinishedAlready {
-            hasFinishedAlready = true
+        if !OSAtomicTestAndSet(0, &hasFinishedAlready) {
             state = .finishing
             
             _internalErrors += errors
