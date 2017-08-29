@@ -25,8 +25,26 @@ open class GroupOperation: Operation {
     fileprivate let internalQueue = OperationQueue()
     fileprivate let startingOperation = Foundation.BlockOperation(block: {})
     fileprivate let finishingOperation = Foundation.BlockOperation(block: {})
-
-    fileprivate var aggregatedErrors = [NSError]()
+    
+    private var _aggregatedErrors: [NSError] = []
+    private let aggregateQueue = DispatchQueue(label: "Operations.GroupOperations.aggregateErrors", attributes: .concurrent)
+    fileprivate var aggregatedErrors: [NSError] {
+        get {
+            var errors: [NSError] = []
+            aggregateQueue.sync {
+                errors = _aggregatedErrors
+            }
+            return errors
+        }
+        set {
+            aggregateQueue.async(flags: .barrier) {
+                self._aggregatedErrors = newValue
+            }
+        }
+    }
+    
+    
+    
     
     public convenience init(operations: Foundation.Operation...) {
         self.init(operations: operations)
