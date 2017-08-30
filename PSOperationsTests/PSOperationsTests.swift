@@ -438,20 +438,16 @@ class PSOperationsTests: XCTestCase {
             op.cancel()
         }
         op.addObserver(BlockObserver(
-            startHandler: {
-                _ in
+            startHandler: { _ in
                 startExp.fulfill()
             },
-            cancelHandler: {
-                _ in
+            cancelHandler: { _ in
                 cancelExp.fulfill()
             },
-            produceHandler: {
-                _ in
+            produceHandler: { _, _ in
                 produceExp.fulfill()
             },
-            finishHandler: {
-                _ in
+            finishHandler: { _, _ in
                 finishExp.fulfill()
         }))
         
@@ -763,10 +759,10 @@ class PSOperationsTests: XCTestCase {
             startHandler: { _ in
                 exp1.fulfill()
             },
-            produceHandler: { _ in
+            produceHandler: { _, _ in
                 exp2.fulfill()
             },
-            finishHandler: { _ in
+            finishHandler: { _, _ in
                 exp3.fulfill()
             }
         )
