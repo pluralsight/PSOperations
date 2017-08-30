@@ -30,15 +30,8 @@
 		1D9B43581B6A934A008F7F18 /* NoCancelledDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43391B6A934A008F7F18 /* NoCancelledDependencies.swift */; };
 		1D9B43591B6A934A008F7F18 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */; };
 		1D9B435A1B6A934A008F7F18 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */; };
-		1D9B435B1B6A934A008F7F18 /* CloudCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */; };
-		1D9B435D1B6A934A008F7F18 /* LocationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */; };
-		1D9B435E1B6A934A008F7F18 /* CalendarCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */; };
-		1D9B435F1B6A934A008F7F18 /* PhotosCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */; };
-		1D9B43611B6A934A008F7F18 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */; };
-		1D9B43621B6A934A008F7F18 /* UserNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */; };
 		1D9B43631B6A934A008F7F18 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */; };
 		1D9B43641B6A934A008F7F18 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */; };
-		1D9B43651B6A934A008F7F18 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */; };
 		1D9B43661B6A934A008F7F18 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */; };
 		55AE64C41BC172ED0097F4A5 /* Capability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C31BC172ED0097F4A5 /* Capability.swift */; };
 		55AE64C71BC173100097F4A5 /* CalendarCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C61BC173100097F4A5 /* CalendarCapability.swift */; };
@@ -62,9 +55,7 @@
 		FD85500C1D2D8CC100162079 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD85501D1D2D8D9800162079 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
 		FD85501F1D2D8E0E00162079 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8550191D2D8D3400162079 /* HealthCapability.swift */; };
-		FD8550201D2D8E0E00162079 /* HealthCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85501A1D2D8D3400162079 /* HealthCondition.swift */; };
 		FD8550211D2D8E2200162079 /* PassbookCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8550151D2D8D1D00162079 /* PassbookCapability.swift */; };
-		FD8550221D2D8E2200162079 /* PassbookCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8550161D2D8D1D00162079 /* PassbookCondition.swift */; };
 		FD8550561D2D90A700162079 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
 		FDB1BBBE1B8D67CB00FB9D7A /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */; };
 		FDB1E8F21BBC2B08006BC157 /* OperationConditionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */; };
@@ -117,15 +108,8 @@
 		1D9B43391B6A934A008F7F18 /* NoCancelledDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCancelledDependencies.swift; sourceTree = "<group>"; };
 		1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutuallyExclusive.swift; sourceTree = "<group>"; };
 		1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCondition.swift; sourceTree = "<group>"; };
-		1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudCondition.swift; sourceTree = "<group>"; };
-		1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCondition.swift; sourceTree = "<group>"; };
-		1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCondition.swift; sourceTree = "<group>"; };
-		1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCondition.swift; sourceTree = "<group>"; };
-		1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationCondition.swift; sourceTree = "<group>"; };
-		1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCondition.swift; sourceTree = "<group>"; };
 		1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Operations.swift"; sourceTree = "<group>"; };
 		1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
-		1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKContainer+Operations.swift"; sourceTree = "<group>"; };
 		1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
 		1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSOperationsTests.swift; sourceTree = "<group>"; };
 		55AE64C31BC172ED0097F4A5 /* Capability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capability.swift; sourceTree = "<group>"; };
@@ -152,9 +136,7 @@
 		FD854FDF1D2D8CAB00162079 /* PSOperationsHealth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsHealth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8550111D2D8CC100162079 /* PSOperationsPassbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsPassbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8550151D2D8D1D00162079 /* PassbookCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassbookCapability.swift; path = PSOperationsPassbook/PassbookCapability.swift; sourceTree = "<group>"; };
-		FD8550161D2D8D1D00162079 /* PassbookCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassbookCondition.swift; path = PSOperationsPassbook/PassbookCondition.swift; sourceTree = "<group>"; };
 		FD8550191D2D8D3400162079 /* HealthCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthCapability.swift; path = PSOperationsHealth/HealthCapability.swift; sourceTree = SOURCE_ROOT; };
-		FD85501A1D2D8D3400162079 /* HealthCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthCondition.swift; path = PSOperationsHealth/HealthCondition.swift; sourceTree = SOURCE_ROOT; };
 		FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
 		FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationConditionResultTests.swift; sourceTree = "<group>"; };
 		FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperationTests.swift; sourceTree = "<group>"; };
@@ -324,7 +306,6 @@
 				1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */,
 				1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */,
 				55AE64C51BC173000097F4A5 /* Capabilities */,
-				55AE64D01BC17CFA0097F4A5 /* Deprecated */,
 			);
 			name = Conditions;
 			sourceTree = "<group>";
@@ -357,20 +338,6 @@
 				55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */,
 			);
 			name = Capabilities;
-			sourceTree = "<group>";
-		};
-		55AE64D01BC17CFA0097F4A5 /* Deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				1D9B433F1B6A934A008F7F18 /* CalendarCondition.swift */,
-				1D9B433C1B6A934A008F7F18 /* CloudCondition.swift */,
-				1D9B433E1B6A934A008F7F18 /* LocationCondition.swift */,
-				1D9B43401B6A934A008F7F18 /* PhotosCondition.swift */,
-				1D9B43421B6A934A008F7F18 /* RemoteNotificationCondition.swift */,
-				1D9B43431B6A934A008F7F18 /* UserNotificationCondition.swift */,
-				1D9B43461B6A934A008F7F18 /* CKContainer+Operations.swift */,
-			);
-			name = Deprecated;
 			sourceTree = "<group>";
 		};
 		FD19C9D11C440293005D0F07 /* PSOperationsAppForTests */ = {
@@ -664,12 +631,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D9B43551B6A934A008F7F18 /* OperationCondition.swift in Sources */,
-				1D9B43621B6A934A008F7F18 /* UserNotificationCondition.swift in Sources */,
-				1D9B43651B6A934A008F7F18 /* CKContainer+Operations.swift in Sources */,
 				1D9B43491B6A934A008F7F18 /* OperationQueue.swift in Sources */,
-				1D9B43611B6A934A008F7F18 /* RemoteNotificationCondition.swift in Sources */,
-				1D9B435D1B6A934A008F7F18 /* LocationCondition.swift in Sources */,
-				1D9B435F1B6A934A008F7F18 /* PhotosCondition.swift in Sources */,
 				FD7564EB1EFDBB79006C2C45 /* State.swift in Sources */,
 				1D9B434E1B6A934A008F7F18 /* URLSessionTaskOperation.swift in Sources */,
 				1D9B43511B6A934A008F7F18 /* OperationObserver.swift in Sources */,
@@ -696,8 +658,6 @@
 				55AE64DA1BC1C7430097F4A5 /* PushCapability-iOS.swift in Sources */,
 				1D9B43571B6A934A008F7F18 /* NegatedCondition.swift in Sources */,
 				1D9B434D1B6A934A008F7F18 /* GroupOperation.swift in Sources */,
-				1D9B435E1B6A934A008F7F18 /* CalendarCondition.swift in Sources */,
-				1D9B435B1B6A934A008F7F18 /* CloudCondition.swift in Sources */,
 				1D9B43501B6A934A008F7F18 /* DelayOperation.swift in Sources */,
 				55AE64D21BC180570097F4A5 /* LocationCapability-tvOS.swift in Sources */,
 				1D9B43541B6A934A008F7F18 /* OperationErrors.swift in Sources */,
@@ -742,7 +702,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD85501F1D2D8E0E00162079 /* HealthCapability.swift in Sources */,
-				FD8550201D2D8E0E00162079 /* HealthCondition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,7 +710,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD8550211D2D8E2200162079 /* PassbookCapability.swift in Sources */,
-				FD8550221D2D8E2200162079 /* PassbookCondition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
