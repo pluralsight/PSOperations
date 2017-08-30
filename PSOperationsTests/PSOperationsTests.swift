@@ -747,14 +747,11 @@ class PSOperationsTests: XCTestCase {
     }
     
     func testBlockObserver() {
-        let opQ = PSOperations.OperationQueue()
+        let opQ = PSOperationQueue()
         
-        var op: PSOperations.BlockOperation!
-        op = PSOperations.BlockOperation {
-            let producedOperation = PSOperations.BlockOperation {
-                
-            }
-            
+        var op: PSBlockOperation!
+        op = PSBlockOperation {
+            let producedOperation = PSBlockOperation { }
             op.produceOperation(producedOperation)
         }
         
@@ -763,16 +760,13 @@ class PSOperationsTests: XCTestCase {
         let exp3 = expectation(description: "3")
         
         let blockObserver = BlockObserver (
-            startHandler: {
-                _ in
+            startHandler: { _ in
                 exp1.fulfill()
             },
-            produceHandler: {
-                _ in
+            produceHandler: { _ in
                 exp2.fulfill()
             },
-            finishHandler: {
-                _ in
+            finishHandler: { _ in
                 exp3.fulfill()
             }
         )

@@ -57,6 +57,7 @@
 		FD19C9DD1C440293005D0F07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD19C9DB1C440293005D0F07 /* LaunchScreen.storyboard */; };
 		FD19C9E81C440293005D0F07 /* PSOperationsAppForTestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9E71C440293005D0F07 /* PSOperationsAppForTestsTests.swift */; };
 		FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */; };
+		FD7564EB1EFDBB79006C2C45 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7564EA1EFDBB79006C2C45 /* State.swift */; };
 		FD854FDA1D2D8CAB00162079 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD85500C1D2D8CC100162079 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD85501D1D2D8D9800162079 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
@@ -147,6 +148,7 @@
 		FD19C9E31C440293005D0F07 /* PSOperationsAppForTestsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PSOperationsAppForTestsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD19C9E71C440293005D0F07 /* PSOperationsAppForTestsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSOperationsAppForTestsTests.swift; sourceTree = "<group>"; };
 		FD19C9E91C440293005D0F07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD7564EA1EFDBB79006C2C45 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		FD854FDF1D2D8CAB00162079 /* PSOperationsHealth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsHealth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8550111D2D8CC100162079 /* PSOperationsPassbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsPassbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8550151D2D8D1D00162079 /* PassbookCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassbookCapability.swift; path = PSOperationsPassbook/PassbookCapability.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				1D9B432C1B6A934A008F7F18 /* Operation.swift */,
+				FD7564EA1EFDBB79006C2C45 /* State.swift */,
 				1D9B432D1B6A934A008F7F18 /* BlockOperation.swift */,
 				1D9B432E1B6A934A008F7F18 /* GroupOperation.swift */,
 				1D9B432F1B6A934A008F7F18 /* URLSessionTaskOperation.swift */,
@@ -667,6 +670,7 @@
 				1D9B43611B6A934A008F7F18 /* RemoteNotificationCondition.swift in Sources */,
 				1D9B435D1B6A934A008F7F18 /* LocationCondition.swift in Sources */,
 				1D9B435F1B6A934A008F7F18 /* PhotosCondition.swift in Sources */,
+				FD7564EB1EFDBB79006C2C45 /* State.swift in Sources */,
 				1D9B434E1B6A934A008F7F18 /* URLSessionTaskOperation.swift in Sources */,
 				1D9B43511B6A934A008F7F18 /* OperationObserver.swift in Sources */,
 				1D9B43641B6A934A008F7F18 /* NSOperation+Operations.swift in Sources */,
