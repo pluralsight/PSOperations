@@ -56,14 +56,23 @@ open class Operation: Foundation.Operation {
         self.removeObserver(self, forKeyPath: "isReady", context: &instanceContext)
     }
     
+    private let observerValueChangedQueue = DispatchQueue(label: "Operations.Operation.observerValueChangedQueue")
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &instanceContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
         }
         
-        guard super.isReady && !isCancelled && state == .pending else { return }
-        evaluateConditions()
+        guard shouldEvaluateConditions() else { return }
+        
+        observerValueChangedQueue.async {
+            guard self.shouldEvaluateConditions() else { return }
+            self.evaluateConditions()
+        }
+    }
+    
+    private func shouldEvaluateConditions() -> Bool {
+        return super.isReady && !self.isCancelled && self.state == .pending
     }
 
     /**
@@ -97,7 +106,7 @@ open class Operation: Foundation.Operation {
             willChangeValue(forKey: "state")
             stateQueue.sync {
                 guard _state != .finished else { return }
-                assert(_state.canTransitionToState(newValue, operationIsCancelled: isCancelled), "Performing invalid state transition.")
+                assert(_state.canTransitionToState(newValue, operationIsCancelled: isCancelled), "Performing invalid state transition. from: \(_state) to: \(newValue)")
                 _state = newValue
             }
             didChangeValue(forKey: "state")
