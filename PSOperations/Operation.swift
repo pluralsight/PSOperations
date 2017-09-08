@@ -56,7 +56,6 @@ open class Operation: Foundation.Operation {
         self.removeObserver(self, forKeyPath: "isReady", context: &instanceContext)
     }
     
-    private let observerValueChangedQueue = DispatchQueue(label: "Operations.Operation.observerValueChangedQueue")
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &instanceContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
@@ -236,11 +235,12 @@ open class Operation: Foundation.Operation {
     // MARK: Execution and Cancellation
     override final public func main() {
         stateAccess.lock()
-        defer { stateAccess.unlock() }
+
         assert(state == .ready, "This operation must be performed on an operation queue.")
         
         if _internalErrors.isEmpty && !isCancelled {
             state = .executing
+            stateAccess.unlock()
             
             for observer in observers {
                 observer.operationDidStart(self)
@@ -249,6 +249,7 @@ open class Operation: Foundation.Operation {
             execute()
         } else {
             finish()
+            stateAccess.unlock()
         }
     }
     
