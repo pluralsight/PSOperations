@@ -22,9 +22,9 @@ public struct Push: CapabilityType {
     
     public static let name = "Push"
     
-    private let types: NSRemoteNotificationType
+    private let types: NSApplication.RemoteNotificationType
     
-    public init(types: NSRemoteNotificationType) {
+    public init(types: NSApplication.RemoteNotificationType) {
         self.types = types
     }
     
@@ -49,13 +49,13 @@ fileprivate class PushAuthorizer {
     var token: NSData?
     var completion: ((CapabilityStatus) -> Void)?
     
-    func authorize(types: NSRemoteNotificationType, completion: @escaping (CapabilityStatus) -> Void) {
+    func authorize(types: NSApplication.RemoteNotificationType, completion: @escaping (CapabilityStatus) -> Void) {
         guard self.completion == nil else {
             fatalError("Cannot request push authorization while a request is already in progress")
         }
         
         self.completion = completion
-        NSApplication.shared().registerForRemoteNotifications(matching: types)
+        NSApplication.shared.registerForRemoteNotifications(matching: types)
     }
     
     fileprivate func completeAuthorization(token: NSData?, error: NSError?) {
