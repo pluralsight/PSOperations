@@ -326,23 +326,22 @@ open class Operation: Foundation.Operation {
     */
     fileprivate var hasFinishedAlready = false
     public final func finish(_ errors: [NSError] = []) {
-        if !hasFinishedAlready {
-            stateAccess.lock()
-            defer { stateAccess.unlock() }
-            
-            hasFinishedAlready = true
-            state = .finishing
-            
-            _internalErrors += errors
-          
-            finished(_internalErrors)
-            
-            for observer in observers {
-                observer.operationDidFinish(self, errors: _internalErrors)
-            }
-            
-            state = .finished
+        stateAccess.lock()
+        defer { stateAccess.unlock() }
+        guard !hasFinishedAlready else { return }
+        
+        hasFinishedAlready = true
+        state = .finishing
+        
+        _internalErrors += errors
+        
+        finished(_internalErrors)
+        
+        for observer in observers {
+            observer.operationDidFinish(self, errors: _internalErrors)
         }
+        
+        state = .finished
     }
     
     /**
