@@ -49,9 +49,6 @@ open class OperationQueue: Foundation.OperationQueue {
                         if let delegate = q.delegate {
                             delegate.operationQueue?(q, operationDidFinish: finishedOperation, withErrors: errors)
                         }
-                        //Remove deps to avoid cascading deallocation error
-                        //http://stackoverflow.com/questions/19693079/nsoperationqueue-bug-with-dependencies
-                        finishedOperation.dependencies.forEach { finishedOperation.removeDependency($0) }
                     }
                 }
             )
@@ -101,9 +98,6 @@ open class OperationQueue: Foundation.OperationQueue {
                 if let delegate = queue.delegate {
                     delegate.operationQueue?(queue, operationDidFinish: operation, withErrors: [])
                 }
-                //Remove deps to avoid cascading deallocation error
-                //http://stackoverflow.com/questions/19693079/nsoperationqueue-bug-with-dependencies
-                operation.dependencies.forEach { operation.removeDependency($0) }
             }
         }
         
