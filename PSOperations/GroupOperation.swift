@@ -27,7 +27,7 @@ open class GroupOperation: Operation {
     fileprivate let finishingOperation = Foundation.BlockOperation(block: {})
     
     private var _aggregatedErrors: [NSError] = []
-    private let aggregateQueue = DispatchQueue(label: "Operations.GroupOperations.aggregateErrors", attributes: .concurrent)
+    private let aggregateQueue = DispatchQueue(label: "Operations.GroupOperations.aggregateErrors")
     fileprivate var aggregatedErrors: [NSError] {
         get {
             var errors: [NSError] = []
@@ -37,7 +37,7 @@ open class GroupOperation: Operation {
             return errors
         }
         set {
-            aggregateQueue.async(flags: .barrier) {
+            aggregateQueue.sync {
                 self._aggregatedErrors = newValue
             }
         }
