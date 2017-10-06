@@ -83,14 +83,11 @@ open class Operation: Foundation.Operation {
     private let stateQueue = DispatchQueue(label: "Operations.Operation.state")
     fileprivate var state: State {
         get {
-            var currentState = State.initialized
-            stateQueue.sync {
-                currentState = _state
+            return stateQueue.sync {
+                return _state
             }
-            return currentState
         }
         set {
-//            guard newValue != _state else { return }
             /*
              It's important to note that the KVO notifications are NOT called from inside
              the lock. If they were, the app would deadlock, because in the middle of
@@ -238,7 +235,7 @@ open class Operation: Foundation.Operation {
 
         assert(state == .ready, "This operation must be performed on an operation queue.")
         
-        if _internalErrors.isEmpty && !isCancelled {
+        if internalErrors.isEmpty && !isCancelled {
             state = .executing
             stateAccess.unlock()
             
@@ -269,10 +266,23 @@ open class Operation: Foundation.Operation {
         finish()
     }
     
-    fileprivate var _internalErrors: [NSError] = []
+    private let errorQueue = DispatchQueue(label: "Operations.Operation.internalErrors")
+    private var _internalErrors: [NSError] = []
+    fileprivate var internalErrors: [NSError] {
+        get {
+            return errorQueue.sync {
+                return _internalErrors
+            }
+        }
+        set {
+            errorQueue.sync {
+                _internalErrors = newValue
+            }
+        }
+    }
     
     open var errors : [NSError] {
-        return _internalErrors
+        return internalErrors
     }
   
     override open func cancel() {
@@ -288,7 +298,7 @@ open class Operation: Foundation.Operation {
     }
     
     open func cancelWithErrors(_ errors: [NSError]) {
-        _internalErrors += errors
+        internalErrors += errors
         cancel()
     }
     
@@ -333,12 +343,12 @@ open class Operation: Foundation.Operation {
         hasFinishedAlready = true
         state = .finishing
         
-        _internalErrors += errors
+        internalErrors += errors
         
-        finished(_internalErrors)
+        finished(internalErrors)
         
         for observer in observers {
-            observer.operationDidFinish(self, errors: _internalErrors)
+            observer.operationDidFinish(self, errors: internalErrors)
         }
         
         state = .finished
