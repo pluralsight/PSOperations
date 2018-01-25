@@ -10,7 +10,7 @@ This is an adaptation of the sample code provided in the [Advanced NSOperations]
 
 ## Support
 
- - Swift 3.x
+ - Swift 4.x
  - iOS 8.0
  - tvOS 9.0
  - watchOS (undefined deployment target)
@@ -18,7 +18,7 @@ This is an adaptation of the sample code provided in the [Advanced NSOperations]
  - Extension friendly
  - Tests only run against iOS 9 (latest) and tvOS 9 (latest)
 
-### Swift 3
+### Swift 3+
 Because Swift 3 removes the `NS` prefix on several Foundation types we've added a few typealiases for convenience. We investigated renaming the few classes that conflict but ran into radar://28917706 where frameworks will fallback to Foundation types if the framework doesn't contain the given type i.e. `UIKit.Data` is valid and really is `Foundation.Data`. If we were to rename `Operation` to `PSOperation` usuages of `PSOperations.Operation` would end up using `Foundation.Operation` and potentially break your code. 
 
 Here are the typealiases:
@@ -49,7 +49,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'PSOperations', '~> 3.0'
+pod 'PSOperations', '~> 4.0'
 end
 ```
 
@@ -62,17 +62,17 @@ $ pod install
 **Alternative configurations:**  
 Core functionality, _excluding_ capabilities:
 ```ruby
-pod 'PSOperations/Core', '~> 3.0'
+pod 'PSOperations/Core', '~> 4.0'
 ```
 
 Core functionality, including only the Passbook capability:
 ```ruby
-pod 'PSOperations/Passbook', '~> 3.0'
+pod 'PSOperations/Passbook', '~> 4.0'
 ```
 
 Core functionality, including only the Health capability:
 ```ruby
-pod 'PSOperations/Health', '~> 3.0'
+pod 'PSOperations/Health', '~> 4.0'
 ```
 
 ### Carthage
