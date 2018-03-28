@@ -75,6 +75,11 @@ Core functionality, including only the Health capability:
 pod 'PSOperations/Health', '~> 4.0'
 ```
 
+Core functionality, including only the Calendar capability:
+```ruby
+pod 'PSOperations/Calendar', '~> 4.0'
+```
+
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 
@@ -91,7 +96,7 @@ To integrate PSOperations into your Xcode project using Carthage, specify it in 
 github "pluralsight/PSOperations"
 ```
 
-Run `carthage` to build the framework and drag the built `PSOperations.framework` into your Xcode project. Optionally you can add `PSOperationsHealth.framework` and `PSOperationsPassbook.framework`
+Run `carthage` to build the framework and drag the built `PSOperations.framework` into your Xcode project. Optionally you can add `PSOperationsHealth.framework`, `PSOperationsPassbook.framework` and `PSOperationsCalendar.framework`
 
 ## Getting started
 
@@ -100,14 +105,15 @@ Don't forget to import!
 import PSOperations
 ```
 
-If you are using the HealthCapability or PassbookCapability you'll need to import them separately:
+If you are using the HealthCapability, PassbookCapability or CalendarCapability you'll need to import them separately:
 
 ```
 import PSOperationsHealth
 import PSOperationsPassbook
+import PSOperationsCalendar
 ```
 
-These features need to be in a separate framework otherwise they may cause App Store review rejection for importing `HealthKit` or `PassKit` but not actually using them.
+These features need to be in a separate framework otherwise they may cause App Store review rejection for importing `HealthKit`, `PassKit` or `EventKit` but not actually using them.
 
 #### Create a Queue
 The OperationQueue is the heartbeat and is a subclass of NSOperationQueue:
