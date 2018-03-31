@@ -10,6 +10,7 @@
 
 import Foundation
 import EventKit
+import PSOperations
 
 private let SharedEventStore = EKEventStore()
 
