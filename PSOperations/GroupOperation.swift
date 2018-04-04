@@ -43,9 +43,6 @@ open class GroupOperation: Operation {
         }
     }
     
-    
-    
-    
     public convenience init(operations: Foundation.Operation...) {
         self.init(operations: operations)
     }
