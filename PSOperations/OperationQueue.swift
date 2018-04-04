@@ -55,11 +55,10 @@ open class OperationQueue: Foundation.OperationQueue {
             let dependencies = op.conditions.flatMap {
                 $0.dependencyForOperation(op)
             }
-                
+            
             for dependency in dependencies {
                 op.addDependency(dependency)
-
-                self.addOperation(dependency)
+                addOperation(dependency)
             }
             
             /*
