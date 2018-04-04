@@ -16,6 +16,13 @@ import Foundation
 */
 open class Operation: Foundation.Operation {
     
+    // use the KVO mechanism to indicate that changes to "state" affect other properties as well
+    private static let stateKey = Set([NSString(string: "state")])
+    @objc class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> { return stateKey }
+    @objc class func keyPathsForValuesAffectingIsExecuting() -> Set<NSObject> { return stateKey }
+    @objc class func keyPathsForValuesAffectingIsFinished() -> Set<NSObject> { return stateKey }
+    @objc class func keyPathsForValuesAffectingIsCancelled() -> Set<NSObject> { return stateKey }
+    
     /* The completionBlock property has unexpected behaviors such as executing twice and executing on unexpected threads. BlockObserver
      * executes in an expected manner.
      */
@@ -29,98 +36,14 @@ open class Operation: Foundation.Operation {
         }
     }
     
-    // use the KVO mechanism to indicate that changes to "state" affect other properties as well
-    @objc class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
-        return ["state" as NSObject]
-    }
+    fileprivate let state = Atomic<State>(value: .initialized)
+    fileprivate var internalErrors = Atomic<[NSError]>(value: [])
+    fileprivate(set) var conditions: [OperationCondition] = []
+    fileprivate(set) var observers: [OperationObserver] = []
+    fileprivate var hasFinishedAlready = false
     
-    @objc class func keyPathsForValuesAffectingIsExecuting() -> Set<NSObject> {
-        return ["state" as NSObject]
-    }
-    
-    @objc class func keyPathsForValuesAffectingIsFinished() -> Set<NSObject> {
-        return ["state" as NSObject]
-    }
-    
-    @objc class func keyPathsForValuesAffectingIsCancelled() -> Set<NSObject> {
-        return ["cancelledState" as NSObject]
-    }
-    
-    private var instanceContext = 0
-    public override init() {
-        super.init()
-        self.addObserver(self, forKeyPath: "isReady", options: [], context: &instanceContext)
-    }
-    
-    deinit {
-        self.removeObserver(self, forKeyPath: "isReady", context: &instanceContext)
-    }
-    
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard context == &instanceContext else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-            return
-        }
-        stateAccess.lock()
-        defer { stateAccess.unlock() }
-        guard super.isReady && !isCancelled && state == .pending else { return }
-        evaluateConditions()
-    }
-    
-    /**
-        Indicates that the Operation can now begin to evaluate readiness conditions,
-        if appropriate.
-    */
-    func didEnqueue() {
-        stateAccess.lock()
-        defer { stateAccess.unlock() }
-        state = .pending
-    }
-    
-    private let stateAccess = NSRecursiveLock()
-    /// Private storage for the `state` property that will be KVO observed.
-    private var _state = State.initialized
-    private let stateQueue = DispatchQueue(label: "Operations.Operation.state")
-    fileprivate var state: State {
-        get {
-            return stateQueue.sync {
-                return _state
-            }
-        }
-        set {
-            /*
-             It's important to note that the KVO notifications are NOT called from inside
-             the lock. If they were, the app would deadlock, because in the middle of
-             calling the `didChangeValueForKey()` method, the observers try to access
-             properties like "isReady" or "isFinished". Since those methods also
-             acquire the lock, then we'd be stuck waiting on our own lock. It's the
-             classic definition of deadlock.
-             */
-            willChangeValue(forKey: "state")
-            stateQueue.sync {
-                guard _state != .finished else { return }
-                assert(_state.canTransitionToState(newValue, operationIsCancelled: isCancelled), "Performing invalid state transition. from: \(_state) to: \(newValue)")
-                _state = newValue
-            }
-            didChangeValue(forKey: "state")
-        }
-    }
-    
-    // Here is where we extend our definition of "readiness".
-    override open var isReady: Bool {
-        stateAccess.lock()
-        defer { stateAccess.unlock() }
-        
-        guard super.isReady else { return false }
-        
-        guard !isCancelled  else { return true }
-        
-        switch state {
-        case .initialized, .evaluatingConditions, .pending:
-            return false
-        case .ready, .executing, .finishing, .finished:
-            return true
-        }
+    open var errors: [NSError] {
+        return internalErrors.value
     }
     
     open var userInitiated: Bool {
@@ -128,125 +51,182 @@ open class Operation: Foundation.Operation {
             return qualityOfService == .userInitiated
         }
         set {
-            stateAccess.lock()
-            defer { stateAccess.unlock() }
-            
-            assert(state < .executing, "Cannot modify userInitiated after execution has begun.")
+            assert(state.value < .executing, "Cannot modify userInitiated after execution has begun.")
             qualityOfService = newValue ? .userInitiated : .default
         }
     }
     
-    override open var isExecuting: Bool {
-        return state == .executing
-    }
-    
-    override open var isFinished: Bool {
-        return state == .finished
-    }
-    
-    private var __cancelled = false
-    private let cancelledQueue = DispatchQueue(label: "Operations.Operation.cancelled")
-    private var _cancelled: Bool {
-        get {
-            var currentState = false
-            cancelledQueue.sync {
-                currentState = __cancelled
+    private var _isReady = false
+    private var _isSuperReady = false
+    private var _isReadyCanUpdateInternally = false //rename to signify when it is a local update?
+    override open var isReady: Bool {
+        let superReady = super.isReady
+        if _isReadyCanUpdateInternally, superReady, _isSuperReady != superReady {
+            _isSuperReady = superReady
+            if let updatedState = updateReadinessFromConditions(state: state.value) {
+                updateState { $0 = updatedState }
             }
-            return currentState
         }
-        set {
-            stateAccess.lock()
-            defer { stateAccess.unlock() }
+        return _isReady
+    }
+    
+    private var _isExecuting = false
+    override open var isExecuting: Bool {
+        return _isExecuting
+    }
+    
+    private var _isFinished = false
+    override open var isFinished: Bool {
+        return _isFinished
+    }
+    
+    private var _isCancelled = false
+    override open var isCancelled: Bool {
+        return _isCancelled
+    }
+    
+    /**
+        Indicates that the Operation can now begin to evaluate readiness conditions,
+        if appropriate.
+    */
+    func didEnqueue() {
+        updateState { $0 = .pending }
+    }
+
+    private func updateState(_ stateModifier: (inout State) -> Void) {
+        updateStateAndCancelState { state, cancel in
+            stateModifier(&state)
+        }
+    }
+    
+    private func updateStateAndCancelState(_ stateModifier: (inout State, inout Bool) -> Void) {
+        state.modify { state in
+            _isReadyCanUpdateInternally = false
+            willChangeValue(forKey: "state")
+            var newState: State = state {
+                willSet {
+                    guard newState != newValue else { return }
+                    assert(newState.canTransitionToState(newValue, operationIsCancelled: isCancelled), "Performing invalid state transition. from: \(newState) to: \(newValue) \(self)")
+                }
+                didSet {
+                    state = newState
+                }
+            }
+            var newCancel = _isCancelled
+
+            stateModifier(&newState, &newCancel)
             
-            guard _cancelled != newValue else { return }
-            
-            willChangeValue(forKey: "cancelledState")
-            cancelledQueue.sync {
-                __cancelled = newValue
+            let updatedCancelState = newCancel
+            if updatedCancelState {
+                if updatedCancelState != _isCancelled {
+                    if let updatedState = updateToCancelled(state: newState) {
+                        newState = updatedState
+                    }
+                }
+            } else if let updatedState = updateReadinessFromConditions(state: newState) {
+                newState = updatedState
             }
             
-            if state == .initialized || state == .pending {
-                state = .ready
+            updateOperationStateValues(state: state, cancelled: updatedCancelState)
+            
+            didChangeValue(forKey: "state")
+            _isReadyCanUpdateInternally = true
+        }
+    }
+    
+    private func updateToCancelled(state: State) -> State? {
+        var updatedState: State?
+        
+        if state == .initialized || state == .pending {
+            updatedState = .ready
+        }
+        
+        for observer in observers {
+            observer.operationDidCancel(self)
+        }
+        
+        return updatedState
+    }
+    
+    private func updateReadinessFromConditions(state: State) -> State? {
+        var updatedState: State?
+        if state == .pending, super.isReady {
+            if conditions.isEmpty {
+                updatedState = .ready
+            } else {
+                updatedState = .evaluatingConditions
+                evaluateConditions()
             }
-            
-            didChangeValue(forKey: "cancelledState")
-            
-            if newValue {
-                for observer in observers {
-                    observer.operationDidCancel(self)
+        }
+        return updatedState
+    }
+    
+    private func updateOperationStateValues(state: State, cancelled: Bool) {
+        if cancelled {
+            _isCancelled = true
+            _isReady = true
+        } else {
+            switch state {
+            case .initialized, .evaluatingConditions, .pending:
+                _isReady = false
+            case .ready, .executing, .finished:
+                _isReady = true
+            }
+        }
+        
+        _isExecuting = state == .executing
+        _isFinished = state == .finished
+    }
+    
+    // MARK: Observers and Conditions
+    private func evaluateConditions() {
+        OperationConditionEvaluator.evaluate(conditions, operation: self) { failures in
+            self.updateStateAndCancelState { state, isCancelled in
+                if failures.isEmpty {
+                    state = .ready
+                } else {
+                    self.cancelWithErrors(failures, state: &state, isCancelled: &isCancelled)
                 }
             }
         }
     }
     
-    override open var isCancelled: Bool {
-        return _cancelled
-    }
-    
-    fileprivate func evaluateConditions() {
-        stateAccess.lock()
-        defer { stateAccess.unlock() }
-        
-        assert(state == .pending && !isCancelled, "evaluateConditions() was called out-of-order")
-            
-        guard conditions.count > 0 else {
-            state = .ready
-            return
-        }
-        
-        state = .evaluatingConditions
-        
-        OperationConditionEvaluator.evaluate(conditions, operation: self) { failures in
-            self.stateAccess.lock()
-            defer { self.stateAccess.unlock() }
-            
-            if !failures.isEmpty {
-                self.cancelWithErrors(failures)
-            }
-            
-            self.state = .ready
-        }
-    }
-     
-    // MARK: Observers and Conditions
-    
-    fileprivate(set) var conditions: [OperationCondition] = []
-
     open func addCondition(_ condition: OperationCondition) {
-        assert(state < .evaluatingConditions, "Cannot modify conditions after execution has begun.")
+        assert(state.value < .evaluatingConditions, "Cannot modify conditions after execution has begun.")
         conditions.append(condition)
     }
-    
-    fileprivate(set) var observers: [OperationObserver] = []
-    
+
     open func addObserver(_ observer: OperationObserver) {
-        assert(state < .executing, "Cannot modify observers after execution has begun.")
+        assert(state.value < .executing, "Cannot modify observers after execution has begun.")
         observers.append(observer)
     }
     
     override open func addDependency(_ operation: Foundation.Operation) {
-        assert(state <= .executing, "Dependencies cannot be modified after execution has begun.")
+        assert(state.value <= .executing, "Dependencies cannot be modified after execution has begun.")
         super.addDependency(operation)
     }
     
-    // MARK: Execution and Cancellation
+    // MARK: Execution
     override final public func main() {
-        stateAccess.lock()
-
-        assert(state == .ready, "This operation must be performed on an operation queue.")
+        var runExecute = false
         
-        if internalErrors.isEmpty && !isCancelled {
-            state = .executing
-            stateAccess.unlock()
-            
-            for observer in observers {
-                observer.operationDidStart(self)
+        updateStateAndCancelState { state, isCancelled in
+            if !isCancelled, internalErrors.value.isEmpty  {
+                assert(state == .ready, "This operation must be performed on an operation queue.")
+                state = .executing
+
+                for observer in observers {
+                    observer.operationDidStart(self)
+                }
+                
+                runExecute = true
             }
-            
+        }
+        
+        if runExecute {
             execute()
         } else {
             finish()
-            stateAccess.unlock()
         }
     }
     
@@ -262,43 +242,29 @@ open class Operation: Foundation.Operation {
     */
     open func execute() {
         print("\(type(of: self)) must override `execute()`.")
-        
         finish()
     }
     
-    private let errorQueue = DispatchQueue(label: "Operations.Operation.internalErrors")
-    private var _internalErrors: [NSError] = []
-    fileprivate var internalErrors: [NSError] {
-        get {
-            return errorQueue.sync {
-                return _internalErrors
-            }
-        }
-        set {
-            errorQueue.sync {
-                _internalErrors = newValue
-            }
+    // MARK: Cancellation
+    private func cancel(state: inout State, isCancelled: inout Bool) {
+        guard !isFinished else { return }
+        isCancelled = true
+        finish(state: &state)
+    }
+    
+    override open func cancel() {
+        updateStateAndCancelState { state, isCancelled in
+            cancel(state: &state, isCancelled: &isCancelled)
         }
     }
     
-    open var errors : [NSError] {
-        return internalErrors
-    }
-  
-    override open func cancel() {
-        stateAccess.lock()
-        defer { stateAccess.unlock() }
-        guard !isFinished else { return }
-        
-        _cancelled = true
-        
-        if state > .ready {
-            finish()
-        }
+    private func cancelWithErrors(_ errors: [NSError], state: inout State, isCancelled: inout Bool) {
+        internalErrors.modify { $0 = $0 + errors }
+        cancel(state: &state, isCancelled: &isCancelled)
     }
     
     open func cancelWithErrors(_ errors: [NSError]) {
-        internalErrors += errors
+        internalErrors.modify { $0 = $0 + errors }
         cancel()
     }
     
@@ -334,23 +300,27 @@ open class Operation: Foundation.Operation {
         A private property to ensure we only notify the observers once that the 
         operation has finished.
     */
-    fileprivate var hasFinishedAlready = false
     public final func finish(_ errors: [NSError] = []) {
-        stateAccess.lock()
-        defer { stateAccess.unlock() }
+        updateState { state in
+            finish(state: &state, errors)
+        }
+    }
+    
+    private func finish(state: inout State, _ errors: [NSError] = []) {
         guard !hasFinishedAlready else { return }
-        
         hasFinishedAlready = true
-        state = .finishing
         
-        internalErrors += errors
-        
-        finished(internalErrors)
-        
-        for observer in observers {
-            observer.operationDidFinish(self, errors: internalErrors)
+        var finishWithErrors: [NSError] = []
+        internalErrors.modify { internalErrors in
+            internalErrors += errors
+            finishWithErrors = internalErrors
         }
         
+        finished(finishWithErrors)
+        
+        for observer in observers {
+            observer.operationDidFinish(self, errors: finishWithErrors)
+        }
         state = .finished
     }
     
@@ -376,5 +346,4 @@ open class Operation: Foundation.Operation {
         */
         fatalError("Waiting on operations is an anti-pattern.")
     }
-    
 }
