@@ -37,12 +37,6 @@ internal enum State: Int, Comparable {
     /// The `Operation` is executing.
     case executing
     
-    /**
-     Execution of the `Operation` has finished, but it has not yet notified
-     the queue of this.
-     */
-    case finishing
-    
     /// The `Operation` has finished executing.
     case finished
     
@@ -52,19 +46,19 @@ internal enum State: Int, Comparable {
             return true
         case (.pending, .evaluatingConditions):
             return true
-        case (.pending, .finishing) where cancelled:
+        case (.pending, .finished): // where cancelled:
             return true
         case (.pending, .ready):
             return true
         case (.evaluatingConditions, .ready):
             return true
+        case (.evaluatingConditions, .finished): // where cancelled:
+            return true
         case (.ready, .executing):
             return true
-        case (.ready, .finishing):
+        case (.ready, .finished):
             return true
-        case (.executing, .finishing):
-            return true
-        case (.finishing, .finished):
+        case (.executing, .finished):
             return true
         default:
             return false
