@@ -20,12 +20,7 @@ class ExclusivityController {
     fileprivate let serialQueue = DispatchQueue(label: "Operations.ExclusivityController", attributes: [])
     fileprivate var operations: [String: [Operation]] = [:]
     
-    fileprivate init() {
-        /*
-            A private initializer effectively prevents any other part of the app
-            from accidentally creating an instance.
-        */
-    }
+    fileprivate init() { }
     
     /// Registers an operation as being mutually exclusive
     func addOperation(_ operation: Operation, categories: [String]) {
@@ -67,10 +62,10 @@ class ExclusivityController {
     
     fileprivate func noqueue_removeOperation(_ operation: Operation, category: String) {
         let matchingOperations = operations[category]
-
+        
         if var operationsWithThisCategory = matchingOperations,
            let index = operationsWithThisCategory.index(of: operation) {
-
+            
             operationsWithThisCategory.remove(at: index)
             operations[category] = operationsWithThisCategory
         }
