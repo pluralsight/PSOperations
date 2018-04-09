@@ -26,22 +26,8 @@ open class GroupOperation: Operation {
     fileprivate let startingOperation = Foundation.BlockOperation(block: {})
     fileprivate let finishingOperation = Foundation.BlockOperation(block: {})
     
-    private var _aggregatedErrors: [NSError] = []
-    private let aggregateQueue = DispatchQueue(label: "Operations.GroupOperations.aggregateErrors")
-    fileprivate var aggregatedErrors: [NSError] {
-        get {
-            var errors: [NSError] = []
-            aggregateQueue.sync {
-                errors = _aggregatedErrors
-            }
-            return errors
-        }
-        set {
-            aggregateQueue.sync {
-                self._aggregatedErrors = newValue
-            }
-        }
-    }
+    private var aggregatedErrors = Atomic<[NSError]>(value: [])
+    
     
     public convenience init(operations: Foundation.Operation...) {
         self.init(operations: operations)
@@ -80,7 +66,9 @@ open class GroupOperation: Operation {
         of errors reported to observers and to the `finished(_:)` method.
     */
     public final func aggregateError(_ error: NSError) {
-        aggregatedErrors.append(error)
+        aggregatedErrors.modify { errors in
+            errors.append(error)
+        }
     }
     
     open func operationDidFinish(_ operation: Foundation.Operation, withErrors errors: [NSError]) {
@@ -115,11 +103,13 @@ extension GroupOperation: OperationQueueDelegate {
     }
     
     final public func operationQueue(_ operationQueue: OperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [NSError]) {
-        aggregatedErrors.append(contentsOf: errors)
+        aggregatedErrors.modify { aggregatedErrors in
+            aggregatedErrors.append(contentsOf: errors)
+        }
         
         if operation === finishingOperation {
             internalQueue.isSuspended = true
-            finish(aggregatedErrors)
+            finish(aggregatedErrors.value)
         }
         else if operation !== startingOperation {
             operationDidFinish(operation, withErrors: errors)
