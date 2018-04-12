@@ -58,6 +58,7 @@
 		FD85501F1D2D8E0E00162079 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8550191D2D8D3400162079 /* HealthCapability.swift */; };
 		FD8550211D2D8E2200162079 /* PassbookCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8550151D2D8D1D00162079 /* PassbookCapability.swift */; };
 		FD8550561D2D90A700162079 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
+		FD9362F5207C6D49002BB144 /* OperationQueueDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9362F4207C6D49002BB144 /* OperationQueueDelegate.swift */; };
 		FDB1BBBE1B8D67CB00FB9D7A /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */; };
 		FDB1E8F21BBC2B08006BC157 /* OperationConditionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */; };
 		FDC6C5291BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */; };
@@ -160,6 +161,7 @@
 		FD8550111D2D8CC100162079 /* PSOperationsPassbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsPassbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8550151D2D8D1D00162079 /* PassbookCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassbookCapability.swift; path = PSOperationsPassbook/PassbookCapability.swift; sourceTree = "<group>"; };
 		FD8550191D2D8D3400162079 /* HealthCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthCapability.swift; path = PSOperationsHealth/HealthCapability.swift; sourceTree = SOURCE_ROOT; };
+		FD9362F4207C6D49002BB144 /* OperationQueueDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationQueueDelegate.swift; sourceTree = "<group>"; };
 		FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
 		FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationConditionResultTests.swift; sourceTree = "<group>"; };
 		FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperationTests.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			children = (
 				1D9B432B1B6A934A008F7F18 /* ExclusivityController.swift */,
 				1D9B432A1B6A934A008F7F18 /* OperationQueue.swift */,
+				FD9362F4207C6D49002BB144 /* OperationQueueDelegate.swift */,
 			);
 			name = "Operation Queue";
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				1D9B43491B6A934A008F7F18 /* OperationQueue.swift in Sources */,
 				FD7564EB1EFDBB79006C2C45 /* State.swift in Sources */,
 				1D9B434E1B6A934A008F7F18 /* URLSessionTaskOperation.swift in Sources */,
+				FD9362F5207C6D49002BB144 /* OperationQueueDelegate.swift in Sources */,
 				1D9B43511B6A934A008F7F18 /* OperationObserver.swift in Sources */,
 				1D9B43641B6A934A008F7F18 /* NSOperation+Operations.swift in Sources */,
 				1D2DE5F51F55D1EE0080FF4F /* QualityOfService+.swift in Sources */,
