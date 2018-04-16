@@ -103,9 +103,9 @@ class PSOperationsTests: XCTestCase {
         
         let opQueue = PSOperationQueue()
         
-        let op = PSBlockOperation {
+        let op = PSBlockOperation(block: {
             exp.fulfill()
-        }
+        })
         
         opQueue.addOperation(op)
         
@@ -119,9 +119,9 @@ class PSOperationsTests: XCTestCase {
         
         let opQueue = PSOperationQueue()
         
-        let op = PSBlockOperation {
+        let op = PSBlockOperation(block: {
             exp.fulfill()
-        }
+        })
         
         op.addCondition(TestCondition())
         
@@ -134,9 +134,9 @@ class PSOperationsTests: XCTestCase {
         
         let opQueue = PSOperationQueue()
         
-        let op = PSBlockOperation {
+        let op = PSBlockOperation(block: {
             XCTFail("Should not have run the block operation")
-        }
+        })
         
         keyValueObservingExpectation(for: op, keyPath: "isCancelled") { op, _ in
             if let op = op as? Foundation.Operation {
@@ -177,14 +177,14 @@ class PSOperationsTests: XCTestCase {
         
         let opQueue = PSOperationQueue()
         
-        let op = PSBlockOperation {
+        let op = PSBlockOperation(block: {
             exp.fulfill()
-        }
+        })
         
         var testCondition = TestCondition()
-        testCondition.dependencyOperation = PSBlockOperation {
+        testCondition.dependencyOperation = PSBlockOperation(block: {
             exp2.fulfill()
-        }
+        })
         
         op.addCondition(testCondition)
         
@@ -201,15 +201,15 @@ class PSOperationsTests: XCTestCase {
         
         let opQueue = PSOperationQueue()
         
-        let op = PSBlockOperation {
+        let op = PSBlockOperation(block: {
             exp1.fulfill()
             fulfilledExpectations.append(exp1)
-        }
+        })
         
-        let opDependency = PSBlockOperation {
+        let opDependency = PSBlockOperation(block: {
             exp2.fulfill()
             fulfilledExpectations.append(exp2)
-        }
+        })
         
         op.addDependency(opDependency)
         
@@ -374,14 +374,14 @@ class PSOperationsTests: XCTestCase {
         typealias TestMutualExclusion = MutuallyExclusive<Test>
         let cond = MutuallyExclusive<TestMutualExclusion>()
         
-        var running = false
+        let running = Atomic<Bool>(value: false)
         
         let exp = expectation(description: "op2")
         
-        let op = PSBlockOperation {
-            running = true
+        let op = PSBlockOperation(block: {
+            running.value = true
             exp.fulfill()
-        }
+        })
         op.addCondition(cond)
         
         let opQ = PSOperationQueue()
@@ -393,7 +393,7 @@ class PSOperationsTests: XCTestCase {
         
         keyValueObservingExpectation(for: delayOp, keyPath: "isFinished") { op, _ in
             
-            XCTAssertFalse(running, "op should not yet have started execution")
+            XCTAssertFalse(running.value, "op should not yet have started execution")
             
             if let op = op as? Foundation.Operation {
                 return op.isFinished
@@ -416,10 +416,10 @@ class PSOperationsTests: XCTestCase {
         let produceExp = expectation(description: "produceExp")
         
         var op: PSBlockOperation!
-        op = PSBlockOperation {
-            op.produceOperation(BlockOperation(mainQueueBlock: {}))
+        op = PSBlockOperation(block: {
+            op.produceOperation(PSBlockOperation(block: {}))
             op.cancel()
-        }
+        })
         op.addObserver(BlockObserver(
             startHandler: { _ in
                 startExp.fulfill()
@@ -444,9 +444,9 @@ class PSOperationsTests: XCTestCase {
         
         var testCondition = TestCondition()
         
-        testCondition.dependencyOperation = PSBlockOperation {
+        testCondition.dependencyOperation = PSBlockOperation(block: {
             XCTFail("should not run")
-        }
+        })
         
         let exp = expectation(description: "")
         
@@ -459,9 +459,9 @@ class PSOperationsTests: XCTestCase {
         
         let opQ = PSOperationQueue()
         
-        let operation = PSBlockOperation {
+        let operation = PSBlockOperation(block: {
             XCTFail("should not run")
-        }
+        })
         
         operation.addCondition(silentCondition)
         
@@ -481,9 +481,9 @@ class PSOperationsTests: XCTestCase {
     
     func testNegateCondition_failure() {
                 
-        let operation = PSBlockOperation {
+        let operation = PSBlockOperation(block: {
             XCTFail("shouldn't run")
-        }
+        })
 
         var testCondition = TestCondition()
         testCondition.conditionBlock = { true }
@@ -511,9 +511,9 @@ class PSOperationsTests: XCTestCase {
         
         let exp = expectation(description: "")
         
-        let operation = PSBlockOperation {
+        let operation = PSBlockOperation(block: {
             exp.fulfill()
-        }
+        })
         
         var testCondition = TestCondition()
         testCondition.conditionBlock = { false }
@@ -530,10 +530,10 @@ class PSOperationsTests: XCTestCase {
     }
     
     func testNoCancelledDepsCondition_aDepCancels() {
-        let dependencyOperation = PSBlockOperation { }
-        let operation = PSBlockOperation {
+        let dependencyOperation = PSBlockOperation(block: { })
+        let operation = PSBlockOperation(block: {
             XCTFail("shouldn't run")
-        }
+        })
         
         let noCancelledCondition = NoCancelledDependencies()
         operation.addCondition(noCancelledCondition)
@@ -575,13 +575,13 @@ class PSOperationsTests: XCTestCase {
     
     func testOperationRunsEvenIfDepCancels() {
         
-        let dependencyOperation = PSBlockOperation {}
+        let dependencyOperation = PSBlockOperation(block: {})
         
         let exp = expectation(description: "")
         
-        let operation = PSBlockOperation {
+        let operation = PSBlockOperation(block: {
             exp.fulfill()
-        }
+        })
         
         operation.addDependency(dependencyOperation)
         
@@ -606,7 +606,7 @@ class PSOperationsTests: XCTestCase {
     
     func testCancelledOperationLeavesQueue() {
         
-        let operation = PSBlockOperation { }
+        let operation = PSBlockOperation(block: { })
         let operation2 = Foundation.BlockOperation { }
         
         keyValueObservingExpectation(for: operation, keyPath: "isCancelled") { op, _ in
@@ -667,9 +667,9 @@ class PSOperationsTests: XCTestCase {
 //    }
     
     func testCancelOperation_cancelBeforeStart() {
-        let operation = PSBlockOperation {
+        let operation = PSBlockOperation(block: {
             XCTFail("This should not run")
-        }
+        })
 
         keyValueObservingExpectation(for: operation, keyPath: "isFinished") { op, _ in
             if let op = op as? Foundation.Operation {
@@ -697,17 +697,16 @@ class PSOperationsTests: XCTestCase {
         let exp = expectation(description: "")
         
         var operation: PSBlockOperation?
-        operation = PSBlockOperation {
+        operation = PSBlockOperation(block: {
             operation?.cancel()
             exp.fulfill()
-        }
+        })
         
         let opQ = PSOperationQueue()
         
         opQ.addOperation(operation!)
         
-        waitForExpectations(timeout: 1.0) {
-            _ in
+        waitForExpectations(timeout: 1.0) { _ in
             XCTAssertEqual(opQ.operationCount, 0, "")
         }
     }
@@ -716,10 +715,10 @@ class PSOperationsTests: XCTestCase {
         let opQ = PSOperationQueue()
         
         var op: PSBlockOperation!
-        op = PSBlockOperation {
-            let producedOperation = PSBlockOperation { }
+        op = PSBlockOperation(block: {
+            let producedOperation = PSBlockOperation(block: { })
             op.produceOperation(producedOperation)
-        }
+        })
         
         let exp1 = expectation(description: "1")
         let exp2 = expectation(description: "2")
@@ -768,13 +767,13 @@ class PSOperationsTests: XCTestCase {
     func testNoCancelledDepsCondition_aDepCancels_inGroupOperation() {
         
         var dependencyOperation: PSBlockOperation!
-        dependencyOperation = PSBlockOperation {
+        dependencyOperation = PSBlockOperation(block: {
             dependencyOperation.cancel()
-        }
+        })
         
-        let operation = PSBlockOperation {
+        let operation = PSBlockOperation(block: {
             XCTFail("shouldn't run")
-        }
+        })
         
         let noCancelledCondition = NoCancelledDependencies()
         operation.addCondition(noCancelledCondition)
@@ -839,11 +838,11 @@ class PSOperationsTests: XCTestCase {
         let exp = expectation(description: "")
         
         var blockOperation: PSBlockOperation!
-        blockOperation = PSBlockOperation {
+        blockOperation = PSBlockOperation(block: {
             XCTAssertFalse(blockOperation.isFinished)
             blockOperation.cancel()
             exp.fulfill()
-        }
+        })
         
         let q = PSOperationQueue()
         q.addOperation(blockOperation)
@@ -861,11 +860,11 @@ class PSOperationsTests: XCTestCase {
         let exp = expectation(description: "")
         
         let delayOp = DelayOperation(interval: 2)
-        let blockOp = PSBlockOperation {
+        let blockOp = PSBlockOperation(block: {
             XCTAssertFalse(delayOp.isFinished)
             delayOp.cancel()
             exp.fulfill()
-        }
+        })
         
         let q = PSOperationQueue()
         
@@ -884,9 +883,9 @@ class PSOperationsTests: XCTestCase {
         let exp = expectation(description: "")
         
         let delayOp = DelayOperation(interval: 4)
-        let blockOp = PSBlockOperation {
+        let blockOp = PSBlockOperation(block: {
             exp.fulfill()
-        }
+        })
         
         let timeout = TimeoutObserver(timeout: 2)
         blockOp.addObserver(timeout)
@@ -967,7 +966,7 @@ class PSOperationsTests: XCTestCase {
     */
     func testOperationQueueNotGettingStuck() {
         
-        var opCount = 0
+        var opCount = Atomic<Int>(value: 0)
         var requiredToPassCount = 5_000
         let q = PSOperationQueue()
         
@@ -975,12 +974,12 @@ class PSOperationsTests: XCTestCase {
         
         func go() {
             
-            if opCount >= requiredToPassCount {
+            if opCount.value >= requiredToPassCount {
                 exp.fulfill()
                 return
             }
             
-            let blockOp = PSBlockOperation { (finishBlock: () -> Void) in
+            let blockOp = PSBlockOperation { finishBlock in
                 finishBlock()
                 go()
             }
@@ -991,16 +990,18 @@ class PSOperationsTests: XCTestCase {
             let noc = NoCancelledDependencies()
             blockOp.addCondition(noc)
             
-            opCount += 1
+            let count = opCount.value
+            
+            opCount.value = count + 1
             
             q.addOperation(blockOp)
         }
         
         go()
         
-        waitForExpectations(timeout: 15) { _ in
+        waitForExpectations(timeout: 1) { _ in
             //if opCount != requiredToPassCount, the queue is frozen
-            XCTAssertEqual(opCount, requiredToPassCount)
+            XCTAssertEqual(opCount.value, requiredToPassCount)
         }
     }
     
@@ -1013,15 +1014,15 @@ class PSOperationsTests: XCTestCase {
         let exp2 = expectation(description: "2")
         let exp3 = expectation(description: "3")
         
-        let op1 = PSBlockOperation {
+        let op1 = PSBlockOperation(block: {
             exp1.fulfill()
-        }
-        let op2 = PSBlockOperation {
+        })
+        let op2 = PSBlockOperation(block: {
             exp2.fulfill()
-        }
-        let op3 = PSBlockOperation {
+        })
+        let op3 = PSBlockOperation(block: {
             exp3.fulfill()
-        }
+        })
         
         
         opQueue.addOperation(op1)
@@ -1046,7 +1047,7 @@ class PSOperationsTests: XCTestCase {
             }
             
             override func waitUntilFinished() {
-                let _ = sema.wait(timeout: DispatchTime.distantFuture)
+                _ = sema.wait(timeout: DispatchTime.distantFuture)
             }
         }
         
@@ -1073,7 +1074,7 @@ class PSOperationsTests: XCTestCase {
             }
             
             override func waitUntilFinished() {
-                let _ = sema.wait(timeout: DispatchTime.distantFuture)
+                let _ = sema.wait(timeout: .now() + 2)
             }
         }
         

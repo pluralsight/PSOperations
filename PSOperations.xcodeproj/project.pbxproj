@@ -53,6 +53,7 @@
 		FD19C9DD1C440293005D0F07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD19C9DB1C440293005D0F07 /* LaunchScreen.storyboard */; };
 		FD19C9E81C440293005D0F07 /* PSOperationsAppForTestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9E71C440293005D0F07 /* PSOperationsAppForTestsTests.swift */; };
 		FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */; };
+		FD6B172D20853D390071F496 /* PSOperationsPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6B172C20853D390071F496 /* PSOperationsPerformanceTests.swift */; };
 		FD7564EB1EFDBB79006C2C45 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7564EA1EFDBB79006C2C45 /* State.swift */; };
 		FD85501D1D2D8D9800162079 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
 		FD85501F1D2D8E0E00162079 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8550191D2D8D3400162079 /* HealthCapability.swift */; };
@@ -156,6 +157,7 @@
 		FD19C9E31C440293005D0F07 /* PSOperationsAppForTestsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PSOperationsAppForTestsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD19C9E71C440293005D0F07 /* PSOperationsAppForTestsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSOperationsAppForTestsTests.swift; sourceTree = "<group>"; };
 		FD19C9E91C440293005D0F07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD6B172C20853D390071F496 /* PSOperationsPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSOperationsPerformanceTests.swift; sourceTree = "<group>"; };
 		FD7564EA1EFDBB79006C2C45 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		FD854FDF1D2D8CAB00162079 /* PSOperationsHealth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsHealth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8550111D2D8CC100162079 /* PSOperationsPassbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsPassbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,6 +288,7 @@
 				FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */,
 				FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */,
 				1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */,
+				FD6B172C20853D390071F496 /* PSOperationsPerformanceTests.swift */,
 				1D9B431E1B6A92ED008F7F18 /* Supporting Files */,
 			);
 			path = PSOperationsTests;
@@ -761,6 +764,7 @@
 				FDB1E8F21BBC2B08006BC157 /* OperationConditionResultTests.swift in Sources */,
 				FDC6C52C1BBD6447008FB96E /* OperationErrorCodeTests.swift in Sources */,
 				FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */,
+				FD6B172D20853D390071F496 /* PSOperationsPerformanceTests.swift in Sources */,
 				FDC6C5291BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
