@@ -40,7 +40,7 @@ open class Operation: Foundation.Operation {
     fileprivate var internalErrors = Atomic<[NSError]>(value: [])
     fileprivate(set) var conditions: [OperationCondition] = []
     fileprivate(set) var observers: [OperationObserver] = []
-    fileprivate var hasFinishedAlready = false
+    fileprivate var hasFinishedAlready = Atomic<Bool>(value: false)
     
     open var errors: [NSError] {
         return internalErrors.value
@@ -56,33 +56,33 @@ open class Operation: Foundation.Operation {
         }
     }
     
-    private var _isReady = false
+    private var _isReady = Atomic<Bool>(value: false)
     private var _isSuperReady = false
-    private var _isReadyCanUpdateInternally = false //rename to signify when it is a local update?
+    private var _isReadyCanUpdateInternally = Atomic<Bool>(value: false) //rename to signify when it is a local update?
     override open var isReady: Bool {
         let superReady = super.isReady
-        if _isReadyCanUpdateInternally, superReady, _isSuperReady != superReady {
+        if _isReadyCanUpdateInternally.value, superReady, _isSuperReady != superReady {
             _isSuperReady = superReady
             if let updatedState = updateReadinessFromConditions(state: state.value) {
                 updateState { $0 = updatedState }
             }
         }
-        return _isReady
+        return _isReady.value
     }
     
-    private var _isExecuting = false
+    private var _isExecuting = Atomic<Bool>(value: false)
     override open var isExecuting: Bool {
-        return _isExecuting
+        return _isExecuting.value
     }
     
-    private var _isFinished = false
+    private var _isFinished = Atomic<Bool>(value: false)
     override open var isFinished: Bool {
-        return _isFinished
+        return _isFinished.value
     }
     
-    private var _isCancelled = false
+    private var _isCancelled = Atomic<Bool>(value: false)
     override open var isCancelled: Bool {
-        return _isCancelled
+        return _isCancelled.value
     }
     
     /**
@@ -101,7 +101,7 @@ open class Operation: Foundation.Operation {
     
     private func updateStateAndCancelState(_ stateModifier: (inout State, inout Bool) -> Void) {
         state.modify { state in
-            _isReadyCanUpdateInternally = false
+            _isReadyCanUpdateInternally.value = false
             willChangeValue(forKey: "state")
             var newState: State = state {
                 willSet {
@@ -112,13 +112,14 @@ open class Operation: Foundation.Operation {
                     state = newState
                 }
             }
-            var newCancel = _isCancelled
+
+            var newCancel = _isCancelled.value
 
             stateModifier(&newState, &newCancel)
-            
+
             let updatedCancelState = newCancel
             if updatedCancelState {
-                if updatedCancelState != _isCancelled {
+                if updatedCancelState != _isCancelled.value {
                     if let updatedState = updateToCancelled(state: newState) {
                         newState = updatedState
                     }
@@ -130,7 +131,7 @@ open class Operation: Foundation.Operation {
             updateOperationStateValues(state: state, cancelled: updatedCancelState)
             
             didChangeValue(forKey: "state")
-            _isReadyCanUpdateInternally = true
+            _isReadyCanUpdateInternally.value = true
         }
     }
     
@@ -163,19 +164,19 @@ open class Operation: Foundation.Operation {
     
     private func updateOperationStateValues(state: State, cancelled: Bool) {
         if cancelled {
-            _isCancelled = true
-            _isReady = true
+            _isCancelled.value = true
+            _isReady.value = true
         } else {
             switch state {
             case .initialized, .evaluatingConditions, .pending:
-                _isReady = false
+                _isReady.value = false
             case .ready, .executing, .finished:
-                _isReady = true
+                _isReady.value = true
             }
         }
         
-        _isExecuting = state == .executing
-        _isFinished = state == .finished
+        _isExecuting.value = state == .executing
+        _isFinished.value = state == .finished
     }
     
     // MARK: Observers and Conditions
@@ -307,12 +308,12 @@ open class Operation: Foundation.Operation {
     }
     
     private func finish(state: inout State, _ errors: [NSError] = []) {
-        guard !hasFinishedAlready else { return }
-        hasFinishedAlready = true
+        guard !hasFinishedAlready.value else { return }
+        hasFinishedAlready.value = true
         
         var finishWithErrors: [NSError] = []
         internalErrors.modify { internalErrors in
-            internalErrors += errors
+            internalErrors.append(contentsOf: errors)
             finishWithErrors = internalErrors
         }
         
