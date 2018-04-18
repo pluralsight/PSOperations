@@ -42,19 +42,26 @@ internal enum State: Int, Comparable {
     
     func canTransitionToState(_ target: State, operationIsCancelled cancelled: Bool) -> Bool {
         switch (self, target) {
+        //to pending
         case (.initialized, .pending):
             return true
-        case (.pending, .evaluatingConditions):
-            return true
-        case (.pending, .finished): // where cancelled:
+        //to ready
+        case (.initialized, .ready) where cancelled:
             return true
         case (.pending, .ready):
             return true
         case (.evaluatingConditions, .ready):
             return true
-        case (.evaluatingConditions, .finished): // where cancelled:
+        //to evaluatingConditions
+        case (.pending, .evaluatingConditions):
             return true
+        //to executing
         case (.ready, .executing):
+            return true
+        //to finished
+        case (.pending, .finished):
+            return true
+        case (.evaluatingConditions, .finished):
             return true
         case (.ready, .finished):
             return true
