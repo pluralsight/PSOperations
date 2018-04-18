@@ -102,7 +102,7 @@ open class Operation: Foundation.Operation {
     private func updateStateAndCancelState(_ stateModifier: (inout State, inout Bool) -> Void) {
         state.modify { state in
             _isReadyCanUpdateInternally.value = false
-            willChangeValue(forKey: "state")
+            
             var newState: State = state {
                 willSet {
                     guard newState != newValue else { return }
@@ -130,7 +130,7 @@ open class Operation: Foundation.Operation {
             
             updateOperationStateValues(state: state, cancelled: updatedCancelState)
             
-            didChangeValue(forKey: "state")
+            
             _isReadyCanUpdateInternally.value = true
         }
     }
@@ -138,7 +138,7 @@ open class Operation: Foundation.Operation {
     private func updateToCancelled(state: State) -> State? {
         var updatedState: State?
         
-        if state == .initialized || state == .pending {
+        if state.canTransitionToState(.ready, operationIsCancelled: true) {
             updatedState = .ready
         }
         
@@ -163,6 +163,7 @@ open class Operation: Foundation.Operation {
     }
     
     private func updateOperationStateValues(state: State, cancelled: Bool) {
+        willChangeValue(forKey: "state")
         if cancelled {
             _isCancelled.value = true
             _isReady.value = true
@@ -174,9 +175,9 @@ open class Operation: Foundation.Operation {
                 _isReady.value = true
             }
         }
-        
-        _isExecuting.value = state == .executing
+        _isExecuting.value = (cancelled && state != .finished) || state == .executing
         _isFinished.value = state == .finished
+        didChangeValue(forKey: "state")
     }
     
     // MARK: Observers and Conditions
@@ -229,6 +230,11 @@ open class Operation: Foundation.Operation {
         } else {
             finish()
         }
+    }
+    
+    open override func start() {
+        guard !_isCancelled.value else { return }
+        super.start()
     }
     
     /**
