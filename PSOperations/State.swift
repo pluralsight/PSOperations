@@ -37,34 +37,35 @@ internal enum State: Int, Comparable {
     /// The `Operation` is executing.
     case executing
     
-    /**
-     Execution of the `Operation` has finished, but it has not yet notified
-     the queue of this.
-     */
-    case finishing
-    
     /// The `Operation` has finished executing.
     case finished
     
     func canTransitionToState(_ target: State, operationIsCancelled cancelled: Bool) -> Bool {
         switch (self, target) {
+        //to pending
         case (.initialized, .pending):
             return true
-        case (.pending, .evaluatingConditions):
-            return true
-        case (.pending, .finishing) where cancelled:
+        //to ready
+        case (.initialized, .ready) where cancelled:
             return true
         case (.pending, .ready):
             return true
         case (.evaluatingConditions, .ready):
             return true
+        //to evaluatingConditions
+        case (.pending, .evaluatingConditions):
+            return true
+        //to executing
         case (.ready, .executing):
             return true
-        case (.ready, .finishing):
+        //to finished
+        case (.pending, .finished):
             return true
-        case (.executing, .finishing):
+        case (.evaluatingConditions, .finished):
             return true
-        case (.finishing, .finished):
+        case (.ready, .finished):
+            return true
+        case (.executing, .finished):
             return true
         default:
             return false

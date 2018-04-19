@@ -9,23 +9,8 @@ This file contains an NSOperationQueue subclass.
 import Foundation
 
 /**
-    The delegate of an `OperationQueue` can respond to `Operation` lifecycle
-    events by implementing these methods.
-
-    In general, implementing `OperationQueueDelegate` is not necessary; you would
-    want to use an `OperationObserver` instead. However, there are a couple of
-    situations where using `OperationQueueDelegate` can lead to simpler code.
-    For example, `GroupOperation` is the delegate of its own internal
-    `OperationQueue` and uses it to manage dependencies.
-*/
-@objc public protocol OperationQueueDelegate: NSObjectProtocol {
-    @objc optional func operationQueue(_ operationQueue: OperationQueue, willAddOperation operation: Foundation.Operation)
-    @objc optional func operationQueue(_ operationQueue: OperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [NSError])
-}
-
-/**
     `OperationQueue` is an `NSOperationQueue` subclass that implements a large
-    number of "extra features" related to the `Operation` class:
+     number of "extra features" related to the `Operation` class:
     
     - Notifying a delegate of all operation completion
     - Extracting generated dependencies from operation conditions
@@ -34,7 +19,7 @@ import Foundation
 open class OperationQueue: Foundation.OperationQueue {
     open weak var delegate: OperationQueueDelegate?
     
-    override open  func addOperation(_ operation: Foundation.Operation) {
+    override open func addOperation(_ operation: Foundation.Operation) {
         if let op = operation as? Operation {
             
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
@@ -52,21 +37,20 @@ open class OperationQueue: Foundation.OperationQueue {
             op.addObserver(delegate)
             
             // Extract any dependencies needed by this operation.
-            let dependencies = op.conditions.flatMap {
+            let dependencies = op.conditions.compactMap {
                 $0.dependencyForOperation(op)
             }
-                
+            
             for dependency in dependencies {
                 op.addDependency(dependency)
-
-                self.addOperation(dependency)
+                addOperation(dependency)
             }
             
             /*
                 With condition dependencies added, we can now see if this needs
                 dependencies to enforce mutual exclusivity.
             */
-            let concurrencyCategories: [String] = op.conditions.flatMap { condition in
+            let concurrencyCategories: [String] = op.conditions.compactMap { condition in
                 guard type(of: condition).isMutuallyExclusive else { return nil }
                 
                 return "\(type(of: condition))"

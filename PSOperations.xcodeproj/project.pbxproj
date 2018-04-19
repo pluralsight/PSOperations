@@ -45,7 +45,6 @@
 		55AE64DC1BC1C7E50097F4A5 /* PushCapability-OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DB1BC1C7E50097F4A5 /* PushCapability-OSX.swift */; };
 		55AE64DE1BC1DCF50097F4A5 /* UserNotificationCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64DD1BC1DCF50097F4A5 /* UserNotificationCapability.swift */; };
 		775C7EF5205718C30091A21F /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
-		775C7EF7205718C30091A21F /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		775C7EFE2057191B0091A21F /* CalendarCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE64C61BC173100097F4A5 /* CalendarCapability.swift */; };
 		FD19C9D31C440293005D0F07 /* PSOperationsTestAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9D21C440293005D0F07 /* PSOperationsTestAppDelegate.swift */; };
 		FD19C9D51C440293005D0F07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9D41C440293005D0F07 /* ViewController.swift */; };
@@ -54,17 +53,18 @@
 		FD19C9DD1C440293005D0F07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD19C9DB1C440293005D0F07 /* LaunchScreen.storyboard */; };
 		FD19C9E81C440293005D0F07 /* PSOperationsAppForTestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C9E71C440293005D0F07 /* PSOperationsAppForTestsTests.swift */; };
 		FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */; };
+		FD6B172D20853D390071F496 /* PSOperationsPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6B172C20853D390071F496 /* PSOperationsPerformanceTests.swift */; };
 		FD7564EB1EFDBB79006C2C45 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7564EA1EFDBB79006C2C45 /* State.swift */; };
-		FD854FDA1D2D8CAB00162079 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FD85500C1D2D8CC100162079 /* PSOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9B43131B6A92ED008F7F18 /* PSOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD85501D1D2D8D9800162079 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
 		FD85501F1D2D8E0E00162079 /* HealthCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8550191D2D8D3400162079 /* HealthCapability.swift */; };
 		FD8550211D2D8E2200162079 /* PassbookCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8550151D2D8D1D00162079 /* PassbookCapability.swift */; };
 		FD8550561D2D90A700162079 /* PSOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B430E1B6A92ED008F7F18 /* PSOperations.framework */; };
+		FD9362F5207C6D49002BB144 /* OperationQueueDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9362F4207C6D49002BB144 /* OperationQueueDelegate.swift */; };
 		FDB1BBBE1B8D67CB00FB9D7A /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */; };
 		FDB1E8F21BBC2B08006BC157 /* OperationConditionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */; };
 		FDC6C5291BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */; };
 		FDC6C52C1BBD6447008FB96E /* OperationErrorCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6C52B1BBD6447008FB96E /* OperationErrorCodeTests.swift */; };
+		FDDAE4C7207019C100CF7B0D /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDAE4C6207019C100CF7B0D /* Atomic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,15 +157,18 @@
 		FD19C9E31C440293005D0F07 /* PSOperationsAppForTestsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PSOperationsAppForTestsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD19C9E71C440293005D0F07 /* PSOperationsAppForTestsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSOperationsAppForTestsTests.swift; sourceTree = "<group>"; };
 		FD19C9E91C440293005D0F07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD6B172C20853D390071F496 /* PSOperationsPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSOperationsPerformanceTests.swift; sourceTree = "<group>"; };
 		FD7564EA1EFDBB79006C2C45 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		FD854FDF1D2D8CAB00162079 /* PSOperationsHealth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsHealth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8550111D2D8CC100162079 /* PSOperationsPassbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsPassbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8550151D2D8D1D00162079 /* PassbookCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassbookCapability.swift; path = PSOperationsPassbook/PassbookCapability.swift; sourceTree = "<group>"; };
 		FD8550191D2D8D3400162079 /* HealthCapability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthCapability.swift; path = PSOperationsHealth/HealthCapability.swift; sourceTree = SOURCE_ROOT; };
+		FD9362F4207C6D49002BB144 /* OperationQueueDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationQueueDelegate.swift; sourceTree = "<group>"; };
 		FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
 		FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationConditionResultTests.swift; sourceTree = "<group>"; };
 		FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperationTests.swift; sourceTree = "<group>"; };
 		FDC6C52B1BBD6447008FB96E /* OperationErrorCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationErrorCodeTests.swift; sourceTree = "<group>"; };
+		FDDAE4C6207019C100CF7B0D /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,14 +260,13 @@
 		1D9B43101B6A92ED008F7F18 /* PSOperations */ = {
 			isa = PBXGroup;
 			children = (
-				1D9B43131B6A92ED008F7F18 /* PSOperations.h */,
-				1D9B43681B6A934F008F7F18 /* Operation Queue */,
-				1D9B43691B6A9375008F7F18 /* Operations */,
-				1D9B436A1B6A938F008F7F18 /* Observers */,
+				FDDAE4C52070196100CF7B0D /* Concurrency */,
 				1D9B436B1B6A93B0008F7F18 /* Conditions */,
 				1D9B436C1B6A93C9008F7F18 /* Convenience Extensions */,
+				1D9B436A1B6A938F008F7F18 /* Observers */,
+				1D9B43681B6A934F008F7F18 /* Operation Queue */,
+				1D9B43691B6A9375008F7F18 /* Operations */,
 				1D9B43111B6A92ED008F7F18 /* Supporting Files */,
-				1D57B1E41D919D38008333C7 /* Typealiases.swift */,
 			);
 			path = PSOperations;
 			sourceTree = "<group>";
@@ -273,6 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				1D9B43121B6A92ED008F7F18 /* Info.plist */,
+				1D9B43131B6A92ED008F7F18 /* PSOperations.h */,
+				1D57B1E41D919D38008333C7 /* Typealiases.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -284,6 +288,7 @@
 				FDC6C5281BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift */,
 				FDB1E8F11BBC2B08006BC157 /* OperationConditionResultTests.swift */,
 				1D9B436D1B6A942C008F7F18 /* PSOperationsTests.swift */,
+				FD6B172C20853D390071F496 /* PSOperationsPerformanceTests.swift */,
 				1D9B431E1B6A92ED008F7F18 /* Supporting Files */,
 			);
 			path = PSOperationsTests;
@@ -300,8 +305,9 @@
 		1D9B43681B6A934F008F7F18 /* Operation Queue */ = {
 			isa = PBXGroup;
 			children = (
-				1D9B432A1B6A934A008F7F18 /* OperationQueue.swift */,
 				1D9B432B1B6A934A008F7F18 /* ExclusivityController.swift */,
+				1D9B432A1B6A934A008F7F18 /* OperationQueue.swift */,
+				FD9362F4207C6D49002BB144 /* OperationQueueDelegate.swift */,
 			);
 			name = "Operation Queue";
 			sourceTree = "<group>";
@@ -309,13 +315,13 @@
 		1D9B43691B6A9375008F7F18 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				1D9B432D1B6A934A008F7F18 /* BlockOperation.swift */,
+				1D9B43311B6A934A008F7F18 /* DelayOperation.swift */,
+				1D9B432E1B6A934A008F7F18 /* GroupOperation.swift */,
+				1D9B43301B6A934A008F7F18 /* LocationOperation.swift */,
 				1D9B432C1B6A934A008F7F18 /* Operation.swift */,
 				FD7564EA1EFDBB79006C2C45 /* State.swift */,
-				1D9B432D1B6A934A008F7F18 /* BlockOperation.swift */,
-				1D9B432E1B6A934A008F7F18 /* GroupOperation.swift */,
 				1D9B432F1B6A934A008F7F18 /* URLSessionTaskOperation.swift */,
-				1D9B43301B6A934A008F7F18 /* LocationOperation.swift */,
-				1D9B43311B6A934A008F7F18 /* DelayOperation.swift */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -323,8 +329,8 @@
 		1D9B436A1B6A938F008F7F18 /* Observers */ = {
 			isa = PBXGroup;
 			children = (
-				1D9B43321B6A934A008F7F18 /* OperationObserver.swift */,
 				1D9B43331B6A934A008F7F18 /* BlockObserver.swift */,
+				1D9B43321B6A934A008F7F18 /* OperationObserver.swift */,
 				1D9B43341B6A934A008F7F18 /* TimeoutObserver.swift */,
 			);
 			name = Observers;
@@ -333,14 +339,14 @@
 		1D9B436B1B6A93B0008F7F18 /* Conditions */ = {
 			isa = PBXGroup;
 			children = (
-				1D9B43351B6A934A008F7F18 /* OperationErrors.swift */,
-				1D9B43361B6A934A008F7F18 /* OperationCondition.swift */,
-				1D9B43371B6A934A008F7F18 /* SilentCondition.swift */,
+				55AE64C51BC173000097F4A5 /* Capabilities */,
+				1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */,
 				1D9B43381B6A934A008F7F18 /* NegatedCondition.swift */,
 				1D9B43391B6A934A008F7F18 /* NoCancelledDependencies.swift */,
-				1D9B433A1B6A934A008F7F18 /* MutuallyExclusive.swift */,
+				1D9B43351B6A934A008F7F18 /* OperationErrors.swift */,
+				1D9B43361B6A934A008F7F18 /* OperationCondition.swift */,
 				1D9B433B1B6A934A008F7F18 /* ReachabilityCondition.swift */,
-				55AE64C51BC173000097F4A5 /* Capabilities */,
+				1D9B43371B6A934A008F7F18 /* SilentCondition.swift */,
 			);
 			name = Conditions;
 			sourceTree = "<group>";
@@ -349,11 +355,11 @@
 			isa = PBXGroup;
 			children = (
 				1D9B43441B6A934A008F7F18 /* Dictionary+Operations.swift */,
-				1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */,
-				FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */,
-				1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */,
-				1D2DE5F41F55D1EE0080FF4F /* QualityOfService+.swift */,
 				1D2DE6221F5600540080FF4F /* DispatchQueue+.swift */,
+				FDB1BBBD1B8D67CB00FB9D7A /* NSLock+Operations.swift */,
+				1D9B43451B6A934A008F7F18 /* NSOperation+Operations.swift */,
+				1D2DE5F41F55D1EE0080FF4F /* QualityOfService+.swift */,
+				1D9B43471B6A934A008F7F18 /* UIUserNotifications+Operations.swift */,
 			);
 			name = "Convenience Extensions";
 			sourceTree = "<group>";
@@ -421,6 +427,14 @@
 			name = PSOperationsPassbook;
 			sourceTree = "<group>";
 		};
+		FDDAE4C52070196100CF7B0D /* Concurrency */ = {
+			isa = PBXGroup;
+			children = (
+				FDDAE4C6207019C100CF7B0D /* Atomic.swift */,
+			);
+			name = Concurrency;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -436,7 +450,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				775C7EF7205718C30091A21F /* PSOperations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,7 +457,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD854FDA1D2D8CAB00162079 /* PSOperations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +464,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD85500C1D2D8CC100162079 /* PSOperations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,7 +605,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Pluralsight;
 				TargetAttributes = {
 					1D9B430D1B6A92ED008F7F18 = {
@@ -710,6 +721,7 @@
 				1D9B43491B6A934A008F7F18 /* OperationQueue.swift in Sources */,
 				FD7564EB1EFDBB79006C2C45 /* State.swift in Sources */,
 				1D9B434E1B6A934A008F7F18 /* URLSessionTaskOperation.swift in Sources */,
+				FD9362F5207C6D49002BB144 /* OperationQueueDelegate.swift in Sources */,
 				1D9B43511B6A934A008F7F18 /* OperationObserver.swift in Sources */,
 				1D9B43641B6A934A008F7F18 /* NSOperation+Operations.swift in Sources */,
 				1D2DE5F51F55D1EE0080FF4F /* QualityOfService+.swift in Sources */,
@@ -734,6 +746,7 @@
 				1D9B43571B6A934A008F7F18 /* NegatedCondition.swift in Sources */,
 				1D9B434D1B6A934A008F7F18 /* GroupOperation.swift in Sources */,
 				1D9B43501B6A934A008F7F18 /* DelayOperation.swift in Sources */,
+				FDDAE4C7207019C100CF7B0D /* Atomic.swift in Sources */,
 				55AE64D21BC180570097F4A5 /* LocationCapability-tvOS.swift in Sources */,
 				1D9B43541B6A934A008F7F18 /* OperationErrors.swift in Sources */,
 				1D9B43561B6A934A008F7F18 /* SilentCondition.swift in Sources */,
@@ -751,6 +764,7 @@
 				FDB1E8F21BBC2B08006BC157 /* OperationConditionResultTests.swift in Sources */,
 				FDC6C52C1BBD6447008FB96E /* OperationErrorCodeTests.swift in Sources */,
 				FD39C29E1B8B5F090092008B /* PSOperationsTests.swift in Sources */,
+				FD6B172D20853D390071F496 /* PSOperationsPerformanceTests.swift in Sources */,
 				FDC6C5291BBCDDC9008FB96E /* URLSessionTaskOperationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,12 +862,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -887,6 +903,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -905,12 +922,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -935,7 +954,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -962,9 +982,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -989,8 +1006,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1005,9 +1020,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos macosx watchsimulator watchos";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1020,8 +1032,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos macosx watchsimulator watchos";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1043,9 +1053,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1069,8 +1076,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1087,8 +1092,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1103,8 +1106,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1119,8 +1120,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTestsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PSOperationsAppForTests.app/PSOperationsAppForTests";
 			};
 			name = Debug;
@@ -1134,8 +1133,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pluralsight.PSOperationsAppForTestsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PSOperationsAppForTests.app/PSOperationsAppForTests";
 			};
 			name = Release;
@@ -1158,9 +1155,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1184,8 +1178,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1209,9 +1201,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1235,8 +1224,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos watchos watchsimulator macosx";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
