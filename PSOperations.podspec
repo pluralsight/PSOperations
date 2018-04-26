@@ -43,4 +43,9 @@ Pod::Spec.new do |s|
   		sb.source_files = "PSOperationsCalendar/*.swift"
   	end
   
+  	s.subspec "Location" do |sb|
+	  	sb.dependency 'PSOperations/Core'
+  		sb.source_files = "PSOperationsLocation/*.swift"
+  	end
+
 end
