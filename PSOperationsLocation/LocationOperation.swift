@@ -10,6 +10,7 @@ Shows how to retrieve the user's location with an operation.
 
 import Foundation
 import CoreLocation
+import PSOperations
 
 /**
  `LocationOperation` is an `Operation` subclass to do a "one-shot" request to

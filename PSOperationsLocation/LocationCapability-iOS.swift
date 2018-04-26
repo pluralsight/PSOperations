@@ -10,6 +10,7 @@
 
 import Foundation
 import CoreLocation
+import PSOperations
 
 public enum Location: CapabilityType {
     public static let name = "Location"
