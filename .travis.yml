@@ -1,5 +1,6 @@
 language: swift
 osx_image: xcode10.1
 script:
- - xcodebuild test -project PSOperations.xcodeproj -scheme PSOperations -destination 'platform=iOS Simulator,name=iPhone 8' -destination 'platform=tvOS Simulator,name=Apple TV 4K'
+ - xcodebuild test -project PSOperations.xcodeproj -scheme PSOperations -destination 'platform=iOS Simulator,name=iPhone 8'
+ # -destination 'platform=tvOS Simulator,name=Apple TV 4K'
  # - xcodebuild test -project PSOperations.xcodeproj -scheme PSOperationsAppForTests -destination 'platform=iOS Simulator,name=iPhone 6s'
