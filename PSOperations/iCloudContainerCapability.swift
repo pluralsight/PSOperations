@@ -8,45 +8,44 @@
 
 #if !os(watchOS)
 
-import Foundation
 import CloudKit
+import Foundation
 
 public struct iCloudContainer: CapabilityType {
-    
+
     public static let name = "iCloudContainer"
-    
+
     fileprivate let container: CKContainer
     fileprivate let permissions: CKContainer.Application.Permissions
-    
+
     public init(container: CKContainer, permissions: CKContainer.Application.Permissions = []) {
         self.container = container
         self.permissions = permissions
     }
-    
+
     public func requestStatus(_ completion: @escaping (CapabilityStatus) -> Void) {
         verifyAccountStatus(container, permission: permissions, shouldRequest: false, completion: completion)
     }
-    
+
     public func authorize(_ completion: @escaping (CapabilityStatus) -> Void) {
         verifyAccountStatus(container, permission: permissions, shouldRequest: true, completion: completion)
     }
-    
 }
 
 private func verifyAccountStatus(_ container: CKContainer, permission: CKContainer.Application.Permissions, shouldRequest: Bool, completion: @escaping (CapabilityStatus) -> Void) {
     container.accountStatus { accountStatus, accountError in
         switch accountStatus {
-            case .noAccount: completion(.notAvailable)
-            case .restricted: completion(.notAvailable)
-            case .couldNotDetermine:
-                let error = accountError ?? NSError(domain: CKErrorDomain, code: CKError.notAuthenticated.rawValue, userInfo: nil)
-                completion(.error(error as NSError))
-            case .available:
-                if permission != [] {
-                    verifyPermission(container, permission: permission, shouldRequest: shouldRequest, completion: completion)
-                } else {
-                    completion(.authorized)
-                }
+        case .noAccount: completion(.notAvailable)
+        case .restricted: completion(.notAvailable)
+        case .couldNotDetermine:
+            let error = accountError ?? NSError(domain: CKErrorDomain, code: CKError.notAuthenticated.rawValue, userInfo: nil)
+            completion(.error(error as NSError))
+        case .available:
+            if permission != [] {
+                verifyPermission(container, permission: permission, shouldRequest: shouldRequest, completion: completion)
+            } else {
+                completion(.authorized)
+            }
         }
     }
 }
@@ -54,17 +53,17 @@ private func verifyAccountStatus(_ container: CKContainer, permission: CKContain
 private func verifyPermission(_ container: CKContainer, permission: CKContainer.Application.Permissions, shouldRequest: Bool, completion: @escaping (CapabilityStatus) -> Void) {
     container.status(forApplicationPermission: permission) { permissionStatus, permissionError in
         switch permissionStatus {
-            case .initialState:
-                if shouldRequest {
-                    requestPermission(container, permission: permission, completion: completion)
-                } else {
-                    completion(.notDetermined)
-                }
-            case .denied: completion(.denied)
-            case .granted: completion(.authorized)
-            case .couldNotComplete:
-                let error = permissionError ?? NSError(domain: CKErrorDomain, code: CKError.permissionFailure.rawValue, userInfo: nil)
-                completion(.error(error as NSError))
+        case .initialState:
+            if shouldRequest {
+                requestPermission(container, permission: permission, completion: completion)
+            } else {
+                completion(.notDetermined)
+            }
+        case .denied: completion(.denied)
+        case .granted: completion(.authorized)
+        case .couldNotComplete:
+            let error = permissionError ?? NSError(domain: CKErrorDomain, code: CKError.permissionFailure.rawValue, userInfo: nil)
+            completion(.error(error as NSError))
         }
     }
 }
@@ -73,12 +72,12 @@ private func requestPermission(_ container: CKContainer, permission: CKContainer
     DispatchQueue.main.async {
         container.requestApplicationPermission(permission) { requestStatus, requestError in
             switch requestStatus {
-                case .initialState: completion(.notDetermined)
-                case .denied: completion(.denied)
-                case .granted: completion(.authorized)
-                case .couldNotComplete:
-                    let error = requestError ?? NSError(domain: CKErrorDomain, code: CKError.permissionFailure.rawValue, userInfo: nil)
-                    completion(.error(error as NSError))
+            case .initialState: completion(.notDetermined)
+            case .denied: completion(.denied)
+            case .granted: completion(.authorized)
+            case .couldNotComplete:
+                let error = requestError ?? NSError(domain: CKErrorDomain, code: CKError.permissionFailure.rawValue, userInfo: nil)
+                completion(.error(error as NSError))
             }
         }
     }

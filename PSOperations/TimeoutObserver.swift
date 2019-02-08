@@ -16,17 +16,17 @@ public class TimeoutObserver: OperationObserver {
     // MARK: Properties
 
     static let timeoutKey = "Timeout"
-    
+
     fileprivate let timeout: TimeInterval
-    
+
     // MARK: Initialization
-    
+
     public init(timeout: TimeInterval) {
         self.timeout = timeout
     }
-    
+
     // MARK: OperationObserver
-    
+
     public func operationDidStart(_ operation: Operation) {
         // When the operation starts, queue up a block to cause it to time out.
         let when = DispatchTime.now() + timeout
@@ -45,7 +45,7 @@ public class TimeoutObserver: OperationObserver {
             }
         }
     }
-    
+
     public func operationDidCancel(_ operation: Operation) {
         // No op.
     }

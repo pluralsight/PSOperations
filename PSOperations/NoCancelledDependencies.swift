@@ -17,15 +17,15 @@ public struct NoCancelledDependencies: OperationCondition {
     public static let name = "NoCancelledDependencies"
     static let cancelledDependenciesKey = "CancelledDependencies"
     public static let isMutuallyExclusive = false
-    
+
     public init() {
         // No op.
     }
-    
+
     public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
         return nil
     }
-    
+
     public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
         // Verify that all of the dependencies executed.
         let cancelled = operation.dependencies.filter { $0.isCancelled }
@@ -36,10 +36,9 @@ public struct NoCancelledDependencies: OperationCondition {
                 OperationConditionKey: type(of: self).name,
                 type(of: self).cancelledDependenciesKey: cancelled
             ])
-            
+
             completion(.failed(error))
-        }
-        else {
+        } else {
             completion(.satisfied)
         }
     }

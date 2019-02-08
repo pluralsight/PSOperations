@@ -23,8 +23,7 @@ extension Foundation.Operation {
                 existing()
                 block()
             }
-        }
-        else {
+        } else {
             completionBlock = block
         }
     }

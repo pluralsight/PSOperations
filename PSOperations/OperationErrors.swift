@@ -16,7 +16,7 @@ public enum OperationErrorCode: Int {
 }
 
 public extension NSError {
-    convenience init(code: OperationErrorCode, userInfo: [String : Any]? = nil) {
+    convenience init(code: OperationErrorCode, userInfo: [String: Any]? = nil) {
         self.init(domain: OperationErrorDomain, code: code.rawValue, userInfo: userInfo)
     }
 }

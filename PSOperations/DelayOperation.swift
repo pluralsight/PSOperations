@@ -27,40 +27,39 @@ open class DelayOperation: Operation {
         case interval(TimeInterval)
         case date(Foundation.Date)
     }
-    
+
     // MARK: Properties
-    
+
     fileprivate let delay: Delay
-    
+
     // MARK: Initialization
-    
+
     public init(interval: TimeInterval) {
         delay = .interval(interval)
         super.init()
     }
-    
+
     public init(until date: Date) {
         delay = .date(date)
         super.init()
     }
-    
+
     override open func execute() {
         let interval: TimeInterval
-        
+
         // Figure out how long we should wait for.
         switch delay {
-            case .interval(let theInterval):
-                interval = theInterval
-
-            case .date(let date):
-                interval = date.timeIntervalSinceNow
+        case .interval(let theInterval):
+            interval = theInterval
+        case .date(let date):
+            interval = date.timeIntervalSinceNow
         }
-        
+
         guard interval > 0 else {
             finish()
             return
         }
-        
+
         let when = DispatchTime.now() + interval
         DispatchQueue.global(qos: qualityOfService).asyncAfter(deadline: when) { [weak self] in
             self?.finish()

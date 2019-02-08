@@ -33,10 +33,10 @@ import Foundation
 */
 open class OperationQueue: Foundation.OperationQueue {
     open weak var delegate: OperationQueueDelegate?
-    
+
     override open  func addOperation(_ operation: Foundation.Operation) {
         if let op = operation as? Operation {
-            
+
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
             let delegate = BlockObserver(
                 startHandler: nil,
@@ -50,25 +50,25 @@ open class OperationQueue: Foundation.OperationQueue {
                 }
             )
             op.addObserver(delegate)
-            
+
             // Extract any dependencies needed by this operation.
             let dependencies = op.conditions.compactMap {
                 $0.dependencyForOperation(op)
             }
-                
+
             for dependency in dependencies {
                 op.addDependency(dependency)
 
                 self.addOperation(dependency)
             }
-            
+
             /*
                 With condition dependencies added, we can now see if this needs
                 dependencies to enforce mutual exclusivity.
             */
             let concurrencyCategories: [String] = op.conditions.compactMap { condition in
                 guard type(of: condition).isMutuallyExclusive else { return nil }
-                
+
                 return "\(type(of: condition))"
             }
 
@@ -77,7 +77,7 @@ open class OperationQueue: Foundation.OperationQueue {
                 let exclusivityController = ExclusivityController.sharedExclusivityController
 
                 exclusivityController.addOperation(op, categories: concurrencyCategories)
-                
+
                 op.addObserver(BlockObserver { operation, _ in
                     exclusivityController.removeOperation(operation, categories: concurrencyCategories)
                 })
@@ -94,10 +94,10 @@ open class OperationQueue: Foundation.OperationQueue {
                 queue.delegate?.operationQueue?(queue, operationDidFinish: operation, withErrors: [])
             }
         }
-        
+
         delegate?.operationQueue?(self, willAddOperation: operation)
         super.addOperation(operation)
-        
+
         /*
             Indicate to the operation that we've finished our extra work on it
             and it's now it a state where it can proceed with evaluating conditions,
@@ -107,7 +107,7 @@ open class OperationQueue: Foundation.OperationQueue {
             op.didEnqueue()
         }
     }
-    
+
     override open func addOperations(_ ops: [Foundation.Operation], waitUntilFinished wait: Bool) {
         /*
             The base implementation of this method does not call `addOperation()`,
@@ -116,7 +116,7 @@ open class OperationQueue: Foundation.OperationQueue {
         for operation in ops {
             addOperation(operation)
         }
-        
+
         if wait {
             for operation in ops {
               operation.waitUntilFinished()

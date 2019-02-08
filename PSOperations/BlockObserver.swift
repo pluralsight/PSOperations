@@ -14,33 +14,33 @@ import Foundation
 */
 public class BlockObserver: OperationObserver {
     // MARK: Properties
-    
+
     fileprivate let startHandler: ((Operation) -> Void)?
     fileprivate let cancelHandler: ((Operation) -> Void)?
     fileprivate let produceHandler: ((Operation, Foundation.Operation) -> Void)?
     fileprivate let finishHandler: ((Operation, [NSError]) -> Void)?
-    
+
     public init(startHandler: ((Operation) -> Void)? = nil, cancelHandler: ((Operation) -> Void)? = nil, produceHandler: ((Operation, Foundation.Operation) -> Void)? = nil, finishHandler: ((Operation, [NSError]) -> Void)? = nil) {
         self.startHandler = startHandler
         self.cancelHandler = cancelHandler
         self.produceHandler = produceHandler
         self.finishHandler = finishHandler
     }
-    
+
     // MARK: OperationObserver
-    
+
     public func operationDidStart(_ operation: Operation) {
         startHandler?(operation)
     }
-    
+
     public func operationDidCancel(_ operation: Operation) {
         cancelHandler?(operation)
     }
-    
+
     public func operation(_ operation: Operation, didProduceOperation newOperation: Foundation.Operation) {
         produceHandler?(operation, newOperation)
     }
-    
+
     public func operationDidFinish(_ operation: Operation, errors: [NSError]) {
         finishHandler?(operation, errors)
     }

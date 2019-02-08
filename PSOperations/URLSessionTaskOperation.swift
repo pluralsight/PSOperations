@@ -23,36 +23,35 @@ private var URLSessionTaskOperationKVOContext = 0
 */
 open class URLSessionTaskOperation: Operation {
     let task: URLSessionTask
-    
+
     fileprivate var observerRemoved = false
     fileprivate let stateLock = NSLock()
-    
+
     public init(task: URLSessionTask) {
         assert(task.state == .suspended, "Tasks must be suspended.")
         self.task = task
         super.init()
-        
+
         addObserver(BlockObserver(cancelHandler: { _ in
             task.cancel()
         }))
     }
-    
+
     override open func execute() {
         assert(task.state == .suspended, "Task was resumed by something other than \(self).")
 
         task.addObserver(self, forKeyPath: "state", options: NSKeyValueObservingOptions(), context: &URLSessionTaskOperationKVOContext)
-        
+
         task.resume()
     }
-    
-    
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &URLSessionTaskOperationKVOContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
         }
         guard let object = object else { return }
-        
+
         stateLock.withCriticalScope {
             if object as AnyObject === task && keyPath == "state" && !observerRemoved {
                 switch task.state {
@@ -68,5 +67,4 @@ open class URLSessionTaskOperation: Operation {
             }
         }
     }
-    
 }

@@ -14,32 +14,32 @@ import Foundation
     network is NOT reachable.
 */
 public struct NegatedCondition<T: OperationCondition>: OperationCondition {
-    public static var name: String { 
+    public static var name: String {
         return "Not<\(T.name)>"
     }
-    
-    static var negatedConditionKey: String { 
+
+    static var negatedConditionKey: String {
         return "NegatedCondition"
     }
-    
+
     public static var isMutuallyExclusive: Bool {
         return T.isMutuallyExclusive
     }
-    
+
     let condition: T
 
     public init(condition: T) {
         self.condition = condition
     }
-    
+
     public func dependencyForOperation(_ operation: Operation) -> Foundation.Operation? {
         return condition.dependencyForOperation(operation)
     }
-    
+
     public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
         condition.evaluateForOperation(operation) { result in
             switch result {
-            case .failed(_):
+            case .failed:
                 // If the composed condition failed, then this one succeeded.
                 completion(.satisfied)
             case .satisfied:
@@ -48,7 +48,7 @@ public struct NegatedCondition<T: OperationCondition>: OperationCondition {
                     OperationConditionKey: type(of: self).name,
                     type(of: self).negatedConditionKey: type(of: self.condition).name
                     ])
-                
+
                 completion(.failed(error))
             }
         }

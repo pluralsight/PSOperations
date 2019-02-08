@@ -15,7 +15,7 @@ import Foundation
     about interesting operation state changes
 */
 open class Operation: Foundation.Operation {
-    
+
     /* The completionBlock property has unexpected behaviors such as executing twice and executing on unexpected threads. BlockObserver
      * executes in an expected manner.
      */
@@ -28,35 +28,35 @@ open class Operation: Foundation.Operation {
             return nil
         }
     }
-    
+
     // use the KVO mechanism to indicate that changes to "state" affect other properties as well
     @objc class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
         return ["state" as NSObject]
     }
-    
+
     @objc class func keyPathsForValuesAffectingIsExecuting() -> Set<NSObject> {
         return ["state" as NSObject]
     }
-    
+
     @objc class func keyPathsForValuesAffectingIsFinished() -> Set<NSObject> {
         return ["state" as NSObject]
     }
-    
+
     @objc class func keyPathsForValuesAffectingIsCancelled() -> Set<NSObject> {
         return ["cancelledState" as NSObject]
     }
-    
+
     private var instanceContext = 0
-    public override init() {
+    override public init() {
         super.init()
         self.addObserver(self, forKeyPath: "isReady", options: [], context: &instanceContext)
     }
-    
+
     deinit {
         self.removeObserver(self, forKeyPath: "isReady", context: &instanceContext)
     }
-    
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &instanceContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
@@ -66,7 +66,7 @@ open class Operation: Foundation.Operation {
         guard super.isReady && !isCancelled && state == .pending else { return }
         evaluateConditions()
     }
-    
+
     /**
         Indicates that the Operation can now begin to evaluate readiness conditions,
         if appropriate.
@@ -76,7 +76,7 @@ open class Operation: Foundation.Operation {
         defer { stateAccess.unlock() }
         state = .pending
     }
-    
+
     private let stateAccess = NSRecursiveLock()
     /// Private storage for the `state` property that will be KVO observed.
     private var _state = State.initialized
@@ -105,16 +105,16 @@ open class Operation: Foundation.Operation {
             didChangeValue(forKey: "state")
         }
     }
-    
+
     // Here is where we extend our definition of "readiness".
     override open var isReady: Bool {
         stateAccess.lock()
         defer { stateAccess.unlock() }
-        
+
         guard super.isReady else { return false }
-        
+
         guard !isCancelled  else { return true }
-        
+
         switch state {
         case .initialized, .evaluatingConditions, .pending:
             return false
@@ -122,7 +122,7 @@ open class Operation: Foundation.Operation {
             return true
         }
     }
-    
+
     open var userInitiated: Bool {
         get {
             return qualityOfService == .userInitiated
@@ -130,20 +130,20 @@ open class Operation: Foundation.Operation {
         set {
             stateAccess.lock()
             defer { stateAccess.unlock() }
-            
+
             assert(state < .executing, "Cannot modify userInitiated after execution has begun.")
             qualityOfService = newValue ? .userInitiated : .default
         }
     }
-    
+
     override open var isExecuting: Bool {
         return state == .executing
     }
-    
+
     override open var isFinished: Bool {
         return state == .finished
     }
-    
+
     private var __cancelled = false
     private let cancelledQueue = DispatchQueue(label: "Operations.Operation.cancelled")
     private var _cancelled: Bool {
@@ -157,20 +157,20 @@ open class Operation: Foundation.Operation {
         set {
             stateAccess.lock()
             defer { stateAccess.unlock() }
-            
+
             guard _cancelled != newValue else { return }
-            
+
             willChangeValue(forKey: "cancelledState")
             cancelledQueue.sync {
                 __cancelled = newValue
             }
-            
+
             if state == .initialized || state == .pending {
                 state = .ready
             }
-            
+
             didChangeValue(forKey: "cancelledState")
-            
+
             if newValue {
                 for observer in observers {
                     observer.operationDidCancel(self)
@@ -178,78 +178,78 @@ open class Operation: Foundation.Operation {
             }
         }
     }
-    
+
     override open var isCancelled: Bool {
         return _cancelled
     }
-    
+
     fileprivate func evaluateConditions() {
         stateAccess.lock()
         defer { stateAccess.unlock() }
-        
+
         assert(state == .pending && !isCancelled, "evaluateConditions() was called out-of-order")
-            
-        guard conditions.count > 0 else {
+
+        guard !conditions.isEmpty else {
             state = .ready
             return
         }
-        
+
         state = .evaluatingConditions
-        
+
         OperationConditionEvaluator.evaluate(conditions, operation: self) { failures in
             self.stateAccess.lock()
             defer { self.stateAccess.unlock() }
-            
+
             if !failures.isEmpty {
                 self.cancelWithErrors(failures)
             }
-            
+
             self.state = .ready
         }
     }
-     
+
     // MARK: Observers and Conditions
-    
+
     fileprivate(set) var conditions: [OperationCondition] = []
 
     open func addCondition(_ condition: OperationCondition) {
         assert(state < .evaluatingConditions, "Cannot modify conditions after execution has begun.")
         conditions.append(condition)
     }
-    
+
     fileprivate(set) var observers: [OperationObserver] = []
-    
+
     open func addObserver(_ observer: OperationObserver) {
         assert(state < .executing, "Cannot modify observers after execution has begun.")
         observers.append(observer)
     }
-    
+
     override open func addDependency(_ operation: Foundation.Operation) {
         assert(state <= .executing, "Dependencies cannot be modified after execution has begun.")
         super.addDependency(operation)
     }
-    
+
     // MARK: Execution and Cancellation
-    override final public func main() {
+    override public final func main() {
         stateAccess.lock()
 
         assert(state == .ready, "This operation must be performed on an operation queue.")
-        
+
         if internalErrors.isEmpty && !isCancelled {
             state = .executing
             stateAccess.unlock()
-            
+
             for observer in observers {
                 observer.operationDidStart(self)
             }
-            
+
             execute()
         } else {
             finish()
             stateAccess.unlock()
         }
     }
-    
+
     /**
     `execute()` is the entry point of execution for all `Operation` subclasses.
     If you subclass `Operation` and wish to customize its execution, you would
@@ -262,10 +262,10 @@ open class Operation: Foundation.Operation {
     */
     open func execute() {
         print("\(type(of: self)) must override `execute()`.")
-        
+
         finish()
     }
-    
+
     private let errorQueue = DispatchQueue(label: "Operations.Operation.internalErrors")
     private var _internalErrors: [NSError] = []
     fileprivate var internalErrors: [NSError] {
@@ -280,40 +280,40 @@ open class Operation: Foundation.Operation {
             }
         }
     }
-    
-    open var errors : [NSError] {
+
+    open var errors: [NSError] {
         return internalErrors
     }
-  
+
     override open func cancel() {
         stateAccess.lock()
         defer { stateAccess.unlock() }
         guard !isFinished else { return }
-        
+
         _cancelled = true
-        
+
         if state > .ready {
             finish()
         }
     }
-    
+
     open func cancelWithErrors(_ errors: [NSError]) {
         internalErrors += errors
         cancel()
     }
-    
+
     open func cancelWithError(_ error: NSError) {
         cancelWithErrors([error])
     }
-    
+
     public final func produceOperation(_ operation: Foundation.Operation) {
         for observer in observers {
             observer.operation(self, didProduceOperation: operation)
         }
     }
-    
+
     // MARK: Finishing
-    
+
     /**
         Most operations may finish with a single error, if they have one at all.
         This is a convenience method to simplify calling the actual `finish()` 
@@ -329,7 +329,7 @@ open class Operation: Foundation.Operation {
             finish()
         }
     }
-    
+
     /**
         A private property to ensure we only notify the observers once that the 
         operation has finished.
@@ -339,21 +339,21 @@ open class Operation: Foundation.Operation {
         stateAccess.lock()
         defer { stateAccess.unlock() }
         guard !hasFinishedAlready else { return }
-        
+
         hasFinishedAlready = true
         state = .finishing
-        
+
         internalErrors += errors
-        
+
         finished(internalErrors)
-        
+
         for observer in observers {
             observer.operationDidFinish(self, errors: internalErrors)
         }
-        
+
         state = .finished
     }
-    
+
     /**
         Subclasses may override `finished(_:)` if they wish to react to the operation
         finishing with errors. For example, the `LoadModelOperation` implements 
@@ -361,7 +361,7 @@ open class Operation: Foundation.Operation {
         bring up the Core Data stack.
     */
     open func finished(_ errors: [NSError]) { }
-    
+
     override open func waitUntilFinished() {
         /*
             Waiting on operations is almost NEVER the right thing to do. It is 
@@ -376,5 +376,4 @@ open class Operation: Foundation.Operation {
         */
         fatalError("Waiting on operations is an anti-pattern.")
     }
-    
 }

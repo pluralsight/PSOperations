@@ -16,17 +16,17 @@ import Foundation
 */
 class ExclusivityController {
     static let sharedExclusivityController = ExclusivityController()
-    
+
     fileprivate let serialQueue = DispatchQueue(label: "Operations.ExclusivityController", attributes: [])
     fileprivate var operations: [String: [Operation]] = [:]
-    
+
     fileprivate init() {
         /*
             A private initializer effectively prevents any other part of the app
             from accidentally creating an instance.
         */
     }
-    
+
     /// Registers an operation as being mutually exclusive
     func addOperation(_ operation: Operation, categories: [String]) {
         /*
@@ -40,7 +40,7 @@ class ExclusivityController {
             }
         }
     }
-    
+
     /// Unregisters an operation from being mutually exclusive.
     func removeOperation(_ operation: Operation, categories: [String]) {
         serialQueue.async {
@@ -49,22 +49,21 @@ class ExclusivityController {
             }
         }
     }
-    
-    
+
     // MARK: Operation Management
-    
+
     fileprivate func noqueue_addOperation(_ operation: Operation, category: String) {
         var operationsWithThisCategory = operations[category] ?? []
-        
+
         if let last = operationsWithThisCategory.last {
             operation.addDependency(last)
         }
-        
+
         operationsWithThisCategory.append(operation)
 
         operations[category] = operationsWithThisCategory
     }
-    
+
     fileprivate func noqueue_removeOperation(_ operation: Operation, category: String) {
         let matchingOperations = operations[category]
 
@@ -75,5 +74,4 @@ class ExclusivityController {
             operations[category] = operationsWithThisCategory
         }
     }
-    
 }

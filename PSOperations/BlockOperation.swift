@@ -14,7 +14,7 @@ public typealias OperationBlock = (@escaping () -> Void) -> Void
 /// A sublcass of `Operation` to execute a closure.
 open class BlockOperation: Operation {
     fileprivate let block: OperationBlock?
-    
+
     /**
         The designated initializer.
         
@@ -28,7 +28,7 @@ open class BlockOperation: Operation {
         self.block = block
         super.init()
     }
-    
+
     /**
         A convenience initializer to execute a block on the main queue.
         
@@ -37,7 +37,7 @@ open class BlockOperation: Operation {
             the designated initializer). The operation will be automatically ended 
             after the `mainQueueBlock` is executed.
     */
-    public convenience init(mainQueueBlock: @escaping ()->()) {
+    public convenience init(mainQueueBlock: @escaping () -> Void) {
         self.init(block: { continuation in
             DispatchQueue.main.async {
                 mainQueueBlock()
@@ -45,7 +45,7 @@ open class BlockOperation: Operation {
             }
         })
     }
-    
+
     override open func execute() {
         if let block = block {
             block {

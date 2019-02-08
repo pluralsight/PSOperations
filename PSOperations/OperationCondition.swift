@@ -20,13 +20,13 @@ public protocol OperationCondition {
         errors as the value of the `OperationConditionKey` key.
     */
      static var name: String { get }
-    
+
     /**
         Specifies whether multiple instances of the conditionalized operation may
         be executing simultaneously.
     */
     static var isMutuallyExclusive: Bool { get }
-    
+
     /**
         Some conditions may have the ability to satisfy the condition if another
         operation is executed first. Use this method to return an operation that
@@ -40,7 +40,7 @@ public protocol OperationCondition {
             a single `GroupOperation` that executes multiple operations internally.
     */
     func dependencyForOperation(_ operation: Operation) -> Foundation.Operation?
-    
+
     /// Evaluate the condition, to see if it has been satisfied or not.
     func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void)
 }
@@ -52,7 +52,7 @@ public protocol OperationCondition {
 public enum OperationConditionResult {
     case satisfied
     case failed(NSError)
-    
+
     var error: NSError? {
         switch self {
         case .failed(let error):
@@ -74,7 +74,6 @@ func ==(lhs: OperationConditionResult, rhs: OperationConditionResult) -> Bool {
     }
 }
 
-
 // MARK: Evaluate Conditions
 
 struct OperationConditionEvaluator {
@@ -83,7 +82,7 @@ struct OperationConditionEvaluator {
         let conditionGroup = DispatchGroup()
 
         var results = [OperationConditionResult?](repeating: nil, count: conditions.count)
-        
+
         // Ask each condition to evaluate and store its result in the "results" array.
         for (index, condition) in conditions.enumerated() {
             conditionGroup.enter()
@@ -92,12 +91,12 @@ struct OperationConditionEvaluator {
                 conditionGroup.leave()
             }
         }
-        
+
         // After all the conditions have evaluated, this block will execute.
         conditionGroup.notify(queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default)) {
             // Aggregate the errors that occurred, in order.
             var failures = results.compactMap { $0?.error }
-            
+
             /*
                 If any of the conditions caused this operation to be cancelled, 
                 check for that.
@@ -105,7 +104,7 @@ struct OperationConditionEvaluator {
             if operation.isCancelled {
                 failures.append(NSError(code: .conditionFailed))
             }
-            
+
             completion(failures)
         }
     }

@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  PSOperationsAppForTests
-//
-//  Created by Matt McMurry on 1/11/16.
-//  Copyright © 2016 Pluralsight. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -19,7 +11,4 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
-

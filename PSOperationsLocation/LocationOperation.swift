@@ -8,8 +8,8 @@ Shows how to retrieve the user's location with an operation.
 
 #if !os(OSX)
 
-import Foundation
 import CoreLocation
+import Foundation
 import PSOperations
 
 /**
@@ -20,13 +20,13 @@ import PSOperations
  */
 open class LocationOperation: PSOperation, CLLocationManagerDelegate {
     // MARK: Properties
-    
+
     fileprivate let accuracy: CLLocationAccuracy
     fileprivate var manager: CLLocationManager?
     fileprivate let handler: (CLLocation) -> Void
-    
+
     // MARK: Initialization
-    
+
     public init(accuracy: CLLocationAccuracy, locationHandler: @escaping (CLLocation) -> Void) {
         self.accuracy = accuracy
         self.handler = locationHandler
@@ -43,7 +43,7 @@ open class LocationOperation: PSOperation, CLLocationManagerDelegate {
             }
         }))
     }
-    
+
     override open func execute() {
         DispatchQueue.main.async {
             /*
@@ -53,7 +53,7 @@ open class LocationOperation: PSOperation, CLLocationManagerDelegate {
             let manager = CLLocationManager()
             manager.desiredAccuracy = self.accuracy
             manager.delegate = self
-            
+
             if #available(iOS 9.0, *) {
                 manager.requestLocation()
             } else {
@@ -61,18 +61,18 @@ open class LocationOperation: PSOperation, CLLocationManagerDelegate {
                     manager.startUpdatingLocation()
                 #endif
             }
-            
+
             self.manager = manager
         }
     }
-    
+
     fileprivate func stopLocationUpdates() {
         manager?.stopUpdatingLocation()
         manager = nil
     }
-    
+
     // MARK: CLLocationManagerDelegate
-    
+
     open func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last, location.horizontalAccuracy <= accuracy {
             stopLocationUpdates()
@@ -80,7 +80,7 @@ open class LocationOperation: PSOperation, CLLocationManagerDelegate {
             finish()
         }
     }
-    
+
     open func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         stopLocationUpdates()
         finishWithError(error as NSError?)
