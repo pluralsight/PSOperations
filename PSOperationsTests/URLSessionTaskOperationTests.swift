@@ -7,13 +7,13 @@ public extension URLSession {
         static var instance = URLSession.shared
     }
 
-    public func setProtocolClasses(classes: [AnyClass]) {
+    func setProtocolClasses(classes: [AnyClass]) {
         let sessionconfig = URLSession.PSSession.configuration
         sessionconfig.protocolClasses = classes
         SharedInstance.instance = URLSession(configuration: sessionconfig)
     }
 
-    public static var PSSession: URLSession {
+    static var PSSession: URLSession {
         return SharedInstance.instance
     }
 }
