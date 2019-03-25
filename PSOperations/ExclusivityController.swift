@@ -68,7 +68,7 @@ class ExclusivityController {
         let matchingOperations = operations[category]
 
         if var operationsWithThisCategory = matchingOperations,
-           let index = operationsWithThisCategory.index(of: operation) {
+           let index = operationsWithThisCategory.firstIndex(of: operation) {
 
             operationsWithThisCategory.remove(at: index)
             operations[category] = operationsWithThisCategory

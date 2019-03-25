@@ -13,6 +13,8 @@ extension DispatchQoS.QoSClass {
             self = .background
         case .default:
             self = .default
+        @unknown default:
+            self = .default
         }
     }
 }
