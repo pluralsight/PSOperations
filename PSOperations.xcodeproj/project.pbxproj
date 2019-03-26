@@ -714,7 +714,6 @@
 					};
 					1D9B43181B6A92ED008F7F18 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 5TSJ5VWTTU;
 						LastSwiftMigration = 1020;
 					};
 					775C7EF1205718C30091A21F = {
@@ -1214,7 +1213,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 5TSJ5VWTTU;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PSOperationsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1229,7 +1228,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 5TSJ5VWTTU;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PSOperationsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pluralsight.$(PRODUCT_NAME:rfc1034identifier)";
