@@ -16,6 +16,8 @@ import Foundation
 */
 open class Operation: Foundation.Operation {
 
+    private static var psoperationContext = 0
+
     /* The completionBlock property has unexpected behaviors such as executing twice and executing on unexpected threads. BlockObserver
      * executes in an expected manner.
      */
@@ -46,18 +48,17 @@ open class Operation: Foundation.Operation {
         return ["cancelledState" as NSObject]
     }
 
-    private var instanceContext = 0
     override public init() {
         super.init()
-        self.addObserver(self, forKeyPath: "isReady", options: [], context: &instanceContext)
+        self.addObserver(self, forKeyPath: "isReady", options: [], context: &Operation.psoperationContext)
     }
 
     deinit {
-        self.removeObserver(self, forKeyPath: "isReady", context: &instanceContext)
+        self.removeObserver(self, forKeyPath: "isReady", context: &Operation.psoperationContext)
     }
 
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        guard context == &instanceContext else {
+        guard context == &Operation.psoperationContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
         }
