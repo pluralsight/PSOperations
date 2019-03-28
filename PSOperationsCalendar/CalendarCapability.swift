@@ -16,6 +16,7 @@ extension EKEntityType: CapabilityType {
         case .denied: completion(.denied)
         case .restricted: completion(.notAvailable)
         case .notDetermined: completion(.notDetermined)
+        @unknown default: completion(.notDetermined)
         }
     }
 

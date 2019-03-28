@@ -28,6 +28,7 @@ public struct Location: CapabilityType {
             completion(.authorized)
         default:
             completion(.authorized)
+
         }
     }
 

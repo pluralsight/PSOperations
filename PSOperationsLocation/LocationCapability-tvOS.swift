@@ -24,6 +24,7 @@ public struct Location: CapabilityType {
         case .authorizedWhenInUse: completion(.authorized)
         case .authorizedAlways:
             fatalError(".Always should be unavailable on tvOS")
+        @unknown default: completion(.notDetermined)
         }
     }
 
@@ -72,6 +73,7 @@ private class LocationAuthorizer: NSObject, CLLocationManagerDelegate {
                 fatalError(".Always should be unavailable on tvOS")
             case .notDetermined:
                 fatalError("Unreachable due to the if statement, but included to keep clang happy")
+            @unknown default: completion(.notDetermined)
             }
         }
     }
