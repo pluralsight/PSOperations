@@ -777,7 +777,7 @@ class PSOperationsTests: XCTestCase {
 
         let groupOp = GroupOperation(operations: [dependencyOperation, operation])
 
-        keyValueObservingExpectation(for: dependencyOperation, keyPath: "isCancelled") { op, _ in
+        keyValueObservingExpectation(for: dependencyOperation!, keyPath: "isCancelled") { op, _ in
 
             if let op = op as? Foundation.Operation {
                 return op.isCancelled
@@ -845,7 +845,7 @@ class PSOperationsTests: XCTestCase {
         let q = PSOperations.OperationQueue()
         q.addOperation(blockOperation)
 
-        keyValueObservingExpectation(for: blockOperation, keyPath: "isCancelled") { op, _ in
+        keyValueObservingExpectation(for: blockOperation!, keyPath: "isCancelled") { op, _ in
 
             guard let op = op as? Foundation.Operation else { return false }
             return op.isCancelled
