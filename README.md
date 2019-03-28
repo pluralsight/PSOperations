@@ -10,7 +10,7 @@ This is an adaptation of the sample code provided in the [Advanced NSOperations]
 
 ## Support
 
- - Swift 4.x
+ - Swift 5.x
  - iOS 8.0
  - tvOS 9.0
  - watchOS (undefined deployment target)
