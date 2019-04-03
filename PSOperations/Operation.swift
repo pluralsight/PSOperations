@@ -141,7 +141,7 @@ open class Operation: Foundation.Operation {
             */
             willChangeValue(forKey: "state")
             
-            stateLock.withCriticalScope { Void -> Void in
+            stateLock.withCriticalScope { () -> Void in
                 guard _state != .finished else {
                     return
                 }
