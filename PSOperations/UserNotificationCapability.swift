@@ -10,6 +10,7 @@
 
 import UIKit
 
+@available(*, deprecated)
 public struct UserNotification: CapabilityType {
 
     public static let name = "UserNotificaton"
@@ -55,8 +56,10 @@ public struct UserNotification: CapabilityType {
     }
 }
 
+@available(*, deprecated)
 private let authorizer = UserNotificationAuthorizer()
 
+@available(*, deprecated)
 private class UserNotificationAuthorizer {
 
     var _application: UIApplication?
