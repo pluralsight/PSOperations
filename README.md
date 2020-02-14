@@ -14,7 +14,7 @@ This is an adaptation of the sample code provided in the [Advanced NSOperations]
  - iOS 8.0
  - tvOS 9.0
  - watchOS (undefined deployment target)
- - macOS (undefined deployment target)
+ - macOS 10.11
  - Extension friendly
  - Tests only run against iOS 9 (latest) and tvOS 9 (latest)
 
@@ -31,6 +31,16 @@ public typealias PSBlockOperation = BlockOperation
 
 ## Installation
 PSOperations supports multiple methods for installing the library in a project.
+
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager) (SPM) is Swift's own dependency management as of Swift 3.0. Xcode 11 gained native support for SPM and allows to add dependencies to apps from within Xcode.
+
+PSOperations can be added either via Xcode 11+, or by adding the following dependency to your Package.swift:
+
+```swift
+.package(url: "https://github.com/pluralsight/PSOperations.git", from: "5.0.2"),
+```
 
 ### CocoaPods
 [CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like PSOperations in your projects.
