@@ -8,18 +8,15 @@ This file contains the fundamental logic relating to Operation conditions.
 
 import Foundation
 
-public let OperationConditionKey = "OperationCondition"
-
 /**
     A protocol for defining conditions that must be satisfied in order for an
     operation to begin execution.
 */
 public protocol OperationCondition {
     /** 
-        The name of the condition. This is used in userInfo dictionaries of `.ConditionFailed` 
-        errors as the value of the `OperationConditionKey` key.
+        The name of the condition. This is will be passed as `conditionName` in `ConditionError`s.
     */
-     static var name: String { get }
+    static var name: String { get }
 
     /**
         Specifies whether multiple instances of the conditionalized operation may
@@ -45,15 +42,27 @@ public protocol OperationCondition {
     func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void)
 }
 
+public protocol AnyConditionError: Error {
+    var conditionName: String { get }
+}
+
+public protocol ConditionError: AnyConditionError {
+    associatedtype Condition: OperationCondition
+}
+
+extension ConditionError {
+    public var conditionName: String { return Condition.name }
+}
+
 /**
     An enum to indicate whether an `OperationCondition` was satisfied, or if it 
     failed with an error.
 */
 public enum OperationConditionResult {
     case satisfied
-    case failed(NSError)
+    case failed(AnyConditionError)
 
-    var error: NSError? {
+    var error: AnyConditionError? {
         switch self {
         case .failed(let error):
             return error
@@ -63,21 +72,14 @@ public enum OperationConditionResult {
     }
 }
 
-func ==(lhs: OperationConditionResult, rhs: OperationConditionResult) -> Bool {
-    switch (lhs, rhs) {
-    case (.satisfied, .satisfied):
-        return true
-    case (.failed(let lError), .failed(let rError)) where lError == rError:
-        return true
-    default:
-        return false
-    }
-}
-
 // MARK: Evaluate Conditions
 
 struct OperationConditionEvaluator {
-    static func evaluate(_ conditions: [OperationCondition], operation: Operation, completion: @escaping ([NSError]) -> Void) {
+    struct AnyConditionFailed: AnyConditionError {
+        var conditionName: String { return "AnyCondition" }
+    }
+
+    static func evaluate(_ conditions: [OperationCondition], operation: Operation, completion: @escaping ([AnyConditionError]) -> Void) {
         // Check conditions.
         let conditionGroup = DispatchGroup()
 
@@ -102,7 +104,7 @@ struct OperationConditionEvaluator {
                 check for that.
             */
             if operation.isCancelled {
-                failures.append(NSError(code: .conditionFailed))
+                failures.append(AnyConditionFailed())
             }
 
             completion(failures)

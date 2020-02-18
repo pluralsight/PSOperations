@@ -4,6 +4,12 @@ import XCTest
 
 struct TestCondition: OperationCondition {
 
+    struct Error: ConditionError {
+        typealias Condition = TestCondition
+
+        let failed: Bool
+    }
+    
     static let name = "TestCondition"
     static let isMutuallyExclusive = false
     var dependencyOperation: Foundation.Operation?
@@ -18,14 +24,14 @@ struct TestCondition: OperationCondition {
         if conditionBlock() {
             completion(.satisfied)
         } else {
-            completion(.failed(NSError(code: .conditionFailed, userInfo: ["Failed": true])))
+            completion(.failed(Error(failed: true)))
         }
     }
 }
 
 class TestObserver: OperationObserver {
 
-    var errors: [NSError]?
+    var errors: [Error]?
 
     var didStartBlock: (() -> Void)?
     var didEndBlock: (() -> Void)?
@@ -51,7 +57,7 @@ class TestObserver: OperationObserver {
         }
     }
 
-    func operationDidFinish(_ operation: PSOperations.Operation, errors: [NSError]) {
+    func operationDidFinish(_ operation: PSOperations.Operation, errors: [Error]) {
         self.errors = errors
 
         if let didEndBlock = didEndBlock {
@@ -1028,6 +1034,11 @@ class PSOperationsTests: XCTestCase {
 
         waitForExpectations(timeout: 1.0, handler: nil)
     }
+    
+    struct OpError: Error, Equatable {
+        let identifier: String
+    }
+    
     func testOperationFinishedWithErrors() {
         let opQ = PSOperations.OperationQueue()
 
@@ -1036,10 +1047,10 @@ class PSOperationsTests: XCTestCase {
             let sema = DispatchSemaphore(value: 0)
 
             override func execute() {
-                finishWithError(NSError(code: .executionFailed))
+                finishWithError(OpError(identifier: "test"))
             }
 
-            override func finished(_ errors: [NSError]) {
+            override func finished(_ errors: [Error]) {
                 sema.signal()
             }
 
@@ -1052,7 +1063,8 @@ class PSOperationsTests: XCTestCase {
 
         opQ.addOperations([op], waitUntilFinished: true)
 
-        XCTAssertEqual(op.errors, [NSError(code: .executionFailed)])
+        XCTAssertNotNil(op.errors as? [OpError])
+        XCTAssertEqual(op.errors as! [OpError], [OpError(identifier: "test")])
     }
 
     func testOperationCancelledWithErrors() {
@@ -1063,10 +1075,10 @@ class PSOperationsTests: XCTestCase {
             let sema = DispatchSemaphore(value: 0)
 
             override func execute() {
-                cancelWithError(NSError(code: .executionFailed))
+                cancelWithError(OpError(identifier: "test"))
             }
 
-            override func finished(_ errors: [NSError]) {
+            override func finished(_ errors: [Error]) {
                 sema.signal()
             }
 
@@ -1079,6 +1091,7 @@ class PSOperationsTests: XCTestCase {
 
         opQ.addOperations([op], waitUntilFinished: true)
 
-        XCTAssertEqual(op.errors, [NSError(code: .executionFailed)])
+        XCTAssertNotNil(op.errors as? [OpError])
+        XCTAssertEqual(op.errors as! [OpError], [OpError(identifier: "test")])
     }
 }

@@ -27,5 +27,5 @@ public protocol OperationObserver {
         Invoked as an `Operation` finishes, along with any errors produced during
         execution (or readiness evaluation).
     */
-    func operationDidFinish(_ operation: Operation, errors: [NSError])
+    func operationDidFinish(_ operation: Operation, errors: [Error])
 }
