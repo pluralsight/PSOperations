@@ -78,9 +78,9 @@ open class OperationQueue: Foundation.OperationQueue {
 
                 exclusivityController.addOperation(op, categories: concurrencyCategories)
 
-                op.addObserver(BlockObserver { operation, _ in
+                op.addObserver(BlockObserver(finishHandler:  { operation, _ in
                     exclusivityController.removeOperation(operation, categories: concurrencyCategories)
-                })
+                }))
             }
         } else {
             /*

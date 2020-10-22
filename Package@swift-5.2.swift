@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,10 +6,9 @@ import PackageDescription
 let package = Package(
     name: "PSOperations",
     platforms: [
-        .iOS(.v10),
-        .macOS(.v10_13),
-        .tvOS(.v12),
-        .watchOS(.v6),
+        .iOS(.v8),
+        .macOS(.v10_11),
+        .tvOS(.v9),
     ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
