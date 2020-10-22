@@ -8,26 +8,25 @@ public struct Photos: CapabilityType {
 
     public init() { }
 
+    private func capabilityStatus(for authStatus: PHAuthorizationStatus) -> CapabilityStatus {
+        switch authStatus {
+        case .authorized: return .authorized
+        case .limited: return .authorized
+        case .denied: return .denied
+        case .restricted: return .notAvailable
+        case .notDetermined: return .notDetermined
+        @unknown default: return .notDetermined
+        }
+    }
+
     public func requestStatus(_ completion: @escaping (CapabilityStatus) -> Void) {
         let status = PHPhotoLibrary.authorizationStatus()
-        switch status {
-        case .authorized: completion(.authorized)
-        case .denied: completion(.denied)
-        case .restricted: completion(.notAvailable)
-        case .notDetermined: completion(.notDetermined)
-        @unknown default: completion(.notDetermined)
-        }
+        completion(capabilityStatus(for: status))
     }
 
     public func authorize(_ completion: @escaping (CapabilityStatus) -> Void) {
         PHPhotoLibrary.requestAuthorization { status in
-            switch status {
-            case .authorized: completion(.authorized)
-            case .denied: completion(.denied)
-            case .restricted: completion(.notAvailable)
-            case .notDetermined: completion(.notDetermined)
-            @unknown default: completion(.notDetermined)
-            }
+            completion(capabilityStatus(for: status))
         }
     }
 }
