@@ -15,17 +15,10 @@ extension Dictionary {
         - parameter sequence: The sequence to be iterated
 
         - parameter keyer: The closure that will be executed for each element in 
-            the `sequence`. The return value of this closure, if there is one, will
-            be used as the key for the value in the `Dictionary`. If the closure 
-            returns `nil`, then the value will be omitted from the `Dictionary`.
+            the `sequence`. The return value of this closure, will
+            be used as the key for the value in the `Dictionary`.
     */
-    init<Sequence: Swift.Sequence>(sequence: Sequence, keyMapper: (Value) -> Key?) where Sequence.Iterator.Element == Value {
-        self.init()
-
-        for item in sequence {
-            if let key = keyMapper(item) {
-                self[key] = item
-            }
-        }
+    init<Sequence: Swift.Sequence>(sequence: Sequence, keyMapper: (Value) -> Key) where Sequence.Element == Value {
+        self.init(sequence.map { (keyMapper($0), $0) }, uniquingKeysWith: { $1 })
     }
 }
