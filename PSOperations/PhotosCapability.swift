@@ -9,14 +9,24 @@ public struct Photos: CapabilityType {
     public init() { }
 
     private func capabilityStatus(for authStatus: PHAuthorizationStatus) -> CapabilityStatus {
-        switch authStatus {
-        case .authorized: return .authorized
-        case .limited: return .authorized
-        case .denied: return .denied
-        case .restricted: return .notAvailable
-        case .notDetermined: return .notDetermined
-        @unknown default: return .notDetermined
-        }
+        #if targetEnvironment(macCatalyst)
+            switch authStatus {
+            case .authorized: return .authorized
+            case .denied: return .denied
+            case .restricted: return .notAvailable
+            case .notDetermined: return .notDetermined
+            @unknown default: return .notDetermined
+            }
+        #else
+            switch authStatus {
+            case .authorized: return .authorized
+            case .limited: return .authorized
+            case .denied: return .denied
+            case .restricted: return .notAvailable
+            case .notDetermined: return .notDetermined
+            @unknown default: return .notDetermined
+            }
+        #endif
     }
 
     public func requestStatus(_ completion: @escaping (CapabilityStatus) -> Void) {
