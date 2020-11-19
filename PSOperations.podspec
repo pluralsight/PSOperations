@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 	DESC
 
 	s.homepage	= "https://github.com/pluralsight/PSOperations"
-	s.license	= { :type => 'MIT' }
+	s.license	= { :type => 'Apache 2.0' }
 	s.author	= "Matt McMurry", "Mark Schultz"
 
 	s.ios.deployment_target = '10.3'
