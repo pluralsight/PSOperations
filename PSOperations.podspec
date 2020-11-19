@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
 
 	s.name         	= "PSOperations"
-	s.version      	= "5.0.1"
-	s.swift_version = "5.0"
+	s.version      	= "5.0.3"
+	s.swift_version = "5.3"
 	s.summary      	= "This is an adaptation of the sample code provided in the Advanced NSOperations session of WWDC 2015"
 	s.description  	= <<-DESC
 	PSOperations is a framework that leverages the power of NSOperation and NSOperationQueue. It enables you to use operations more easily in all parts of your project.
@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
 	s.license	= { :type => 'MIT' }
 	s.author	= "Matt McMurry", "Mark Schultz"
 
-	s.ios.deployment_target = '8.0'
+	s.ios.deployment_target = '10.3'
 	s.watchos.deployment_target = "2.0"
-	s.osx.deployment_target = "10.11"
+	s.osx.deployment_target = "10.15"
 	s.tvos.deployment_target = "9.0"
 
 	s.requires_arc = true
