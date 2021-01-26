@@ -27,6 +27,7 @@ public enum Passbook: CapabilityType {
         }
     }
 
+    // swiftlint:disable:next unavailable_function
     public func authorize(_ completion: @escaping (CapabilityStatus) -> Void) {
         // Since requestStatus() never returns .NotDetermined, this method should never be called
         fatalError("This should never be invoked")

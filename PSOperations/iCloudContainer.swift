@@ -8,15 +8,15 @@
 
 #if !os(watchOS)
 
-import Foundation
 import CloudKit
+import Foundation
 
 public struct iCloudContainer: CapabilityType {
 
     public static let name = "iCloudContainer"
 
-    fileprivate let container: CKContainer
-    fileprivate let permissions: CKContainer.Application.Permissions
+    private let container: CKContainer
+    private let permissions: CKContainer.Application.Permissions
 
     public init(container: CKContainer, permissions: CKContainer.Application.Permissions = []) {
         self.container = container

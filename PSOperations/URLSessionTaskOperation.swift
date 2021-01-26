@@ -24,8 +24,8 @@ private var URLSessionTaskOperationKVOContext = 0
 open class URLSessionTaskOperation: Operation {
     let task: URLSessionTask
 
-    fileprivate var observerRemoved = false
-    fileprivate let stateLock = NSLock()
+    private var observerRemoved = false
+    private let stateLock = NSLock()
 
     public init(task: URLSessionTask) {
         assert(task.state == .suspended, "Tasks must be suspended.")

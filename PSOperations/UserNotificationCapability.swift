@@ -24,8 +24,8 @@ public struct UserNotification: CapabilityType {
         case merge
     }
 
-    fileprivate let settings: UIUserNotificationSettings
-    fileprivate let behavior: Behavior
+    private let settings: UIUserNotificationSettings
+    private let behavior: Behavior
 
     public init(settings: UIUserNotificationSettings, behavior: Behavior = .merge, application: UIApplication) {
         self.settings = settings
@@ -64,15 +64,15 @@ private class UserNotificationAuthorizer {
 
     var _application: UIApplication?
     var application: UIApplication {
-        set {
-            _application = newValue
-        }
         get {
             guard let application = _application else {
                 fatalError("Application not yet configured. Results would be undefined.")
             }
-
+            
             return application
+        }
+        set {
+            _application = newValue
         }
     }
     var completion: ((CapabilityStatus) -> Void)?
@@ -98,7 +98,7 @@ private class UserNotificationAuthorizer {
         application.registerUserNotificationSettings(settings)
     }
 
-    fileprivate func completeAuthorization() {
+    func completeAuthorization() {
 
         guard let completion = self.completion else { return }
         guard let settings = self.settings else { return }

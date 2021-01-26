@@ -22,13 +22,13 @@ import Foundation
     be executed before the rest of the operations in the initial chain of operations.
 */
 open class GroupOperation: Operation {
-    fileprivate let internalQueue = OperationQueue()
-    fileprivate let startingOperation = Foundation.BlockOperation(block: {})
-    fileprivate let finishingOperation = Foundation.BlockOperation(block: {})
+    private let internalQueue = OperationQueue()
+    private let startingOperation = Foundation.BlockOperation(block: {})
+    private let finishingOperation = Foundation.BlockOperation(block: {})
 
     private var _aggregatedErrors: [Error] = []
     private let aggregateQueue = DispatchQueue(label: "Operations.GroupOperations.aggregateErrors")
-    fileprivate var aggregatedErrors: [Error] {
+    private var aggregatedErrors: [Error] {
         get {
             var errors: [Error] = []
             aggregateQueue.sync {

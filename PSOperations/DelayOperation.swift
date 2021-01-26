@@ -23,14 +23,14 @@ import Foundation
 open class DelayOperation: Operation {
     // MARK: Types
 
-    fileprivate enum Delay {
+    private enum Delay {
         case interval(TimeInterval)
         case date(Foundation.Date)
     }
 
     // MARK: Properties
 
-    fileprivate let delay: Delay
+    private let delay: Delay
 
     // MARK: Initialization
 

@@ -55,7 +55,7 @@ private class PushAuthorizer {
         application.registerForRemoteNotifications()
     }
 
-    fileprivate func completeAuthorization(_ token: Data?, error: Error?) {
+    func completeAuthorization(_ token: Data?, error: Error?) {
         self.token = token
 
         guard let completion = self.completion else { return }

@@ -13,7 +13,7 @@ public typealias OperationBlock = (@escaping () -> Void) -> Void
 
 /// A sublcass of `Operation` to execute a closure.
 open class BlockOperation: Operation {
-    fileprivate let block: OperationBlock?
+    private let block: OperationBlock?
 
     /**
         The designated initializer.

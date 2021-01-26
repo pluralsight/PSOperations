@@ -41,7 +41,7 @@ public struct NegatedCondition<T: OperationCondition>: OperationCondition {
     public func evaluateForOperation(_ operation: Operation, completion: @escaping (OperationConditionResult) -> Void) {
         condition.evaluateForOperation(operation) { result in
             switch result {
-            case .failed(_):
+            case .failed:
                 // If the composed condition failed, then this one succeeded.
                 completion(.satisfied)
             case .satisfied:

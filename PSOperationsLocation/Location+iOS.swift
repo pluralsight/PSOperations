@@ -44,9 +44,9 @@ private let Authorizer = LocationAuthorizer()
 
 private class LocationAuthorizer: NSObject, CLLocationManagerDelegate {
 
-    fileprivate let manager = CLLocationManager()
-    fileprivate var completion: ((CapabilityStatus) -> Void)?
-    fileprivate var kind = Location.whenInUse
+    private let manager = CLLocationManager()
+    private var completion: ((CapabilityStatus) -> Void)?
+    private var kind = Location.whenInUse
 
     override init() {
         super.init()

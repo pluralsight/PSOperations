@@ -726,7 +726,7 @@ class PSOperationsTests: XCTestCase {
         let exp2 = expectation(description: "2")
         let exp3 = expectation(description: "3")
 
-        let blockObserver = BlockObserver (
+        let blockObserver = BlockObserver(
             startHandler: { _ in
                 exp1.fulfill()
             },
@@ -989,9 +989,9 @@ class PSOperationsTests: XCTestCase {
                 go()
             }
 
-            //because of a change in evaluateConditions, this issue would only happen
-            //if the op had a condition. NoCancelledDependcies is an easy condition to
-            //use for this test.
+            // because of a change in evaluateConditions, this issue would only happen
+            // if the op had a condition. NoCancelledDependcies is an easy condition to
+            // use for this test.
             let noc = NoCancelledDependencies()
             blockOp.addCondition(noc)
 
@@ -1004,7 +1004,7 @@ class PSOperationsTests: XCTestCase {
 
         waitForExpectations(timeout: 15) { _ in
 
-            //if opCount != requiredToPassCount, the queue is frozen
+            // if opCount != requiredToPassCount, the queue is frozen
             XCTAssertEqual(opCount, requiredToPassCount)
         }
     }

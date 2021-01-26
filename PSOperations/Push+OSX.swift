@@ -57,7 +57,7 @@ private class PushAuthorizer {
         NSApplication.shared.registerForRemoteNotifications(matching: types)
     }
 
-    fileprivate func completeAuthorization(token: Data?, error: Error?) {
+    private func completeAuthorization(token: Data?, error: Error?) {
         self.token = token
 
         guard let completion = self.completion else { return }

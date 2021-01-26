@@ -57,8 +57,8 @@ public struct Capability<C: CapabilityType>: OperationCondition {
     public static var name: String { return "Capability<\(C.name)>" }
     public static var isMutuallyExclusive: Bool { return true }
 
-    fileprivate let capability: C
-    fileprivate let shouldRequest: Bool
+    private let capability: C
+    private let shouldRequest: Bool
 
     public init(_ capability: C, requestIfNecessary: Bool = true) {
         self.capability = capability
@@ -83,8 +83,8 @@ public struct Capability<C: CapabilityType>: OperationCondition {
     }
 }
 
-fileprivate class AuthorizeCapability<C: CapabilityType>: Operation {
-    fileprivate let capability: C
+private class AuthorizeCapability<C: CapabilityType>: Operation {
+    private let capability: C
 
     init(capability: C) {
         self.capability = capability
@@ -93,7 +93,7 @@ fileprivate class AuthorizeCapability<C: CapabilityType>: Operation {
         addCondition(MutuallyExclusive<C>())
     }
 
-    override fileprivate func execute() {
+    override func execute() {
         DispatchQueue.main.async {
             self.capability.requestStatus { status in
                 switch status {
@@ -104,7 +104,7 @@ fileprivate class AuthorizeCapability<C: CapabilityType>: Operation {
         }
     }
 
-    fileprivate func requestAuthorization() {
+    private func requestAuthorization() {
         DispatchQueue.main.async {
             self.capability.authorize { status in
                 self.finishWithError(CapabilityError<C>(status: status))

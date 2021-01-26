@@ -6,8 +6,8 @@
 //  Copyright © 2015 Pluralsight. All rights reserved.
 //
 
-import XCTest
 @testable import PSOperations
+import XCTest
 
 class ConditionErrorTests: XCTestCase {
     

@@ -23,11 +23,12 @@ open class Operation: Foundation.Operation {
      */
     @available(*, deprecated, message: "use BlockObserver completions instead")
     override open var completionBlock: (() -> Void)? {
-        set {
-            fatalError("The completionBlock property on NSOperation has unexpected behavior and is not supported in PSOperations.Operation 😈")
-        }
         get {
             return nil
+        }
+        // swiftlint:disable:next unused_setter_value
+        set {
+            fatalError("The completionBlock property on NSOperation has unexpected behavior and is not supported in PSOperations.Operation 😈")
         }
     }
 
@@ -82,7 +83,7 @@ open class Operation: Foundation.Operation {
     /// Private storage for the `state` property that will be KVO observed.
     private var _state = State.initialized
     private let stateQueue = DispatchQueue(label: "Operations.Operation.state")
-    fileprivate var state: State {
+    private var state: State {
         get {
             return stateQueue.sync {
                 return _state
@@ -184,7 +185,7 @@ open class Operation: Foundation.Operation {
         return _cancelled
     }
 
-    fileprivate func evaluateConditions() {
+    private func evaluateConditions() {
         stateAccess.lock()
         defer { stateAccess.unlock() }
 
@@ -211,14 +212,14 @@ open class Operation: Foundation.Operation {
 
     // MARK: Observers and Conditions
 
-    fileprivate(set) var conditions: [OperationCondition] = []
+    private(set) var conditions: [OperationCondition] = []
 
     open func addCondition(_ condition: OperationCondition) {
         assert(state < .evaluatingConditions, "Cannot modify conditions after execution has begun.")
         conditions.append(condition)
     }
 
-    fileprivate(set) var observers: [OperationObserver] = []
+    private(set) var observers: [OperationObserver] = []
 
     open func addObserver(_ observer: OperationObserver) {
         assert(state < .executing, "Cannot modify observers after execution has begun.")
@@ -269,7 +270,7 @@ open class Operation: Foundation.Operation {
 
     private let errorQueue = DispatchQueue(label: "Operations.Operation.internalErrors")
     private var _internalErrors: [Error] = []
-    fileprivate var internalErrors: [Error] {
+    private var internalErrors: [Error] {
         get {
             return errorQueue.sync {
                 return _internalErrors
@@ -335,7 +336,7 @@ open class Operation: Foundation.Operation {
         A private property to ensure we only notify the observers once that the 
         operation has finished.
     */
-    fileprivate var hasFinishedAlready = false
+    private var hasFinishedAlready = false
     public final func finish(_ errors: [Error] = []) {
         stateAccess.lock()
         defer { stateAccess.unlock() }
@@ -363,6 +364,7 @@ open class Operation: Foundation.Operation {
     */
     open func finished(_ errors: [Error]) { }
 
+    @available(*, unavailable)
     override open func waitUntilFinished() {
         /*
             Waiting on operations is almost NEVER the right thing to do. It is 

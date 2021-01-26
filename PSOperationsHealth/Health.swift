@@ -7,8 +7,8 @@ import PSOperations
 public struct Health: CapabilityType {
     public static let name = "Health"
 
-    fileprivate let readTypes: Set<HKSampleType>
-    fileprivate let writeTypes: Set<HKSampleType>
+    private let readTypes: Set<HKSampleType>
+    private let writeTypes: Set<HKSampleType>
 
     public init(typesToRead: Set<HKSampleType>, typesToWrite: Set<HKSampleType>) {
         self.readTypes = typesToRead

@@ -57,7 +57,7 @@ public extension TimeoutObserver {
     struct TimeoutError: Error, Equatable {
         public let timeout: TimeInterval
         
-        fileprivate init(timeout: TimeInterval) {
+        init(timeout: TimeInterval) {
             self.timeout = timeout
         }
     }
