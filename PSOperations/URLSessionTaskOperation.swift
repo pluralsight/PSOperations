@@ -28,6 +28,10 @@ open class URLSessionTaskOperation: Operation {
     private var observerRemoved = false
     private let stateLock = NSLock()
 
+    deinit {
+        stateObservation?.invalidate()
+    }
+    
     public init(task: URLSessionTask) {
         assert(task.state == .suspended, "Tasks must be suspended.")
         self.task = task
