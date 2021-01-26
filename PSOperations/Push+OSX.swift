@@ -1,11 +1,3 @@
-//
-//  PushCapability-OSX.swift
-//  PSOperations
-//
-//  Created by Dev Team on 10/4/15.
-//  Copyright © 2015 Pluralsight. All rights reserved.
-//
-
 #if os(OSX)
 
 import Cocoa
@@ -57,7 +49,7 @@ private class PushAuthorizer {
         NSApplication.shared.registerForRemoteNotifications(matching: types)
     }
 
-    private func completeAuthorization(token: Data?, error: Error?) {
+    func completeAuthorization(token: Data?, error: Error?) {
         self.token = token
 
         guard let completion = self.completion else { return }

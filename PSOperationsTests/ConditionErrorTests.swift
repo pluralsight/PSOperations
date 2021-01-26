@@ -1,11 +1,3 @@
-//
-//  ConditionErrorTests.swift
-//  PSOperations
-//
-//  Created by Matt McMurry on 10/1/15.
-//  Copyright © 2015 Pluralsight. All rights reserved.
-//
-
 @testable import PSOperations
 import XCTest
 

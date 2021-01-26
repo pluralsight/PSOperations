@@ -1,3 +1,4 @@
+// swiftlint:disable file_length
 import Foundation
 @testable import PSOperations
 import XCTest
@@ -66,6 +67,7 @@ class TestObserver: OperationObserver {
     }
 }
 
+// swiftlint:disable:next type_body_length
 class PSOperationsTests: XCTestCase {
 
     func testAddingMultipleDeps() {

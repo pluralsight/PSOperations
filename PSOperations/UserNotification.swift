@@ -1,11 +1,3 @@
-//
-//  UserNotificationCapability.swift
-//  PSOperations
-//
-//  Created by Dev Team on 10/4/15.
-//  Copyright © 2015 Pluralsight. All rights reserved.
-//
-
 #if os(iOS)
 
 import UIKit

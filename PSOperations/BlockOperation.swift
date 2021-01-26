@@ -11,6 +11,7 @@ import Foundation
 /// A closure type that takes a closure as its parameter.
 public typealias OperationBlock = (@escaping () -> Void) -> Void
 
+public typealias PSBlockOperation = BlockOperation
 /// A sublcass of `Operation` to execute a closure.
 open class BlockOperation: Operation {
     private let block: OperationBlock?

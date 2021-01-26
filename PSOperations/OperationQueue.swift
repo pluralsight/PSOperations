@@ -8,6 +8,7 @@ This file contains an NSOperationQueue subclass.
 
 import Foundation
 
+public typealias PSOperationQueueDelegate = OperationQueueDelegate
 /**
     The delegate of an `OperationQueue` can respond to `Operation` lifecycle
     events by implementing these methods.
@@ -23,6 +24,7 @@ import Foundation
     @objc optional func operationQueue(_ operationQueue: OperationQueue, operationDidFinish operation: Foundation.Operation, withErrors errors: [Error])
 }
 
+public typealias PSOperationQueue = OperationQueue
 /**
     `OperationQueue` is an `NSOperationQueue` subclass that implements a large
     number of "extra features" related to the `Operation` class:

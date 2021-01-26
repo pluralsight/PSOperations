@@ -8,6 +8,7 @@ This file contains the foundational subclass of NSOperation.
 
 import Foundation
 
+public typealias PSOperation = Operation
 /**
     The subclass of `NSOperation` from which all other operations should be derived.
     This class adds both Conditions and Observers, which allow the operation to define
@@ -364,7 +365,7 @@ open class Operation: Foundation.Operation {
     */
     open func finished(_ errors: [Error]) { }
 
-    @available(*, unavailable)
+    
     override open func waitUntilFinished() {
         /*
             Waiting on operations is almost NEVER the right thing to do. It is 
