@@ -17,8 +17,6 @@ public typealias PSOperation = Operation
 */
 open class Operation: Foundation.Operation {
 
-    private static var psoperationContext = 0
-
     /* The completionBlock property has unexpected behaviors such as executing twice and executing on unexpected threads. BlockObserver
      * executes in an expected manner.
      */
@@ -32,6 +30,8 @@ open class Operation: Foundation.Operation {
             fatalError("The completionBlock property on NSOperation has unexpected behavior and is not supported in PSOperations.Operation 😈")
         }
     }
+    
+    private var isReadyObservation: NSKeyValueObservation?
 
     // use the KVO mechanism to indicate that changes to "state" affect other properties as well
     @objc class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
@@ -50,20 +50,19 @@ open class Operation: Foundation.Operation {
         return ["cancelledState" as NSObject]
     }
 
+    
     override public init() {
         super.init()
-        self.addObserver(self, forKeyPath: "isReady", options: [], context: &Operation.psoperationContext)
+        isReadyObservation = observe(\.isReady) { [weak self] _, _ in
+            self?.isReadyChange()
+        }
     }
 
     deinit {
-        self.removeObserver(self, forKeyPath: "isReady", context: &Operation.psoperationContext)
+        isReadyObservation?.invalidate()
     }
-
-    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        guard context == &Operation.psoperationContext else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-            return
-        }
+    
+    private func isReadyChange() {
         stateAccess.lock()
         defer { stateAccess.unlock() }
         guard super.isReady && !isCancelled && state == .pending else { return }
@@ -365,7 +364,7 @@ open class Operation: Foundation.Operation {
     */
     open func finished(_ errors: [Error]) { }
 
-    
+    // swiftlint:disable:next unavailable_function
     override open func waitUntilFinished() {
         /*
             Waiting on operations is almost NEVER the right thing to do. It is 
