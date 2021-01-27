@@ -50,7 +50,6 @@ open class Operation: Foundation.Operation {
         return ["cancelledState" as NSObject]
     }
 
-    
     override public init() {
         super.init()
         isReadyObservation = observe(\.isReady) { [weak self] _, _ in
