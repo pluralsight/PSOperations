@@ -365,7 +365,7 @@ open class Operation: Foundation.Operation {
     */
     open func finished(_ errors: [Error]) { }
 
-    
+    // swiftlint:disable:next unavailable_function
     override open func waitUntilFinished() {
         /*
             Waiting on operations is almost NEVER the right thing to do. It is 
