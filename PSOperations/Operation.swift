@@ -59,6 +59,8 @@ open class Operation: Foundation.Operation {
         self.removeObserver(self, forKeyPath: "isReady", context: &Operation.psoperationContext)
     }
 
+    // when we upgrade this to the swift style KVO, crashes follow
+    // swiftlint:disable:next block_based_kvo
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &Operation.psoperationContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)

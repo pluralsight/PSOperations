@@ -45,6 +45,8 @@ open class URLSessionTaskOperation: Operation {
         task.resume()
     }
 
+    // when we upgrade this to the swift style KVO, crashes follow
+    // swiftlint:disable:next block_based_kvo
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &URLSessionTaskOperationKVOContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
