@@ -1,5 +1,5 @@
-// swiftlint:disable:next file_header
 // swift-tools-version:5.1
+// swiftlint:disable:previous file_header
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
