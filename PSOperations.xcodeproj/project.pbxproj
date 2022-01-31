@@ -655,7 +655,7 @@
 				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = Pluralsight;
 				TargetAttributes = {
 					1D9B430D1B6A92ED008F7F18 = {
