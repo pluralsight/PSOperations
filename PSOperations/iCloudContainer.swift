@@ -8,9 +8,9 @@ public struct iCloudContainer: CapabilityType {
     public static let name = "iCloudContainer"
 
     private let container: CKContainer
-    private let permissions: CKContainer.Application.Permissions
+    private let permissions: CKContainer.ApplicationPermissions
 
-    public init(container: CKContainer, permissions: CKContainer.Application.Permissions = []) {
+    public init(container: CKContainer, permissions: CKContainer.ApplicationPermissions = []) {
         self.container = container
         self.permissions = permissions
     }
@@ -24,7 +24,7 @@ public struct iCloudContainer: CapabilityType {
     }
 }
 
-private func verifyAccountStatus(_ container: CKContainer, permission: CKContainer.Application.Permissions, shouldRequest: Bool, completion: @escaping (CapabilityStatus) -> Void) {
+private func verifyAccountStatus(_ container: CKContainer, permission: CKContainer.ApplicationPermissions, shouldRequest: Bool, completion: @escaping (CapabilityStatus) -> Void) {
 
     container.accountStatus { accountStatus, accountError in
 
@@ -43,13 +43,15 @@ private func verifyAccountStatus(_ container: CKContainer, permission: CKContain
             }
         case .couldNotDetermine:
             completeWithError()
+        case .temporarilyUnavailable:
+            completeWithError()
         @unknown default:
             completeWithError()
         }
     }
 }
 
-private func verifyPermission(_ container: CKContainer, permission: CKContainer.Application.Permissions, shouldRequest: Bool, completion: @escaping (CapabilityStatus) -> Void) {
+private func verifyPermission(_ container: CKContainer, permission: CKContainer.ApplicationPermissions, shouldRequest: Bool, completion: @escaping (CapabilityStatus) -> Void) {
     container.status(forApplicationPermission: permission) { permissionStatus, permissionError in
 
         func completeWithError() {
@@ -73,7 +75,7 @@ private func verifyPermission(_ container: CKContainer, permission: CKContainer.
     }
 }
 
-private func requestPermission(_ container: CKContainer, permission: CKContainer.Application.Permissions, completion: @escaping (CapabilityStatus) -> Void) {
+private func requestPermission(_ container: CKContainer, permission: CKContainer.ApplicationPermissions, completion: @escaping (CapabilityStatus) -> Void) {
     DispatchQueue.main.async {
         container.requestApplicationPermission(permission) { requestStatus, requestError in
             switch requestStatus {
