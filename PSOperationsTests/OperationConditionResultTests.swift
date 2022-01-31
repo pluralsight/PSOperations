@@ -5,7 +5,7 @@ class OperationConditionResultTests: XCTestCase {
 
     struct MockCondition: OperationCondition {
         static let name: String = "MockCondition"
-        static let isMutuallyExclusive: Bool = false
+        static let isMutuallyExclusive = false
 
         func dependencyForOperation(_ operation: PSOperation) -> Foundation.Operation? {
             return nil
