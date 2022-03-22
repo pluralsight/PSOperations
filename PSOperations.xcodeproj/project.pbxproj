@@ -505,9 +505,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D9B43241B6A92ED008F7F18 /* Build configuration list for PBXNativeTarget "PSOperations" */;
 			buildPhases = (
+				1D9B430B1B6A92ED008F7F18 /* Headers */,
 				1D9B43091B6A92ED008F7F18 /* Sources */,
 				1D9B430A1B6A92ED008F7F18 /* Frameworks */,
-				1D9B430B1B6A92ED008F7F18 /* Headers */,
 				1D9B430C1B6A92ED008F7F18 /* Resources */,
 			);
 			buildRules = (
