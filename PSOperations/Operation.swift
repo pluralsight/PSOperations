@@ -23,7 +23,7 @@ open class Operation: Foundation.Operation {
      * executes in an expected manner.
      */
     @available(*, deprecated, message: "use BlockObserver completions instead")
-    override open var completionBlock: (() -> Void)? {
+    override open var completionBlock: (@Sendable () -> Void)? {
         get {
             return nil
         }
