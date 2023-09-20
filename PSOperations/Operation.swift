@@ -22,15 +22,21 @@ open class Operation: Foundation.Operation {
     /* The completionBlock property has unexpected behaviors such as executing twice and executing on unexpected threads. BlockObserver
      * executes in an expected manner.
      */
-//    @available(*, deprecated, message: "use BlockObserver completions instead")
-//    override open var completionBlock: (() -> Void)? {
-//        get {
-//            return nil
-//        }
-//        set {
-//            fatalError("The completionBlock property on NSOperation has unexpected behavior and is not supported in PSOperations.Operation 😈")
-//        }
-//    }
+    #if swift(>=5.9)
+    public typealias PSCompletionBlock = @Sendable () -> Void
+    #else
+    public typealias PSCompletionBlock = () -> Void
+    #endif
+    
+    @available(*, deprecated, message: "use BlockObserver completions instead")
+    override open var completionBlock: PSCompletionBlock? {
+        get {
+            return nil
+        }
+        set {
+            fatalError("The completionBlock property on NSOperation has unexpected behavior and is not supported in PSOperations.Operation 😈")
+        }
+    }
     // use the KVO mechanism to indicate that changes to "state" affect other properties as well
     @objc class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
         return ["state" as NSObject]
