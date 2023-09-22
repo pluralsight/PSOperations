@@ -18,6 +18,26 @@ public typealias PSOperation = Operation
 open class Operation: Foundation.Operation {
 
     private static var psoperationContext = 0
+    
+#if swift(>=5.9)
+    public typealias CompletionBlock = @Sendable () -> Void
+#else
+    public typealias CompletionBlock = () -> Void
+#endif
+    
+    /* The completionBlock property has unexpected behaviors such as executing twice and executing on unexpected threads. BlockObserver
+     * executes in an expected manner.
+     */
+    @available(*, deprecated, message: "use BlockObserver completions instead")
+    override open var completionBlock: CompletionBlock? {
+        get {
+            return nil
+        }
+        // swiftlint:disable:next unused_setter_value
+        set {
+            fatalError("The completionBlock property on NSOperation has unexpected behavior and is not supported in PSOperations.Operation 😈")
+        }
+    }
 
     // use the KVO mechanism to indicate that changes to "state" affect other properties as well
     @objc class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
