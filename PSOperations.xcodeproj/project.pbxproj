@@ -147,6 +147,7 @@
 		55AE64DB1BC1C7E50097F4A5 /* Push+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Push+OSX.swift"; sourceTree = "<group>"; };
 		55AE64DD1BC1DCF50097F4A5 /* UserNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
 		775C7EFC205718C30091A21F /* PSOperationsCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2D4343E2BF69EEB0000CD10 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A39DCF762091C808009DF08E /* PSOperationsLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSOperationsLocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD19C9D01C440293005D0F07 /* PSOperationsAppForTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSOperationsAppForTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD19C9D21C440293005D0F07 /* PSOperationsTestAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSOperationsTestAppDelegate.swift; sourceTree = "<group>"; };
@@ -293,6 +294,7 @@
 				1D9B436B1B6A93B0008F7F18 /* Conditions */,
 				1D9B436C1B6A93C9008F7F18 /* Convenience Extensions */,
 				1D9B43111B6A92ED008F7F18 /* Supporting Files */,
+				A2D4343E2BF69EEB0000CD10 /* PrivacyInfo.xcprivacy */,
 			);
 			path = PSOperations;
 			sourceTree = "<group>";
