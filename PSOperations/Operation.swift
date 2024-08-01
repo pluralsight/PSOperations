@@ -15,7 +15,7 @@ public typealias PSOperation = Operation
     extended readiness requirements, as well as notify many interested parties 
     about interesting operation state changes
 */
-open class Operation: Foundation.Operation {
+open class Operation: Foundation.Operation, @unchecked Sendable {
 
     private static var psoperationContext = 0
 

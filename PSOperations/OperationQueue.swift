@@ -33,7 +33,7 @@ public typealias PSOperationQueue = OperationQueue
     - Extracting generated dependencies from operation conditions
     - Setting up dependencies to enforce mutual exclusivity
 */
-open class OperationQueue: Foundation.OperationQueue {
+open class OperationQueue: Foundation.OperationQueue, @unchecked Sendable {
     open weak var delegate: OperationQueueDelegate?
 
     override open  func addOperation(_ operation: Foundation.Operation) {
